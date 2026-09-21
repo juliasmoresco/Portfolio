@@ -1,0 +1,33 @@
+.root {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* Own stacking context, so the poster's z-index can't climb above the page's overlays (scrims, title, controls). */
+  isolation: isolate;
+}
+
+/* A rendered frame of the scene shown while the GLBs load; fades out once the canvas has taken over. */
+.poster {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 1;
+  transition: opacity 500ms ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.posterGone {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .poster {
+    transition: none;
+  }
+}
