@@ -1,0 +1,774 @@
+/*
+ * The Reader overlay. Values are carried over from Reader.dc.html. Type and space are in cqw,
+ * so the root is its own size container: on the desktop stage that is identical to the stage's width.
+ * State arrives as data attributes on .root: skin, opening, open, cover-open, nav, reduced.
+ */
+.root {
+  --dur: 420ms;
+  --ease: cubic-bezier(0.3, 0, 0.1, 1);
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+  outline: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(24, 18, 15, 0.68);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+  cursor: pointer;
+}
+
+.root[data-open="true"] .scrim {
+  opacity: 1;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6cqw;
+  perspective: 180cqw;
+  perspective-origin: 50% 42%;
+  pointer-events: none;
+}
+
+/* ---- Shell: the object that arrives, per skin and opening ---- */
+
+.shell {
+  position: relative;
+  pointer-events: auto;
+  outline: none;
+  width: 62cqw;
+  height: 38cqw;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  opacity: 0;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+  filter: drop-shadow(0 3cqw 5cqw rgba(0, 0, 0, 0.55));
+}
+
+.root[data-skin="frame"] .shell {
+  width: 40cqw;
+  height: 40cqw;
+}
+
+.root[data-opening="hinge"] .shell {
+  transform-origin: left center;
+}
+
+.root[data-opening="binder"] .shell {
+  transform-origin: center top;
+}
+
+/* closed / arriving */
+.root[data-skin="frame"] .shell {
+  transform: translate(10cqw, -8cqw) scale(0.26) rotateZ(-5deg) rotateX(16deg);
+}
+.root[data-skin="book"] .shell {
+  transform: translate(14cqw, 6cqw) scale(0.18) rotateX(6deg) rotateZ(-6deg);
+}
+.root[data-opening="hinge"] .shell {
+  transform: rotateY(82deg) scale(0.9);
+}
+.root[data-opening="tube"] .shell {
+  transform: scaleX(0.05) scaleY(0.72);
+}
+.root[data-opening="binder"] .shell {
+  transform: rotateX(-72deg) scale(0.92);
+}
+.root[data-opening="lid"] .shell {
+  transform: translateY(3cqw) scale(0.86);
+}
+
+/* open */
+.root[data-open="true"] .shell {
+  opacity: 1;
+  transform: none;
+}
+/* a closed book sits half-shifted until its cover has swung open */
+.root[data-open="true"][data-skin="book"] .shell {
+  transform: translateX(-15.5cqw) rotateX(2deg);
+}
+.root[data-open="true"][data-skin="book"][data-cover-open="true"] .shell {
+  transform: translateX(0) rotateX(2deg);
+}
+
+.root[data-reduced="true"] .shell {
+  transform: none !important;
+  transition: opacity 0.2s ease;
+}
+
+/* ---- Spread (book + folder) ---- */
+
+.spread {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  border-radius: 0.3cqw;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  box-shadow: inset 0 0 6cqw rgba(46, 33, 28, 0.14);
+}
+
+.pageLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2cqw;
+  padding: 3.2cqw 2.4cqw 3.2cqw 3.2cqw;
+}
+
+.pageRight {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 3.2cqw 3.2cqw 3.2cqw 2.4cqw;
+}
+
+.bookLeft {
+  background: linear-gradient(90deg, var(--paper-warm) 0%, var(--paper) 82%, var(--paper-shade) 100%);
+}
+
+.bookRight {
+  background: linear-gradient(270deg, var(--paper-warm) 0%, var(--paper) 82%, var(--paper-shade) 100%);
+}
+
+.flat {
+  background: var(--paper);
+}
+
+.gutter {
+  width: 0.14cqw;
+  background: linear-gradient(180deg, rgba(46, 33, 28, 0.05), rgba(46, 33, 28, 0.28), rgba(46, 33, 28, 0.05));
+}
+
+.plate {
+  flex: 1;
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  background: repeating-linear-gradient(135deg, rgba(46, 33, 28, 0.14) 0 8px, rgba(46, 33, 28, 0.04) 8px 16px);
+  border: 0.12cqw solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plateTag {
+  font-family: var(--font-mono);
+  font-size: 0.74cqw;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+  background: var(--paper);
+  padding: 0.2cqw 0.6cqw;
+  border: 0.1cqw solid var(--ink);
+}
+
+.caption {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68cqw;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72cqw;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.heading {
+  margin: 0.6cqw 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2.4cqw;
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.descLabel {
+  margin: 1.2cqw 0 0.4cqw;
+  font-family: var(--font-mono);
+  font-size: 0.7cqw;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5cqw;
+  max-width: 22cqw;
+}
+
+.line {
+  margin: 0;
+  font-size: 1cqw;
+  line-height: 1.6;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.openingLabel {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 0.68cqw;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.6;
+}
+
+/* ---- Turning leaf (book paging) ---- */
+
+.leaf {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  transition: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.leafFace {
+  position: absolute;
+  inset: 0;
+  /* #DCCFB6 is the leaf's edge shade, not a README token */
+  background: linear-gradient(270deg, var(--paper-warm) 0%, var(--paper) 78%, #dccfb6 100%);
+  box-shadow: 0 0 3cqw rgba(46, 33, 28, 0.3);
+}
+
+.root[data-turning="next"] .leaf {
+  transform: rotateY(-180deg);
+  transition: transform 0.62s cubic-bezier(0.4, 0.05, 0.3, 1);
+  opacity: 1;
+}
+
+.root[data-turning="prev"] .leaf {
+  left: 0;
+  transform-origin: right center;
+  transform: rotateY(180deg);
+  transition: transform 0.62s cubic-bezier(0.4, 0.05, 0.3, 1);
+  opacity: 1;
+}
+
+.root[data-turning="prev"] .leafFace {
+  background: linear-gradient(90deg, var(--paper-warm) 0%, var(--paper) 78%, #dccfb6 100%);
+}
+
+/* ---- Book cover (swings open on its left edge, the spine side) ---- */
+
+.cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: transform 0.74s cubic-bezier(0.42, 0.02, 0.2, 1), opacity 0.18s ease 0.62s, visibility 0s linear 0s;
+}
+
+.root[data-cover-open="true"] .cover {
+  transform: rotateY(-178deg);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.74s cubic-bezier(0.42, 0.02, 0.2, 1), opacity 0.18s ease 0.62s, visibility 0s linear 0.8s;
+}
+
+.root[data-reduced="true"] .cover {
+  transform: none !important;
+  transition: opacity 0.2s ease;
+}
+
+.coverFront {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 0.3cqw 0.6cqw 0.6cqw 0.3cqw;
+  background: linear-gradient(115deg, var(--spine, #c96b5e) 0%, rgba(46, 33, 28, 0.9) 130%);
+  box-shadow: inset -0.6cqw 0 1.6cqw rgba(0, 0, 0, 0.3);
+}
+
+.coverContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 3.6cqw;
+  color: var(--paper);
+}
+
+.coverTag {
+  font-family: var(--font-mono);
+  font-size: 0.78cqw;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 235, 220, 0.75);
+}
+
+.coverTitle {
+  margin: 1.1cqw 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 3.2cqw;
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+
+.coverMeta {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35cqw;
+  font-family: var(--font-mono);
+  font-size: 0.76cqw;
+  letter-spacing: 0.12em;
+  color: rgba(245, 235, 220, 0.72);
+}
+
+.coverBack {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  /* #E9DFC9 is the inside-cover stock, not a README token */
+  background: #e9dfc9;
+  box-shadow: inset 0 0 4cqw rgba(46, 33, 28, 0.22);
+}
+
+/* ---- Folder lid (opening="lid") ---- */
+
+.lid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 22%;
+  background: linear-gradient(180deg, var(--ink) 0%, #43332b 100%);
+  border-radius: 0.3cqw 0.3cqw 0 0;
+  transform-origin: center top;
+  backface-visibility: hidden;
+  opacity: 0;
+  transform: translateY(0) rotateX(0deg);
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+  pointer-events: none;
+}
+
+.root[data-opening="lid"] .lid {
+  opacity: 1;
+}
+
+.root[data-opening="lid"][data-open="true"] .lid {
+  opacity: 0;
+  transform: translateY(-8cqw) rotateX(58deg);
+}
+
+.root[data-reduced="true"] .lid {
+  opacity: 0 !important;
+  transition: opacity 0.2s ease;
+}
+
+/* ---- Frame ---- */
+
+.frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2cqw;
+  padding: 1.2cqw;
+  background: var(--paper);
+  border: 0.9cqw solid var(--ink);
+}
+
+.frameText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4cqw;
+  padding: 0 0.4cqw 0.4cqw;
+}
+
+.frameHeading {
+  font-size: 2cqw;
+}
+
+.frameDescLabel {
+  margin: 0.2cqw 0;
+}
+
+.frameLines {
+  display: contents;
+}
+
+.frameLines .line {
+  font-size: 0.95cqw;
+  line-height: 1.55;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5cqw;
+  margin-top: 0.7cqw;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4cqw;
+  padding: 0.42cqw 0.9cqw;
+  border: 0.1cqw solid var(--ink);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.72cqw;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.link:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---- Controls under the shell ---- */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.12s;
+}
+
+.root[data-nav="true"] .nav {
+  opacity: 1;
+}
+
+.navBtn {
+  width: 2.6cqw;
+  height: 2.6cqw;
+  padding: 0;
+  border: 0.12cqw solid rgba(245, 235, 220, 0.5);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--paper);
+  font-size: 1.2cqw;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.navBtn:hover {
+  background: var(--accent);
+  color: var(--ink);
+  border-color: var(--accent);
+}
+
+.pageLabel {
+  min-width: 6cqw;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.8cqw;
+  letter-spacing: 0.16em;
+  color: rgba(245, 235, 220, 0.85);
+}
+
+.closeBtn {
+  margin-left: 1cqw;
+  padding: 0.5cqw 1.2cqw;
+  border: 0.12cqw solid rgba(245, 235, 220, 0.5);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--paper);
+  font-family: var(--font-ui);
+  font-size: 0.82cqw;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.closeBtn:hover {
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+
+/* The design has no focus style and the shell suppresses its outline; controls need one for the keyboard. */
+.navBtn:focus-visible,
+.closeBtn:focus-visible,
+.link:focus-visible {
+  outline: 0.2cqw solid var(--accent);
+  outline-offset: 0.2cqw;
+}
+
+/* ==========================================================================
+   Compact (phone) presentation: [data-compact="true"] on .root.
+   The desktop tuning above is all cqw and unreadable at phone width, so type and space are
+   re-pinned to px. README scale: kicker 11px, heading 22px, body 15px/1.6, 44px touch targets.
+   Everything below overrides; the desktop rules are untouched.
+   ========================================================================== */
+
+.scroller {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.view {
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.root[data-compact="true"] .stage {
+  gap: 14px;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+
+/* One page per view: a portrait sheet that fills the width, leaving room for the controls. */
+.root[data-compact="true"] .shell {
+  width: calc(100% - 36px);
+  max-width: 480px;
+  height: min(calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom)), 640px);
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.55));
+}
+
+.root[data-compact="true"][data-skin="frame"] .shell {
+  height: auto;
+  max-height: calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+}
+
+/* A closed book is a single portrait cover, so it is not shifted half a spread off-centre. */
+.root[data-compact="true"][data-open="true"][data-skin="book"] .shell,
+.root[data-compact="true"][data-open="true"][data-skin="book"][data-cover-open="true"] .shell {
+  transform: none;
+}
+
+.root[data-compact="true"] .spread {
+  border-radius: 4px;
+  box-shadow: inset 0 0 24px rgba(46, 33, 28, 0.14);
+}
+
+.root[data-compact="true"] .pageLeft,
+.root[data-compact="true"] .pageRight {
+  min-width: 0;
+  padding: 22px 20px 24px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.root[data-compact="true"] .pageLeft {
+  gap: 12px;
+}
+
+.root[data-compact="true"] .plate {
+  border-width: 1px;
+}
+
+.root[data-compact="true"] .plateTag {
+  padding: 3px 8px;
+  border-width: 1px;
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .caption {
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.root[data-compact="true"] .kicker {
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .heading {
+  margin-top: 8px;
+  font-size: 22px;
+}
+
+.root[data-compact="true"] .descLabel {
+  margin: 18px 0 8px;
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .lines {
+  max-width: none;
+  gap: 10px;
+}
+
+.root[data-compact="true"] .line {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.root[data-compact="true"] .openingLabel {
+  padding-top: 18px;
+  font-size: 11px;
+}
+
+/* Cover fills the sheet and swings open from its left (spine) edge. */
+.root[data-compact="true"] .cover {
+  left: 0;
+  width: 100%;
+}
+
+.root[data-compact="true"] .coverFront {
+  border-radius: 3px 8px 8px 3px;
+  box-shadow: inset -8px 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.root[data-compact="true"] .coverContent {
+  padding: 28px;
+}
+
+.root[data-compact="true"] .coverTag {
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .coverTitle {
+  margin-top: 12px;
+  font-size: 32px;
+}
+
+.root[data-compact="true"] .coverMeta {
+  gap: 4px;
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .coverBack {
+  box-shadow: inset 0 0 40px rgba(46, 33, 28, 0.22);
+}
+
+.root[data-compact="true"] .lid {
+  border-radius: 4px 4px 0 0;
+}
+
+/* Frame: plate on top, text below, scrolling inside the frame if the copy is long. */
+.root[data-compact="true"] .frame {
+  position: relative;
+  inset: auto;
+  max-height: inherit;
+  overflow-y: auto;
+  gap: 12px;
+  padding: 12px;
+  border-width: 6px;
+}
+
+.root[data-compact="true"] .frame .plate {
+  flex: none;
+  width: 100%;
+}
+
+.root[data-compact="true"] .frameText {
+  gap: 6px;
+  padding: 0 4px 4px;
+}
+
+.root[data-compact="true"] .frameHeading {
+  font-size: 22px;
+}
+
+.root[data-compact="true"] .frameDescLabel {
+  margin: 4px 0;
+}
+
+.root[data-compact="true"] .frameLines .line {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.root[data-compact="true"] .links {
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.root[data-compact="true"] .link {
+  min-height: 44px;
+  padding: 0 16px;
+  border-width: 1px;
+  font-size: 11px;
+}
+
+/* Controls */
+.root[data-compact="true"] .nav {
+  gap: 10px;
+}
+
+.root[data-compact="true"] .navBtn {
+  width: 44px;
+  height: 44px;
+  border-width: 1px;
+  font-size: 22px;
+}
+
+.root[data-compact="true"] .pageLabel {
+  min-width: 64px;
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .closeBtn {
+  min-height: 44px;
+  margin-left: 6px;
+  padding: 0 20px;
+  border-width: 1px;
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .navBtn:focus-visible,
+.root[data-compact="true"] .closeBtn:focus-visible,
+.root[data-compact="true"] .link:focus-visible {
+  outline-width: 2px;
+  outline-offset: 2px;
+}
