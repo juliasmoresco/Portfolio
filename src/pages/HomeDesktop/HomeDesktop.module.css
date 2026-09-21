@@ -1,0 +1,124 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--stage);
+  font-family: var(--font-ui);
+}
+
+/* One 16:9.6 stage at full page width. Everything inside is sized in cqw so it scales with the stage. */
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9.6;
+  container-type: inline-size;
+  overflow: hidden;
+  background: var(--stage);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(0deg, rgb(var(--scrim-rgb) / 0.82) 0%, rgb(var(--scrim-rgb) / 0.4) 26%, rgb(var(--scrim-rgb) / 0) 46%);
+}
+
+.intro {
+  position: absolute;
+  left: 4%;
+  bottom: 6%;
+  width: 36%;
+  color: var(--light);
+  pointer-events: none;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: normal;
+  /* 4.9cqw x headline scale 0.9 */
+  font-size: calc(4.9cqw * 0.9);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+
+.lede {
+  margin: 1.4cqw 0 0;
+  max-width: 28cqw;
+  font-size: 1.2cqw;
+  line-height: 1.5;
+  color: rgb(var(--light-rgb) / 0.82);
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 0.8cqw;
+  margin-top: 1.8cqw;
+  font-size: 0.9cqw;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(var(--light-rgb) / 0.6);
+}
+
+.rule {
+  display: inline-block;
+  width: 2.6cqw;
+  height: 1px;
+  background: rgb(var(--light-rgb) / 0.4);
+}
+
+/* Follows the hovered object; left/top are set inline as percentages of the stage. */
+.chip {
+  position: absolute;
+  transform: translate(-50%, -180%);
+  padding: 0.3cqw 0.9cqw;
+  border: 0.14cqw solid var(--ink);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--ink);
+  font-size: 0.85cqw;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.16s ease;
+  box-shadow: 0 0.4cqw 1.2cqw rgba(0, 0, 0, 0.45);
+}
+
+.chipVisible {
+  opacity: 1;
+}
+
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  transform: translateX(-50%);
+  padding: 0.5cqw 1.2cqw;
+  border-radius: 999px;
+  background: rgb(var(--scrim-rgb) / 0.78);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 0.85cqw;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.toastVisible {
+  opacity: 1;
+}
