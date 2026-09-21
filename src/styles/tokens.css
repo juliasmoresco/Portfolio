@@ -1,0 +1,27 @@
+/* Design tokens from the handoff README. Hex values are documented; do not tweak. */
+:root {
+  /* Surfaces */
+  --stage: #55534f;
+  --ground: #2e2d2a;
+  --scrim-ink: #1e1d1b;
+  --scrim-rgb: 30 29 27;
+
+  /* Paper + ink */
+  --ink: #2e211c;
+  --paper: #f5ebdc;
+  --paper-warm: #f7f0e2;
+  --paper-shade: #e4d8c2;
+
+  /* Light text; secondary copy uses 0.82 / 0.74 / 0.6 / 0.5 alphas: rgb(var(--light-rgb) / 0.82) */
+  --light: #f5e9d9;
+  --light-rgb: 245 233 217;
+
+  /* Accent */
+  --accent: #f0c46a;
+  --accent-hover: #ffd98a;
+
+  /* Type */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-ui: Karla, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}

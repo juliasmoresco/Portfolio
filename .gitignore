@@ -1,0 +1,10 @@
+node_modules
+dist
+*.local
+.DS_Store
+
+# Design handoff bundle: reference prototype, README and third-party models. Kept locally, not in the repo.
+design-handoff/
+
+# Local tooling config (contains machine-specific paths)
+.claude/
