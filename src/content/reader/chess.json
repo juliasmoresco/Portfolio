@@ -1,0 +1,19 @@
+{
+  "skin": "folder",
+  "opening": "hinge",
+  "openingLabel": "Unfolds on its hinge",
+  "title": "Chess",
+  "kind": "Aside",
+  "spine": "#9A8FAE",
+  "pages": [
+    {
+      "kicker": "Off the clock",
+      "plate": "board placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    }
+  ]
+}

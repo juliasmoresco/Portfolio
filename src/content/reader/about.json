@@ -1,0 +1,31 @@
+{
+  "skin": "book",
+  "title": "About me",
+  "kind": "About",
+  "tag": "About",
+  "year": "[Year]",
+  "role": "[Role]",
+  "spine": "#8A6A55",
+  "pages": [
+    {
+      "kicker": "Who",
+      "heading": "About me",
+      "plate": "portrait placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    },
+    {
+      "kicker": "How I work",
+      "heading": "Practice",
+      "plate": "artefact placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "skin": "book",
+  "title": "Travels",
+  "kind": "Journal",
+  "tag": "Travel journal",
+  "year": "[Year]",
+  "role": "[Role]",
+  "spine": "#6F9F9A",
+  "hotspotLabel": "Where I have been",
+  "pages": [
+    {
+      "kicker": "Trip 01",
+      "heading": "[Place]",
+      "plate": "place photo placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    },
+    {
+      "kicker": "Trip 02",
+      "heading": "[Place]",
+      "plate": "place photo placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    },
+    {
+      "kicker": "Trip 03",
+      "heading": "[Place]",
+      "plate": "place photo placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    }
+  ]
+}

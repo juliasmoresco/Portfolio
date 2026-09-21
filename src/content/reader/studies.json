@@ -1,0 +1,19 @@
+{
+  "skin": "folder",
+  "opening": "tube",
+  "openingLabel": "Slides out and unrolls",
+  "title": "Where I studied",
+  "kind": "Studies",
+  "spine": "#C8A86A",
+  "pages": [
+    {
+      "kicker": "Studies",
+      "plate": "diploma placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    }
+  ]
+}

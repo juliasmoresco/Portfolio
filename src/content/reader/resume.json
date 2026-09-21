@@ -1,0 +1,18 @@
+{
+  "skin": "folder",
+  "opening": "binder",
+  "openingLabel": "Cover flips open",
+  "title": "Résumé",
+  "kind": "Document",
+  "pages": [
+    {
+      "kicker": "Binder",
+      "plate": "résumé page placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    }
+  ]
+}

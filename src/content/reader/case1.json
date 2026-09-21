@@ -1,0 +1,40 @@
+{
+  "skin": "book",
+  "title": "Case 01",
+  "tag": "Case study",
+  "year": "[Year]",
+  "role": "[Role]",
+  "spine": "#C96B5E",
+  "pages": [
+    {
+      "kicker": "Overview",
+      "heading": "The brief",
+      "plate": "cover image placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "How it was made",
+      "plate": "process artefact placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "What shipped",
+      "plate": "final screen placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    }
+  ]
+}

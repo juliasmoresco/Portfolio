@@ -1,0 +1,30 @@
+{
+  "skin": "frame",
+  "title": "Say hello",
+  "kind": "Contact",
+  "links": [
+    {
+      "label": "LinkedIn",
+      "href": "#"
+    },
+    {
+      "label": "Instagram",
+      "href": "#"
+    },
+    {
+      "label": "Email",
+      "href": "#"
+    }
+  ],
+  "pages": [
+    {
+      "kicker": "Contact",
+      "plate": "contact image placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    }
+  ]
+}

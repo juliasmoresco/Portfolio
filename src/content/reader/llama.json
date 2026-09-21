@@ -1,0 +1,16 @@
+{
+  "skin": "frame",
+  "title": "Llama bank",
+  "kind": "Object",
+  "pages": [
+    {
+      "kicker": "Framed",
+      "plate": "artwork placeholder",
+      "lines": [
+        "[Description] line one placeholder.",
+        "[Description] line two placeholder.",
+        "[Description] line three placeholder."
+      ]
+    }
+  ]
+}
