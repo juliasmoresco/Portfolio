@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ReaderItem } from "../../content";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import { PAGE_TURN_MS, READER_DURATION_MS } from "./copy";
-import type { CompactViewProps } from "./compact";
+import { buildViews, type CompactViewProps } from "./compact";
 import { BookSkin, FolderSkin, FrameSkin } from "./skins";
+import { ZoomContext, type ZoomTarget } from "./zoom";
 import styles from "./Reader.module.css";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -45,6 +46,22 @@ export function Reader({ item, onClose, className, compact = false }: Props) {
   const [turning, setTurning] = useState<"next" | "prev" | null>(null);
   const [closing, setClosing] = useState(false);
 
+  const [zoom, setZoom] = useState<ZoomTarget | null>(null);
+  const zoomRef = useRef<ZoomTarget | null>(null);
+  const zoomOrigin = useRef<HTMLElement | null>(null);
+  const lightboxClose = useRef<HTMLButtonElement>(null);
+  zoomRef.current = zoom;
+
+  const enlarge = useCallback((target: ZoomTarget) => {
+    zoomOrigin.current = document.activeElement as HTMLElement | null;
+    setZoom(target);
+  }, []);
+  const closeZoom = useCallback(() => {
+    setZoom(null);
+    // hand focus back to the Enlarge button once the page behind is interactive again
+    window.setTimeout(() => zoomOrigin.current?.isConnected && zoomOrigin.current.focus({ preventScroll: true }), 0);
+  }, []);
+
   const root = useRef<HTMLDivElement>(null);
   const timers = useRef<{ cover?: number; turn?: number; close?: number }>({});
   const closingRef = useRef(false);
@@ -85,9 +102,11 @@ export function Reader({ item, onClose, className, compact = false }: Props) {
     t.close = window.setTimeout(() => onCloseRef.current(), READER_DURATION_MS);
   }, []);
 
-  // Compact: each content page is two views (image, text). Frames are a single view.
-  const paged = compact ? skin !== "frame" : isBook;
-  const count = compact ? pages.length * 2 : pages.length;
+  // Books and folders page (a turning leaf on desktop; on a phone each page is two views, image then text).
+  // Frames are a single view.
+  const paged = skin !== "frame";
+  const views = useMemo(() => buildViews(pages), [pages]);
+  const count = compact ? views.length : pages.length;
   const index = compact ? view : spread;
 
   const goTo = useCallback(
@@ -146,26 +165,31 @@ export function Reader({ item, onClose, className, compact = false }: Props) {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.stopPropagation();
-        requestClose();
+        if (zoomRef.current) closeZoom();
+        else requestClose();
       } else if (e.key === "Tab") {
         trapTab(e);
-      } else if (paged && count > 1 && (!isBook || coverOpen)) {
+      } else if (!zoomRef.current && paged && count > 1 && (!isBook || coverOpen)) {
         if (e.key === "ArrowRight") turn(1);
         else if (e.key === "ArrowLeft") turn(-1);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [paged, count, isBook, coverOpen, requestClose, turn]);
+  }, [paged, count, isBook, coverOpen, requestClose, closeZoom, turn]);
 
-  const pageIndex = compact ? Math.floor(view / 2) : spread;
+  // Move focus into the enlarged view when it opens.
+  useEffect(() => {
+    if (zoom) lightboxClose.current?.focus({ preventScroll: true });
+  }, [zoom]);
+
+  const pageIndex = compact ? (views[Math.min(view, views.length - 1)]?.page ?? 0) : spread;
   const page = pages[Math.min(pageIndex, Math.max(pages.length - 1, 0))];
   const open = shown && !closing;
   const navVisible = open && (!isBook || coverOpen);
-  // On desktop only books page (folders show a single spread); on a phone a folder's image and text are separate views.
   const showPager = paged && count > 1;
   const pageLabel = `${String(index + 1).padStart(2, "0")} / ${String(count).padStart(2, "0")}`;
-  const compactViews: CompactViewProps | undefined = compact ? { view, onViewChange: setView, scrollerRef: scroller } : undefined;
+  const compactViews: CompactViewProps | undefined = compact ? { views, view, onViewChange: setView, scrollerRef: scroller } : undefined;
 
   return (
     <div
@@ -186,7 +210,8 @@ export function Reader({ item, onClose, className, compact = false }: Props) {
     >
       <div className={styles.scrim} onClick={requestClose} />
 
-      <div className={styles.stage}>
+      <ZoomContext.Provider value={enlarge}>
+      <div className={styles.stage} inert={!!zoom}>
         <div className={styles.shell}>
           {skin === "book" && <BookSkin item={item} page={page} compact={compactViews} />}
           {skin === "folder" && <FolderSkin item={item} page={page} compact={compactViews} />}
@@ -211,6 +236,20 @@ export function Reader({ item, onClose, className, compact = false }: Props) {
           </button>
         </div>
       </div>
+      </ZoomContext.Provider>
+
+      {zoom && (
+        <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label={`${zoom.alt || item.title} (enlarged)`} onClick={closeZoom}>
+          <div className={`${styles.lightboxPics} ${zoom.images.length === 1 ? styles.lightboxSingle : ""}`}>
+            {zoom.images.map((src) => (
+              <img key={src} src={src} alt={zoom.alt} draggable={false} />
+            ))}
+          </div>
+          <button ref={lightboxClose} type="button" className={styles.lightboxClose} onClick={closeZoom}>
+            Close
+          </button>
+        </div>
+      )}
 
       {showPager && (
         <p className={styles.srOnly} aria-live="polite">

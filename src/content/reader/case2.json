@@ -1,39 +1,223 @@
 {
   "skin": "book",
-  "title": "Case 02",
-  "tag": "Case study",
-  "year": "[Year]",
-  "role": "[Role]",
+  "title": "Loyalty Tiers – Designing a Scalable VIP Experience",
+  "tag": "Case study · QSR",
+  "year": "2023",
+  "role": "Product Design, User Research",
   "spine": "#6F9F9A",
   "pages": [
     {
       "kicker": "Overview",
-      "heading": "The brief",
-      "plate": "cover image placeholder",
+      "heading": "Project Summary",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "Loyalty Tiers is a redesigned tiered rewards experience for Burger King's mobile app. The feature was adapted for RBI’s global platform to support recognition, motivation, and long-term engagement.",
+        "Client: Restaurants Brands International – Burger King Spain",
+        "My Role: Product Designer – Research, Competitive Benchmarking, Prototyping",
+        "Other participants: Valentina Lopes (Product Manager)",
+        "Platform: Burger King App (Mobile and Desktop)"
+      ],
+      "image": "case2-cover"
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Project Summary",
+      "lines": [
+        "Timeline: 2023",
+        "Team: Product, Engineering, CRO, Marketing, Intl Research"
+      ]
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Context",
+      "lines": [
+        "The Loyalty Tiers feature was originally developed and launched in the standalone Burger King Spain app, introducing a VIP level called Superking for highly engaged users. The tier included exclusive benefits like third-party rewards (e.g. Netflix, Apple), aiming to boost retention and reward frequency.",
+        "When the Iberia region migrated to RBI’s white-label app infrastructure, we were tasked with supporting this feature in the new ecosystem, ensuring continuity for existing Superking users while adapting the experience to new tech constraints and regional scalability."
+      ]
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Context",
+      "lines": [
+        "Beyond migration, the broader goal was to evolve the feature into a scalable global model — with clear upgrade paths, configurable tier rules, and UX patterns that could support a future third level and flexible benefits across markets.",
+        "The program needed to be designed to scale globally, with room for a third tier and flexible benefits across regions."
+      ]
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Problem",
+      "lines": [
+        "Without tiers, Burger King's loyalty program offered the same rewards to all users — creating a flat experience with no recognition or progression. While Superking had existed in Spain, migrating it into the white-label app required a redesign that balanced clarity, scalability, and user motivation.",
+        "The lack of a tier system made it hard to:",
+        "Encourage more frequent or higher-value purchases",
+        "Retain VIP users with meaningful perks",
+        "Communicate progress or status"
       ]
     },
     {
       "kicker": "Process",
-      "heading": "How it was made",
-      "plate": "process artefact placeholder",
+      "heading": "Research & Design Process",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "Our research focused on validating whether users understood the tier concept and perceived value in progressing through it, especially within a new, multi-market infrastructure.",
+        "We began with hypotheses based on internal feedback and business goals, then tested early prototypes to identify friction in comprehension, discoverability, and interaction."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Desk Research",
+      "lines": [
+        "Conducted competitive analysis of leading loyalty programs",
+        "Documented tier structures, benefits, and UX patterns for reward states, onboarding, and progress tracking",
+        "Examined existing research and data insights",
+        "Studied user behavior patterns from previous loyalty program experiments"
+      ],
+      "image": "case2-01",
+      "caption": "Sitemap"
+    },
+    {
+      "kicker": "Process",
+      "heading": "User Research",
+      "lines": [
+        "We ran two rounds of moderated usability testing with BK and non-BK customers in the UK, using early interactive prototypes of the new tiered loyalty system. These sessions focused on how users interpreted the Superking concept, discovered rewards, and understood the logic behind locked vs. unlocked offers."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "User Research",
+      "lines": [
+        "Participants were asked to complete tasks like checking their loyalty status, exploring benefits, and attempting to redeem partner rewards. While the interface was visually engaging, many users struggled to understand how to qualify for Superking, where to find third-party offers, and what actions unlocked specific rewards."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Key Findings",
+      "lines": [
+        "Through usability testing and interviews, we uncovered several friction points that made it difficult for users to understand and engage with the tiered loyalty system.",
+        "Progress and qualification rules were unclear. Many users weren’t sure how to become or stay a Superking, and some didn’t even realize their tier had changed.",
+        "Partner rewards lacked visibility. External offers were often overlooked or misunderstood due to naming and placement."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Key Findings",
+      "lines": [
+        "Some users questioned the value of the rewards. For example, rewards like Netflix were appreciated but didn’t always feel worth the required effort.",
+        "Language and status tracking caused confusion. Locked rewards lacked explanation, and users weren’t sure what benefits were currently available.",
+        "Navigation patterns were consistent. Most users accessed the program via the Loyalty Bar or Rewards tab, helping inform where key information should be surfaced."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Design Priorities & Solutions",
+      "lines": [
+        "Clarify Tier Status & Progression:",
+        "Created a Loyalty Bar displaying status, progress, and contextual guidance",
+        "Implemented clear messaging about earning and maintaining Superking status",
+        "Added celebratory modals for tier changes and upgrades",
+        "Surface Value Clearly:",
+        "Displayed locked rewards in King view with preview of attainable benefits"
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Design Priorities & Solutions",
+      "lines": [
+        "Created dedicated onboarding to explain tier system and benefits",
+        "Improve Reward Interaction:",
+        "Refined CTA states to distinguish between locked and unlocked offers",
+        "Design for Scale:",
+        "Developed a modular UI framework designed to support a future third tier and potential rollout across other RBI brands, such as Popeyes and Firehouse Subs"
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Design Priorities & Solutions",
+      "lines": [
+        "Integrated region-specific, configurable copy using Sanity, enabling localized adjustments without dev effort."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution",
+      "lines": [
+        "1. User Sign-Up and King Tier Onboarding — Logged-out and King-tier users are introduced to the program with clear entry points and tier messaging, setting expectations early."
+      ],
+      "image": [
+        "case2-02",
+        "case2-03"
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution",
+      "lines": [
+        "2. Loyalty Bar and King Home Experience — The Loyalty Bar communicates current status, crowns, and progress toward Superking, helping users understand what’s next."
+      ],
+      "image": "case2-04"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution",
+      "lines": [
+        "3. King Rewards View with Locked Superking Benefits — Locked rewards are visible to King users, teasing the benefits of reaching Superking and increasing motivation to upgrade."
+      ],
+      "image": [
+        "case2-05",
+        "case2-06"
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution",
+      "lines": [
+        "Rewards (Tier 1)"
+      ],
+      "image": "case2-07"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution",
+      "lines": [
+        "4. User Achieves Superking Tier — Celebratory moment when a user becomes Superking — designed to reinforce achievement and signal access to exclusive benefits."
+      ],
+      "image": "case2-08"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution",
+      "lines": [
+        "5. Superking Home and Tier Indicator — The Loyalty Bar and homepage modules now reflect the new status, creating a sense of progression and earned exclusivity."
+      ],
+      "image": [
+        "case2-09",
+        "case2-10"
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution",
+      "lines": [
+        "6. Superking Rewards — Superking users can access exclusive rewards. Layout and naming adjustments improved clarity."
+      ],
+      "image": "case2-11"
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Results",
+      "lines": [
+        "Following the launch in Spain, the updated Loyalty Tiers experience led to measurable improvements:",
+        "+3.2 pt increase in users reaching the Superking tier (Tier 2 conversion)",
+        "+2.7 pt lift in redemption of third-party rewards",
+        "+1.9 pt increase in monthly transactions from Superking users",
+        "These results confirm that the redesign not only improved usability but also boosted key business metrics related to engagement and retention."
       ]
     },
     {
       "kicker": "Outcome",
-      "heading": "What shipped",
-      "plate": "final screen placeholder",
+      "heading": "Reflection",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "This project revealed how subtle UX friction can prevent users from perceiving value in loyalty. Tiers are not just about exclusivity, they're about clarity, anticipation, and rewarding consistent behavior.",
+        "By aligning business logic with user comprehension and interface clarity, we helped turn a transactional system into a more aspirational and rewarding experience.",
+        "The scalable architecture now allows Burger King to evolve their loyalty tiers globally and experiment with deeper personalization and benefit structures."
       ]
     }
   ]

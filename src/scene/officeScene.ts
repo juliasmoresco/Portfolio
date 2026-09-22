@@ -17,11 +17,19 @@
  */
 import * as THREE from "three";
 import { GLTFLoader, type GLTF } from "three/addons/loaders/GLTFLoader.js";
+import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { emitHover, emitReady, emitSelect } from "./events";
 import { makeGlobe } from "./globe";
 import { MOON_LAMP_ID, MOON_LAMP_LABEL, type Daylight, type SceneHotspotId, type WallTone } from "./hotspots";
 
 const HOVER_EMISSIVE = 0x8a5a12;
+
+/** Hotspots that are books on the shelf: hovering one slides a book out toward the viewer, like pulling it off. */
+const BOOK_IDS: readonly string[] = ["about", "case1", "case2", "case3", "case4", "case5", "resume"];
+/** Of those, the ones that take their entry's `spine` colour. */
+const TINTED_IDS: readonly string[] = ["about", "case1", "case2", "case3", "case4", "case5"];
+/** How far a hovered book slides out (scene units; the bookcase is 3 tall). */
+const PULL_DISTANCE = 0.09;
 
 /**
  * Bookcase compartments filled with decorative books that are hotspots, by compartment key
@@ -40,6 +48,8 @@ export interface OfficeSceneAssets {
   shelf: string;
   llama: string;
   phone: string;
+  /** cat-talking-button.glb: the owner's own cat, sitting on the floor beside the bookcase. */
+  cat: string;
 }
 
 export type SceneView = "wide" | `col${number}`;
@@ -64,6 +74,8 @@ export interface OfficeSceneOptions {
   reducedMotion: boolean;
   /** Overrides the built-in hover label per hotspot id (the page feeds these from content). */
   labels: Readonly<Record<string, string>>;
+  /** #RRGGBB per hotspot id (from content): tints that entry's books on the shelf. Read once at start. */
+  spines: Readonly<Record<string, string>>;
 }
 
 export const DEFAULT_OPTIONS: Omit<OfficeSceneOptions, "assets"> = {
@@ -78,6 +90,7 @@ export const DEFAULT_OPTIONS: Omit<OfficeSceneOptions, "assets"> = {
   touchControls: false,
   reducedMotion: false,
   labels: {},
+  spines: {},
 };
 
 interface HotspotGroup {
@@ -112,10 +125,10 @@ const LIGHT_PRESETS: Record<
     amb: [number, number];
   }
 > = {
-  afternoon: { exp: 1.22, key: [0xffd7a4, 2.5, -4.4, 3.9, 4.0], fill: [0xc8d8e2, 0.42], rim: [0xffc48c, 0.4], hemi: [0xffeedd, 0x5a564e, 0.9], amb: [0xffe4c4, 0.24] },
-  "golden hour": { exp: 1.34, key: [0xff9f4d, 3.1, -6.2, 1.9, 3.0], fill: [0x8fb4cc, 0.3], rim: [0xff8a3c, 0.85], hemi: [0xffd9a8, 0x4a3a2c, 0.65], amb: [0xffc98a, 0.2] },
+  afternoon: { exp: 1.22, key: [0xffd7a4, 2.2, -4.4, 3.9, 4.0], fill: [0xc8d8e2, 0.5], rim: [0xffc48c, 0.4], hemi: [0xffeedd, 0x5a564e, 1.05], amb: [0xffe4c4, 0.32] },
+  "golden hour": { exp: 1.34, key: [0xff9f4d, 2.8, -6.2, 1.9, 3.0], fill: [0x8fb4cc, 0.36], rim: [0xff8a3c, 0.85], hemi: [0xffd9a8, 0x4a3a2c, 0.8], amb: [0xffc98a, 0.28] },
   overcast: { exp: 1.1, key: [0xf2f4f6, 1.5, -2.4, 4.6, 4.2], fill: [0xdfe6ea, 0.7], rim: [0xe8eef2, 0.3], hemi: [0xf4f6f8, 0x55534f, 1.15], amb: [0xeef1f3, 0.34] },
-  "evening lamp": { exp: 1.12, key: [0xffb862, 1.5, -1.2, 3.4, 2.6], fill: [0x5a6f8c, 0.22], rim: [0xffa64d, 1.1], hemi: [0x6a5f52, 0x2a2622, 0.4], amb: [0xffb870, 0.16] },
+  "evening lamp": { exp: 1.12, key: [0xffb862, 1.4, -1.2, 3.4, 2.6], fill: [0x5a6f8c, 0.26], rim: [0xffa64d, 1.1], hemi: [0x6a5f52, 0x2a2622, 0.5], amb: [0xffb870, 0.22] },
 };
 
 const WALL_TONES: Record<WallTone, number> = {
@@ -258,6 +271,10 @@ export class OfficeScene {
   private pointer = new THREE.Vector2(-2, -2);
   private mouseN = new THREE.Vector2(0, 0);
   private hovered: string | null = null;
+  private pull = new Map<THREE.Mesh, { k: number; base: THREE.Vector3; dir: THREE.Vector3 }>();
+  private pullMesh: THREE.Mesh | null = null;
+  private lastHitMesh: THREE.Mesh | null = null;
+  private heroes = new Map<string, THREE.Mesh>();
   private armed: string | null = null;
 
   private target = new THREE.Vector3();
@@ -298,12 +315,13 @@ export class OfficeScene {
     const pRequired = Promise.all([loader.loadAsync(a.src), loader.loadAsync(a.shelf)]);
     const pLlama = optional(a.llama, "the llama bank");
     const pPhone = optional(a.phone, "the rotary phone");
+    const pCat = optional(a.cat, "Zuko");
 
     const renderer = new THREE.WebGLRenderer({ antialias: !lowq, alpha: true });
     renderer.setPixelRatio(Math.min(devicePixelRatio, lowq ? 1.5 : 2));
     renderer.shadowMap.enabled = true;
-    // r184 treats PCFSoftShadowMap as deprecated and renders PCFShadowMap instead; ask for it directly.
-    renderer.shadowMap.type = THREE.PCFShadowMap;
+    // Variance shadow maps blur smoothly (PCF at a wide radius turns noisy inside the shelf compartments).
+    renderer.shadowMap.type = THREE.VSMShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.22;
     renderer.domElement.style.cssText = "display:block;width:100%;height:100%";
@@ -315,16 +333,17 @@ export class OfficeScene {
     const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
     this.camera = camera;
 
-    const hemi = new THREE.HemisphereLight(0xffeedd, 0x5a564e, 0.9);
-    const amb = new THREE.AmbientLight(0xffe4c4, 0.24);
+    const hemi = new THREE.HemisphereLight(0xffeedd, 0x5a564e, 1.05);
+    const amb = new THREE.AmbientLight(0xffe4c4, 0.32);
     scene.add(hemi, amb);
-    const key = new THREE.DirectionalLight(0xffd7a4, 2.5);
+    const key = new THREE.DirectionalLight(0xffd7a4, 2.2);
     key.position.set(-4.4, 3.9, 4.0);
     key.castShadow = true;
     key.shadow.mapSize.set(lowq ? 1024 : 2048, lowq ? 1024 : 2048);
-    key.shadow.radius = 2.4;
-    key.shadow.bias = -0.0002;
-    key.shadow.normalBias = 0.035;
+    key.shadow.radius = 5;
+    key.shadow.blurSamples = lowq ? 8 : 16;
+    key.shadow.bias = -0.0004;
+    key.shadow.normalBias = 0.03;
     key.shadow.camera.left = -3.2;
     key.shadow.camera.right = 3.8;
     key.shadow.camera.top = 4.2;
@@ -346,7 +365,7 @@ export class OfficeScene {
       if (this.disposed) return;
       throw e;
     }
-    const [llamaGltf, phoneGltf] = await Promise.all([pLlama, pPhone]);
+    const [llamaGltf, phoneGltf, catGltf] = await Promise.all([pLlama, pPhone, pCat]);
     // Everything below is synchronous, so a dispose() during loading is the only race.
     if (this.disposed) return;
 
@@ -370,11 +389,16 @@ export class OfficeScene {
     const shelfBox = new THREE.Box3().setFromObject(model);
 
     const wallMat = new THREE.MeshStandardMaterial({ color: 0x4b4a47, roughness: 0.97 });
-    const wall = new THREE.Mesh(new THREE.PlaneGeometry(26, 16), wallMat);
-    wall.position.set(0, 3, shelfBox.min.z - 0.12);
+    // The wall stops at floor level: below it, variance shadow maps let the floor shade whatever wall is left showing.
+    const wall = new THREE.Mesh(new THREE.PlaneGeometry(26, 11), wallMat);
+    wall.position.set(0, 5.5, shelfBox.min.z - 0.12);
     wall.receiveShadow = true;
     scene.add(wall);
     this.wallMat = wallMat;
+    // Whatever shows below the floor's front edge (portrait framing) is plain dark, unlit, so it never picks up shadows.
+    const below = new THREE.Mesh(new THREE.PlaneGeometry(26, 6), new THREE.MeshBasicMaterial({ color: 0x1f1d1b }));
+    below.position.set(0, -3, wall.position.z);
+    scene.add(below);
 
     const floorTex = makeWoodTexture();
     floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping;
@@ -391,7 +415,7 @@ export class OfficeScene {
 
     const baseboard = new THREE.Mesh(
       new THREE.BoxGeometry(26, 0.16, 0.06),
-      new THREE.MeshStandardMaterial({ color: 0xece8de, roughness: 0.6 }),
+      new THREE.MeshStandardMaterial({ color: 0x8a8478, roughness: 0.6 }),
     );
     baseboard.position.set(0, 0.08, wall.position.z + 0.04);
     baseboard.castShadow = true;
@@ -562,6 +586,44 @@ export class OfficeScene {
       }
     }
 
+    // Zuko (GLB, the owner's own cat) — sitting on the floor, just in front of the bookcase's left edge
+    let catMeshes: THREE.Mesh[] = [];
+    if (catGltf) {
+      const cat = catGltf.scene;
+      try {
+        enableShadows(cat);
+        scene.add(cat);
+
+        // meshBox (unlike shelfBox above) updates parent transforms too, so this is the true world box.
+        const shelfWorld = meshBox(model);
+        const b0 = meshBox(cat);
+        const h0 = Math.max(b0.max.y - b0.min.y, 1e-4);
+        // Scaled up from a true-to-life ratio so he still reads clearly at normal viewing size.
+        cat.scale.setScalar(((shelfWorld.max.y - shelfWorld.min.y) * 0.22) / h0);
+
+        const targetX = shelfWorld.min.x - 0.5;
+        const targetZ = shelfWorld.max.z + 0.24;
+        settleOn(cat, targetX, 0, targetZ);
+        // The model already exports facing forward (nose and button both point toward the camera at
+        // rotation 0), square to the room like the bookcase — so no added turn, unlike the llama/phone.
+
+        // A few whiskers read stiff and oversized up close; a modest, centred shrink softens them
+        // without needing new geometry. His markings and proportions are his own and untouched.
+        const WHISKERS = ["whisker_0_0", "whisker_0_1", "whisker_1_0", "whisker_1_1", "whisker_2_0", "whisker_2_1", "whisker_3_0", "whisker_3_1"];
+        const BROW_WHISKERS = ["brow_whisker_0_0", "brow_whisker_1_0", "brow_whisker_0_1", "brow_whisker_1_1"];
+        WHISKERS.forEach((n) => cat.getObjectByName(n)?.scale.setScalar(0.78));
+        BROW_WHISKERS.forEach((n) => cat.getObjectByName(n)?.scale.setScalar(0.5));
+        cat.getObjectByName("chin")?.scale.setScalar(0.85);
+
+        cat.updateWorldMatrix(true, true);
+        catMeshes = collectMeshes(cat);
+      } catch (e) {
+        console.warn("[office-scene] could not place Zuko", e);
+        scene.remove(cat);
+        catMeshes = [];
+      }
+    }
+
     // desk globe (built in code, see ./globe) — middle compartment of column C
     let globeObj: THREE.Object3D | null = null;
     let globeMeshes: THREE.Mesh[] = [];
@@ -651,7 +713,7 @@ export class OfficeScene {
               roughness: 0.82,
               metalness: 0.02,
             });
-            const bk = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+            const bk = new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 2, Math.min(w, h, d) * 0.2), mat);
             bk.castShadow = true;
             bk.receiveShadow = true;
             const lean = rnd() < 0.12 ? rnd() * 0.16 + 0.08 : 0;
@@ -673,7 +735,7 @@ export class OfficeScene {
                 roughness: 0.84,
                 metalness: 0.02,
               });
-              const bk = new THREE.Mesh(new THREE.BoxGeometry(sw - k * 0.008, th, depth * 0.9), mat);
+              const bk = new THREE.Mesh(new RoundedBoxGeometry(sw - k * 0.008, th, depth * 0.9, 2, th * 0.3), mat);
               bk.castShadow = true;
               bk.receiveShadow = true;
               bk.position.set(x + 0.03 + sw / 2, sy + th / 2, zc);
@@ -708,6 +770,7 @@ export class OfficeScene {
     if (phoneMeshes.length) this.groups.phone = { label: "Say hello", meshes: phoneMeshes };
     if (moonMeshes.length) this.groups[MOON_LAMP_ID] = { label: MOON_LAMP_LABEL, meshes: moonMeshes };
     if (llama) this.groups.llama = { label: "Llama bank", meshes: collectMeshes(llama) };
+    if (catMeshes.length) this.groups.cat = { label: "Zuko", meshes: catMeshes };
     for (const [id, { compartment, label }] of Object.entries(FILLER_HOTSPOTS)) {
       const meshes = fillerByCompartment[compartment];
       if (meshes?.length) this.groups[id] = { label, meshes };
@@ -718,6 +781,8 @@ export class OfficeScene {
         m.material = (m.material as THREE.Material).clone();
       }),
     );
+    this.applySpines();
+    this.setupPull();
     if (moonGlobe) {
       this.lampMat = moonGlobe.material as Standard;
       this.lampMat.emissive = new THREE.Color(0xffe6b8);
@@ -752,6 +817,16 @@ export class OfficeScene {
         this.hintMeshes.forEach((m) => {
           const mat = m.material as Standard;
           if (mat.emissive && m.userData.hotspot !== this.hovered) mat.emissive.setRGB((hx / 255) * 1.0, (hx / 255) * 0.62, (hx / 255) * 0.12);
+        });
+      }
+      if (this.pull.size) {
+        const on = !this.opts.reducedMotion;
+        this.pull.forEach((p, m) => {
+          const target = on && m === this.pullMesh ? 1 : 0;
+          if (p.k === target) return;
+          p.k += (target - p.k) * 0.18;
+          if (Math.abs(target - p.k) < 0.002) p.k = target;
+          m.position.copy(p.base).addScaledVector(p.dir, p.k * PULL_DISTANCE);
         });
       }
       const par = this.drift() ? 1 : 0;
@@ -926,6 +1001,12 @@ export class OfficeScene {
     shelves.slice(0, 5).forEach((cl, i) => {
       groups["case" + (i + 1)] = { label: "Case 0" + (i + 1), meshes: cl.items.map((b) => b.m) };
     });
+    // "About me" and Case 03 trade places: About sits on Case 03's shelf, and Case 03 on the small top-left one
+    if (groups.case3) {
+      const aboutMeshes = groups.about.meshes;
+      groups.about.meshes = groups.case3.meshes;
+      groups.case3.meshes = aboutMeshes;
+    }
     posters.children.forEach((frame) => {
       const id = frame.userData.posterId as string;
       groups[id] = { label: POSTER_LABELS[id] || "Illustration", meshes: collectMeshes(frame) };
@@ -1117,7 +1198,62 @@ export class OfficeScene {
       }),
     );
     const hit = this.raycaster.intersectObjects(all, false)[0];
+    this.lastHitMesh = hit ? (hit.object as THREE.Mesh) : null;
     return hit ? (hit.object.userData.hotspot as string) : null;
+  }
+
+  /** Which book slides out: the one under the pointer, or the group's tallest when there is no pointer. */
+  private choosePull(id: string | null, ev: PointerEvent | MouseEvent | null): void {
+    if (!id || !BOOK_IDS.includes(id) || !this.groups[id]) {
+      this.pullMesh = null;
+      return;
+    }
+    const under = ev && this.lastHitMesh && this.groups[id].meshes.includes(this.lastHitMesh) ? this.lastHitMesh : null;
+    this.pullMesh = under ?? this.heroOf(id);
+  }
+
+  private heroOf(id: string): THREE.Mesh | null {
+    const cached = this.heroes.get(id);
+    if (cached) return cached;
+    let best: THREE.Mesh | null = null;
+    let bestH = -1;
+    this.groups[id]?.meshes.forEach((m) => {
+      const b = new THREE.Box3().setFromObject(m);
+      if (b.max.y - b.min.y > bestH) {
+        bestH = b.max.y - b.min.y;
+        best = m;
+      }
+    });
+    if (best) this.heroes.set(id, best);
+    return best;
+  }
+
+  /** Each case's shelf takes its entry's colour: the tallest book fully, the rest most of the way. */
+  private applySpines(): void {
+    for (const id of TINTED_IDS) {
+      const hex = this.opts.spines[id];
+      const group = this.groups[id];
+      if (!hex || !group) continue;
+      const target = new THREE.Color(hex);
+      const hero = this.heroOf(id);
+      group.meshes.forEach((m) => {
+        (m.material as Standard).color.lerp(target, m === hero ? 0.92 : 0.55);
+      });
+    }
+  }
+
+  /** Remember where each pullable book sits, and which way is "toward the viewer" in its parent's own units. */
+  private setupPull(): void {
+    this.scene.updateMatrixWorld(true);
+    for (const id of BOOK_IDS) {
+      this.groups[id]?.meshes.forEach((m) => {
+        const parent = m.parent;
+        if (!parent) return;
+        const origin = parent.worldToLocal(new THREE.Vector3(0, 0, 0));
+        const dir = parent.worldToLocal(new THREE.Vector3(0, 0, 1)).sub(origin);
+        this.pull.set(m, { k: 0, base: m.position.clone(), dir });
+      });
+    }
   }
 
   private setEmissive(id: string, hex: number): void {
@@ -1128,9 +1264,13 @@ export class OfficeScene {
   }
 
   private setHover(id: string | null, ev: PointerEvent | MouseEvent | null, at?: { x: number; y: number }): void {
-    if (this.hovered === id) return;
+    if (this.hovered === id) {
+      this.choosePull(id, ev);
+      return;
+    }
     if (this.hovered) this.setEmissive(this.hovered, 0x000000);
     this.hovered = id;
+    this.choosePull(id, ev);
     if (id) this.setEmissive(id, HOVER_EMISSIVE);
     this.container.style.cursor = id ? "pointer" : "default";
     const r = this.container.getBoundingClientRect();

@@ -8,3 +8,9 @@ design-handoff/
 
 # Local tooling config (contains machine-specific paths)
 .claude/
+
+# Raw downloads from Notion (source material, not shipped)
+content-source/
+
+# Local secrets (the Notion key). Never commit.
+.env

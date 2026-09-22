@@ -5,25 +5,23 @@
   "links": [
     {
       "label": "LinkedIn",
-      "href": "#"
-    },
-    {
-      "label": "Instagram",
-      "href": "#"
+      "href": "https://www.linkedin.com/in/julia-moresco/"
     },
     {
       "label": "Email",
-      "href": "#"
+      "href": "mailto:juliasmoresco@gmail.com"
+    },
+    {
+      "label": "ADPList",
+      "href": "https://adplist.org/mentors/julia-moresco"
     }
   ],
   "pages": [
     {
       "kicker": "Contact",
-      "plate": "contact image placeholder",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "juliasmoresco@gmail.com",
+        "As a mentor, I organize weekly meetings to aid the growth and career progress of UX professionals. Please schedule a time with me if you're interested:"
       ]
     }
   ]

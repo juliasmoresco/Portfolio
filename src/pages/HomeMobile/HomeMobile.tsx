@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getReaderItem, hotspotLabels } from "../../content";
+import { getReaderItem, hotspotLabels, hotspotSpines } from "../../content";
 import { HotspotList } from "../../components/HotspotList/HotspotList";
 import { OfficeScene, type OfficeSceneHandle } from "../../components/OfficeScene/OfficeScene";
 import { Reader } from "../../components/Reader/Reader";
@@ -40,6 +40,7 @@ export function HomeMobile() {
   }, []);
 
   const cardOn = armed.visible && !openId;
+  const isLamp = armed.id === MOON_LAMP_ID;
   const item = armed.id ? getReaderItem(armed.id) : undefined;
   const kicker = item ? (item.kind ?? item.tag ?? "") : "";
 
@@ -54,7 +55,7 @@ export function HomeMobile() {
     if (!armed.id) return;
     emitSelect({ id: armed.id });
     // The moon lamp opens nothing, so drop the card and tint instead of leaving it armed.
-    if (armed.id === MOON_LAMP_ID) scene.current?.clearHighlight();
+    if (isLamp) scene.current?.clearHighlight();
   };
 
   const onClose = useCallback(() => {
@@ -65,7 +66,7 @@ export function HomeMobile() {
   return (
     <div className={styles.page}>
       <div className={styles.scene}>
-        <OfficeScene ref={scene} daylight={daylight} walltone="graphite" hints={hints} view="wide" quality="low" parallax="off" tap="confirm" touchControls labels={hotspotLabels} />
+        <OfficeScene ref={scene} daylight={daylight} walltone="graphite" hints={hints} view="wide" quality="low" parallax="off" tap="confirm" touchControls labels={hotspotLabels} spines={hotspotSpines} />
       </div>
 
       <div className={styles.scrimTop} />
@@ -73,7 +74,7 @@ export function HomeMobile() {
 
       <div className={styles.topBar}>
         <div className={styles.heading}>
-          <div className={styles.title}>My office</div>
+          <div className={styles.title}>Welcome to my office</div>
           <div className={styles.count}>
             {found.length} of {HOTSPOT_IDS.length} found
           </div>
@@ -97,16 +98,16 @@ export function HomeMobile() {
               <div className={styles.cardTitle}>{armed.label}</div>
             </div>
             <button type="button" className={styles.open} onClick={open}>
-              Open
+              {isLamp ? "Change" : "Open"}
             </button>
           </div>
         </div>
-        <p className={cx(styles.hint, cardOn && styles.hintOff)}>Pinch to zoom, drag to move around. Tap something to see what it is, tap again to open it.</p>
+        <p className={cx(styles.hint, cardOn && styles.hintOff)}>There’s no menu here, just my real office. Pinch, drag and tap around to see what you find.</p>
       </div>
 
       {/* The card is inert while hidden, so this is what tells a screen reader that something was named. */}
       <p className={styles.srOnly} aria-live="polite">
-        {cardOn ? `${armed.label}. Double-tap Open to view.` : ""}
+        {cardOn ? `${armed.label}. ${isLamp ? "Double-tap Change to switch the light." : "Double-tap Open to view."}` : ""}
       </p>
 
       <HotspotList onFocusItem={(id) => scene.current?.highlight(id)} inert={!!openId} />

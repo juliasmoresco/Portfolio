@@ -1,6 +1,6 @@
 /**
- * The 18 hotspots that open a Reader. The README lists 17; Résumé was added afterwards as a
- * bookcase shelf that used to be decorative. Order is also the keyboard list's order.
+ * The 19 hotspots that open a Reader. The README lists 17; Résumé and Zuko (the owner's cat) were
+ * added afterwards. Order is also the keyboard list's order.
  */
 export const HOTSPOT_IDS = [
   "about",
@@ -15,6 +15,7 @@ export const HOTSPOT_IDS = [
   "phone",
   "resume",
   "llama",
+  "cat",
   "ill01",
   "ill02",
   "ill03",

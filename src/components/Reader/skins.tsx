@@ -1,8 +1,8 @@
 import type { CSSProperties } from "react";
-import type { ReaderItem, ReaderPage } from "../../content";
+import { pageHasArt, pageImages, type ReaderItem, type ReaderPage } from "../../content";
 import { DESCRIPTION_LABEL } from "./copy";
 import { CompactViews, type CompactViewProps } from "./compact";
-import { Gutter, ImagePage, Lines, Plate, TextPage } from "./parts";
+import { Gutter, ImagePage, Lines, LinesPage, Plate, TextPage, TitlePage } from "./parts";
 import styles from "./Reader.module.css";
 
 interface SkinProps {
@@ -21,9 +21,19 @@ export function BookSkin({ item, page, compact }: SkinProps) {
           <CompactViews item={item} flat={false} {...compact} />
         ) : (
           <>
-            <ImagePage page={page} className={styles.bookLeft} />
-            <Gutter />
-            <TextPage className={styles.bookRight} kicker={page.kicker} heading={page.heading || item.title} lines={page.lines} />
+            {pageHasArt(page) ? (
+              <>
+                <ImagePage page={page} alt={page.heading || item.title} className={styles.bookLeft} />
+                <Gutter />
+                <TextPage className={styles.bookRight} kicker={page.kicker} heading={page.heading || item.title} lines={page.lines} />
+              </>
+            ) : (
+              <>
+                <TitlePage className={styles.bookLeft} kicker={page.kicker} heading={page.heading || item.title} />
+                <Gutter />
+                <LinesPage className={styles.bookRight} lines={page.lines} />
+              </>
+            )}
             <div className={styles.leaf}>
               <div className={styles.leafFace} />
             </div>
@@ -56,9 +66,22 @@ export function FolderSkin({ item, page, compact }: SkinProps) {
           <CompactViews item={item} flat {...compact} />
         ) : (
           <>
-            <ImagePage page={page} className={styles.flat} />
-            <Gutter />
-            <TextPage className={styles.flat} kicker={page.kicker} heading={item.title} lines={page.lines} footer={<div className={styles.openingLabel}>{item.openingLabel}</div>} />
+            {pageHasArt(page) ? (
+              <>
+                <ImagePage page={page} alt={item.title} className={styles.flat} />
+                <Gutter />
+                <TextPage className={styles.flat} kicker={page.kicker} heading={item.title} lines={page.lines} footer={<div className={styles.openingLabel}>{item.openingLabel}</div>} />
+              </>
+            ) : (
+              <>
+                <TitlePage className={styles.flat} kicker={page.kicker} heading={item.title} />
+                <Gutter />
+                <LinesPage className={styles.flat} lines={page.lines} footer={<div className={styles.openingLabel}>{item.openingLabel}</div>} />
+              </>
+            )}
+            <div className={styles.leaf}>
+              <div className={styles.leafFace} />
+            </div>
           </>
         )}
       </div>
@@ -70,8 +93,8 @@ export function FolderSkin({ item, page, compact }: SkinProps) {
 /** A single framed plate: wall art, the llama, and the phone (which adds contact links). */
 export function FrameSkin({ item, page }: SkinProps) {
   return (
-    <div className={styles.frame}>
-      <Plate />
+    <div className={`${styles.frame} ${pageHasArt(page) ? "" : styles.frameTextOnly}`}>
+      {pageHasArt(page) && <Plate images={pageImages(page)} alt={page.caption || item.title} />}
       <div className={styles.frameText}>
         <h2 className={`${styles.heading} ${styles.frameHeading}`}>{item.title}</h2>
         <p className={`${styles.descLabel} ${styles.frameDescLabel}`}>{DESCRIPTION_LABEL}</p>
@@ -79,7 +102,7 @@ export function FrameSkin({ item, page }: SkinProps) {
         {item.links && item.links.length > 0 && (
           <div className={styles.links}>
             {item.links.map((l) => (
-              <a key={l.label} className={styles.link} href={l.href} target="_blank" rel="noreferrer">
+              <a key={l.label} className={styles.link} href={l.href} {...(/^https?:/.test(l.href) ? { target: "_blank", rel: "noreferrer" } : {})}>
                 {l.label}
               </a>
             ))}

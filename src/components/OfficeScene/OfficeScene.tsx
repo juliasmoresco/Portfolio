@@ -6,6 +6,7 @@ import bookshelfUrl from "../../assets/models/bookshelf.glb?url";
 import wallShelfUrl from "../../assets/models/wall-shelf-plant.glb?url";
 import llamaUrl from "../../assets/models/llama-bank.glb?url";
 import phoneUrl from "../../assets/models/rotary-telephone.glb?url";
+import catUrl from "../../assets/models/cat-talking-button.glb?url";
 import posterLandscapeUrl from "../../assets/poster-landscape.webp";
 import posterPortraitUrl from "../../assets/poster-portrait.webp";
 import styles from "./OfficeScene.module.css";
@@ -15,6 +16,7 @@ const ASSETS: OfficeSceneOptions["assets"] = {
   shelf: wallShelfUrl,
   llama: llamaUrl,
   phone: phoneUrl,
+  cat: catUrl,
 };
 
 /** Same threshold the scene uses to pick its portrait framing. */
@@ -61,7 +63,7 @@ export function OfficeScene({ className, ref, ...props }: OfficeSceneProps) {
   }, []);
 
   const optionsRef = useRef<Omit<OfficeSceneOptions, "assets"> | null>(null);
-  const { daylight, walltone, hints, view, parallax, autopan, quality, tap, touchControls, labels } = props;
+  const { daylight, walltone, hints, view, parallax, autopan, quality, tap, touchControls, labels, spines } = props;
   // Keep the latest props reachable from the async start below (assigned in an effect, not during render).
   useEffect(() => {
     optionsRef.current = {
@@ -76,6 +78,7 @@ export function OfficeScene({ className, ref, ...props }: OfficeSceneProps) {
       touchControls: touchControls ?? false,
       reducedMotion,
       labels: labels ?? {},
+      spines: spines ?? {},
     };
   });
 

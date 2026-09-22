@@ -1,5 +1,5 @@
 import { useCallback, useRef } from "react";
-import { getReaderItem, hotspotLabels } from "../../content";
+import { getReaderItem, hotspotLabels, hotspotSpines } from "../../content";
 import { HotspotList } from "../../components/HotspotList/HotspotList";
 import { OfficeScene, type OfficeSceneHandle } from "../../components/OfficeScene/OfficeScene";
 import { Reader } from "../../components/Reader/Reader";
@@ -25,7 +25,7 @@ export function HomeDesktop() {
     <div className={styles.page}>
       <div className={styles.stage}>
         <div className={styles.scene}>
-          <OfficeScene ref={scene} daylight={daylight} labels={hotspotLabels} />
+          <OfficeScene ref={scene} daylight={daylight} labels={hotspotLabels} spines={hotspotSpines} />
         </div>
 
         <div className={styles.scrim} />
@@ -36,9 +36,8 @@ export function HomeDesktop() {
             <br />
             my office
           </h1>
-          <p className={styles.lede}>There is no menu here. Click the things on the shelf and they will tell you what I do.</p>
+          <p className={styles.lede}>There’s no menu here, just my real office. Click around and see what you find.</p>
           <div className={styles.counter}>
-            <span className={styles.rule} />
             <span>
               {found.length} of {HOTSPOT_IDS.length} discovered
             </span>

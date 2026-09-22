@@ -1,39 +1,183 @@
 {
   "skin": "book",
-  "title": "Case 01",
-  "tag": "Case study",
-  "year": "[Year]",
-  "role": "[Role]",
+  "title": "Improving the In-Restaurant Loyalty Experience",
+  "tag": "Case study · QSR",
+  "year": "2024",
+  "role": "Product Design, User Research",
   "spine": "#C96B5E",
   "pages": [
     {
       "kicker": "Overview",
-      "heading": "The brief",
-      "plate": "cover image placeholder",
+      "heading": "Project Summary",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "Mapped friction in the loyalty flow across Kiosk, Drive Thru, and Cashier to improve offer redemption.",
+        "Client: Restaurants Brand International - Burger King – QSR Industry (CH, DE, UK, NZ)",
+        "My Role: Senior Product Designer",
+        "Other participants: Valentina Lopes (Product Manager)",
+        "Platform: BK Mobile App + Kiosk + Drive Thru",
+        "Timeline: Q4 2024"
+      ],
+      "image": "case1-cover"
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Context",
+      "lines": [
+        "As Burger King expanded its loyalty program to in-restaurant channels like Kiosk and Drive Thru, we began to notice a growing gap between what the product offered and how users actually experienced it.",
+        "Across multiple markets, we heard the same story: guests were eager to redeem rewards, but often didn’t know how. Codes were hard to find, scanning wasn’t intuitive, and the app didn’t provide enough clarity to guide users through the process."
+      ]
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Context",
+      "lines": [
+        "This project began with a clear goal: understand the barriers guests face when redeeming offers in person, and design a more intuitive, consistent experience that supports both guest satisfaction and business goals."
+      ]
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Problem",
+      "lines": [
+        "Following the launch of in-store loyalty features, markets began reporting friction points, especially in Kiosk and Drive Thru channels. Redemption rates were lower than expected, and support teams flagged recurring guest complaints.",
+        "At that stage, we didn’t yet know exactly where the problem was. We suspected that the app experience wasn’t aligning with user expectations, particularly during in-restaurant journeys.",
+        "The goal was to dig deeper:",
+        "What was getting in the way of a successful redemption?"
+      ]
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Problem",
+      "lines": [
+        "Was the friction tied to the interface, the environment, or both?",
+        "And how could we make the process more intuitive for guests already engaged with the brand?"
       ]
     },
     {
       "kicker": "Process",
-      "heading": "How it was made",
-      "plate": "process artefact placeholder",
+      "heading": "Design Process",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "To understand what was happening, we focused on real usage in real environments, pairing user research with data to identify where and why the experience broke down."
+      ],
+      "image": "case1-01",
+      "caption": "Design Process Diagram"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Research Approach",
+      "lines": [
+        "We used a combination of qualitative and quantitative methods across markets:",
+        "Field Observations: Conducted in four restaurants (CH and DE), capturing how guests used the app across Kiosk, Drive Thru, and Cashier ordering.",
+        "User Interviews: 23 guests and 3 cashiers shared first-hand experiences and pain points.",
+        "Post-Visit Surveys: Provided additional context on guest expectations and scanning behavior."
+      ],
+      "image": [
+        "case1-02",
+        "case1-03"
+      ],
+      "caption": "Restaurant Visit - DE - Field Observation Study and User Interviews · Research Analysis Board"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Research Approach",
+      "lines": [
+        "App Store Review Analysis: Uncovered patterns of confusion, such as “can’t find my code” and “QR didn’t work.”",
+        "Amplitude Funnel Analysis: Identified key drop-off points between /redeem, MyCode, and scan events, especially for logged-out users.",
+        "Internal Research Review: Included past discoveries from related Kiosk and Service Mode initiatives.",
+        "Competitor Benchmarking: Compared how leading QSRs handle scanning, onboarding, and loyalty flow clarity."
+      ],
+      "image": "case1-04",
+      "caption": "Competitor Analysis, App Reviews and Desk Research Figjam Board"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Synthesis & Insights Mapping",
+      "lines": [
+        "We organized the findings into five key areas of friction:",
+        "1. Code Discovery & Navigation — Loyalty codes weren’t easy to locate or visually emphasized.",
+        "2. Offer Activation & Pre-selection — Users were unsure if multiple offers could be combined or whether selections canceled previous ones.",
+        "3. Scanning Experience & Physical Cues — Inconsistent flows and limited scanner guidance at Drive Thru and Kiosk."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Synthesis & Insights Mapping",
+      "lines": [
+        "4. CTA Labeling & Flow Clarity — Button hierarchy misled users, especially between Mobile Order and In-Restaurant.",
+        "5. Tone & Language — Instructions and labels felt overly technical or internal-facing."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Opportunities & Recommendations",
+      "lines": [
+        "Rather than redesigning from scratch, we focused on simplifying and clarifying the experience:",
+        "Improve CTA labels and hierarchy to better reflect user intent",
+        "Make the loyalty code more visible and easier to access, especially in logged-out states",
+        "Refine the offer selection flow with clearer feedback and simpler logic",
+        "Unify the scanning flow across Kiosk, Cashier, and Drive Thru"
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Opportunities & Recommendations",
+      "lines": [
+        "Adopt more guest-friendly language throughout the journey"
       ]
     },
     {
       "kicker": "Outcome",
-      "heading": "What shipped",
-      "plate": "final screen placeholder",
+      "heading": "Experiments & Impact",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "We defined three experiments to evaluate the most impactful improvements in the in-restaurant redemption flow. Each focused on a different pain point identified in the research.",
+        "1. Redesigned CTA Labels — We tested five different label variations to improve clarity between \"Add to Mobile Order\" and \"Use in Restaurant.\" We also refined button hierarchy and iconography to better match guest expectations across the Offers and Rewards journeys."
+      ],
+      "image": "case1-05"
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Experiments & Impact",
+      "lines": [
+        "2. Updated Pre-selection Flow — This version introduced clear feedback when users selected multiple offers, including confirmation states and a simplified summary view. The goal was to reduce confusion about whether offers had been successfully added or replaced.",
+        "3. Simplified Redemption Model — We explored an alternative approach with one-offer-per-scan logic. This removed the concept of a pre-selected cart entirely, focusing on clarity and predictability."
+      ]
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Experiments & Impact",
+      "lines": [
+        "Each experiment was designed to target a specific conversion drop-off point. Combined, they aimed to reduce friction and increase successful redemptions by +5–10%, based on funnel data from DE, CH, UK, and NZ."
+      ]
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Impact",
+      "lines": [
+        "The impact of these adjustments was tangible:",
+        "+2.5 point lift in conversion from offer added to redeemed",
+        "–7.3 point reduction in scanning errors",
+        "Fewer staff interventions as users were better equipped to complete the journey independently"
+      ]
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Impact",
+      "lines": [
+        "We’re currently preparing to test Experiment 2 × 3, which combines the simplified redemption model with the updated CTA strategy. At the time I was working on the project, this test was still pending. Our hypothesis is that combining the two most promising ideas will further reduce friction and improve in-store conversion — especially by aligning the interface more closely with user intent."
+      ]
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Impact",
+      "lines": [
+        "These changes also opened up future opportunities in personalization. Many users displayed consistent habits, redeeming the same offers, visiting at regular times. Recognizing these patterns could be the next step in moving from transactional flows to experiences that build lasting relationships."
+      ]
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Reflection",
+      "lines": [
+        "This project reinforced the value of grounding product improvements in both real-world observation and behavioral data. While the loyalty feature itself was functional, the lack of clarity, consistency, and contextual guidance created unnecessary friction.",
+        "By focusing on what guests actually needed in the moment, not just what the system could technically support, we outlined a clear path toward a more intuitive and rewarding in-store loyalty experience."
       ]
     }
   ]

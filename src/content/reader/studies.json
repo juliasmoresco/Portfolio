@@ -8,11 +8,25 @@
   "pages": [
     {
       "kicker": "Studies",
-      "plate": "diploma placeholder",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "Bachelor in Visual Design — Universidade Federal do Rio Grande do Sul (2016-2023)",
+        "Specialization in AI Product Specialist — PM3 (2026)",
+        "Specialization in Product Growth — PM3 (2026)"
+      ]
+    },
+    {
+      "kicker": "Studies",
+      "lines": [
+        "Specialization in User Research — Awari (2021)",
+        "Specialization in Design Systems & Operations — Meiuca (2020)",
+        "Courses in UX, UI, Product Management, and User Research — The Interaction Design Foundation (2020–2021)"
+      ]
+    },
+    {
+      "kicker": "Studies",
+      "lines": [
+        "UX Writing Course — Mergo User Experience (2020)",
+        "Design Thinking Course — IDEO U (2020)"
       ]
     }
   ]

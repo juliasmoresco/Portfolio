@@ -1,0 +1,11 @@
+{
+  "skin": "frame",
+  "title": "Zuko",
+  "tag": "My cat",
+  "pages": [
+    {
+      "kicker": "He says",
+      "lines": ["Food", "Pets", "Play", "Treat", "Brush", "Pouch"]
+    }
+  ]
+}

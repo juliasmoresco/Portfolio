@@ -6,12 +6,21 @@
   "kind": "Document",
   "pages": [
     {
-      "kicker": "Binder",
-      "plate": "résumé page placeholder",
+      "kicker": "Skills",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "Vibe-coding and AI tools: Claude Design, Claude Code, ChatGPT, Gemini, Lovable, Figma Make",
+        "Prototyping: Figma, Adobe XD",
+        "Analytics: Amplitude, Data Dog, Google Analytics",
+        "Adobe Creative Suite: Photoshop, Illustrator, InDesign, After Effects",
+        "Additional: Miro, Figjam, Mural, Basic knowledge of CSS and HTML."
+      ]
+    },
+    {
+      "kicker": "Languages",
+      "lines": [
+        "English – Full Professional Fluency",
+        "Portuguese – Native",
+        "Italian – A2 (currently taking a course)"
       ]
     }
   ]

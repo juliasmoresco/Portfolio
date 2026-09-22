@@ -1,39 +1,209 @@
 {
   "skin": "book",
-  "title": "Case 03",
-  "tag": "Case study",
-  "year": "[Year]",
-  "role": "[Role]",
+  "title": "Redesigning Menu & Offers Management for Operators",
+  "tag": "Case study · QSR",
+  "year": "2024",
+  "role": "Product Design, User Research",
   "spine": "#D98A4A",
   "pages": [
     {
       "kicker": "Overview",
-      "heading": "The brief",
-      "plate": "cover image placeholder",
+      "heading": "Project Summary",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "Redesigned the offer setup experience in Sanity to reduce errors and improve operator efficiency.",
+        "Client: Restaurants Brand International – Burger King",
+        "My Role: Senior Product Designer – Discovery, Research Strategy, Process Mapping",
+        "Other participants: Eduardo Javier (Senior Product Designer)",
+        "Platform: Sanity CMS, POS integrations (Oracle, NCR, Winrest, SICOM)",
+        "Timeline: Q3 2024",
+        "Markets: CH, DE, UK, Iberia"
+      ],
+      "image": "case3-cover"
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Context",
+      "lines": [
+        "Operators across markets manage menus and offers through a content platform (Sanity) that integrates with various systems like POS, payment providers, and order aggregators. Despite the flexibility of the system, managing and configuring PLUs, offers, combos, and pricing remains complex, manual, and error-prone.",
+        "This discovery effort was initiated to understand how operators set up and manage content, and to identify opportunities for reducing errors, simplifying workflows, and improving confidence in the output."
+      ]
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Problem",
+      "lines": [
+        "As Burger King scaled its operations across multiple markets and systems, there was growing concern around how operators managed complex configurations in Sanity, particularly offers, PLUs, and product bundles. Stakeholders observed recurring bugs, launch delays, and inconsistent execution of campaigns."
+      ]
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Problem",
+      "lines": [
+        "This discovery was launched to investigate whether the tools, workflows, and support structures in place were helping or hindering operators in doing their jobs effectively. We suspected that behind the visible symptoms, misconfigurations, duplicated content, and support tickets, there were deeper usability and process issues that needed to be uncovered and understood."
       ]
     },
     {
       "kicker": "Process",
-      "heading": "How it was made",
-      "plate": "process artefact placeholder",
+      "heading": "Design & Research Process",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "We structured this discovery in two main phases: understanding the current state and mapping where friction accumulates. The process was iterative and collaborative, designed to reflect both the operator's day-to-day experience and the technical landscape behind each task.",
+        "What we did:",
+        "Conducted 12 stakeholder interviews with operators and digital managers across CH, DE, UK, and global rollout teams to surface pain points"
+      ],
+      "image": "case3-01",
+      "caption": "Interviews with Operators"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Design & Research Process",
+      "lines": [
+        "Created detailed journey maps of core workflows, such as creating offers, configuring combos, and launching new products",
+        "Performed a bug analysis on recent loyalty-related misconfigurations — revealing that 41% were caused by offer setup issues",
+        "Analyzed how core tools (like Sanity and FKB) are used across different parts of the workflow, and reviewed Jira and Fire logs to identify misconfiguration patterns."
       ]
     },
     {
-      "kicker": "Outcome",
-      "heading": "What shipped",
-      "plate": "final screen placeholder",
+      "kicker": "Process",
+      "heading": "Design & Research Process",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "Mapped role-specific tasks to understand different needs across content creation, localization, and PLU management"
+      ],
+      "image": "case3-02",
+      "caption": "Previous Offer Creation Page – Long Scroll with Unstructured Content"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Key Findings",
+      "lines": [
+        "1. Content Management is Time-Consuming — Operators reported that tasks like creating offers, updating prices, and editing PLUs are slow and repetitive, often involving multiple tools and manual steps.",
+        "2. Reliance on Offer Duplication — Due to interface complexity and fear of misconfiguration, users frequently duplicate existing offers instead of creating new ones from scratch.",
+        "3. PLU Management Challenges — Configuring and syncing PLUs across platforms and vendors (e.g., SICOM vs. NCR) is a slow process, often hindered by manual approvals."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Key Findings",
+      "lines": [
+        "4. Sanity's Interface Lacks Intuitiveness — While flexible, Sanity's interface presents unclear fields and sparse documentation, posing challenges especially for new users.",
+        "5. Trial-and-Error Workflow — Teams heavily rely on testing and guesswork, with most troubleshooting done manually and lacking clear error guidance.",
+        "6. Absence of a Single Source of Truth — Operators depend on various tools like Excel, email, FKB, Sanity, and shared folders, without a unified or automated content validation system."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Key Findings",
+      "lines": [
+        "7. Desire for Role-Based Customization — Operators expressed the need for interfaces tailored to their specific roles or markets, displaying only relevant fields."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Opportunities & Recommendations",
+      "lines": [
+        "Simplify Offer Creation: Create guided workflows or templates for building offers from scratch",
+        "Clarify Fields: Add tooltips and documentation links directly in the platform",
+        "Validate Configurations: Automate PLU validation across systems to catch mismatches earlier",
+        "Improve Error Feedback: Make error messages specific and actionable when content fails to load properly"
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Opportunities & Recommendations",
+      "lines": [
+        "Streamline Duplications: Offer safe duplication options that flag outdated content or sync issues",
+        "Role-based UI Customization: Show only the fields relevant to each user profile or market",
+        "Centralize Learning Resources: Consolidate tutorials, FKB guides, and release notes into an accessible help center"
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution: New Offer Creation Flow",
+      "lines": [
+        "The first initiative we moved forward with to address misconfiguration issues was simplifying the offer creation page. Previously, this page featured an overwhelming vertical scroll with technical, unintuitive architecture, making it difficult for operators to navigate or feel confident when building an offer from scratch.",
+        "The new flow introduces a tabbed layout that divides the process into manageable steps, guiding users through offer creation with more structure and clarity."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution: New Offer Creation Flow",
+      "lines": [
+        "Users can now click the \"Create\" button in the top navigation bar to start a new offer."
+      ],
+      "image": "case3-03"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution: New Offer Creation Flow",
+      "lines": [
+        "A panel opens with clearly defined tabs, allowing users to navigate through the necessary inputs step by step.",
+        "After completing their inputs, users can publish the offer."
+      ],
+      "image": "case3-04",
+      "caption": "New Offer Creation Page"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution: New Offer Creation Flow",
+      "lines": [
+        "Upon clicking \"Publish,\" a modal will display any errors or warnings:",
+        "If there are errors, the offer cannot be published.",
+        "If there are only warnings, users can choose to proceed or resolve them first."
+      ],
+      "image": "case3-05",
+      "caption": "Modal"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution: New Offer Creation Flow",
+      "lines": [
+        "Once published, users are redirected to the offer list where they can:",
+        "View the offer's validation status",
+        "See error indicators on problematic offers",
+        "Identify unpublished items marked as drafts"
+      ],
+      "image": "case3-06",
+      "caption": "Validations"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution: New Offer Creation Flow",
+      "lines": [
+        "This new structure not only improves clarity and reduces friction, but also reinforces confidence by making validation steps visible and more actionable."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution: Automating PLU Configuration",
+      "lines": [
+        "In parallel with the new offer creation flow, we began exploring ways to reduce PLU-related errors, one of the most frequent and costly issues reported during discovery.",
+        "Operators previously had to manage PLUs manually across various tools and vendors, often copying codes from Excel sheets or relying on memory. This created inconsistencies, sync failures, and misconfigured experiences across POS systems."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution: Automating PLU Configuration",
+      "lines": [
+        "The proposed solution was to automate PLU validation and setup by connecting Sanity more directly with source-of-truth systems. We designed a new experience where:",
+        "PLU fields validate automatically as users type or paste entries",
+        "The system checks for duplicates, format mismatches, or vendor-specific conflicts",
+        "Warnings are surfaced inline with suggested corrections",
+        "Certain fields auto-populate based on the selected market and POS vendor"
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Solution: Automating PLU Configuration",
+      "lines": [
+        "This would reduce dependency on workaround sheets, improve confidence, and reduce the number of misconfigurations caused by manual PLU setup."
+      ],
+      "image": "case3-07",
+      "caption": "PLU Sync Page"
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Next Steps",
+      "lines": [
+        "Following this discovery, the next step is to prioritize and validate the most impactful opportunities through prototyping and co-design sessions with operators. Our goal is to reduce the number of bugs caused by misconfiguration and build more confidence for users managing menus and offers at scale."
       ]
     }
   ]

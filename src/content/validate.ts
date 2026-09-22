@@ -30,10 +30,18 @@ export function assertReaderItem(id: string, v: unknown): asserts v is ReaderIte
   if (!Array.isArray(o.pages) || o.pages.length === 0) return bad("pages must be a non-empty list");
   o.pages.forEach((p: unknown, i: number) => {
     const pg = p as Record<string, unknown> | null;
-    if (!pg || typeof pg.plate !== "string") bad(`pages[${i}].plate is required`);
+    if (!pg || typeof pg !== "object") bad(`pages[${i}] must be an object`);
+    if (pg!.plate !== undefined && typeof pg!.plate !== "string") bad(`pages[${i}].plate must be a string`);
+    const img = pg!.image;
+    if (img !== undefined && !(typeof img === "string" || (Array.isArray(img) && img.length > 0 && img.every((x) => typeof x === "string")))) {
+      bad(`pages[${i}].image must be a file name or a list of file names`);
+    }
+    if (pg!.caption !== undefined && typeof pg!.caption !== "string") bad(`pages[${i}].caption must be a string`);
     if (!Array.isArray(pg!.lines) || pg!.lines.some((l) => typeof l !== "string")) bad(`pages[${i}].lines must be a list of strings`);
     for (const k of ["kicker", "heading"]) {
       if (pg![k] !== undefined && typeof pg![k] !== "string") bad(`pages[${i}].${k} must be a string`);
     }
   });
 }
+
+export { estimateTextHeight, textCapacity } from "./pageFit.ts";

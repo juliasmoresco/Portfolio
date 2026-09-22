@@ -6,6 +6,8 @@
 .root {
   --dur: 420ms;
   --ease: cubic-bezier(0.3, 0, 0.1, 1);
+  /* Desktop size of the whole Reader (book, type, spacing). 1 = the handoff's size; raise it to open the book larger. */
+  --k: 1.18;
   position: absolute;
   inset: 0;
   container-type: inline-size;
@@ -45,8 +47,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.6cqw;
-  perspective: 180cqw;
+  gap: calc(1.6 * var(--k) * 1cqw);
+  perspective: calc(180 * var(--k) * 1cqw);
   perspective-origin: 50% 42%;
   pointer-events: none;
 }
@@ -57,18 +59,18 @@
   position: relative;
   pointer-events: auto;
   outline: none;
-  width: 62cqw;
-  height: 38cqw;
+  width: calc(62 * var(--k) * 1cqw);
+  height: calc(38 * var(--k) * 1cqw);
   transform-style: preserve-3d;
   transform-origin: center center;
   opacity: 0;
   transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
-  filter: drop-shadow(0 3cqw 5cqw rgba(0, 0, 0, 0.55));
+  filter: drop-shadow(0 calc(3 * var(--k) * 1cqw) calc(5 * var(--k) * 1cqw) rgba(0, 0, 0, 0.55));
 }
 
 .root[data-skin="frame"] .shell {
-  width: 40cqw;
-  height: 40cqw;
+  width: calc(40 * var(--k) * 1cqw);
+  height: calc(40 * var(--k) * 1cqw);
 }
 
 .root[data-opening="hinge"] .shell {
@@ -81,10 +83,10 @@
 
 /* closed / arriving */
 .root[data-skin="frame"] .shell {
-  transform: translate(10cqw, -8cqw) scale(0.26) rotateZ(-5deg) rotateX(16deg);
+  transform: translate(calc(10 * var(--k) * 1cqw), calc(-8 * var(--k) * 1cqw)) scale(0.26) rotateZ(-5deg) rotateX(16deg);
 }
 .root[data-skin="book"] .shell {
-  transform: translate(14cqw, 6cqw) scale(0.18) rotateX(6deg) rotateZ(-6deg);
+  transform: translate(calc(14 * var(--k) * 1cqw), calc(6 * var(--k) * 1cqw)) scale(0.18) rotateX(6deg) rotateZ(-6deg);
 }
 .root[data-opening="hinge"] .shell {
   transform: rotateY(82deg) scale(0.9);
@@ -96,7 +98,7 @@
   transform: rotateX(-72deg) scale(0.92);
 }
 .root[data-opening="lid"] .shell {
-  transform: translateY(3cqw) scale(0.86);
+  transform: translateY(calc(3 * var(--k) * 1cqw)) scale(0.86);
 }
 
 /* open */
@@ -106,7 +108,7 @@
 }
 /* a closed book sits half-shifted until its cover has swung open */
 .root[data-open="true"][data-skin="book"] .shell {
-  transform: translateX(-15.5cqw) rotateX(2deg);
+  transform: translateX(calc(-15.5 * var(--k) * 1cqw)) rotateX(2deg);
 }
 .root[data-open="true"][data-skin="book"][data-cover-open="true"] .shell {
   transform: translateX(0) rotateX(2deg);
@@ -123,25 +125,27 @@
   position: absolute;
   inset: 0;
   display: flex;
-  border-radius: 0.3cqw;
+  border-radius: calc(0.3 * var(--k) * 1cqw);
   overflow: hidden;
   transform-style: preserve-3d;
-  box-shadow: inset 0 0 6cqw rgba(46, 33, 28, 0.14);
+  box-shadow: inset 0 0 calc(6 * var(--k) * 1cqw) rgba(46, 33, 28, 0.14);
 }
 
 .pageLeft {
   flex: 1;
+  min-width: 0; /* a picture's natural size must not prop the page open */
   display: flex;
   flex-direction: column;
-  gap: 1.2cqw;
-  padding: 3.2cqw 2.4cqw 3.2cqw 3.2cqw;
+  gap: calc(1.2 * var(--k) * 1cqw);
+  padding: calc(3.2 * var(--k) * 1cqw) calc(2.4 * var(--k) * 1cqw) calc(3.2 * var(--k) * 1cqw) calc(3.2 * var(--k) * 1cqw);
 }
 
 .pageRight {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  padding: 3.2cqw 3.2cqw 3.2cqw 2.4cqw;
+  padding: calc(3.2 * var(--k) * 1cqw) calc(3.2 * var(--k) * 1cqw) calc(3.2 * var(--k) * 1cqw) calc(2.4 * var(--k) * 1cqw);
 }
 
 .bookLeft {
@@ -157,35 +161,182 @@
 }
 
 .gutter {
-  width: 0.14cqw;
+  width: calc(0.14 * var(--k) * 1cqw);
   background: linear-gradient(180deg, rgba(46, 33, 28, 0.05), rgba(46, 33, 28, 0.28), rgba(46, 33, 28, 0.05));
 }
 
 .plate {
   flex: 1;
   aspect-ratio: 4 / 3;
+  min-width: 0;
   min-height: 0;
   background: repeating-linear-gradient(135deg, rgba(46, 33, 28, 0.14) 0 8px, rgba(46, 33, 28, 0.04) 8px 16px);
-  border: 0.12cqw solid var(--ink);
+  border: calc(0.12 * var(--k) * 1cqw) solid var(--ink);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* Wraps a picture plate so the Enlarge button can sit on it without scrolling with a tall screenshot. */
+.plateWrap {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  aspect-ratio: 4 / 3;
+  display: flex;
+}
+
+.plateWrap > .plate {
+  flex: 1;
+  aspect-ratio: auto;
+  cursor: zoom-in;
+}
+
+.zoomBtn {
+  position: absolute;
+  right: calc(0.6 * var(--k) * 1cqw);
+  bottom: calc(0.6 * var(--k) * 1cqw);
+  width: calc(2 * var(--k) * 1cqw);
+  height: calc(2 * var(--k) * 1cqw);
+  padding: calc(0.35 * var(--k) * 1cqw);
+  border: calc(0.1 * var(--k) * 1cqw) solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  opacity: 0.85;
+  transition: background 0.18s ease, color 0.18s ease, opacity 0.18s ease;
+}
+
+.zoomBtn:hover,
+.zoomBtn:focus-visible {
+  opacity: 1;
+  background: var(--accent);
+}
+
+.zoomBtn:focus-visible {
+  outline: calc(0.2 * var(--k) * 1cqw) solid var(--ink);
+  outline-offset: calc(0.2 * var(--k) * 1cqw);
+}
+
+/* Enlarged view: the pictures big over the Reader. */
+.lightbox {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(3 * var(--k) * 1cqw) calc(3 * var(--k) * 1cqw) calc(6 * var(--k) * 1cqw);
+  background: rgba(24, 18, 15, 0.94);
+  cursor: zoom-out;
+  overflow: auto;
+}
+
+.lightboxPics {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(1.2 * var(--k) * 1cqw);
+  width: 100%;
+  height: 100%;
+}
+
+.lightboxPics img {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background: var(--paper);
+}
+
+/* One picture: natural proportions, scrolling if it is a very tall page. */
+.lightboxSingle {
+  overflow-y: auto;
+  align-items: flex-start;
+}
+
+.lightboxSingle img {
+  flex: 0 1 auto;
+  max-height: none;
+  max-width: min(100%, calc(90 * var(--k) * 1cqw));
+  height: auto;
+  margin: 0 auto;
+}
+
+.lightboxClose {
+  position: absolute;
+  right: calc(2 * var(--k) * 1cqw);
+  bottom: calc(1.6 * var(--k) * 1cqw);
+  padding: calc(0.5 * var(--k) * 1cqw) calc(1.2 * var(--k) * 1cqw);
+  border: calc(0.12 * var(--k) * 1cqw) solid rgba(245, 235, 220, 0.5);
+  border-radius: 999px;
+  background: rgba(24, 18, 15, 0.8);
+  color: var(--paper);
+  font-family: var(--font-ui);
+  font-size: calc(0.82 * var(--k) * 1cqw);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.lightboxClose:hover,
+.lightboxClose:focus-visible {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.lightboxClose:focus-visible {
+  outline: calc(0.2 * var(--k) * 1cqw) solid var(--accent);
+  outline-offset: calc(0.2 * var(--k) * 1cqw);
+}
+
+/* A real picture in the plate: the whole picture is shown (contain), several sit side by side. */
+.plateImage {
+  gap: calc(0.6 * var(--k) * 1cqw);
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.plateImage img {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 0; /* sized by the flex row, never by the file's pixels */
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Very tall screenshots (a whole page scrolled) fill the width and scroll inside the plate. */
+.plateScroll {
+  display: block;
+  overflow-y: auto;
+}
+
+.plateScroll img {
+  display: block;
+  flex: none;
+  width: 100%;
+  height: auto;
+}
+
 .plateTag {
   font-family: var(--font-mono);
-  font-size: 0.74cqw;
+  font-size: calc(0.74 * var(--k) * 1cqw);
   letter-spacing: 0.12em;
   color: var(--ink);
   background: var(--paper);
-  padding: 0.2cqw 0.6cqw;
-  border: 0.1cqw solid var(--ink);
+  padding: calc(0.2 * var(--k) * 1cqw) calc(0.6 * var(--k) * 1cqw);
+  border: calc(0.1 * var(--k) * 1cqw) solid var(--ink);
 }
 
 .caption {
   margin: 0;
   font-family: var(--font-mono);
-  font-size: 0.68cqw;
+  font-size: calc(0.68 * var(--k) * 1cqw);
   line-height: 1.7;
   letter-spacing: 0.04em;
   color: var(--ink);
@@ -193,26 +344,26 @@
 
 .kicker {
   font-family: var(--font-mono);
-  font-size: 0.72cqw;
+  font-size: calc(0.72 * var(--k) * 1cqw);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink);
 }
 
 .heading {
-  margin: 0.6cqw 0 0;
+  margin: calc(0.6 * var(--k) * 1cqw) 0 0;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 2.4cqw;
+  font-size: calc(2.4 * var(--k) * 1cqw);
   line-height: 1.06;
   letter-spacing: -0.01em;
   color: var(--ink);
 }
 
 .descLabel {
-  margin: 1.2cqw 0 0.4cqw;
+  margin: calc(1.2 * var(--k) * 1cqw) 0 calc(0.4 * var(--k) * 1cqw);
   font-family: var(--font-mono);
-  font-size: 0.7cqw;
+  font-size: calc(0.7 * var(--k) * 1cqw);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink);
@@ -221,22 +372,41 @@
 .lines {
   display: flex;
   flex-direction: column;
-  gap: 0.5cqw;
-  max-width: 22cqw;
+  gap: calc(0.5 * var(--k) * 1cqw);
+  max-width: calc(22 * var(--k) * 1cqw);
 }
 
 .line {
   margin: 0;
-  font-size: 1cqw;
+  font-size: calc(1 * var(--k) * 1cqw);
   line-height: 1.6;
   color: var(--ink);
   text-wrap: pretty;
 }
 
+/* Text-only page: the heading opens the left page, the text starts at the top of the right one. */
+.titlePage {
+  justify-content: flex-start;
+}
+
+.titleHeading {
+  font-size: calc(3.2 * var(--k) * 1cqw);
+  line-height: 1.02;
+}
+
+.descLabelFirst {
+  margin-top: 0;
+}
+
+/* A frame with no picture: the text sits in the middle of the frame. */
+.frameTextOnly {
+  justify-content: center;
+}
+
 .openingLabel {
   margin-top: auto;
   font-family: var(--font-mono);
-  font-size: 0.68cqw;
+  font-size: calc(0.68 * var(--k) * 1cqw);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink);
@@ -264,7 +434,7 @@
   inset: 0;
   /* #DCCFB6 is the leaf's edge shade, not a README token */
   background: linear-gradient(270deg, var(--paper-warm) 0%, var(--paper) 78%, #dccfb6 100%);
-  box-shadow: 0 0 3cqw rgba(46, 33, 28, 0.3);
+  box-shadow: 0 0 calc(3 * var(--k) * 1cqw) rgba(46, 33, 28, 0.3);
 }
 
 .root[data-turning="next"] .leaf {
@@ -283,6 +453,12 @@
 
 .root[data-turning="prev"] .leafFace {
   background: linear-gradient(90deg, var(--paper-warm) 0%, var(--paper) 78%, #dccfb6 100%);
+}
+
+/* A folder's pages are flat stock, so its leaf is too. */
+.root[data-skin="folder"] .leafFace,
+.root[data-skin="folder"][data-turning="prev"] .leafFace {
+  background: var(--paper);
 }
 
 /* ---- Book cover (swings open on its left edge, the spine side) ---- */
@@ -319,32 +495,32 @@
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
-  border-radius: 0.3cqw 0.6cqw 0.6cqw 0.3cqw;
+  border-radius: calc(0.3 * var(--k) * 1cqw) calc(0.6 * var(--k) * 1cqw) calc(0.6 * var(--k) * 1cqw) calc(0.3 * var(--k) * 1cqw);
   background: linear-gradient(115deg, var(--spine, #c96b5e) 0%, rgba(46, 33, 28, 0.9) 130%);
-  box-shadow: inset -0.6cqw 0 1.6cqw rgba(0, 0, 0, 0.3);
+  box-shadow: inset calc(-0.6 * var(--k) * 1cqw) 0 calc(1.6 * var(--k) * 1cqw) rgba(0, 0, 0, 0.3);
 }
 
 .coverContent {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 3.6cqw;
+  padding: calc(3.6 * var(--k) * 1cqw);
   color: var(--paper);
 }
 
 .coverTag {
   font-family: var(--font-mono);
-  font-size: 0.78cqw;
+  font-size: calc(0.78 * var(--k) * 1cqw);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(245, 235, 220, 0.75);
 }
 
 .coverTitle {
-  margin: 1.1cqw 0 0;
+  margin: calc(1.1 * var(--k) * 1cqw) 0 0;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 3.2cqw;
+  font-size: calc(3.2 * var(--k) * 1cqw);
   line-height: 1;
   letter-spacing: -0.015em;
 }
@@ -353,9 +529,9 @@
   margin-top: auto;
   display: flex;
   flex-direction: column;
-  gap: 0.35cqw;
+  gap: calc(0.35 * var(--k) * 1cqw);
   font-family: var(--font-mono);
-  font-size: 0.76cqw;
+  font-size: calc(0.76 * var(--k) * 1cqw);
   letter-spacing: 0.12em;
   color: rgba(245, 235, 220, 0.72);
 }
@@ -367,7 +543,7 @@
   backface-visibility: hidden;
   /* #E9DFC9 is the inside-cover stock, not a README token */
   background: #e9dfc9;
-  box-shadow: inset 0 0 4cqw rgba(46, 33, 28, 0.22);
+  box-shadow: inset 0 0 calc(4 * var(--k) * 1cqw) rgba(46, 33, 28, 0.22);
 }
 
 /* ---- Folder lid (opening="lid") ---- */
@@ -379,7 +555,7 @@
   top: 0;
   height: 22%;
   background: linear-gradient(180deg, var(--ink) 0%, #43332b 100%);
-  border-radius: 0.3cqw 0.3cqw 0 0;
+  border-radius: calc(0.3 * var(--k) * 1cqw) calc(0.3 * var(--k) * 1cqw) 0 0;
   transform-origin: center top;
   backface-visibility: hidden;
   opacity: 0;
@@ -394,7 +570,7 @@
 
 .root[data-opening="lid"][data-open="true"] .lid {
   opacity: 0;
-  transform: translateY(-8cqw) rotateX(58deg);
+  transform: translateY(calc(-8 * var(--k) * 1cqw)) rotateX(58deg);
 }
 
 .root[data-reduced="true"] .lid {
@@ -409,25 +585,25 @@
   inset: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.2cqw;
-  padding: 1.2cqw;
+  gap: calc(1.2 * var(--k) * 1cqw);
+  padding: calc(1.2 * var(--k) * 1cqw);
   background: var(--paper);
-  border: 0.9cqw solid var(--ink);
+  border: calc(0.9 * var(--k) * 1cqw) solid var(--ink);
 }
 
 .frameText {
   display: flex;
   flex-direction: column;
-  gap: 0.4cqw;
-  padding: 0 0.4cqw 0.4cqw;
+  gap: calc(0.4 * var(--k) * 1cqw);
+  padding: 0 calc(0.4 * var(--k) * 1cqw) calc(0.4 * var(--k) * 1cqw);
 }
 
 .frameHeading {
-  font-size: 2cqw;
+  font-size: calc(2 * var(--k) * 1cqw);
 }
 
 .frameDescLabel {
-  margin: 0.2cqw 0;
+  margin: calc(0.2 * var(--k) * 1cqw) 0;
 }
 
 .frameLines {
@@ -435,26 +611,26 @@
 }
 
 .frameLines .line {
-  font-size: 0.95cqw;
+  font-size: calc(0.95 * var(--k) * 1cqw);
   line-height: 1.55;
 }
 
 .links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5cqw;
-  margin-top: 0.7cqw;
+  gap: calc(0.5 * var(--k) * 1cqw);
+  margin-top: calc(0.7 * var(--k) * 1cqw);
 }
 
 .link {
   display: inline-flex;
   align-items: center;
-  gap: 0.4cqw;
-  padding: 0.42cqw 0.9cqw;
-  border: 0.1cqw solid var(--ink);
+  gap: calc(0.4 * var(--k) * 1cqw);
+  padding: calc(0.42 * var(--k) * 1cqw) calc(0.9 * var(--k) * 1cqw);
+  border: calc(0.1 * var(--k) * 1cqw) solid var(--ink);
   border-radius: 999px;
   font-family: var(--font-mono);
-  font-size: 0.72cqw;
+  font-size: calc(0.72 * var(--k) * 1cqw);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink);
@@ -471,7 +647,7 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 1cqw;
+  gap: calc(1 * var(--k) * 1cqw);
   pointer-events: auto;
   opacity: 0;
   transition: opacity 0.3s ease 0.12s;
@@ -482,14 +658,14 @@
 }
 
 .navBtn {
-  width: 2.6cqw;
-  height: 2.6cqw;
+  width: calc(2.6 * var(--k) * 1cqw);
+  height: calc(2.6 * var(--k) * 1cqw);
   padding: 0;
-  border: 0.12cqw solid rgba(245, 235, 220, 0.5);
+  border: calc(0.12 * var(--k) * 1cqw) solid rgba(245, 235, 220, 0.5);
   border-radius: 50%;
   background: transparent;
   color: var(--paper);
-  font-size: 1.2cqw;
+  font-size: calc(1.2 * var(--k) * 1cqw);
   line-height: 1;
   cursor: pointer;
   display: flex;
@@ -505,23 +681,23 @@
 }
 
 .pageLabel {
-  min-width: 6cqw;
+  min-width: calc(6 * var(--k) * 1cqw);
   text-align: center;
   font-family: var(--font-mono);
-  font-size: 0.8cqw;
+  font-size: calc(0.8 * var(--k) * 1cqw);
   letter-spacing: 0.16em;
   color: rgba(245, 235, 220, 0.85);
 }
 
 .closeBtn {
-  margin-left: 1cqw;
-  padding: 0.5cqw 1.2cqw;
-  border: 0.12cqw solid rgba(245, 235, 220, 0.5);
+  margin-left: calc(1 * var(--k) * 1cqw);
+  padding: calc(0.5 * var(--k) * 1cqw) calc(1.2 * var(--k) * 1cqw);
+  border: calc(0.12 * var(--k) * 1cqw) solid rgba(245, 235, 220, 0.5);
   border-radius: 999px;
   background: transparent;
   color: var(--paper);
   font-family: var(--font-ui);
-  font-size: 0.82cqw;
+  font-size: calc(0.82 * var(--k) * 1cqw);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   cursor: pointer;
@@ -538,8 +714,8 @@
 .navBtn:focus-visible,
 .closeBtn:focus-visible,
 .link:focus-visible {
-  outline: 0.2cqw solid var(--accent);
-  outline-offset: 0.2cqw;
+  outline: calc(0.2 * var(--k) * 1cqw) solid var(--accent);
+  outline-offset: calc(0.2 * var(--k) * 1cqw);
 }
 
 /* ==========================================================================
@@ -571,6 +747,10 @@
   display: flex;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+}
+
+.root[data-compact="true"] {
+  --k: 1;
 }
 
 .root[data-compact="true"] .stage {
@@ -771,4 +951,59 @@
 .root[data-compact="true"] .link:focus-visible {
   outline-width: 2px;
   outline-offset: 2px;
+}
+
+.root[data-compact="true"] .plateImage {
+  gap: 8px;
+}
+
+.root[data-compact="true"] .zoomBtn {
+  right: 8px;
+  bottom: 8px;
+  width: 44px;
+  height: 44px;
+  padding: 11px;
+  border-width: 1px;
+}
+
+.root[data-compact="true"] .lightbox {
+  padding: 16px 12px 76px;
+}
+
+/* On a phone, pictures stack at full width and scroll: side by side they would be thumbnails. */
+.root[data-compact="true"] .lightbox {
+  align-items: flex-start;
+}
+
+.root[data-compact="true"] .lightboxPics {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  height: auto;
+  min-height: 100%;
+  gap: 12px;
+}
+
+.root[data-compact="true"] .lightboxPics img,
+.root[data-compact="true"] .lightboxSingle img {
+  flex: none;
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  height: auto;
+}
+
+.root[data-compact="true"] .lightboxClose {
+  right: auto;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  min-height: 44px;
+  padding: 0 24px;
+  border-width: 1px;
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .titleHeading {
+  font-size: 22px;
 }

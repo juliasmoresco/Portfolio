@@ -1,40 +1,232 @@
 {
   "skin": "book",
-  "title": "Case 04",
-  "tag": "Case study",
-  "year": "[Year]",
-  "role": "[Role]",
+  "title": "Retirement Operations in HUB",
+  "tag": "Case study · Fintech",
+  "year": "2021",
+  "role": "Product Design, User Research",
   "spine": "#2E211C",
   "pages": [
     {
       "kicker": "Overview",
-      "heading": "The brief",
-      "plate": "cover image placeholder",
+      "heading": "Project Details",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "Migrated complex operations from a legacy platform into a scalable internal tool for advisors.",
+        "Client: XP Inc. — one of Brazil's largest investment brokers",
+        "My Role: Lead Product Designer, responsible for discovery, research, journey mapping, prototyping, testing, and stakeholder alignment",
+        "Team: Designed in collaboration with Jaqueline Manso (Product Designer)",
+        "Platforms: Internal web platform (HUB)",
+        "Year: 2021"
+      ],
+      "image": "case4-cover"
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Context",
+      "lines": [
+        "HUB is XP's platform where financial advisors handle client investments and access essential tools for their daily work. However, retirement-related operations—such as portability, contributions, and redemptions—were still being managed through a legacy platform called Connect. This older system had an outdated information architecture and interface, which caused inefficiencies, increased support tickets, and kept the retirement product disconnected from the rest of the investment ecosystem."
+      ],
+      "image": "case4-01",
+      "caption": "Legacy Connect Platform"
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Problem",
+      "lines": [
+        "The challenge was to migrate all retirement functionalities from Connect into HUB, not just technically, but with a redesigned and improved experience for advisors. The project involved:",
+        "Mapping and rebuilding key journeys like External and Internal Portability, One-Time and Monthly Contributions, Withdrawals, Simulations, and more.",
+        "Reducing support demand.",
+        "Increasing advisor satisfaction and engagement."
+      ]
+    },
+    {
+      "kicker": "Overview",
+      "heading": "Problem",
+      "lines": [
+        "Increase in the value of pension custody for operations carried out via the Hub channel. (AUC)",
+        "Increase engagement on the Hub platform (unique users x usage frequency)."
       ]
     },
     {
       "kicker": "Process",
-      "heading": "How it was made",
-      "plate": "process artefact placeholder",
+      "heading": "Strategy and Design Process",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "To prioritize the work, we started with the most problematic flow: External Portability. It had the highest volume of complaints and involved complex rules due to the involvement of different insurance providers."
+      ],
+      "image": "case4-02",
+      "caption": "Design Process Diagram"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Discovery",
+      "lines": [
+        "We began the discovery phase by prioritizing External and Internal Portability, which had the most complaints and complexity. We hosted workshops with stakeholders from business, operations, and technology, presenting volumetric data and analyzing the most frequent support tickets.",
+        "From these sessions, we mapped the following pain points:",
+        "Advisors were confused by Connect’s journey, especially the requirement to first select the destination insurer.",
+        "They couldn't start a transfer with multiple origin plans."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Discovery",
+      "lines": [
+        "There was low understanding of the differences between external and internal portability.",
+        "There were excessive mandatory fields.",
+        "Terms like “Intracorretora” or “Transferência Interna” caused friction."
+      ],
+      "image": "case4-03",
+      "caption": "Workshop with Stakeholders"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Discovery",
+      "lines": [
+        "We conducted an opportunity analysis based on advisor needs and business constraints, which resulted in four main clusters:",
+        "1. Fund List Navigation: Introduce a new way to start a portability based on investment funds rather than client name. Hypothesis: this would increase scalability and streamline search. Risk: unfamiliar to advisors used to Connect.",
+        "2. Client Search Optimization: Maintain a client-first option for existing plans and build continuity from the legacy experience."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Discovery",
+      "lines": [
+        "3. Terminology Clarity: Run quantitative tests to identify preferred terminology for key concepts like portability types. Adjust language to match user mental models.",
+        "4. In-flow Educational Content: Insert contextual explanations about insurers, tax regimes (PGBL/VGBL), and operational rules to reduce reliance on disclaimers and improve self-sufficiency.",
+        "These were prioritized based on support volume, technical feasibility, and alignment with business KPIs."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Understanding the User Context",
+      "lines": [
+        "The journey involved distinct business rules per insurer, variations based on payment methods, and distinctions between progressive and regressive tax regimes. Advisors had developed workarounds and mental shortcuts from years of Connect use, making it critical that our redesign supported both learnability and familiarity."
+      ],
+      "image": "case4-04",
+      "caption": "Feature Mapping and Rules"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Understanding the User Context",
+      "lines": [
+        "We created a journey blueprint to:",
+        "Compare Connect and HUB flows.",
+        "Highlight where content, filters, and entry points could support decision-making.",
+        "Anticipate user misconceptions based on legacy behaviors."
+      ],
+      "image": "case4-05",
+      "caption": "Journey Blueprint"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Design Critique and Stakeholder Alignment",
+      "lines": [
+        "Once we translated the mapped journey into prototypes, we ran Design Critique sessions with stakeholders from legal, operations, business, and tech. These sessions became part of our regular process.",
+        "They allowed us to:",
+        "Validate all edge cases involving multiple insurers.",
+        "Address restrictions in portability types.",
+        "Adjust copy and inputs to reduce misunderstanding."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "Design Critique and Stakeholder Alignment",
+      "lines": [
+        "Test alternative UI patterns to reduce complexity (e.g., modals, tabs, smart default selections)."
+      ],
+      "image": "case4-06"
+    },
+    {
+      "kicker": "Process",
+      "heading": "User Research",
+      "lines": [
+        "We structured the research in two waves:",
+        "1. Concept Testing",
+        "5 semi-structured interviews with advisors of different experience levels.",
+        "Assessed perceptions of the new flow, terminology, and how intuitive the first steps were.",
+        "2. Quantitative Usability Test (Maze)",
+        "~430 advisors received test invitations.",
+        "46 completed the Maze test with 3 main tasks: start a portability, select the origin plan, complete the flow."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "User Research",
+      "lines": [
+        "Metrics analyzed: Task Success Rate (TSR), drop-off rate, and ASQ satisfaction.",
+        "Key results:",
+        "90% success rate.",
+        "Advisors were initially confused by the fund-first flow but adapted.",
+        "Modals helped guide them.",
+        "Recall components in the origin step improved contextual awareness.",
+        "Feedback suggested the Fund List would gain relevance with future features like the Plan Comparator."
+      ]
+    },
+    {
+      "kicker": "Process",
+      "heading": "User Research",
+      "lines": [
+        "We recognized the Maze sample was small, so we incorporated continuous feedback loops into the pilot phase."
+      ],
+      "image": "case4-07"
+    },
+    {
+      "kicker": "Process",
+      "heading": "Pilot Strategy",
+      "lines": [
+        "We executed a phased rollout:",
+        "4 high-volume offices selected for the pilot.",
+        "Weekly syncs to collect feedback and reinforce training.",
+        "Split users into Beta and Non-Beta groups to monitor behavioral differences.",
+        "Metrics tracked via Medallia and usage dashboards."
       ]
     },
     {
       "kicker": "Outcome",
-      "heading": "What shipped",
-      "plate": "final screen placeholder",
+      "heading": "Outcomes",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "By April 2022:",
+        "92% of retirement features were integrated into HUB.",
+        "Advisors reported ease of use and smooth migration processes.",
+        "Feedback highlighted improvements in system speed, usability, and navigation clarity.",
+        "“All migration processes I ran were smooth and successful.”",
+        "“Very easy to execute, great selection of funds.”"
       ]
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Outcomes",
+      "lines": [
+        "“The process is intuitive, fast, and easy to explain to clients.”",
+        "Engagement increased, with approximately 4,600 advisors (45% of the base) active during phased rollout.",
+        "The pilot gradually expanded:",
+        "Controlled: 46 advisors",
+        "Expanded: 74 offices (~4,600 advisors, or 45% of the base)",
+        "Network-wide: All advisors with HUB access",
+        "We also tested similar journeys like Initial Contribution using the same navigation logic:"
+      ]
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Outcomes",
+      "lines": [
+        "150 testers participated",
+        "80% task success rate",
+        "Heatmaps showed good engagement and clarity",
+        "Comments highlighted clarity, intuitiveness, and ease of use"
+      ],
+      "image": "case4-08"
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Reflection",
+      "lines": [
+        "This initiative combined legacy platform migration with a user-centered redesign approach. By leveraging research, product strategy, and agile iteration, we delivered a scalable and intuitive experience for advisors. Key learnings included designing for habitual behaviors, enabling clear educational moments, and continuously validating through real user feedback."
+      ]
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Final Result",
+      "lines": [],
+      "image": "case4-09"
     }
   ]
 }

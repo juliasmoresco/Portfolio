@@ -1,0 +1,24 @@
+{
+  "_readme": "Tells `npm run sync` where each piece of the site lives in Notion. See docs/notion-sync.md. Page ids are the 32 characters at the end of a Notion page's link.",
+
+  "root": "1f5958dffc1e8023acfffbfee6f37136",
+
+  "cases": {
+    "case1": { "page": "1f5958dffc1e80dcbe4cf5b570250024", "processStartsAt": "Design Process", "outcomeStartsAt": "Experiments & Impact" },
+    "case2": { "page": "1f9958dffc1e80b2b485c8b4745e13df", "processStartsAt": "Research & Design Process", "outcomeStartsAt": "Results" },
+    "case3": { "page": "1f5958dffc1e8065b291c1733ff28e67", "processStartsAt": "Design & Research Process", "outcomeStartsAt": "Next Steps" },
+    "case4": { "page": "52def30438c1458a81a083efca3606f9", "processStartsAt": "Strategy and Design Process", "outcomeStartsAt": "Outcomes" },
+    "case5": { "page": "3a0d5e47778a49f0b4a9a408b48f2a66", "processStartsAt": "Discovery & Research Strategy", "outcomeStartsAt": "Outcome & Next Steps" }
+  },
+
+  "rootSections": {
+    "Contact": "phone",
+    "Mentorship": "phone",
+    "Education": "studies",
+    "Skills": "resume-skills",
+    "Language": "resume-languages",
+    "Testimonials": "testimonials"
+  },
+
+  "about": { "photo": false }
+}

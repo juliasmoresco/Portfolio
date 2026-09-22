@@ -27,7 +27,10 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(0deg, rgb(var(--scrim-rgb) / 0.82) 0%, rgb(var(--scrim-rgb) / 0.4) 26%, rgb(var(--scrim-rgb) / 0) 46%);
+  /* a soft pool of shade behind the intro text, on top of the fade along the bottom edge */
+  background:
+    radial-gradient(ellipse 48% 42% at 14% 90%, rgb(var(--scrim-rgb) / 0.62) 0%, rgb(var(--scrim-rgb) / 0.3) 55%, rgb(var(--scrim-rgb) / 0) 100%),
+    linear-gradient(0deg, rgb(var(--scrim-rgb) / 0.82) 0%, rgb(var(--scrim-rgb) / 0.4) 26%, rgb(var(--scrim-rgb) / 0) 46%);
 }
 
 .intro {
@@ -62,19 +65,11 @@
 .counter {
   display: flex;
   align-items: center;
-  gap: 0.8cqw;
   margin-top: 1.8cqw;
   font-size: 0.9cqw;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgb(var(--light-rgb) / 0.6);
-}
-
-.rule {
-  display: inline-block;
-  width: 2.6cqw;
-  height: 1px;
-  background: rgb(var(--light-rgb) / 0.4);
 }
 
 /* Follows the hovered object; left/top are set inline as percentages of the stage. */

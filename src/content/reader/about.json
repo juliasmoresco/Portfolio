@@ -10,21 +10,56 @@
     {
       "kicker": "Who",
       "heading": "About me",
-      "plate": "portrait placeholder",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "Hi, I’m Júlia, a Senior Product Designer with a strong visual design foundation and a strategic mindset for building scalable digital products."
       ]
     },
     {
       "kicker": "How I work",
       "heading": "Practice",
-      "plate": "artefact placeholder",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "Over the past few years, I’ve designed, launched, and optimized digital experiences across B2C and B2B environments, contributing to products in quick-service restaurants, fintech, consulting, and education. My work is focused on connecting user needs, business goals, and product growth through thoughtful design decisions, experimentation, and measurable outcomes."
+      ]
+    },
+    {
+      "kicker": "How I work",
+      "heading": "Practice",
+      "lines": [
+        "Working in consultancy has allowed me to collaborate with multidisciplinary teams across different markets, business models, and stages of product maturity. This has strengthened my ability to navigate complexity, adapt quickly, and create solutions grounded in both customer reality and operational constraints.",
+        "Beyond product design execution, I have a strong interest in user research, experimentation, growth strategy, and scalable design operations."
+      ]
+    },
+    {
+      "kicker": "Testimonial",
+      "heading": "Valentina Lopes Costa",
+      "lines": [
+        "“I’ve worked with many talented people, but Julia stands out as the best product designer I’ve ever had the chance to collaborate with.",
+        "She led the design for both our app and website - not only making them look great, but work significantly better for the user. Her designs were clean, intuitive, and always rooted in solving real problems with elegance and clarity."
+      ]
+    },
+    {
+      "kicker": "Testimonial",
+      "heading": "Valentina Lopes Costa",
+      "lines": [
+        "But what really set her apart was her work behind the scenes - she took on the challenge of simplifying complex internal tools used by our platform operators and completely transformed them into intuitive, efficient workflows.",
+        "Julia didn’t just elevate our product - she raised the bar for the entire tech org. Some of the best design patterns we use across the platform started with her. Other teams actively adopted her simplification frameworks because they were just that effective."
+      ]
+    },
+    {
+      "kicker": "Testimonial",
+      "heading": "Valentina Lopes Costa",
+      "lines": [
+        "On top of all that, she’s an incredible team member - collaborative, thoughtful, and always willing to go the extra mile to support the people around her.",
+        "If you’re building a product and want it to truly shine, Julia is the designer you want on your team.”",
+        "Product Manager at Restaurants Brand International"
+      ]
+    },
+    {
+      "kicker": "Testimonial",
+      "heading": "Nicolau Monteiro",
+      "lines": [
+        "“During my career, I have rarely come across real professionals like Júlia. She has never failed to impress me with her skills as a Product Designer. Júlia is an exceptionally talented designer that understands users, technology, and design. Her energy and can-do attitude are contagious and helped us ship many products and features. I am sure she will achieve great things in her career. Go Júlia!!",
+        "Product Manager"
       ]
     }
   ]
