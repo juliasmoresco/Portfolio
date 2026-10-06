@@ -38,6 +38,8 @@ const TOUCH_REACH = 24;
 /** The key light's shadow frustum for the desktop layout. Portrait widens it (see wide() in applyView)
  *  while the wall shelf sits above the bookcase, then this is restored the moment desktop returns. */
 const SHADOW_HOME = { left: -3.2, right: 3.8, top: 4.2, bottom: -1.2 };
+/** Portrait: the share of the screen's height the room may fill, between the title bar and the bottom hint. */
+const PORTRAIT_CLEAR_HEIGHT = 0.8;
 /** Desktop camera distance from the wall: close enough that the room fills the window, with its full height in view. */
 const DESK_DIST = 7.5;
 /** Room to leave on each side of the shelf and bookcase on desktop, in scene units. */
@@ -308,6 +310,10 @@ export class OfficeScene {
   private wallHomeBox: THREE.Box3 | null = null;
   /** Zuko's box, world space; folded into the portrait fit too (desktop already shows him fine). */
   private catBox: THREE.Box3 | null = null;
+  private cat: THREE.Object3D | null = null;
+  private catHome = new THREE.Vector3();
+  /** Portrait only: Zuko moves from beside the bookcase to sitting in front of its bottom-left corner. */
+  private catDelta = new THREE.Vector3();
   private plantSway: PlantSway | null = null;
   private zukoLife: ZukoLife | null = null;
   /** Off in desktop. The key light is tuned for the wall shelf's normal height, near the light's own
@@ -671,7 +677,7 @@ export class OfficeScene {
     // meshBox (not THREE.Box3.setFromObject) so each object's own position is folded in correctly.
     this.bookBox = meshBox(model);
     this.wallHomeBox = meshBox(wallShelf).union(meshBox(posters));
-    const wallGap = 0.4; // clearance between the bookcase's top and the relocated wall shelf
+    const wallGap = 0.22; // clearance between the bookcase's top and the relocated wall shelf
     this.wallDelta.set(
       (this.bookBox.min.x + this.bookBox.max.x) / 2 - (this.wallHomeBox.min.x + this.wallHomeBox.max.x) / 2,
       this.bookBox.max.y + wallGap - this.wallHomeBox.min.y,
@@ -785,6 +791,11 @@ export class OfficeScene {
         cat.updateWorldMatrix(true, true);
         catMeshes = collectMeshes(cat);
         this.catBox = meshBox(cat);
+        this.cat = cat;
+        this.catHome.copy(cat.position);
+        // On a phone the room is framed by its width: sitting beside the bookcase, he would widen it and push the
+        // camera back. In front of its first column he keeps the room narrow, so everything is drawn larger.
+        this.catDelta.set(shelfWorld.min.x + 0.42 - targetX, 0, 0.32);
       } catch (e) {
         console.warn("[office-scene] could not place Zuko", e);
         scene.remove(cat);
@@ -1360,6 +1371,7 @@ export class OfficeScene {
         // desktop: the original layout and camera height, untouched by anything portrait does, centred on the room.
         this.wallShelf?.position.copy(this.wallHomeShelf);
         this.posters?.position.copy(this.wallHomePosters);
+        this.cat?.position.copy(this.catHome);
         if (this.wallLight) this.wallLight.intensity = 0;
         if (shadowCam && shadowCam.top !== SHADOW_HOME.top) {
           Object.assign(shadowCam, SHADOW_HOME);
@@ -1381,6 +1393,7 @@ export class OfficeScene {
       // more distance, centred on it.
       this.wallShelf?.position.copy(this.wallHomeShelf).add(this.wallDelta);
       this.posters?.position.copy(this.wallHomePosters).add(this.wallDelta);
+      this.cat?.position.copy(this.catHome).add(this.catDelta);
       if (this.wallLight && this.wallHomeBox) {
         const c = this.wallHomeBox.getCenter(new THREE.Vector3()).add(this.wallDelta);
         this.wallLight.position.set(c.x, c.y, c.z + 0.9);
@@ -1396,13 +1409,14 @@ export class OfficeScene {
       const wallBox = this.wallHomeBox?.clone().translate(this.wallDelta) ?? null;
       let room = this.bookBox ? this.bookBox.clone() : null;
       if (room && wallBox) room.union(wallBox);
-      if (room && this.catBox) room.union(this.catBox);
+      if (room && this.catBox) room.union(this.catBox.clone().translate(this.catDelta));
       const cx = room ? (room.min.x + room.max.x) / 2 : 2.6;
       const cy = room ? (room.min.y + room.max.y) / 2 : 2.2;
       const halfW = room ? (room.max.x - room.min.x) / 2 + 0.3 : 1.6;
-      const halfH = room ? (room.max.y - room.min.y) / 2 + 0.3 : 2.2;
+      const halfH = room ? (room.max.y - room.min.y) / 2 + 0.12 : 2.2;
       const dW = halfW / (Math.tan(fovP / 2) * asp);
-      const dH = halfH / Math.tan(fovP / 2);
+      // The phone's title bar and the hint along the bottom cover about a tenth of the screen each.
+      const dH = halfH / (Math.tan(fovP / 2) * PORTRAIT_CLEAR_HEIGHT);
       const d = Math.min(Math.max(Math.max(dW, dH), 5), 32);
       this.camBase.set(cx, cy + 0.2, d);
       tGoal.set(cx, cy, 0);
