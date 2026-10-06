@@ -1,0 +1,134 @@
+.topBar {
+  flex: none;
+  position: relative;
+  z-index: 2;
+}
+
+.topRow {
+  height: 52px;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.topTitle {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.iconBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--n800);
+}
+.iconBtn:hover {
+  background: rgba(16, 24, 40, 0.05);
+}
+
+.progress {
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+}
+.progressFill {
+  height: 100%;
+}
+
+.ring {
+  border-radius: 999px;
+  position: relative;
+  flex: none;
+}
+.ringHole {
+  position: absolute;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.bar {
+  position: relative;
+  overflow: hidden;
+}
+.barCap {
+  position: absolute;
+  inset: 0 0 auto 0;
+}
+
+.cover {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.logo {
+  position: relative;
+  flex: none;
+}
+.logoBar {
+  position: absolute;
+  bottom: 0;
+  background: var(--g400);
+  transform-origin: 50% 100%;
+}
+.wordmark {
+  position: absolute;
+  top: 0;
+  display: block;
+  user-select: none;
+}
+
+.sheetLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 24, 40, 0.45);
+  cursor: default;
+}
+.scrim:focus-visible {
+  box-shadow: none;
+}
+.sheet {
+  position: relative;
+  width: 100%;
+  background: var(--white);
+  border-radius: 28px 28px 0 0;
+  padding: 12px 24px calc(var(--home-h) + 12px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 -12px 32px -8px rgba(16, 24, 40, 0.2);
+  touch-action: none;
+}
+.grabber {
+  align-self: center;
+  width: 40px;
+  height: 5px;
+  border-radius: 5px;
+  background: var(--n200);
+  margin-bottom: 4px;
+}

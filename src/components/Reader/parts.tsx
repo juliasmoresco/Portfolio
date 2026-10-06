@@ -7,6 +7,7 @@ import { Model3D } from "./Model3D";
 import { Cards, Compare, Funnel, Glossary, Hobbies, Journey, Migration, Palette, Personas, Poll, Quotes, Showcase, Stats, Timeline } from "./PageArt";
 import { ZoomContext } from "./zoom";
 import styles from "./Reader.module.css";
+import { useUi } from "./ui";
 
 /** A screenshot taller than this (height / width) scrolls inside the plate instead of shrinking to a sliver. */
 const TALL = 1.8;
@@ -110,6 +111,7 @@ function Polaroids({ set }: { set: PagePolaroids }) {
  * there. On a desktop book the phone keeps its bezel; on a phone the prototype fills the view like the real app.
  */
 export function PrototypePage({ page }: { page: ReaderPage }) {
+  const ui = useUi();
   const proto = page.prototype!;
   const frameRef = useRef<HTMLIFrameElement>(null);
   const [at, setAt] = useState<string | null>(null);
@@ -132,7 +134,7 @@ export function PrototypePage({ page }: { page: ReaderPage }) {
           {proto.intro?.length ? <Lines lines={proto.intro} className={styles.showcaseIntro} /> : null}
         </header>
         {!narrow && (
-          <ol className={`${styles.tourList} ${styles.protoList}`} aria-label="Jump to a screen">
+          <ol className={`${styles.tourList} ${styles.protoList}`} aria-label={ui.jumpToScreen}>
             {proto.screens.map((x, i) => (
               <li key={x.id}>
                 <button type="button" className={styles.tourItem} aria-pressed={x.id === at} onClick={() => go(x.id)}>
@@ -148,26 +150,27 @@ export function PrototypePage({ page }: { page: ReaderPage }) {
       {narrow ? (
         <div className={styles.protoPoster}>
           {poster && (
-            <button type="button" className={styles.protoPhone} aria-label="Open the prototype" onClick={() => setFull(true)}>
+            <button type="button" className={styles.protoPhone} aria-label={ui.openPrototype} onClick={() => setFull(true)}>
               <img src={poster} alt="" draggable={false} />
             </button>
           )}
           <button type="button" className={styles.chessLink} onClick={() => setFull(true)}>
-            Open the prototype
+            {ui.openPrototype}
           </button>
         </div>
       ) : (
         <div className={styles.protoStage}>
-          <iframe ref={frameRef} src={`${base}?embed&frame`} title={proto.title ?? "Prototype"} loading="lazy" />
+          <iframe ref={frameRef} src={`${base}?embed&frame`} title={proto.title ?? ui.prototype} loading="lazy" />
         </div>
       )}
-      {full && <PrototypeFull src={`${base}?embed`} title={proto.title ?? "Prototype"} onClose={() => setFull(false)} />}
+      {full && <PrototypeFull src={`${base}?embed`} title={proto.title ?? ui.prototype} onClose={() => setFull(false)} />}
     </div>
   );
 }
 
 /** The prototype over the whole screen, above the Reader, with a close button; Escape closes it (and only it). */
 function PrototypeFull({ src, title, onClose }: { src: string; title: string; onClose: () => void }) {
+  const ui = useUi();
   const closeRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     const prev = document.activeElement as HTMLElement | null;
@@ -189,7 +192,7 @@ function PrototypeFull({ src, title, onClose }: { src: string; title: string; on
       <div className={styles.protoBar}>
         <span>{title}</span>
         <button ref={closeRef} type="button" className={styles.protoClose} onClick={onClose}>
-          Close
+          {ui.close}
         </button>
       </div>
       <iframe src={src} title={title} />
@@ -318,8 +321,6 @@ export function TextSpread({
   );
 }
 
-const END_KICKER = "The end";
-const END_HEADING = "Thanks for reading";
 
 export interface EndProps {
   /** Title of the next case, if there is one. */
@@ -342,14 +343,15 @@ export function EndPage({ className, ...end }: EndProps & { className: string })
 
 /** The closing block on its own, to follow the last text of a case when there's room for it. */
 export function EndBlock({ next, onNext, onHello }: EndProps) {
+  const ui = useUi();
   return (
     <div className={styles.endBlock}>
-      <span className={styles.kicker}>{END_KICKER}</span>
-      <h2 className={styles.heading}>{END_HEADING}</h2>
+      <span className={styles.kicker}>{ui.theEnd}</span>
+      <h2 className={styles.heading}>{ui.thanks}</h2>
       <div className={styles.endActions}>
         {next && onNext && (
           <button type="button" className={styles.endNext} onClick={onNext}>
-            <span className={styles.endNextLabel}>Next case →</span>
+            <span className={styles.endNextLabel}>{ui.nextCase}</span>
             <span className={styles.endNextTitle}>{next}</span>
           </button>
         )}

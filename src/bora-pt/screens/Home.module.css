@@ -1,0 +1,229 @@
+.scroll {
+  padding-top: var(--status-h);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 20px 0 32px;
+}
+
+.greeting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+}
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--g100);
+  color: var(--g800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.carousel,
+.perfCarousel {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 24px;
+  padding: 0 24px;
+}
+.carousel::-webkit-scrollbar,
+.perfCarousel::-webkit-scrollbar {
+  display: none;
+}
+.carousel {
+  gap: 10px;
+}
+.perfCarousel {
+  gap: 12px;
+}
+/* Trailing gutter: padding-right is ignored at the end of a scroll container. */
+.carousel::after,
+.perfCarousel::after {
+  content: "";
+  flex: none;
+  width: 14px;
+}
+
+.index {
+  flex: none;
+  width: 132px;
+  scroll-snap-align: start;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.indexName {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--n600);
+}
+.indexValue {
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.change {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 24px;
+}
+.sectionWide {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.continue {
+  background: var(--white);
+  border: 1.5px solid var(--g300);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.trilhaRow {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border-radius: 12px;
+}
+.trilhaText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.trilhaName {
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.barRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.barLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--g700);
+  white-space: nowrap;
+}
+
+.next {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--n200);
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--n700);
+}
+.next strong {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.next .uil {
+  margin-top: 1px;
+}
+
+.perf {
+  flex: none;
+  width: 272px;
+  scroll-snap-align: start;
+  border-radius: 20px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--white);
+}
+.perfTop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.perfText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.perfTitle {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.perfCaption {
+  font-size: 14px;
+  line-height: 20px;
+}
+.perfFoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.locked {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.lockedCard {
+  padding: 14px 16px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.lock {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--n100);
+  color: var(--n600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lockedText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.lockedName {
+  font-size: 16px;
+  font-weight: 500;
+}
+.unlock {
+  font-size: 13px;
+  color: var(--n600);
+}

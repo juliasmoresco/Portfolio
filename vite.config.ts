@@ -14,6 +14,8 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, "index.html"),
         bora: resolve(import.meta.dirname, "bora/index.html"),
+        // The same prototype in Portuguese, its original language (the case study opens it when the site is in PT).
+        boraPt: resolve(import.meta.dirname, "bora-pt/index.html"),
       },
     },
   },

@@ -1,0 +1,216 @@
+.screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--n50);
+}
+
+.progressRow {
+  display: flex;
+  gap: 4px;
+  padding: 0 24px 4px;
+}
+
+.tick {
+  flex: 1;
+  height: 4px;
+  border-radius: 4px;
+}
+
+.body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 24px 16px;
+  gap: 12px;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.head p {
+  text-wrap: pretty;
+}
+
+.deck {
+  flex: 1;
+  min-height: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardPos {
+  position: absolute;
+  width: 240px;
+}
+
+.card {
+  height: 190px;
+  background: var(--white);
+  border: 1px solid var(--n200);
+  border-radius: 24px;
+  box-shadow: var(--float);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.cardIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: var(--g50);
+  color: var(--g700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.cardLabel {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+.cardValue {
+  font-size: 16px;
+  color: var(--n600);
+  font-variant-numeric: tabular-nums;
+}
+
+.summary {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--n200);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.trophy {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: var(--y100);
+  color: var(--y700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summaryText {
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--n700);
+}
+.summaryText strong {
+  font-weight: 600;
+  color: var(--n800);
+}
+
+.hintArea {
+  min-height: 22px;
+  display: flex;
+  justify-content: center;
+}
+
+.hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--r700);
+  text-align: center;
+}
+
+.buckets {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.bucket {
+  background: var(--white);
+  border: 1.5px solid var(--n200);
+  border-radius: 16px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+.bucket:not(:disabled):hover {
+  border-color: var(--n300);
+}
+.bucket:disabled {
+  cursor: default;
+}
+
+.bucketWrong {
+  border-color: var(--r600);
+  background: #fffbfa;
+}
+
+.bucketShare {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.bucketLabel {
+  font-size: 13px;
+  line-height: 17px;
+  font-weight: 600;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+}
+
+.meter {
+  width: 28px;
+  height: 44px;
+  border-radius: 8px;
+  background: var(--n100);
+  position: relative;
+  overflow: hidden;
+  margin: 4px 0;
+}
+
+.meterFill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.bucketSum {
+  font-size: 13px;
+  color: var(--n600);
+  font-variant-numeric: tabular-nums;
+}
+
+.footer {
+  flex: none;
+  padding: 16px 24px calc(var(--home-h) + 6px);
+  background: var(--white);
+  border-top: 1px solid var(--n200);
+}

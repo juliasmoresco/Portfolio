@@ -5,6 +5,7 @@ import type { SceneHotspotId } from "../../scene/hotspots";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import styles from "./Reader.module.css";
 import { ZoomContext } from "./zoom";
+import { useUi } from "./ui";
 
 /** True once the element has been on screen (a phone renders every view of a book at once, side by side). */
 function useSeen<T extends Element>(): [RefObject<T | null>, boolean] {
@@ -114,6 +115,7 @@ export function Cards({ cards }: { cards: PageCards }) {
  * version that won is marked. Clicking a screen opens it large.
  */
 export function Compare({ compare }: { compare: PageCompare }) {
+  const ui = useUi();
   const enlarge = useContext(ZoomContext);
   const [at, setAt] = useState(0);
   const v = compare.variants[at];
@@ -123,11 +125,11 @@ export function Compare({ compare }: { compare: PageCompare }) {
       {compare.kicker && <span className={styles.chartKicker}>{compare.kicker}</span>}
       {compare.title && <h2 className={styles.chartTitle}>{compare.title}</h2>}
       {compare.description && <p className={styles.compareDescription}>{compare.description}</p>}
-      <div className={styles.compareToggle} role="group" aria-label="Choose a version">
+      <div className={styles.compareToggle} role="group" aria-label={ui.chooseVersion}>
         {compare.variants.map((x, i) => (
           <button key={x.label} type="button" className={styles.compareOption} aria-pressed={i === at} onClick={() => setAt(i)}>
             {x.label}
-            {x.winner && <span className={styles.compareWinner}>Winner</span>}
+            {x.winner && <span className={styles.compareWinner}>{ui.winner}</span>}
           </button>
         ))}
       </div>
@@ -197,6 +199,7 @@ function ShowcaseFan({ showcase, intro }: { showcase: PageShowcase; intro?: Reac
  * filled and marked "Now".
  */
 export function Timeline({ timeline }: { timeline: PageTimeline }) {
+  const ui = useUi();
   const [ref, seen] = useSeen<HTMLDivElement>();
   return (
     <div ref={ref} className={styles.timeline} data-seen={seen || undefined}>
@@ -210,7 +213,7 @@ export function Timeline({ timeline }: { timeline: PageTimeline }) {
             <span className={styles.timelineBody}>
               <span className={styles.timelineName}>
                 {s.name}
-                {s.now && <span className={styles.timelineNow}>Now</span>}
+                {s.now && <span className={styles.timelineNow}>{ui.now}</span>}
               </span>
               <span className={styles.timelineRole}>{s.role}</span>
               {s.note && <span className={styles.timelineNote}>{s.note}</span>}
@@ -366,6 +369,7 @@ function FitBrowser({ src, label, className, align = "center", onOpen }: { src: 
 
 /** Desktop pages, one at a time in a browser window, picked from the list of their names beside it. */
 function ShowcaseTour({ showcase, intro }: { showcase: PageShowcase; intro?: ReactNode }) {
+  const ui = useUi();
   const enlarge = useContext(ZoomContext);
   const screens = showcase.screens.filter((x) => imageUrls[x.image]);
   const [at, setAt] = useState(0);
@@ -381,7 +385,7 @@ function ShowcaseTour({ showcase, intro }: { showcase: PageShowcase; intro?: Rea
             {intro}
           </header>
         )}
-        <ol className={styles.tourList} aria-label="Screens">
+        <ol className={styles.tourList} aria-label={ui.screens}>
           {screens.map((x, i) => (
             <li key={x.image}>
               <button type="button" className={styles.tourItem} aria-pressed={i === at} onClick={() => setAt(i)}>
@@ -434,6 +438,7 @@ export function Glossary({ glossary }: { glossary: PageGlossary }) {
 
 /** A question for the reader: pick an answer, then see the real one and why. */
 export function Poll({ poll }: { poll: PagePoll }) {
+  const ui = useUi();
   const [picked, setPicked] = useState<number | null>(null);
   const done = picked !== null;
   return (
@@ -450,7 +455,7 @@ export function Poll({ poll }: { poll: PagePoll }) {
                 <span className={styles.pollLabel}>{o.label}</span>
                 {o.note && <span className={styles.pollNote}>{o.note}</span>}
                 {state === "right" && <span className={styles.pollMark}>{poll.answerLabel ?? "Answer"}</span>}
-                {state === "wrong" && <span className={styles.pollMark}>Your pick</span>}
+                {state === "wrong" && <span className={styles.pollMark}>{ui.yourPick}</span>}
               </button>
             </li>
           );
@@ -459,16 +464,16 @@ export function Poll({ poll }: { poll: PagePoll }) {
       <p className={styles.pollReveal} aria-live="polite" data-shown={done || undefined}>
         {done ? (
           <>
-            <strong>{picked === poll.answer ? "Right! " : "Not quite. "}</strong>
+            <strong>{picked === poll.answer ? `${ui.right} ` : `${ui.notQuite} `}</strong>
             {poll.reveal}
           </>
         ) : (
-          (poll.prompt ?? "Pick one to see the answer.")
+          (poll.prompt ?? ui.pickToSee)
         )}
       </p>
       {done && (
         <button type="button" className={styles.pollAgain} onClick={() => setPicked(null)}>
-          Try again
+          {ui.tryAgain}
         </button>
       )}
     </div>
@@ -580,6 +585,7 @@ export function Migration({ migration }: { migration: PageMigration }) {
 
 /** Users' words, one quote at a time, turned with the arrows or a tap on the quote. */
 export function Quotes({ quotes }: { quotes: PageQuotes }) {
+  const ui = useUi();
   const [at, setAt] = useState(0);
   const n = quotes.items.length;
   const go = (d: number) => setAt((i) => (i + d + n) % n);
@@ -602,13 +608,13 @@ export function Quotes({ quotes }: { quotes: PageQuotes }) {
       </figure>
       {n > 1 && (
         <div className={styles.quoteNav}>
-          <button type="button" className={styles.quoteArrow} aria-label="Previous quote" onClick={() => go(-1)}>
+          <button type="button" className={styles.quoteArrow} aria-label={ui.prevQuote} onClick={() => go(-1)}>
             ‹
           </button>
           <span className={styles.quoteCount}>
             {at + 1} / {n}
           </span>
-          <button type="button" className={styles.quoteArrow} aria-label="Next quote" onClick={() => go(1)}>
+          <button type="button" className={styles.quoteArrow} aria-label={ui.nextQuote} onClick={() => go(1)}>
             ›
           </button>
         </div>
@@ -619,13 +625,14 @@ export function Quotes({ quotes }: { quotes: PageQuotes }) {
 
 /** Personas, one at a time behind tabs: a portrait and who they are, then their situation and what they need. */
 export function Personas({ personas }: { personas: PagePersonas }) {
+  const ui = useUi();
   const [at, setAt] = useState(0);
   const p = personas.items[at];
   return (
     <div className={styles.personas}>
       {personas.kicker && <span className={styles.chartKicker}>{personas.kicker}</span>}
       {personas.title && <h2 className={styles.chartTitle}>{personas.title}</h2>}
-      <div className={styles.compareToggle} role="group" aria-label="Choose a persona">
+      <div className={styles.compareToggle} role="group" aria-label={ui.choosePersona}>
         {personas.items.map((x, i) => (
           <button key={x.name} type="button" className={styles.compareOption} aria-pressed={i === at} onClick={() => setAt(i)}>
             {x.name.split(",")[0]}
@@ -642,14 +649,14 @@ export function Personas({ personas }: { personas: PagePersonas }) {
           </span>
         </header>
         <p className={styles.personaAbout}>{p.about}</p>
-        <ul className={styles.personaTraits} aria-label="Traits">
+        <ul className={styles.personaTraits} aria-label={ui.traits}>
           {p.traits.map((t) => (
             <li key={t}>{t}</li>
           ))}
         </ul>
         {p.behavior && (
           <section className={styles.personaBehavior}>
-            <span className={styles.personaLabel}>Behavior</span>
+            <span className={styles.personaLabel}>{ui.behavior}</span>
             <ul>
               {p.behavior.map((c) => (
                 <li key={c}>{c}</li>
@@ -659,7 +666,7 @@ export function Personas({ personas }: { personas: PagePersonas }) {
         )}
         <div className={styles.personaCols}>
           <section>
-            <span className={styles.personaLabel}>Context</span>
+            <span className={styles.personaLabel}>{ui.context}</span>
             <ul>
               {p.context.map((c) => (
                 <li key={c}>{c}</li>
@@ -667,7 +674,7 @@ export function Personas({ personas }: { personas: PagePersonas }) {
             </ul>
           </section>
           <section>
-            <span className={styles.personaLabel}>Needs</span>
+            <span className={styles.personaLabel}>{ui.needs}</span>
             <ul>
               {p.needs.map((c) => (
                 <li key={c}>{c}</li>
@@ -687,6 +694,7 @@ const MOOD_FACE: Record<number, string> = { 1: "😣", 2: "😟", 3: "🤔", 4: 
  * stage (or a face) shows what the person does there and how it feels.
  */
 export function Journey({ journey }: { journey: PageJourney }) {
+  const ui = useUi();
   const [person, setPerson] = useState(0);
   const [at, setAt] = useState(0);
   const [ref, seen] = useSeen<HTMLDivElement>();
@@ -703,7 +711,7 @@ export function Journey({ journey }: { journey: PageJourney }) {
       {journey.kicker && <span className={styles.chartKicker}>{journey.kicker}</span>}
       {journey.title && <h2 className={styles.chartTitle}>{journey.title}</h2>}
       {journey.people.length > 1 && (
-        <div className={styles.compareToggle} role="group" aria-label="Whose journey">
+        <div className={styles.compareToggle} role="group" aria-label={ui.whoseJourney}>
           {journey.people.map((p, i) => (
             <button
               key={p.who}
@@ -751,7 +759,7 @@ export function Journey({ journey }: { journey: PageJourney }) {
           {st.doing}
         </p>
         <p>
-          <strong>How it feels. </strong>
+          <strong>{ui.howItFeels}</strong>
           {st.feeling}
         </p>
       </div>

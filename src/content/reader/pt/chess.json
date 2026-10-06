@@ -1,0 +1,22 @@
+{
+  "skin": "chess",
+  "title": "Xadrez",
+  "kind": "À parte",
+  "spine": "#9A8FAE",
+  "chessUsername": "gambitodajulita",
+  "links": [
+    {
+      "label": "Me desafie no chess.com",
+      "href": "https://www.chess.com/member/gambitodajulita"
+    }
+  ],
+  "pages": [
+    {
+      "kicker": "Fora do expediente",
+      "lines": [
+        "Jogo desde a escola e já participei de torneios.",
+        "Meus ratings preferem que você não acredite."
+      ]
+    }
+  ]
+}

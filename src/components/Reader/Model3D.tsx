@@ -4,6 +4,7 @@ import wallShelfUrl from "../../assets/models/wall-shelf-plant.glb?url";
 import type { PageModel } from "../../content";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import styles from "./Reader.module.css";
+import { useUi } from "./ui";
 
 const MODELS: Record<PageModel["model"], string> = { bookshelf: bookshelfUrl, "wall-shelf": wallShelfUrl };
 
@@ -12,6 +13,7 @@ const MODELS: Record<PageModel["model"], string> = { bookshelf: bookshelfUrl, "w
  * the model load only when the page is shown, like the globe and the llama.
  */
 export function Model3D({ model }: { model: PageModel }) {
+  const ui = useUi();
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reduced = usePrefersReducedMotion();
@@ -136,7 +138,7 @@ export function Model3D({ model }: { model: PageModel }) {
       <div ref={wrapRef} className={styles.model3dStage} data-ready={ready || undefined}>
         <canvas ref={canvasRef} aria-label={model.note ?? "A 3D model you can turn"} />
       </div>
-      <p className={styles.model3dHint}>{model.note ?? "Drag to turn it"}</p>
+      <p className={styles.model3dHint}>{model.note ?? ui.dragToTurn}</p>
     </div>
   );
 }

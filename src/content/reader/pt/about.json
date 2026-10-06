@@ -1,0 +1,122 @@
+{
+  "skin": "book",
+  "title": "Sobre mim",
+  "kind": "Sobre",
+  "tag": "Sobre",
+  "year": "Desde 2018",
+  "role": "Senior Product Designer",
+  "spine": "#8A6A55",
+  "pages": [
+    {
+      "kicker": "Sobre mim",
+      "heading": "Oi, eu sou a Júlia",
+      "lines": [
+        "Sou product designer sênior e desenho produtos digitais desde 2018. Já trabalhei com fintech, redes de fast food, consultoria e educação, e hoje faço design para a Binance.US pela Ambush.",
+        "Seja qual for o setor, meu trabalho fica no mesmo lugar: onde as necessidades das pessoas, os objetivos do negócio e o crescimento do produto se encontram. Chego lá com decisões de design bem pensadas, experimentação e resultados que dá para medir."
+      ],
+      "polaroids": {
+        "photos": [
+          {
+            "image": "about-portrait"
+          }
+        ]
+      }
+    },
+    {
+      "kicker": "Sobre mim",
+      "heading": "Como tudo começou",
+      "lines": [
+        "Minha carreira em design começou bem antes do primeiro emprego. Ainda criança, eu já fazia imagens no Illustrator e no Photoshop, mantinha blogs para mostrar o que criava e montava layouts para o meu Neopets e o meu Tumblr.",
+        "Essa curiosidade virou carreira. Comecei como designer visual em branding e jogos e depois entrei como estagiária na Kobe Apps, uma software house. Foi lá que me apaixonei por design de produto, e desde então venho crescendo nisso."
+      ]
+    },
+    {
+      "kicker": "Sobre mim",
+      "heading": "O que aprendi pelo caminho",
+      "lines": [
+        "Depois da Kobe, passei alguns anos em fintech, em empresas de investimento como a XP e a Warren, e depois fui para a Ambush, onde hoje trabalho com a Binance.US. Também trabalhei com a Restaurant Brands International, em marcas como Burger King, Popeyes, Firehouse Subs e Tim Hortons."
+      ]
+    },
+    {
+      "kicker": "Sobre mim",
+      "heading": "O que aprendi pelo caminho",
+      "lines": [
+        "Trabalhar em consultoria me colocou diante de mercados, modelos de negócio e fases de produto diferentes. Aprendi a lidar com complexidade, me adaptar rápido e desenhar tanto para o que as pessoas precisam quanto para o que a operação de fato consegue entregar.",
+        "Hoje me interesso especialmente por pesquisa com usuários, experimentação, estratégia de crescimento e operações de design que escalam."
+      ],
+      "timeline": {
+        "kicker": "O caminho até aqui",
+        "title": "Onde trabalhei",
+        "stops": [
+          {
+            "year": "2018",
+            "name": "Kobe Apps",
+            "role": "Estagiária de UX/UI, depois designer de UX/UI",
+            "note": "Software house"
+          },
+          {
+            "year": "2021",
+            "name": "XP Inc.",
+            "role": "Product designer",
+            "note": "Investimentos"
+          },
+          {
+            "year": "2022",
+            "name": "Warren",
+            "role": "Product designer sênior",
+            "note": "Investimentos"
+          },
+          {
+            "year": "2022",
+            "name": "Ambush",
+            "role": "Product designer sênior",
+            "note": "Consultoria · clientes de fintech e food service",
+            "now": true
+          }
+        ]
+      }
+    },
+    {
+      "kicker": "Sobre mim",
+      "heading": "Além do trabalho",
+      "lines": [
+        "Fora do trabalho, eu leio, desenho, vou à academia e faço yoga e pilates. Jogo xadrez sempre que posso e adoro viajar para conhecer lugares novos."
+      ],
+      "artRight": true,
+      "hobbies": {
+        "kicker": "Fora do expediente",
+        "title": "Quando não estou desenhando",
+        "items": [
+          {
+            "icon": "read",
+            "label": "Leitura"
+          },
+          {
+            "icon": "draw",
+            "label": "Desenho"
+          },
+          {
+            "icon": "gym",
+            "label": "Academia"
+          },
+          {
+            "icon": "yoga",
+            "label": "Yoga e pilates"
+          },
+          {
+            "icon": "chess",
+            "label": "Xadrez",
+            "open": "chess",
+            "openLabel": "Jogar uma partida"
+          },
+          {
+            "icon": "travel",
+            "label": "Viagens",
+            "open": "travels",
+            "openLabel": "Girar o globo"
+          }
+        ]
+      }
+    }
+  ]
+}

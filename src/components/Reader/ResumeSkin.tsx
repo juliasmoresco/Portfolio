@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, typ
 import type { ReaderItem, ReaderPage } from "../../content";
 import { Line } from "./parts";
 import styles from "./Reader.module.css";
+import { useUi } from "./ui";
 
 const DATES = /\d{2}\/\d{4}|\b(19|20)\d{2}\b.*[–-]/;
 
@@ -103,6 +104,7 @@ function pack(blocks: Block[], height: (page: number, key: string) => number, he
  * turn the sheets. On a phone it is one column.
  */
 export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compact?: boolean }) {
+  const ui = useUi();
   const r = useMemo(() => readResume(item.pages), [item.pages]);
   const [at, setAt] = useState(0);
   const [sheets, setSheets] = useState<Sheet[] | null>(null);
@@ -262,8 +264,8 @@ export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compac
         <div key={b.key} className={`${styles.resumeBlock} ${b.joined ? styles.resumeJoined : ""}`}>
           {fresh && (
             <h3 className={styles.resumeH}>
-              {b.section}
-              {continued && <span className={styles.resumeCont}> · continued</span>}
+              {ui.resumeSections[b.section] ?? b.section}
+              {continued && <span className={styles.resumeCont}>{ui.continued}</span>}
             </h3>
           )}
           {b.node}
@@ -302,13 +304,13 @@ export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compac
         <footer className={styles.resumePager} data-pager>
           {count > 1 && (
             <>
-              <button type="button" className={styles.resumeTurn} aria-label="Previous page of the résumé" disabled={page === 0} onClick={() => go(-1)}>
+              <button type="button" className={styles.resumeTurn} aria-label={ui.prevResume} disabled={page === 0} onClick={() => go(-1)}>
                 ‹
               </button>
               <span>
                 {page + 1} / {count}
               </span>
-              <button type="button" className={styles.resumeTurn} aria-label="Next page of the résumé" disabled={page === count - 1} onClick={() => go(1)}>
+              <button type="button" className={styles.resumeTurn} aria-label={ui.nextResume} disabled={page === count - 1} onClick={() => go(1)}>
                 ›
               </button>
             </>

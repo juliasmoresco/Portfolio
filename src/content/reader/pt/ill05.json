@@ -1,0 +1,15 @@
+{
+  "skin": "frame",
+  "title": "Ilustração 05",
+  "hotspotLabel": "Moka, minha estagiária",
+  "hideTitle": true,
+  "spine": "#B8746A",
+  "pages": [
+    {
+      "image": "ill05-01",
+      "lines": [
+        "Esta é a Moka, minha estagiária. Ela é nova, mas muito dedicada."
+      ]
+    }
+  ]
+}

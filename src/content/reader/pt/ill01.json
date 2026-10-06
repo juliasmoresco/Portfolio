@@ -1,0 +1,15 @@
+{
+  "skin": "frame",
+  "title": "Ilustração 01",
+  "hotspotLabel": "Pôster do Johnny Cash",
+  "hideTitle": true,
+  "spine": "#B8746A",
+  "pages": [
+    {
+      "image": "ill01-01",
+      "lines": [
+        "Eu amo o Johnny Cash, e esse pôster fica pendurado no meu escritório. :)"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "skin": "diploma",
+  "title": "Onde estudei",
+  "kind": "Formação",
+  "hotspotLabel": "Onde estudei",
+  "degree": {
+    "school": "Universidade Federal do Rio Grande do Sul",
+    "short": "UFRGS",
+    "degree": "Bacharelado em Design Visual",
+    "person": "Júlia Moresco",
+    "years": "2016 – 2023",
+    "place": "Porto Alegre · Rio Grande do Sul",
+    "image": "studies-diploma"
+  },
+  "courses": [
+    {
+      "school": "PM3",
+      "course": "Especialista em Produto com IA",
+      "year": "2026"
+    },
+    {
+      "school": "PM3",
+      "course": "Crescimento de Produto",
+      "year": "2026"
+    },
+    {
+      "school": "Awari",
+      "course": "Pesquisa com Usuários",
+      "year": "2021"
+    },
+    {
+      "school": "Interaction Design Foundation",
+      "course": "UX, UI, Gestão de Produto e Pesquisa com Usuários",
+      "year": "2020–2021"
+    },
+    {
+      "school": "Meiuca",
+      "course": "Design Systems e Operações",
+      "year": "2020"
+    },
+    {
+      "school": "IDEO U",
+      "course": "Design Thinking",
+      "year": "2020"
+    },
+    {
+      "school": "Mergo",
+      "course": "UX Writing",
+      "year": "2020"
+    }
+  ],
+  "pages": [
+    {
+      "lines": []
+    }
+  ]
+}

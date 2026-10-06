@@ -3,6 +3,7 @@ import type * as THREE from "three";
 import type { ReaderItem } from "../../content";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import styles from "./Reader.module.css";
+import { useUi } from "./ui";
 
 const STORAGE_KEY = "portfolio.llamaCoins";
 
@@ -97,6 +98,7 @@ function milestoneRange(milestones: Milestone[], count: number): { from: number;
  * page load even for a visitor who never opens this frame.
  */
 export function LlamaSkin({ item }: { item: ReaderItem }) {
+  const ui = useUi();
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reduced = usePrefersReducedMotion();
@@ -406,7 +408,7 @@ export function LlamaSkin({ item }: { item: ReaderItem }) {
           className={styles.llamaCanvas}
           tabIndex={0}
           role="button"
-          aria-label="Drop a coin in the llama bank"
+          aria-label={ui.dropCoin}
         />
         {floats.map((f) => (
           <span key={f.id} className={styles.llamaFloat} style={{ left: f.x, top: f.y }} aria-hidden="true">
@@ -423,7 +425,7 @@ export function LlamaSkin({ item }: { item: ReaderItem }) {
           <div
             className={styles.progressBar}
             role="progressbar"
-            aria-label="Coins toward the next milestone"
+            aria-label={ui.coinsToward}
             aria-valuemin={range.from}
             aria-valuemax={range.to}
             aria-valuenow={coins}
@@ -432,8 +434,8 @@ export function LlamaSkin({ item }: { item: ReaderItem }) {
           </div>
         )}
         <p className={styles.llamaCount}>
-          <strong>{coins}</strong> {coins === 1 ? "coin" : "coins"}
-          {range ? ` · next milestone at ${range.to}` : " · every milestone reached"}
+          <strong>{coins}</strong> {ui.coins(coins)}
+          {range ? ui.nextMilestone(range.to) : ui.allMilestones}
         </p>
       </div>
     </div>

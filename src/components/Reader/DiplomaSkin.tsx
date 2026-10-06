@@ -2,6 +2,7 @@ import { useCallback, useContext, useLayoutEffect, useRef, useState, type CSSPro
 import { imageUrls, type ReaderItem } from "../../content";
 import styles from "./Reader.module.css";
 import { ZoomContext } from "./zoom";
+import { useUi } from "./ui";
 
 /** A colour per school for the band across the top of its certificate; any other school gets the last one. */
 const SCHOOL_TONES: Record<string, string> = {
@@ -19,6 +20,7 @@ const SCHOOL_TONES: Record<string, string> = {
  * and specializations since, as a fan of small certificates. The line under the diploma is the owner's own.
  */
 export function DiplomaSkin({ item }: { item: ReaderItem }) {
+  const ui = useUi();
   const enlarge = useContext(ZoomContext);
   const d = item.degree!;
   const src = d.image ? imageUrls[d.image] : undefined;
@@ -69,12 +71,12 @@ export function DiplomaSkin({ item }: { item: ReaderItem }) {
       {note && <p className={styles.diplomaNote}>{note}</p>}
 
       {courses.length > 0 && (
-        <section className={styles.courses} aria-label="Courses and specializations">
+        <section className={styles.courses} aria-label={ui.courses}>
           <div className={styles.coursesHead}>
-            <span className={styles.coursesLabel}>Always learning</span>
+            <span className={styles.coursesLabel}>{ui.alwaysLearning}</span>
             {edge !== "none" && edge !== "end" && (
               <span className={styles.swipeHint} aria-hidden="true">
-                Swipe <span className={styles.swipeArrow}>→</span>
+                {ui.swipe} <span className={styles.swipeArrow}>→</span>
               </span>
             )}
           </div>

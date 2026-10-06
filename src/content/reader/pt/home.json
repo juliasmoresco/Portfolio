@@ -1,0 +1,15 @@
+{
+  "skin": "postcard",
+  "title": "Um cartão-postal de casa",
+  "kind": "De onde eu sou",
+  "hotspotLabel": "Cartão-postal de casa",
+  "pages": [
+    {
+      "lines": [
+        "Oi, direto do sul do Brasil!",
+        "Nasci em Rio Pardo, uma cidade pequena às margens do rio Jacuí, e hoje moro em Porto Alegre, onde esse mesmo rio encontra o Guaíba. Ou seja, só segui o rio.",
+        "— Júlia"
+      ]
+    }
+  ]
+}

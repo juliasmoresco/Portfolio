@@ -1,0 +1,125 @@
+{
+  "skin": "resume",
+  "title": "Currículo",
+  "kind": "Documento",
+  "tag": "CV",
+  "year": "2026",
+  "role": "Senior Product Designer",
+  "person": "Júlia Moresco",
+  "location": "Porto Alegre, Brasil",
+  "links": [
+    {
+      "label": "juliasmoresco@gmail.com",
+      "href": "mailto:juliasmoresco@gmail.com"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/julia-moresco/"
+    }
+  ],
+  "pages": [
+    {
+      "kicker": "Profile",
+      "heading": "Sobre mim",
+      "lines": [
+        "Ajudei a lançar e melhorar produtos digitais para plataformas financeiras globais e para um dos maiores grupos de fast food do mundo, em mobile, desktop e ferramentas internas. Gosto de pegar sistemas complexos e torná-los simples para pessoas reais.",
+        "Meu jeito de trabalhar se apoia em curiosidade, colaboração e na crença de que o melhor design se baseia no comportamento real das pessoas. Rendo mais onde pesquisa, exploração e colaboração próxima com times multidisciplinares guiam as decisões."
+      ]
+    },
+    {
+      "kicker": "Experience",
+      "heading": "Ambush",
+      "lines": [
+        "Senior Product Designer · Binance.US",
+        "06/2025 – Atual",
+        "Desenho experiências de cripto na web e no mobile para os times de Exchange e Growth. Foco nos principais fluxos de trading, experimentação, otimização de funil e jornadas completas do cliente."
+      ]
+    },
+    {
+      "kicker": "Experience",
+      "heading": "Ambush",
+      "lines": [
+        "Senior Product Designer · RBI",
+        "Burger King, Popeyes, Firehouse Subs",
+        "12/2022 – 06/2025",
+        "Desenhei experiências de Loyalty, CRM, Ofertas e Totens para um dos maiores grupos de fast food do mundo, em mobile, desktop e plataformas internas. Liderei o design de ponta a ponta, trabalhei junto de times multidisciplinares e ajudei a evoluir um Design System multimarca."
+      ]
+    },
+    {
+      "kicker": "Experience",
+      "heading": "Warren",
+      "lines": [
+        "Senior Product Designer",
+        "05/2022 – 12/2022",
+        "Desenhei de ponta a ponta uma experiência de investimento, construída com a Apex Fintech Solutions, que deu aos clientes da Warren acesso a ações americanas dentro do app. Fui responsável pelo roadmap de growth e por todo o processo de design, da descoberta e prototipação à facilitação com stakeholders."
+      ]
+    },
+    {
+      "kicker": "Experience",
+      "heading": "XP Inc.",
+      "lines": [
+        "Product Designer",
+        "09/2021 – 05/2022",
+        "Trabalhei no produto de Previdência da área de Asset Management. Fui responsável pelo processo de design de ponta a ponta (descoberta, testes, prototipação, validação com stakeholders) e usei pesquisa com usuários e dados para melhorar a experiência."
+      ]
+    },
+    {
+      "kicker": "Experience",
+      "heading": "Kobe Apps",
+      "lines": [
+        "Designer de UX/UI",
+        "05/2019 – 09/2021",
+        "Trabalhei em projetos para várias marcas numa empresa brasileira de software. Liderei um time que construía Design Systems, conduzi design sprints e ajudei a definir objetivos de produto. Também ajudei a melhorar processos internos de design, como pesquisa, Design Ops, acessibilidade e analytics. Trabalhei com PMs, designers, engenheiros e stakeholders em estratégia de produto, mapeamento de experiência, pesquisa e workshops, usando Agile e Lean Inception."
+      ]
+    },
+    {
+      "kicker": "Experience",
+      "heading": "Kobe Apps",
+      "lines": [
+        "Estagiária de UX/UI",
+        "09/2018 – 05/2019",
+        "Desenhei interfaces para apps, sites e landing pages responsivas, usando Design Sprints e Design Thinking. Minha rotina incluía wireframes, protótipos, fluxos, documentação e apresentações para clientes."
+      ]
+    },
+    {
+      "kicker": "Education",
+      "heading": "Formação",
+      "lines": [
+        "Bacharelado em Design Visual — Universidade Federal do Rio Grande do Sul (2016–2023)",
+        "Especialização em AI Product Specialist — PM3 (2026)",
+        "Especialização em Product Growth — PM3 (2026)",
+        "Especialização em User Research — Awari (2021)",
+        "Especialização em Design Systems & Operations — Meiuca (2020)",
+        "Cursos de UX, UI, Gestão de Produto e Pesquisa com Usuários — The Interaction Design Foundation (2020–2021)"
+      ]
+    },
+    {
+      "kicker": "Education",
+      "heading": "Formação",
+      "lines": [
+        "Curso de UX Writing — Mergo User Experience (2020)",
+        "Curso de Design Thinking — IDEO U (2020)"
+      ]
+    },
+    {
+      "kicker": "Skills",
+      "heading": "Habilidades",
+      "lines": [
+        "Vibe-coding e ferramentas de IA: Claude Design, Claude Code, ChatGPT, Gemini, Lovable, Figma Make",
+        "Prototipação: Figma, Adobe XD",
+        "Analytics: Amplitude, Datadog, Google Analytics",
+        "Adobe Creative Suite: Photoshop, Illustrator, InDesign, After Effects",
+        "Outras: Miro, FigJam, Mural, noções de HTML e CSS"
+      ]
+    },
+    {
+      "kicker": "Skills",
+      "heading": "Languages",
+      "lines": [
+        "Inglês – Fluência profissional plena",
+        "Português – Nativo",
+        "Italiano – A2 (fazendo curso)"
+      ]
+    }
+  ]
+}

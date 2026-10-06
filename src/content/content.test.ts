@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { readerContent, hotspotLabels, imageUrls } from "./index";
+import { readerContent, readerContentPt, hotspotLabels, imageUrls } from "./index";
 import { assertReaderItem, estimateTextHeight, textCapacity } from "./validate";
 import { HOTSPOT_IDS } from "../scene/hotspots";
 import { COUNTRY_LONLAT } from "../scene/countries";
+
+/** Every entry in both languages, named "case1" in English and "pt/case1" in Portuguese. */
+const ALL = [...Object.entries(readerContent), ...Object.entries(readerContentPt).map(([id, item]) => [`pt/${id}`, item] as const)];
 
 describe("reader content", () => {
   it("has an entry for every hotspot in the scene", () => {
@@ -23,7 +26,7 @@ describe("reader content", () => {
   // gives some of its space to the image plate, so it is held to a plain character budget instead.
   it("keeps every page short enough to fit on desktop", () => {
     const tooLong: string[] = [];
-    for (const [id, item] of Object.entries(readerContent)) {
+    for (const [id, item] of ALL) {
       item.pages.forEach((page, i) => {
         const heading = item.skin === "book" ? page.heading || item.title : item.title;
         const chars = page.lines.reduce((n, l) => n + l.length, 0);
@@ -41,7 +44,7 @@ describe("reader content", () => {
 
   it("only names images that exist in src/assets/cases", () => {
     const missing: string[] = [];
-    for (const [id, item] of Object.entries(readerContent)) {
+    for (const [id, item] of ALL) {
       item.pages.forEach((page, i) => {
         const art = (a: typeof page) => [...(a.image === undefined ? [] : Array.isArray(a.image) ? a.image : [a.image]), ...(a.polaroids?.photos.map((ph) => ph.image) ?? []), ...(a.compare?.variants.flatMap((v) => v.images) ?? []), ...(a.showcase?.screens.map((x) => x.image) ?? []), ...(a.personas?.items.flatMap((x) => (x.image ? [x.image] : [])) ?? []), ...(a.palette?.logo ? [a.palette.logo] : [])];
         const names = [...art(page), ...(page.right ? art({ lines: [], ...page.right }) : []), ...(i === 0 && item.degree?.image ? [item.degree.image] : [])];
@@ -49,6 +52,21 @@ describe("reader content", () => {
       });
     }
     expect(missing).toEqual([]);
+  });
+
+  it("translates only entries that exist in English, keeping their skin", () => {
+    const wrong: string[] = [];
+    for (const [id, pt] of Object.entries(readerContentPt)) {
+      const en = readerContent[id];
+      if (!en) wrong.push(`pt/${id}.json: there is no ${id}.json in English`);
+      else if (en.skin !== pt.skin) wrong.push(`pt/${id}.json: skin "${pt.skin}" should be "${en.skin}" like the English one`);
+      // The résumé finds its sections by kicker, so those stay in English (the Reader shows them translated).
+      else if (pt.skin === "resume") {
+        const kickers = new Set(en.pages.map((p) => p.kicker));
+        pt.pages.filter((p) => !kickers.has(p.kicker)).forEach((p) => wrong.push(`pt/${id}.json: kicker "${p.kicker}" should stay as in English`));
+      }
+    }
+    expect(wrong).toEqual([]);
   });
 
   it("only names countries with coordinates in scene/countries.ts", () => {

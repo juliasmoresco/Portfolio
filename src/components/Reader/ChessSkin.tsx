@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { ReaderItem } from "../../content";
 import styles from "./Reader.module.css";
+import { useUi, type ReaderUi } from "./ui";
 
 /** The chess.com public API (no key, CORS open): https://www.chess.com/news/view/published-data-api */
 const statsUrl = (user: string) => `https://api.chess.com/pub/player/${encodeURIComponent(user)}/stats`;
@@ -46,11 +47,11 @@ function tilesOf(s: Stats): Tile[] {
 }
 
 /** The punchline under the board: the widest gap between a best and a current rating, owned up to. */
-function confession(tiles: Tile[]): string | null {
+function confession(tiles: Tile[], ui: ReaderUi): string | null {
   const worst = tiles
     .filter((t) => t.current !== undefined && t.best !== undefined && t.best - t.current >= 50)
     .sort((a, b) => b.best! - b.current! - (a.best! - a.current!))[0];
-  return worst ? `Best ${worst.label.toLowerCase()}: ${worst.best}. Current: ${worst.current}. We don't talk about it.` : null;
+  return worst ? ui.chessJoke(ui.chessTiles[worst.label].toLowerCase(), worst.best!, worst.current!) : null;
 }
 
 /**
@@ -59,6 +60,7 @@ function confession(tiles: Tile[]): string | null {
  * reached, the scoreboard simply isn't shown.
  */
 export function ChessSkin({ item }: { item: ReaderItem }) {
+  const ui = useUi();
   const user = item.chessUsername!;
   const [tiles, setTiles] = useState<Tile[] | "loading" | "failed">("loading");
   const page = item.pages[0];
@@ -77,7 +79,7 @@ export function ChessSkin({ item }: { item: ReaderItem }) {
     };
   }, [user]);
 
-  const line = Array.isArray(tiles) ? confession(tiles) : null;
+  const line = Array.isArray(tiles) ? confession(tiles, ui) : null;
 
   return (
     <div className={styles.chess}>
@@ -91,19 +93,19 @@ export function ChessSkin({ item }: { item: ReaderItem }) {
       ))}
 
       {tiles !== "failed" && (
-        <div className={styles.chessScores} aria-busy={tiles === "loading"} aria-label="My chess.com ratings, live">
+        <div className={styles.chessScores} aria-busy={tiles === "loading"} aria-label={ui.chessRatings}>
           {tiles === "loading"
             ? ["Blitz", "Rapid", "Daily", "Puzzles"].map((l) => (
                 <div key={l} className={styles.chessTile}>
-                  <span className={styles.chessTileLabel}>{l}</span>
+                  <span className={styles.chessTileLabel}>{ui.chessTiles[l]}</span>
                   <span className={styles.chessTileValue}>…</span>
                 </div>
               ))
             : tiles.map((t) => (
                 <div key={t.label} className={styles.chessTile}>
-                  <span className={styles.chessTileLabel}>{t.label}</span>
+                  <span className={styles.chessTileLabel}>{ui.chessTiles[t.label]}</span>
                   <span className={styles.chessTileValue}>{t.current ?? t.best}</span>
-                  <span className={styles.chessTileBest}>{t.current !== undefined ? `best ${t.best ?? "—"}` : "best"}</span>
+                  <span className={styles.chessTileBest}>{t.current !== undefined ? `${ui.best} ${t.best ?? "—"}` : ui.best}</span>
                 </div>
               ))}
         </div>

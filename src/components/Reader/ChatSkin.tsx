@@ -7,6 +7,7 @@ import type { SceneHotspotId } from "../../scene/hotspots";
 import { Inline } from "./parts";
 import styles from "./Reader.module.css";
 import { ZoomContext } from "./zoom";
+import { useUi } from "./ui";
 
 type Message = { key: number; from: "zuko" | "you"; text: string; open?: { id: string; label: string } };
 
@@ -21,6 +22,7 @@ const typingMs = (text: string, reduced: boolean) => (reduced ? 150 : Math.min(4
  * buttons, as proof.
  */
 export function ChatSkin({ item }: { item: ReaderItem }) {
+  const ui = useUi();
   const chat = item.chat!;
   const reduced = usePrefersReducedMotion();
   const enlarge = useContext(ZoomContext);
@@ -138,7 +140,7 @@ export function ChatSkin({ item }: { item: ReaderItem }) {
         )}
       </div>
 
-      <div className={styles.chatButtons} role="group" aria-label="Questions Zuko knows">
+      <div className={styles.chatButtons} role="group" aria-label={ui.zukoKnows}>
         {offer.map((id, i) => {
           const a = byId(id)!;
           return (
@@ -156,7 +158,7 @@ export function ChatSkin({ item }: { item: ReaderItem }) {
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
           placeholder={chat.placeholder}
-          aria-label="Your question"
+          aria-label={ui.yourQuestion}
           maxLength={200}
           autoComplete="off"
           enterKeyHint="send"
