@@ -8,6 +8,7 @@ const UI = {
     nextPage: "Next page",
     chapters: "Chapters",
     nextCase: "Next case →",
+    sayHello: "Say hello",
     theEnd: "The end",
     thanks: "Thanks for reading",
     prototype: "Prototype",
@@ -39,8 +40,8 @@ const UI = {
     alwaysLearning: "Always learning",
     courses: "Courses and specializations",
     swipe: "Swipe",
-    translatedFromPt: "Translated from Portuguese",
-    translatedFromEn: "Translated from English",
+    /** Under a note shown in the other language from the one it was written in. */
+    translated: "Translated from Portuguese",
     prevNote: "Previous note",
     nextNote: "Next note",
     countriesGoal: (goal: number): string => ` of my ${goal}-country goal`,
@@ -69,6 +70,7 @@ const UI = {
     allMilestones: " · every milestone reached",
     zukoKnows: "Questions Zuko knows",
     yourQuestion: "Your question",
+    ask: "Ask",
   },
   pt: {
     close: "Fechar",
@@ -76,6 +78,7 @@ const UI = {
     nextPage: "Próxima página",
     chapters: "Capítulos",
     nextCase: "Próximo case →",
+    sayHello: "Diga oi",
     theEnd: "Fim",
     thanks: "Obrigada pela leitura",
     prototype: "Protótipo",
@@ -107,8 +110,7 @@ const UI = {
     alwaysLearning: "Sempre aprendendo",
     courses: "Cursos e especializações",
     swipe: "Deslize",
-    translatedFromPt: "Traduzido do português",
-    translatedFromEn: "Traduzido do inglês",
+    translated: "Traduzido do inglês",
     prevNote: "Bilhete anterior",
     nextNote: "Próximo bilhete",
     countriesGoal: (goal: number): string => ` da minha meta de ${goal} países`,
@@ -137,6 +139,7 @@ const UI = {
     allMilestones: " · todos os marcos alcançados",
     zukoKnows: "Perguntas que o Zuko sabe",
     yourQuestion: "Sua pergunta",
+    ask: "Enviar",
   },
 } satisfies Record<Lang, unknown>;
 

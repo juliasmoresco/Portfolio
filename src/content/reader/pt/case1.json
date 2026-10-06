@@ -1,0 +1,301 @@
+{
+  "skin": "book",
+  "title": "Melhorando a experiência de fidelidade no restaurante",
+  "tag": "Case · Fast food",
+  "year": "2024",
+  "role": "Design de Produto, Pesquisa com Usuários",
+  "spine": "#C96B5E",
+  "pages": [
+    {
+      "kicker": "Visão geral",
+      "heading": "Os clientes querem resgatar. Só não sabem como.",
+      "lines": [
+        "Muitos clientes adicionam uma oferta de fidelidade e nunca a usam no restaurante. Eles não duvidam da oferta. Algo quebra nos últimos passos, e minha missão era descobrir o quê.",
+        "**Cliente:** Restaurant Brands International (RBI) – Burger King (CH, DE, UK, NZ)",
+        "**Meu papel:** Product Designer Sênior",
+        "**Outras participantes:** Valentina Lopes (Product Manager)",
+        "**Plataforma:** app do BK + totem + drive-thru",
+        "**Período:** 4º trimestre de 2024"
+      ],
+      "image": "case1-cover-pt",
+      "fullPage": true,
+      "pageColor": "#f4ebdc"
+    },
+    {
+      "kicker": "Visão geral",
+      "heading": "O problema: ofertas adicionadas, ofertas não resgatadas",
+      "lines": [
+        "O app de fidelidade do Burger King funciona na Suíça, Alemanha, Reino Unido e Nova Zelândia, com resgate no totem, no balcão ou no drive-thru. Depois do lançamento na loja, os mercados relataram atrito: muitos adicionavam uma oferta, bem menos concluíam o resgate.",
+        "Os dados mostravam onde as pessoas desistiam. Não diziam por quê.",
+        "Com a Valentina Lopes, nossa PM, meu objetivo era entender o que atrapalhava e desenhar um resgate mais consistente."
+      ],
+      "chart": {
+        "kicker": "O problema",
+        "title": "Os clientes começavam pedindo pelo app e acabavam resgatando no restaurante",
+        "color": "#d62300",
+        "groups": [
+          {
+            "title": "Tocaram em “Mobile Order” numa oferta ou recompensa",
+            "subtitle": "…e depois concluíram um pedido no restaurante",
+            "bars": [
+              {
+                "label": "Suíça",
+                "value": 73
+              },
+              {
+                "label": "Reino Unido",
+                "value": 28
+              },
+              {
+                "label": "Nova Zelândia",
+                "value": 33
+              }
+            ]
+          },
+          {
+            "title": "Escolheram modo de atendimento e restaurante",
+            "subtitle": "…e depois concluíram um pedido no restaurante",
+            "bars": [
+              {
+                "label": "Suíça",
+                "value": 49
+              },
+              {
+                "label": "Reino Unido",
+                "value": 19
+              },
+              {
+                "label": "Nova Zelândia",
+                "value": 17
+              }
+            ]
+          }
+        ]
+      },
+      "hideHeading": true
+    },
+    {
+      "kicker": "Processo",
+      "heading": "A abordagem: ir aonde tudo acontece",
+      "lines": [
+        "Começamos pelo computador, com avaliações do app, análise de funil, pesquisas anteriores e benchmarks de concorrentes. Depois fomos aos restaurantes.",
+        "- **Observação em campo:** quatro restaurantes (CH e DE), com pedidos no totem, no drive-thru e no caixa.",
+        "- **Entrevistas:** 23 clientes e 3 atendentes de caixa.",
+        "- **Questionários:** após a visita, sobre expectativas e o hábito de escanear."
+      ],
+      "polaroids": {
+        "note": "Visitas de campo · Suíça e Alemanha",
+        "photos": [
+          {
+            "image": "case1-12",
+            "caption": "Um dos quatro restaurantes"
+          },
+          {
+            "image": "case1-09",
+            "caption": "A parede de totens"
+          },
+          {
+            "image": "case1-08",
+            "caption": "Convidando clientes para conversar"
+          },
+          {
+            "image": "case1-11",
+            "caption": "“Este código não é válido”"
+          },
+          {
+            "image": "case1-10",
+            "caption": "“Dirija-se ao balcão”"
+          },
+          {
+            "image": "case1-07",
+            "caption": "Anotações entre entrevistas"
+          }
+        ]
+      }
+    },
+    {
+      "kicker": "Processo",
+      "heading": "No restaurante",
+      "lines": [
+        "Os clientes tinham dificuldade para conectar o celular ao totem. Procuravam o código de fidelidade pelo app, e alguns nem entendiam por que precisavam de um código.",
+        "No balcão, os atendentes viviam intervindo para resolver na mão.",
+        "Tudo o que ouvimos e vimos se resumia a três problemas."
+      ],
+      "cards": {
+        "kicker": "Três problemas",
+        "title": "O que atrapalhava",
+        "items": [
+          {
+            "title": "Os clientes não achavam o código.",
+            "body": "Ele ficava numa aba ou atrás de um botão flutuante.",
+            "quote": "Não acho meu código",
+            "source": "Avaliações na loja de apps"
+          },
+          {
+            "title": "A pré-seleção confundia.",
+            "body": "Muita gente não sabia que dava para pré-selecionar várias ofertas, e alguns achavam que adicionar um segundo cupom cancelava o primeiro, porque o código mudava."
+          },
+          {
+            "title": "Botões e textos não eram claros.",
+            "body": "“Add to Mobile Order” e “Redeem in Restaurant” eram parecidos demais, e as instruções pareciam escritas para a empresa, não para o cliente."
+          }
+        ]
+      },
+      "artRight": true
+    },
+    {
+      "kicker": "Processo",
+      "heading": "Três apostas",
+      "lines": [
+        "Cada problema virou um teste, com a meta de aumentar os resgates em mais de 5%, com base nos dados de funil de DE, CH, UK e NZ.",
+        "Como dava para controlar qual variante cada restaurante recebia, tiramos a versão padrão e colocamos as variantes para competir entre si."
+      ],
+      "compare": {
+        "kicker": "Aposta 1",
+        "variants": [
+          {
+            "label": "A · Botão flutuante",
+            "images": [
+              "case1-13",
+              "case1-20"
+            ],
+            "note": "Um botão de QR flutuando sobre o app, que abria “Your Code”: o código, com o pedido no restaurante logo abaixo."
+          },
+          {
+            "label": "B · Barra superior",
+            "images": [
+              "case1-14",
+              "case1-21"
+            ],
+            "note": "Um ícone de QR na barra de navegação superior, que abria uma folha com o código. Teve um desempenho melhor.",
+            "winner": true
+          }
+        ],
+        "title": "Onde o código deveria ficar?"
+      },
+      "artRight": true
+    },
+    {
+      "kicker": "Processo",
+      "heading": "Aposta 2: melhorar a pré-seleção ou tirá-la?",
+      "lines": [
+        "O **Experimento 2** manteve a pré-seleção e adicionou um feedback claro ao escolher várias ofertas: estados de confirmação e um resumo mais simples. O **Experimento 2.2** a removeu, com uma oferta por leitura e sem carrinho pré-selecionado. Os dois também deixaram o código de fidelidade mais fácil de achar.",
+        "Os resultados não foram conclusivos: nenhuma versão venceu a outra com clareza. As duas melhoraram o que existia, mas a diferença entre elas não foi grande o bastante para apontar uma vencedora."
+      ],
+      "compare": {
+        "kicker": "Aposta 2",
+        "title": "Melhorar a pré-seleção ou tirá-la?",
+        "variants": [
+          {
+            "label": "Experimento 2 · Melhorar",
+            "images": [
+              "case1-22",
+              "case1-23"
+            ],
+            "note": "A pré-seleção fica, com feedback claro: um contador no Scan e um resumo simples antes de escanear e resgatar."
+          },
+          {
+            "label": "Experimento 2.2 · Remover",
+            "images": [
+              "case1-24",
+              "case1-25"
+            ],
+            "note": "Sem carrinho pré-selecionado: uma oferta por leitura, direto para o código."
+          }
+        ]
+      },
+      "artRight": true
+    },
+    {
+      "kicker": "Resultado",
+      "heading": "Aposta 3: botões mais claros",
+      "lines": [],
+      "compare": {
+        "kicker": "Aposta 3",
+        "title": "Botões mais claros",
+        "description": "Testamos cinco variações de texto para diferenciar “Add to Mobile Order” de “Use in Restaurant” e refinamos a hierarquia dos botões e os ícones nas páginas de ofertas e recompensas.",
+        "variants": [
+          {
+            "label": "Controle",
+            "images": [
+              "case1-16"
+            ],
+            "note": "“Mobile Order” e “Redeem In-Store”: duas ações parecidas demais."
+          },
+          {
+            "label": "Variante vencedora",
+            "images": [
+              "case1-15"
+            ],
+            "note": "“Scan In Restaurant” e “Add to Mobile Order”, cada uma com seu ícone.",
+            "winner": true
+          }
+        ]
+      },
+      "right": {
+        "stats": {
+          "kicker": "Aposta 3 · Resultados",
+          "title": "O que os botões mais claros mudaram",
+          "items": [
+            {
+              "value": 2.5,
+              "signed": true,
+              "decimals": 1,
+              "unit": "pts",
+              "label": "de aumento na conversão, de oferta adicionada a resgatada"
+            },
+            {
+              "value": -7.3,
+              "decimals": 1,
+              "unit": "pts",
+              "label": "erros de leitura"
+            },
+            {
+              "display": "Menos",
+              "label": "intervenções da equipe, já que os clientes conseguiam concluir a jornada sozinhos"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "kicker": "Resultado",
+      "heading": "O resultado final",
+      "lines": [],
+      "showcase": {
+        "kicker": "Resultado · A decisão",
+        "title": "O resultado final",
+        "intro": [
+          "A barra de navegação superior continuou com desempenho melhor que as outras versões, então o time lançou essa opção e refinou a interface em volta dela: uma página My Code mais clara e os novos botões da Aposta 3.",
+          "Ela foi lançada em todos os mercados e hoje faz parte dos Guest UI/UX Standards usados nas marcas da RBI."
+        ],
+        "screens": [
+          {
+            "image": "case1-26",
+            "label": "Lista de ofertas"
+          },
+          {
+            "image": "case1-27",
+            "label": "Oferta"
+          },
+          {
+            "image": "case1-28",
+            "label": "Recompensa"
+          },
+          {
+            "image": "case1-29",
+            "label": "Lista de recompensas – pedido pelo app"
+          },
+          {
+            "image": "case1-30",
+            "label": "Lista de recompensas – no restaurante"
+          },
+          {
+            "image": "case1-31",
+            "label": "Escanear o QR code"
+          }
+        ]
+      }
+    }
+  ]
+}

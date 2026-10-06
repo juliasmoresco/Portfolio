@@ -1,6 +1,7 @@
 import { Fragment, useContext, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { hasPanel, imageUrls, pageHasArt, pageImages, type PageChart, type PagePolaroids, type ReaderPage } from "../../content";
+import { useLang } from "../../i18n";
 import { MOBILE_QUERY } from "../../layout";
 import { IMAGE_TAG } from "./copy";
 import { Model3D } from "./Model3D";
@@ -119,7 +120,10 @@ export function PrototypePage({ page }: { page: ReaderPage }) {
   // Phones and tablets held upright get a poster and a button instead: a prototype squeezed into a book page is hard
   // to use with a thumb, so it opens over the whole screen instead.
   const [narrow] = useState(() => typeof matchMedia === "function" && matchMedia(MOBILE_QUERY).matches);
-  const base = `${import.meta.env.BASE_URL}${proto.path}`;
+  // The BoraInvest prototype was built in Portuguese; in Portuguese the case opens that original.
+  const lang = useLang();
+  const path = lang === "pt" && proto.path === "bora/" ? "bora-pt/" : proto.path;
+  const base = `${import.meta.env.BASE_URL}${path}`;
   const go = (id: string) => {
     setAt(id);
     frameRef.current?.contentWindow?.postMessage({ type: "bora:jump", chapter: id }, window.location.origin);
@@ -356,7 +360,7 @@ export function EndBlock({ next, onNext, onHello }: EndProps) {
           </button>
         )}
         <button type="button" className={styles.endHello} onClick={onHello}>
-          Say hello
+          {ui.sayHello}
         </button>
       </div>
     </div>

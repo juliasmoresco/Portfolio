@@ -271,7 +271,7 @@ export interface MenteeNote {
   role?: string;
   /** "Apr 2024". */
   date?: string;
-  /** True when the review was written in Portuguese and is shown in English. */
+  /** True when the note is shown in the other language from the one it was written in (Portuguese on the English site, English on the Portuguese one). */
   translated?: boolean;
   /** Where it was written, when not on ADPList ("LinkedIn"). */
   source?: string;

@@ -208,7 +208,7 @@
       "kicker": "Mobile",
       "heading": "The same room, in your hand",
       "lines": [
-        "On a phone, the whole office still fits the screen. You pinch and drag to look around, tap once to name an object and tap again to open it.",
+        "On a phone, the whole office still fits the screen. You pinch and drag to look around, and tap an object to open it.",
         "I audited it like any product: small objects got an invisible touch area, every button became at least 44px, no text is smaller than 12px, and nothing that opens needs scrolling."
       ],
       "stats": {

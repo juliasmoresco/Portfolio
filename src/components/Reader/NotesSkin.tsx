@@ -64,7 +64,7 @@ export function NotesSkin({ item }: { item: ReaderItem }) {
           <strong>{note.name}</strong>
           {note.role && <span> · {note.role}</span>}
           {(note.source || note.date) && <span className={styles.noteDate}>{[note.source, note.date].filter(Boolean).join(" · ")}</span>}
-          {note.translated && <span className={styles.noteTranslated}>{ui.translatedFromPt}</span>}
+          {note.translated && <span className={styles.noteTranslated}>{ui.translated}</span>}
         </figcaption>
       </figure>
     );

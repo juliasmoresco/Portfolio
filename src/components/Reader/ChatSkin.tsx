@@ -164,7 +164,7 @@ export function ChatSkin({ item }: { item: ReaderItem }) {
           enterKeyHint="send"
         />
         <button type="submit" className={styles.chatSend} disabled={!draft.trim() || typing}>
-          Ask
+          {ui.ask}
         </button>
       </form>
     </div>

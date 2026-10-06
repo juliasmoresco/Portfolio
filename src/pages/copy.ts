@@ -14,7 +14,6 @@ const HOME = {
     hints: "Hints",
     lamp: "Moon lamp — change the light",
     daylight: { afternoon: "afternoon", "golden hour": "golden hour", overcast: "overcast", "evening lamp": "evening lamp" } as Record<Daylight, string>,
-    pageTitle: "Júlia Moresco · Senior Product Designer",
     things: "Things in the office",
   },
   pt: {
@@ -26,7 +25,6 @@ const HOME = {
     hints: "Dicas",
     lamp: "Luminária de lua — mudar a luz",
     daylight: { afternoon: "tarde", "golden hour": "fim de tarde", overcast: "nublado", "evening lamp": "noite, luminária acesa" } as Record<Daylight, string>,
-    pageTitle: "Júlia Moresco · Senior Product Designer",
     things: "Coisas no escritório",
   },
 } satisfies Record<Lang, unknown>;
