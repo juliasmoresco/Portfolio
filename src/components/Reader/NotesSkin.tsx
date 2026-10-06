@@ -61,7 +61,7 @@ export function NotesSkin({ item }: { item: ReaderItem }) {
         <figcaption className={styles.noteBy}>
           <strong>{note.name}</strong>
           {note.role && <span> · {note.role}</span>}
-          {note.date && <span className={styles.noteDate}>{note.date}</span>}
+          {(note.source || note.date) && <span className={styles.noteDate}>{[note.source, note.date].filter(Boolean).join(" · ")}</span>}
           {note.translated && <span className={styles.noteTranslated}>Translated from Portuguese</span>}
         </figcaption>
       </figure>

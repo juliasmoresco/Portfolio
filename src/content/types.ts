@@ -273,6 +273,8 @@ export interface MenteeNote {
   date?: string;
   /** True when the review was written in Portuguese and is shown in English. */
   translated?: boolean;
+  /** Where it was written, when not on ADPList ("LinkedIn"). */
+  source?: string;
 }
 
 export interface LlamaMilestone {

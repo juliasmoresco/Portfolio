@@ -111,7 +111,7 @@ export function assertReaderItem(id: string, v: unknown): asserts v is ReaderIte
     if (!Array.isArray(ns) || ns.length === 0) bad("the notes skin needs a list of notes");
     (ns as Record<string, unknown>[]).forEach((n, i) => {
       if (!n || typeof n.quote !== "string" || typeof n.snippet !== "string" || typeof n.name !== "string") bad(`notes[${i}] needs a quote, a snippet and a name`);
-      for (const k of ["role", "date"]) if (n[k] !== undefined && typeof n[k] !== "string") bad(`notes[${i}].${k} must be a string`);
+      for (const k of ["role", "date", "source"]) if (n[k] !== undefined && typeof n[k] !== "string") bad(`notes[${i}].${k} must be a string`);
       if (n.translated !== undefined && typeof n.translated !== "boolean") bad(`notes[${i}].translated is true or false`);
     });
   }

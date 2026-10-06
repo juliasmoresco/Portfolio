@@ -121,15 +121,18 @@ export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compac
         node: r.profile.map((l, i) => <Line key={i} text={l} />),
       });
     }
+    // One block per role, the company named over the first, so a company with several roles (Ambush's clients,
+    // say) can carry on over the page.
     r.jobs.forEach((job, i) =>
-      main.push({
-        key: `job${i}`,
-        section: "Experience",
-        node: (
-          <div className={styles.resumeJob}>
-            <h4 className={styles.resumeCompany}>{job.company}</h4>
-            {job.roles.map((role) => (
-              <div key={role.title} className={styles.resumeRoleBlock}>
+      job.roles.forEach((role, j) =>
+        main.push({
+          key: `job${i}-${j}`,
+          section: "Experience",
+          joined: j < job.roles.length - 1,
+          node: (
+            <div className={styles.resumeJob}>
+              {j === 0 && <h4 className={styles.resumeCompany}>{job.company}</h4>}
+              <div className={`${styles.resumeRoleBlock} ${j > 0 ? styles.resumeRoleNext : ""}`}>
                 <div className={styles.resumeRoleLine}>
                   <span className={styles.resumeRoleTitle}>{role.title}</span>
                   {role.dates && <span className={styles.resumeDates}>{role.dates}</span>}
@@ -137,10 +140,10 @@ export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compac
                 {role.detail && <p className={styles.resumeDetail}>{role.detail}</p>}
                 <p className={styles.resumeText}>{role.text}</p>
               </div>
-            ))}
-          </div>
-        ),
-      }),
+            </div>
+          ),
+        }),
+      ),
     );
     const list = (key: string, section: string, rows: { a: string; b?: string }[]) => ({
       key,
