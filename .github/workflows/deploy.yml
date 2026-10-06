@@ -24,8 +24,13 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - id: pages
+        uses: actions/configure-pages@v5
       - run: npm ci
+      # "/Portfolio/" on the github.io address, "/" once the custom domain is set in Settings → Pages.
       - run: npm run build
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

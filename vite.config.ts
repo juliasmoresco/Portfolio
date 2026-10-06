@@ -4,6 +4,8 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  // GitHub Pages serves the site under /<repo>/ until a custom domain is set; the deploy workflow passes the right base.
+  base: process.env.BASE_PATH || "/",
   // The preview tool hands out a free port through PORT; 5173 otherwise.
   server: { port: Number(process.env.PORT) || 5173 },
   build: {
