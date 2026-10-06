@@ -38,10 +38,10 @@ const TOUCH_REACH = 24;
 /** The key light's shadow frustum for the desktop layout. Portrait widens it (see wide() in applyView)
  *  while the wall shelf sits above the bookcase, then this is restored the moment desktop returns. */
 const SHADOW_HOME = { left: -3.2, right: 3.8, top: 4.2, bottom: -1.2 };
-/** Desktop camera distance from the wall; it shows the room's full height. */
-const DESK_DIST = 8.3;
+/** Desktop camera distance from the wall: close enough that the room fills the window, with its full height in view. */
+const DESK_DIST = 7.5;
 /** Room to leave on each side of the shelf and bookcase on desktop, in scene units. */
-const DESK_SIDE_MARGIN = 0.6;
+const DESK_SIDE_MARGIN = 0.5;
 
 /** Hotspots that are books on the shelf: hovering one slides a book out toward the viewer, like pulling it off. */
 const BOOK_IDS: readonly string[] = ["about", "case1", "case2", "case3", "case4", "case5", "resume"];
