@@ -1,6 +1,7 @@
 import { Fragment, useContext, useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { hasPanel, imageUrls, pageHasArt, pageImages, type PageChart, type PagePolaroids, type ReaderPage } from "../../content";
+import { MOBILE_QUERY } from "../../layout";
 import { IMAGE_TAG } from "./copy";
 import { Model3D } from "./Model3D";
 import { Cards, Compare, Funnel, Glossary, Hobbies, Journey, Migration, Palette, Personas, Poll, Quotes, Showcase, Stats, Timeline } from "./PageArt";
@@ -115,7 +116,7 @@ export function PrototypePage({ page }: { page: ReaderPage }) {
   const [full, setFull] = useState(false);
   // Phones and tablets held upright get a poster and a button instead: a prototype squeezed into a book page is hard
   // to use with a thumb, so it opens over the whole screen instead.
-  const [narrow] = useState(() => typeof matchMedia === "function" && matchMedia("(max-width: 899px)").matches);
+  const [narrow] = useState(() => typeof matchMedia === "function" && matchMedia(MOBILE_QUERY).matches);
   const base = `${import.meta.env.BASE_URL}${proto.path}`;
   const go = (id: string) => {
     setAt(id);

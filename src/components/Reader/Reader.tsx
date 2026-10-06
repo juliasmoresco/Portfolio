@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { getReaderItem, type ReaderItem } from "../../content";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import { emitSelect } from "../../scene/events";
@@ -99,6 +99,20 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
   }, []);
 
   const root = useRef<HTMLDivElement>(null);
+  // The desktop book is sized for a 16:9.6 room. In a window that is wider than that (a short laptop screen), shrink it
+  // by how much the height falls short, so the book and its controls still fit without scrolling.
+  useLayoutEffect(() => {
+    const el = root.current;
+    if (compact || !el) return;
+    const fit = () => {
+      const { width, height } = el.getBoundingClientRect();
+      el.style.setProperty("--fit", String(width > 0 ? Math.min(1, (height * 16) / 9.6 / width) : 1));
+    };
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [compact]);
   const prevBtn = useRef<HTMLButtonElement>(null);
   const nextBtn = useRef<HTMLButtonElement>(null);
   const timers = useRef<{ cover?: number; turn?: number; close?: number }>({});
