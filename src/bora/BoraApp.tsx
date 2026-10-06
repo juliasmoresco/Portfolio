@@ -196,8 +196,7 @@ function SidePanel() {
       <div className={css.panelIntro}>
         <h1>From onboarding to the first lesson</h1>
         <p>
-          A clickable prototype of the BoraInvest redesign. Tap through it like a phone; the interface is in Brazilian
-          Portuguese.
+          A clickable prototype of BoraInvest. Tap through it like a phone, or jump to a screen.
         </p>
       </div>
       <nav className={css.chapters} aria-label="Prototype screens">
