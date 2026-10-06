@@ -1,4 +1,4 @@
-import { useContext, type CSSProperties } from "react";
+import { useCallback, useContext, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { imageUrls, type ReaderItem } from "../../content";
 import styles from "./Reader.module.css";
 import { ZoomContext } from "./zoom";
@@ -25,6 +25,24 @@ export function DiplomaSkin({ item }: { item: ReaderItem }) {
   const courses = item.courses ?? [];
   const note = item.pages[0]?.lines[0];
   const mid = (courses.length - 1) / 2;
+  // On a phone the certificates scroll sideways: say so, and fade the edge that has more behind it.
+  const fan = useRef<HTMLUListElement>(null);
+  const [edge, setEdge] = useState<"none" | "start" | "middle" | "end">("none");
+  const onFanScroll = useCallback(() => {
+    const el = fan.current;
+    if (!el) return;
+    // Only where the row actually scrolls (a phone); on desktop it is a fan that spills past its box on purpose.
+    const max = /(auto|scroll)/.test(getComputedStyle(el).overflowX) ? el.scrollWidth - el.clientWidth : 0;
+    setEdge(max <= 2 ? "none" : el.scrollLeft <= 2 ? "start" : el.scrollLeft >= max - 2 ? "end" : "middle");
+  }, []);
+  useLayoutEffect(() => {
+    onFanScroll();
+    const el = fan.current;
+    if (!el) return;
+    const ro = new ResizeObserver(onFanScroll);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [onFanScroll]);
   return (
     <div className={styles.diploma}>
       <span className={styles.chessKicker}>{item.title}</span>
@@ -52,8 +70,15 @@ export function DiplomaSkin({ item }: { item: ReaderItem }) {
 
       {courses.length > 0 && (
         <section className={styles.courses} aria-label="Courses and specializations">
-          <span className={styles.coursesLabel}>Always learning</span>
-          <ul className={styles.courseFan}>
+          <div className={styles.coursesHead}>
+            <span className={styles.coursesLabel}>Always learning</span>
+            {edge !== "none" && edge !== "end" && (
+              <span className={styles.swipeHint} aria-hidden="true">
+                Swipe <span className={styles.swipeArrow}>→</span>
+              </span>
+            )}
+          </div>
+          <ul ref={fan} className={styles.courseFan} data-edge={edge} onScroll={onFanScroll}>
             {courses.map((c, i) => (
               <li key={c.school + c.course} className={styles.course} tabIndex={0} style={{ "--d": i - mid, "--i": i, "--tone": SCHOOL_TONES[c.school] ?? "#7a6a5a" } as CSSProperties}>
                 <span className={styles.courseSchool}>{c.school}</span>

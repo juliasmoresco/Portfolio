@@ -7,7 +7,7 @@
   isolation: isolate;
 }
 
-/* A rendered frame of the scene shown while the GLBs load; fades out once the canvas has taken over. */
+/* A rendered frame of the room, shown only when the scene cannot start (no WebGL). */
 .poster {
   position: absolute;
   inset: 0;
@@ -16,18 +16,104 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 1;
-  transition: opacity 500ms ease;
   pointer-events: none;
   user-select: none;
 }
 
-.posterGone {
+/* While the models download: a little shelf whose books stand up one by one, a label and a thin bar. */
+.loader {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, #4a3d31 0%, #2e2620 100%);
+  opacity: 1;
+  transition: opacity 500ms ease;
+  pointer-events: none;
+}
+
+.loaderGone {
   opacity: 0;
 }
 
+.loaderShelf {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 0 10px;
+  border-bottom: 5px solid #e8b931;
+  border-radius: 0 0 2px 2px;
+  height: 40px;
+}
+
+.loaderBook {
+  width: 11px;
+  height: var(--h);
+  border-radius: 2px 2px 0 0;
+  background: var(--c);
+  box-shadow: inset -3px 0 0 rgba(0, 0, 0, 0.18), inset 0 6px 0 rgba(255, 255, 255, 0.12);
+  transform-origin: bottom;
+  transform: scaleY(0.12);
+  opacity: 0.35;
+  transition: transform 420ms cubic-bezier(0.3, 1.4, 0.5, 1), opacity 300ms ease;
+}
+
+.loaderBookUp {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/* The next book to stand up stirs while it waits, so a slow connection never looks stuck. */
+.loaderBook:first-child:not(.loaderBookUp),
+.loaderBookUp + .loaderBook:not(.loaderBookUp) {
+  animation: loaderStir 1.1s ease-in-out infinite;
+}
+
+@keyframes loaderStir {
+  0%,
+  100% {
+    transform: scaleY(0.12);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scaleY(0.4);
+    opacity: 0.7;
+  }
+}
+
+.loaderLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgb(245 235 220 / 0.7);
+}
+
+.loaderBar {
+  width: 140px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgb(245 235 220 / 0.14);
+  overflow: hidden;
+}
+
+.loaderBar > span {
+  display: block;
+  height: 100%;
+  background: #e8b931;
+  transform-origin: left;
+  transition: transform 300ms ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .poster {
+  .loader,
+  .loaderBook,
+  .loaderBar > span {
     transition: none;
+    animation: none;
   }
 }

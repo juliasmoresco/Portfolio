@@ -356,8 +356,11 @@ export class OfficeScene {
     this.opts = { ...options };
   }
 
-  /** Resolves once the model, props and hotspots are built and `shelf:ready` has fired. */
-  async start(): Promise<void> {
+  /**
+   * Resolves once the model, props and hotspots are built and `shelf:ready` has fired. `onProgress` hears how much of
+   * the 3D models has downloaded, from 0 to 1.
+   */
+  async start(onProgress?: (fraction: number) => void): Promise<void> {
     if (this.started || this.disposed) return;
     this.started = true;
 
@@ -367,12 +370,23 @@ export class OfficeScene {
 
     // Kick every download off up front. Optional props degrade to null.
     const loader = new GLTFLoader();
+    const bytes = new Map<string, [loaded: number, total: number]>();
+    const track = (url: string) => (e: ProgressEvent) => {
+      bytes.set(url, [e.loaded, e.lengthComputable ? e.total : e.loaded]);
+      let loaded = 0;
+      let total = 0;
+      bytes.forEach(([l, t]) => {
+        loaded += l;
+        total += t;
+      });
+      if (total > 0) onProgress?.(Math.min(1, loaded / total));
+    };
     const optional = (url: string, what: string) =>
-      loader.loadAsync(url).catch((e: unknown) => {
+      loader.loadAsync(url, track(url)).catch((e: unknown) => {
         console.warn(`[office-scene] could not load ${what}; continuing without it`, e);
         return null;
       });
-    const pRequired = Promise.all([loader.loadAsync(a.src), loader.loadAsync(a.shelf)]);
+    const pRequired = Promise.all([loader.loadAsync(a.src, track(a.src)), loader.loadAsync(a.shelf, track(a.shelf))]);
     const pCat = optional(a.cat, "Zuko");
     const texLoader = new THREE.TextureLoader();
     const pArt = Promise.all(

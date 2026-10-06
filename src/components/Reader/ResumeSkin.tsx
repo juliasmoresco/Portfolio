@@ -63,6 +63,8 @@ interface Block {
   /** The section heading it sits under ("Experience"); shown again, "continued", when the section runs onto a new page. */
   section: string;
   node: ReactNode;
+  /** Runs straight on into the next block, with no gap: a testimonial split into paragraphs so it can turn the page. */
+  joined?: boolean;
 }
 
 interface Sheet {
@@ -168,23 +170,28 @@ export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compac
         ),
       );
     }
+    // One block per paragraph, so a long testimonial carries on over the page instead of running off the sheet.
     r.quotes.forEach((q, i) =>
-      main.push({
-        key: `quote${i}`,
-        section: "What people say",
-        node: (
-          <figure className={styles.resumeQuote}>
-            <blockquote>
-              {q.text.map((t, j) => (
-                <p key={j}>{t}</p>
-              ))}
-            </blockquote>
-            <figcaption>
-              <strong>{q.name}</strong>
-              {q.role && <span> · {q.role}</span>}
-            </figcaption>
-          </figure>
-        ),
+      q.text.forEach((t, j) => {
+        const last = j === q.text.length - 1;
+        main.push({
+          key: `quote${i}-${j}`,
+          section: "What people say",
+          joined: !last,
+          node: (
+            <figure className={styles.resumeQuote}>
+              <blockquote>
+                <p>{t}</p>
+              </blockquote>
+              {last && (
+                <figcaption>
+                  <strong>{q.name}</strong>
+                  {q.role && <span> · {q.role}</span>}
+                </figcaption>
+              )}
+            </figure>
+          ),
+        });
       }),
     );
     // On a phone it is all one column: work history, then the side column, then testimonials.
@@ -249,7 +256,7 @@ export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compac
       const fresh = i === 0 || blocks[i - 1].section !== b.section;
       const continued = all.findIndex((x) => x.section === b.section) !== all.indexOf(b);
       return (
-        <div key={b.key} className={styles.resumeBlock}>
+        <div key={b.key} className={`${styles.resumeBlock} ${b.joined ? styles.resumeJoined : ""}`}>
           {fresh && (
             <h3 className={styles.resumeH}>
               {b.section}
@@ -312,7 +319,7 @@ export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compac
               <h3 className={styles.resumeH}>Heading</h3>
             </div>
             {main.map((b) => (
-              <div key={b.key} data-block={b.key} className={styles.resumeBlock}>
+              <div key={b.key} data-block={b.key} className={`${styles.resumeBlock} ${b.joined ? styles.resumeJoined : ""}`}>
                 {b.node}
               </div>
             ))}
@@ -320,7 +327,7 @@ export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compac
           {side.length > 0 && (
             <aside className={styles.resumeSide}>
               {side.map((b) => (
-                <div key={b.key} data-block={b.key} className={styles.resumeBlock}>
+                <div key={b.key} data-block={b.key} className={`${styles.resumeBlock} ${b.joined ? styles.resumeJoined : ""}`}>
                   {b.node}
                 </div>
               ))}
@@ -330,7 +337,7 @@ export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compac
         <div className={`${styles.resumeBody} ${styles.resumeBodySingle} ${styles.resumeMeasure}`} aria-hidden="true">
           <div className={styles.resumeMain}>
             {main.map((b) => (
-              <div key={b.key} data-wide={b.key} className={styles.resumeBlock}>
+              <div key={b.key} data-wide={b.key} className={`${styles.resumeBlock} ${b.joined ? styles.resumeJoined : ""}`}>
                 {b.node}
               </div>
             ))}

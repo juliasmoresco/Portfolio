@@ -1,4 +1,4 @@
-import type { ReactNode, RefObject } from "react";
+import { useLayoutEffect, type ReactNode, type RefObject } from "react";
 import { hasPanel, pageHasArt, textOnly, type ReaderItem, type ReaderPage } from "../../content";
 import { ArticlePage, ImagePage } from "./parts";
 import styles from "./Reader.module.css";
@@ -21,8 +21,11 @@ export interface CompactView {
 }
 
 const SHOWCASE_PER_VIEW = 3;
+/** The smallest a page's content is drawn to fit a short phone (text stays at 12px or more). */
+const MIN_FIT = 0.82;
 
-export function buildViews(pages: ReaderPage[]): CompactView[] {
+/** `breaks`: pages that must start a view of their own, because the view they would join is too tall for the screen. */
+export function buildViews(pages: ReaderPage[], breaks: readonly number[] = []): CompactView[] {
   const views: CompactView[] = [];
   pages.forEach((page, i) => {
     // A showcase is three screens to a view, so a phone never has to scroll it; the first view also has its text.
@@ -52,7 +55,7 @@ export function buildViews(pages: ReaderPage[]): CompactView[] {
     const sameSection = !!prev && !prev.part && !!last && !!page.heading && page.heading === last.heading && page.kicker === last.kicker;
     // A short text-only section shares the view with the one before it (same chapter), like on desktop.
     const pairs = !!prev && !prev.part && !!last && prev.pages.length === 1 && last.kicker === page.kicker && !pageHasArt(page) && !pageHasArt(last);
-    if (prev && (sameSection || pairs)) prev.pages.push(i);
+    if (prev && (sameSection || pairs) && !breaks.includes(i)) prev.pages.push(i);
     else views.push({ pages: [i] });
   });
   return views;
@@ -66,13 +69,52 @@ export interface CompactViewProps {
   scrollerRef: RefObject<HTMLDivElement | null>;
   /** The closing block (next case, say hello), set at the end of the last view. */
   end?: ReactNode;
+  /** A view of several pages is too tall for the screen: start a new view at this page. */
+  onOverflow: (page: number) => void;
 }
 
 /**
  * The phone presentation of a spread: one view at a time, swiped horizontally. Native scroll-snap does the
  * paging, so a real swipe gets touch inertia and long text still scrolls vertically inside its own view.
  */
-export function CompactViews({ item, flat, views, view, onViewChange, scrollerRef, end }: CompactViewProps & { item: ReaderItem; flat: boolean }) {
+export function CompactViews({ item, flat, views, view, onViewChange, scrollerRef, end, onOverflow }: CompactViewProps & { item: ReaderItem; flat: boolean }) {
+  // A book never scrolls on a phone: when pages that share a view run past the bottom, the first one that does
+  // moves to a view of its own. The views rebuild, and this runs again until everything fits.
+  useLayoutEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const check = () =>
+      Array.from(el.children).forEach((child, idx) => {
+        const v = views[idx];
+        if (!v || v.part || v.pages.length < 2) return;
+        const page = child.querySelector<HTMLElement>(`.${styles.pageRight}`);
+        if (!page || page.scrollHeight <= page.clientHeight + 2) return;
+        const bottom = page.clientHeight - parseFloat(getComputedStyle(page).paddingBottom || "0");
+        const blocks = Array.from(page.querySelectorAll<HTMLElement>(`.${styles.articleBlock}`));
+        const at = blocks.findIndex((b, j) => j > 0 && b.offsetTop + b.offsetHeight > bottom);
+        if (at > 0) onOverflow(v.pages[at]);
+      });
+    // A single page that still runs past the bottom (a chart, a section of text on a small phone) is drawn a little
+    // smaller until it fits, down to MIN_FIT; only past that does it scroll.
+    const fit = () =>
+      el.querySelectorAll<HTMLElement>(`.${styles.pageLeft}, .${styles.pageRight}`).forEach((page) => {
+        page.style.setProperty("--fit", "1");
+        const pad = parseFloat(getComputedStyle(page).paddingTop || "0") + parseFloat(getComputedStyle(page).paddingBottom || "0");
+        let f = 1;
+        while (page.scrollHeight > page.clientHeight + 1 && f > MIN_FIT) {
+          f = Math.max(MIN_FIT, Math.min(f - 0.02, (f * (page.clientHeight - pad)) / (page.scrollHeight - pad)));
+          page.style.setProperty("--fit", String(f));
+        }
+      });
+    const run = () => {
+      check();
+      fit();
+    };
+    run();
+    void document.fonts?.ready.then(run);
+  }, [views, scrollerRef, onOverflow]);
+
+
   const onScroll = () => {
     const el = scrollerRef.current;
     if (!el || !el.clientWidth) return;
