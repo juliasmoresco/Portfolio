@@ -1278,6 +1278,11 @@
   aspect-ratio: auto;
 }
 
+/* Around a cover that is fitted rather than cropped (a phone), the page shows its own colour, not paper. */
+.pageFull .plateImage {
+  background: transparent;
+}
+
 .pageFull .plateImage img {
   object-fit: cover;
   object-position: top;
