@@ -38,6 +38,10 @@ const TOUCH_REACH = 24;
 /** The key light's shadow frustum for the desktop layout. Portrait widens it (see wide() in applyView)
  *  while the wall shelf sits above the bookcase, then this is restored the moment desktop returns. */
 const SHADOW_HOME = { left: -3.2, right: 3.8, top: 4.2, bottom: -1.2 };
+/** Desktop camera distance from the wall; it shows the room's full height. */
+const DESK_DIST = 8.3;
+/** Room to leave on each side of the shelf and bookcase on desktop, in scene units. */
+const DESK_SIDE_MARGIN = 0.6;
 
 /** Hotspots that are books on the shelf: hovering one slides a book out toward the viewer, like pulling it off. */
 const BOOK_IDS: readonly string[] = ["about", "case1", "case2", "case3", "case4", "case5", "resume"];
@@ -963,6 +967,10 @@ export class OfficeScene {
     this.applyLight(o.daylight);
     if (o.touchControls) this.enableTouchControls();
     this.applyView(o.view);
+    // Open on that framing rather than easing into it from the default one.
+    camera.position.copy(this.camBase);
+    if (this.tGoal) this.target.copy(this.tGoal);
+    camera.lookAt(this.target);
     this.applyWall(o.walltone);
     this.setHints(o.hints);
 
@@ -1335,7 +1343,7 @@ export class OfficeScene {
       const asp = this.camera.aspect || 1.6;
       this.framedPortrait = asp < 1.15;
       if (asp >= 1.15) {
-        // desktop: exactly the original layout and framing, untouched by anything portrait does.
+        // desktop: the original layout and camera height, untouched by anything portrait does, centred on the room.
         this.wallShelf?.position.copy(this.wallHomeShelf);
         this.posters?.position.copy(this.wallHomePosters);
         if (this.wallLight) this.wallLight.intensity = 0;
@@ -1343,8 +1351,15 @@ export class OfficeScene {
           Object.assign(shadowCam, SHADOW_HOME);
           shadowCam.updateProjectionMatrix();
         }
-        this.camBase.set(1.0, 1.95, 8.3);
-        tGoal.set(1.45, 1.6, 0);
+        // The room (wall shelf with its plant, illustrations and the bookcase) sits in the middle of the window. The
+        // original distance shows its full height; a window narrower than that backs off until the whole width fits.
+        const room = this.bookBox && this.wallHomeBox ? this.bookBox.clone().union(this.wallHomeBox) : null;
+        const cx = room ? (room.min.x + room.max.x) / 2 : 1.45;
+        const halfW = room ? (room.max.x - room.min.x) / 2 + DESK_SIDE_MARGIN : 3.6;
+        const tanV = Math.tan((this.camera.fov * Math.PI) / 360);
+        const d = Math.max(DESK_DIST, halfW / (tanV * asp));
+        this.camBase.set(cx - 0.45, 1.95, d);
+        tGoal.set(cx, 1.6, 0);
         return;
       }
       // portrait: the wall shelf and illustrations move to sit above the bookcase (mobile only —

@@ -11,7 +11,7 @@
   --dur: 420ms;
   --ease: cubic-bezier(0.3, 0, 0.1, 1);
   /* Desktop size of the whole Reader (book, type, spacing). 1 = the handoff's size; raise it to open the book larger. */
-  --k: 1.18;
+  --k: calc(1.18 * var(--fit, 1));
   position: absolute;
   inset: 0;
   container-type: inline-size;

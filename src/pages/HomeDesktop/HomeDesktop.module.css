@@ -2,17 +2,20 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
   background: var(--stage);
   font-family: var(--font-ui);
 }
 
-/* One 16:9.6 stage at full page width. Everything inside is sized in cqw so it scales with the stage. */
+/* The room fills the window. Text inside is sized in --u: a hundredth of the width of a 16:9.6 frame that fits in the
+   window, so it scales with the width and still fits a short, wide screen. */
 .stage {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9.6;
-  container-type: inline-size;
+  height: 100%;
+  container-type: size;
+  --u: min(1cqw, calc(1cqh * 16 / 9.6));
   overflow: hidden;
   background: var(--stage);
 }
@@ -38,8 +41,8 @@
   top: 4%;
   right: 4%;
   /* The sidesheet is `position: fixed` (viewport-relative), so it needs telling how tall the room
-     actually is here — the .stage box above, not the browser window, which can be taller than it. */
-  --quicknav-panel-height: calc(100vw * 9.6 / 16);
+     actually is here: the .stage box above, which fills the window. */
+  --quicknav-panel-height: 100dvh;
 }
 
 .intro {
@@ -56,17 +59,17 @@
   font-family: var(--font-display);
   font-weight: 400;
   font-style: normal;
-  /* 4.9cqw x headline scale 0.9 */
-  font-size: calc(4.9cqw * 0.9);
+  /* 4.9u x headline scale 0.9 */
+  font-size: calc(4.9 * 0.9 * var(--u));
   line-height: 1.02;
   letter-spacing: -0.015em;
   text-wrap: pretty;
 }
 
 .lede {
-  margin: 1.4cqw 0 0;
-  max-width: 28cqw;
-  font-size: 1.2cqw;
+  margin: calc(1.4 * var(--u)) 0 0;
+  max-width: calc(28 * var(--u));
+  font-size: calc(1.2 * var(--u));
   line-height: 1.5;
   color: rgb(var(--light-rgb) / 0.82);
 }
@@ -74,8 +77,8 @@
 .counter {
   display: flex;
   align-items: center;
-  margin-top: 1.8cqw;
-  font-size: 0.9cqw;
+  margin-top: calc(1.8 * var(--u));
+  font-size: calc(0.9 * var(--u));
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgb(var(--light-rgb) / 0.6);
@@ -85,12 +88,12 @@
 .chip {
   position: absolute;
   transform: translate(-50%, -180%);
-  padding: 0.3cqw 0.9cqw;
-  border: 0.14cqw solid var(--ink);
+  padding: calc(0.3 * var(--u)) calc(0.9 * var(--u));
+  border: calc(0.14 * var(--u)) solid var(--ink);
   border-radius: 999px;
   background: var(--accent);
   color: var(--ink);
-  font-size: 0.85cqw;
+  font-size: calc(0.85 * var(--u));
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -98,7 +101,7 @@
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.16s ease;
-  box-shadow: 0 0.4cqw 1.2cqw rgba(0, 0, 0, 0.45);
+  box-shadow: 0 calc(0.4 * var(--u)) calc(1.2 * var(--u)) rgba(0, 0, 0, 0.45);
 }
 
 .chipVisible {
@@ -110,12 +113,12 @@
   left: 50%;
   bottom: 12%;
   transform: translateX(-50%);
-  padding: 0.5cqw 1.2cqw;
+  padding: calc(0.5 * var(--u)) calc(1.2 * var(--u));
   border-radius: 999px;
   background: rgb(var(--scrim-rgb) / 0.78);
   color: var(--paper);
   font-family: var(--font-mono);
-  font-size: 0.85cqw;
+  font-size: calc(0.85 * var(--u));
   letter-spacing: 0.16em;
   text-transform: uppercase;
   pointer-events: none;
