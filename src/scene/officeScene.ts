@@ -171,7 +171,7 @@ const WALL_TONES: Record<WallTone, number> = {
 
 const POSTER_LABELS: Record<string, string> = {
   ill01: "Illustration 01",
-  mentees: "Notes from mentees",
+  mentees: "Kind words",
   home: "Postcard from home",
   ill05: "Illustration 05",
   ill06: "Illustration 06",

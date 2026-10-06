@@ -483,12 +483,14 @@ export function Funnel({ funnel }: { funnel: PageFunnel }) {
     <div ref={ref} className={styles.funnel} data-seen={seen || undefined}>
       {funnel.kicker && <span className={styles.chartKicker}>{funnel.kicker}</span>}
       {funnel.title && <h2 className={styles.chartTitle}>{funnel.title}</h2>}
-      <ol className={styles.funnelList}>
-        {funnel.steps.map((st, i) => (
-          <FunnelStep key={st.label} step={st} share={st.value / max} run={seen} index={i} />
-        ))}
-      </ol>
-      {funnel.note && <p className={styles.funnelNote}>{funnel.note}</p>}
+      <div className={styles.funnelBody}>
+        <ol className={styles.funnelList}>
+          {funnel.steps.map((st, i) => (
+            <FunnelStep key={st.label} step={st} share={st.value / max} run={seen} index={i} />
+          ))}
+        </ol>
+        {funnel.note && <p className={styles.funnelNote}>{funnel.note}</p>}
+      </div>
     </div>
   );
 }
