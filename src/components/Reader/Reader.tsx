@@ -157,7 +157,16 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
   // Books and folders page (a turning leaf on desktop; on a phone each page is two views, image then text).
   // Frames, the globe, the llama bank, the chessboard and the phone are a single view.
   const paged = skin === "book" || skin === "folder";
-  const views = useMemo(() => buildViews(pages), [pages]);
+  // Pages a phone has had to move to a view of their own to fit; measured again whenever the window changes size.
+  const [breaks, setBreaks] = useState<number[]>([]);
+  const views = useMemo(() => buildViews(pages, breaks), [pages, breaks]);
+  const onOverflow = useCallback((p: number) => setBreaks((b) => (b.includes(p) ? b : [...b, p])), []);
+  useEffect(() => {
+    if (!compact) return;
+    const reset = () => setBreaks([]);
+    window.addEventListener("resize", reset);
+    return () => window.removeEventListener("resize", reset);
+  }, [compact]);
   const spreads = useMemo(() => buildSpreads(pages, item.title), [pages, item.title]);
   const chapters = useMemo(() => (SHOW_CHAPTER_BAR && isBook ? chaptersOf(pages) : []), [isBook, pages]);
   const nextId = id !== undefined && id in NEXT_CASE ? NEXT_CASE[id] : undefined;
@@ -265,7 +274,7 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
   const showPager = paged && count > 1;
   const pageLabel = `${String(index + 1).padStart(2, "0")} / ${String(count).padStart(2, "0")}`;
   const compactViews: CompactViewProps | undefined = compact
-    ? { views, view, onViewChange: setView, scrollerRef: scroller, end: hasEnd ? <EndBlock {...endProps} /> : undefined }
+    ? { views, view, onViewChange: setView, scrollerRef: scroller, end: hasEnd ? <EndBlock {...endProps} /> : undefined, onOverflow }
     : undefined;
 
   return (

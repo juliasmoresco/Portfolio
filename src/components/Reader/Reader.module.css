@@ -2946,6 +2946,62 @@
   font-size: 10px;
 }
 
+.coursesHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  align-self: stretch;
+}
+
+.root:not([data-compact="true"]) .coursesHead {
+  justify-content: center;
+}
+
+/* "Swipe →": only shown while there is more of the row to scroll to. */
+.swipeHint {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.swipeArrow {
+  display: inline-block;
+  animation: swipeNudge 1.4s ease-in-out infinite;
+}
+
+@keyframes swipeNudge {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 4px 0;
+  }
+}
+
+.root[data-reduced="true"] .swipeArrow {
+  animation: none;
+}
+
+/* The side with more certificates behind it fades out. */
+.root[data-compact="true"] .courseFan[data-edge="start"] {
+  mask-image: linear-gradient(to right, #000 calc(100% - 44px), transparent);
+}
+
+.root[data-compact="true"] .courseFan[data-edge="middle"] {
+  mask-image: linear-gradient(to right, transparent, #000 28px, #000 calc(100% - 44px), transparent);
+}
+
+.root[data-compact="true"] .courseFan[data-edge="end"] {
+  mask-image: linear-gradient(to right, transparent, #000 28px);
+}
+
 /* the row of certificates scrolls sideways within the panel instead of pushing past it */
 .root[data-compact="true"] .courses {
   align-self: stretch;
@@ -3197,6 +3253,7 @@
 }
 
 .resumeQuote {
+  display: flow-root; /* keeps the paragraphs' margins inside, so the rule runs unbroken from one to the next */
   margin: 0;
   padding-left: calc(0.9 * var(--k) * 1cqw);
   border-left: 2px solid #b2364f;
@@ -3312,6 +3369,11 @@
 
 .root[data-compact="true"] .resumeBlock {
   padding-bottom: 16px;
+}
+
+/* A testimonial's paragraphs are separate blocks (so it can turn the page) but read as one quote. */
+.root .resumeBlock.resumeJoined {
+  padding-bottom: 0;
 }
 
 .root[data-compact="true"] .resumeBlock .line,
@@ -4255,6 +4317,12 @@
   padding: 22px 20px 24px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+/* Set by the phone views when a page's content is a little too tall for a short screen: drawn smaller to fit. */
+.root[data-compact="true"] .pageLeft > *,
+.root[data-compact="true"] .pageRight > * {
+  zoom: var(--fit, 1);
 }
 
 .root[data-compact="true"] .pageLeft {
