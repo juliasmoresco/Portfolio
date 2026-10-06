@@ -4,6 +4,10 @@
  * State arrives as data attributes on .root: skin, opening, open, cover-open, nav, reduced.
  */
 .root {
+  /* A case's accent (its book can set its own): fills, what sits on them, and text on the paper. */
+  --accent-fill: #d62300;
+  --accent-on: #fff;
+  --accent-text: #d62300;
   --dur: 420ms;
   --ease: cubic-bezier(0.3, 0, 0.1, 1);
   /* Desktop size of the whole Reader (book, type, spacing). 1 = the handoff's size; raise it to open the book larger. */
@@ -73,6 +77,51 @@
   height: calc(40 * var(--k) * 1cqw);
 }
 
+.root[data-skin="globe"] .shell {
+  width: calc(42 * var(--k) * 1cqw);
+  height: calc(46 * var(--k) * 1cqw);
+}
+
+.root[data-skin="llama"] .shell {
+  width: calc(42 * var(--k) * 1cqw);
+  height: calc(46 * var(--k) * 1cqw);
+}
+
+.root[data-skin="chess"] .shell {
+  width: calc(40 * var(--k) * 1cqw);
+  height: calc(38 * var(--k) * 1cqw);
+}
+
+.root[data-skin="phone"] .shell {
+  width: calc(62 * var(--k) * 1cqw);
+  height: calc(38 * var(--k) * 1cqw);
+}
+
+.root[data-skin="notes"] .shell {
+  width: calc(46 * var(--k) * 1cqw);
+  height: calc(42 * var(--k) * 1cqw);
+}
+
+.root[data-skin="postcard"] .shell {
+  width: calc(56 * var(--k) * 1cqw);
+  height: calc(44 * var(--k) * 1cqw);
+}
+
+.root[data-skin="resume"] .shell {
+  width: calc(50 * var(--k) * 1cqw);
+  height: calc(46 * var(--k) * 1cqw);
+}
+
+.root[data-skin="diploma"] .shell {
+  width: calc(58 * var(--k) * 1cqw);
+  height: calc(46 * var(--k) * 1cqw);
+}
+
+.root[data-skin="chat"] .shell {
+  width: calc(44 * var(--k) * 1cqw);
+  height: calc(46 * var(--k) * 1cqw);
+}
+
 .root[data-opening="hinge"] .shell {
   transform-origin: left center;
 }
@@ -84,6 +133,33 @@
 /* closed / arriving */
 .root[data-skin="frame"] .shell {
   transform: translate(calc(10 * var(--k) * 1cqw), calc(-8 * var(--k) * 1cqw)) scale(0.26) rotateZ(-5deg) rotateX(16deg);
+}
+.root[data-skin="globe"] .shell {
+  transform: scale(0.22) rotateY(-40deg);
+}
+.root[data-skin="llama"] .shell {
+  transform: scale(0.22) rotateY(-40deg);
+}
+.root[data-skin="chess"] .shell {
+  transform: scale(0.24) rotateX(24deg);
+}
+.root[data-skin="diploma"] .shell {
+  transform: translate(calc(-6 * var(--k) * 1cqw), calc(-6 * var(--k) * 1cqw)) scale(0.2);
+}
+.root[data-skin="resume"] .shell {
+  transform: translateY(calc(8 * var(--k) * 1cqw)) scale(0.88) rotateX(10deg);
+}
+.root[data-skin="postcard"] .shell {
+  transform: translate(calc(8 * var(--k) * 1cqw), calc(-10 * var(--k) * 1cqw)) scale(0.2) rotateZ(4deg);
+}
+.root[data-skin="chat"] .shell {
+  transform: translate(calc(-14 * var(--k) * 1cqw), calc(10 * var(--k) * 1cqw)) scale(0.2);
+}
+.root[data-skin="notes"] .shell {
+  transform: translate(calc(-4 * var(--k) * 1cqw), calc(-10 * var(--k) * 1cqw)) scale(0.22) rotateZ(-4deg);
+}
+.root[data-skin="phone"] .shell {
+  transform: translate(calc(12 * var(--k) * 1cqw), calc(-6 * var(--k) * 1cqw)) scale(0.24) rotateY(-30deg);
 }
 .root[data-skin="book"] .shell {
   transform: translate(calc(14 * var(--k) * 1cqw), calc(6 * var(--k) * 1cqw)) scale(0.18) rotateX(6deg) rotateZ(-6deg);
@@ -138,6 +214,1062 @@
   flex-direction: column;
   gap: calc(1.2 * var(--k) * 1cqw);
   padding: calc(3.2 * var(--k) * 1cqw) calc(2.4 * var(--k) * 1cqw) calc(3.2 * var(--k) * 1cqw) calc(3.2 * var(--k) * 1cqw);
+}
+
+/* The space a text page keeps where its heading would be, when the picture or chart beside it carries the headline. */
+.headingGap {
+  height: calc(1.2 * var(--k) * 1cqw);
+}
+
+/* ---- Bar chart drawn in a page ---- */
+
+.pageChart {
+  overflow: hidden;
+}
+
+.chart {
+  --bar: var(--ink);
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: calc(1.2 * var(--k) * 1cqw);
+}
+
+.chartKicker {
+  font-family: var(--font-ui);
+  font-size: calc(0.66 * var(--k) * 1cqw);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--bar);
+}
+
+.chartTitle {
+  margin: calc(0.5 * var(--k) * 1cqw) 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: calc(1.95 * var(--k) * 1cqw);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.chartGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.chartGroupTitle {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: calc(0.84 * var(--k) * 1cqw);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.chartGroupSub {
+  margin: calc(0.1 * var(--k) * 1cqw) 0 0;
+  font-family: var(--font-ui);
+  font-size: calc(0.62 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.72);
+}
+
+.chartBars {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.55 * var(--k) * 1cqw);
+  margin: calc(0.8 * var(--k) * 1cqw) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chartRow {
+  display: grid;
+  grid-template-columns: 24% 1fr 11%;
+  align-items: center;
+  gap: calc(0.5 * var(--k) * 1cqw);
+}
+
+.chartLabel {
+  font-family: var(--font-ui);
+  font-size: calc(0.66 * var(--k) * 1cqw);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.chartTrack {
+  display: block;
+  height: calc(1.15 * var(--k) * 1cqw);
+  border-radius: calc(0.18 * var(--k) * 1cqw);
+  background: rgb(var(--ink-rgb) / 0.09);
+  overflow: hidden;
+}
+
+.chartFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--bar);
+  transform-origin: left center;
+  animation: chartGrow 0.7s cubic-bezier(0.3, 0.9, 0.3, 1) both;
+}
+
+@keyframes chartGrow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.chartValue {
+  font-family: var(--font-display);
+  font-size: calc(1.05 * var(--k) * 1cqw);
+  color: var(--ink);
+  text-align: right;
+  font-variant-numeric: lining-nums;
+}
+
+.root[data-reduced="true"] .chartFill {
+  animation: none;
+}
+
+.root[data-compact="true"] .pageChart {
+  overflow-y: auto;
+}
+
+.root[data-compact="true"] .chart {
+  justify-content: flex-start;
+  gap: 22px;
+}
+
+.root[data-compact="true"] .chartKicker {
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .chartTitle {
+  margin-top: 8px;
+  font-size: 26px;
+}
+
+.root[data-compact="true"] .chartGroupTitle {
+  font-size: 15px;
+}
+
+.root[data-compact="true"] .chartGroupSub {
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .chartBars {
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.root[data-compact="true"] .chartRow {
+  grid-template-columns: 27% 1fr 13%;
+  gap: 8px;
+}
+
+.root[data-compact="true"] .chartLabel {
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .chartTrack {
+  height: 18px;
+  border-radius: 3px;
+}
+
+.root[data-compact="true"] .chartValue {
+  font-size: 18px;
+}
+
+/* ---- Finished screens across the whole spread ---- */
+
+/* One surface in place of the two pages, still shaded towards the spine so it reads as an open book. */
+.spreadWhole {
+  position: relative;
+  flex: 1;
+  display: flex;
+  padding: calc(2.6 * var(--k) * 1cqw) calc(3.2 * var(--k) * 1cqw) calc(2.2 * var(--k) * 1cqw);
+  background: linear-gradient(90deg, var(--paper-warm) 0%, var(--paper) 40%, var(--paper-shade) 49.8%, var(--paper-shade) 50.2%, var(--paper) 60%, var(--paper-warm) 100%);
+}
+
+.spreadWhole::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: calc(0.14 * var(--k) * 1cqw);
+  translate: -50% 0;
+  background: linear-gradient(180deg, rgba(46, 33, 28, 0.05), rgba(46, 33, 28, 0.22), rgba(46, 33, 28, 0.05));
+  pointer-events: none;
+}
+
+.showcase {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop: title on the left, the short text on the right, so the screens get the height. */
+.showcaseHead {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: calc(5 * var(--k) * 1cqw);
+  align-items: end;
+}
+
+.showcaseHead > .kicker {
+  grid-column: 1;
+}
+
+.showcaseTitle {
+  grid-column: 1;
+  margin: calc(0.4 * var(--k) * 1cqw) 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: calc(2.4 * var(--k) * 1cqw);
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.showcaseIntro {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.4 * var(--k) * 1cqw);
+}
+
+.showcaseIntro .line {
+  font-size: calc(0.82 * var(--k) * 1cqw);
+  line-height: 1.5;
+}
+
+.showcaseRow {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: calc(1.2 * var(--k) * 1cqw) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The fan: each screen turns a little away from the middle and drops a little the further out it sits. */
+.showcaseItem {
+  flex: none;
+  /* Never wider than the row allows, however many screens there are. */
+  width: min(calc(8.9 * var(--k) * 1cqw), calc(100% / var(--n, 6) - 0.4 * var(--k) * 1cqw));
+  margin: 0 calc(0.12 * var(--k) * 1cqw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.5 * var(--k) * 1cqw);
+  rotate: calc(var(--d) * 2.6deg);
+  translate: 0 calc(var(--d) * var(--d) * 0.32 * var(--k) * 1cqw);
+  animation: showcaseIn 0.6s cubic-bezier(0.25, 1.2, 0.5, 1) both;
+  animation-delay: calc(0.1s + var(--i) * 0.07s);
+  transition: rotate 0.25s ease, translate 0.25s ease, scale 0.25s ease;
+}
+
+@keyframes showcaseIn {
+  from {
+    opacity: 0;
+    translate: 0 calc(3 * var(--k) * 1cqw);
+  }
+}
+
+.showcaseItem:hover,
+.showcaseItem:focus-within {
+  z-index: 2;
+  rotate: 0deg;
+  translate: 0 calc(-0.8 * var(--k) * 1cqw);
+  scale: 1.06;
+}
+
+.showcasePhone {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+
+.showcasePhone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 calc(0.4 * var(--k) * 1cqw) calc(0.6 * var(--k) * 1cqw) rgb(var(--ink-rgb) / 0.25));
+}
+
+.showcasePhone:focus-visible {
+  outline: calc(0.18 * var(--k) * 1cqw) solid var(--ink);
+  outline-offset: calc(0.2 * var(--k) * 1cqw);
+  border-radius: calc(1.2 * var(--k) * 1cqw);
+}
+
+.showcaseLabel {
+  font-family: var(--font-ui);
+  font-size: calc(0.7 * var(--k) * 1cqw);
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--ink);
+}
+
+.root[data-reduced="true"] .showcaseItem {
+  animation: none;
+}
+
+/* Phone: text stacked, then the screens in a grid of three, straight. */
+.root[data-compact="true"] .showcaseHead {
+  display: block;
+}
+
+.root[data-compact="true"] .showcaseTitle {
+  margin-top: 6px;
+  font-size: 24px;
+}
+
+.root[data-compact="true"] .showcaseIntro {
+  margin-top: 10px;
+  gap: 6px;
+}
+
+.root[data-compact="true"] .showcaseIntro .line {
+  font-size: 13.5px;
+}
+
+/* The screens share what height is left under the text, so the view never scrolls. */
+.root[data-compact="true"] .showcaseRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: 8px;
+  align-items: stretch;
+  margin-top: 16px;
+}
+
+/* Screen and name stay together, centred in the space; the screen shrinks to fit the height, never the name. */
+.root[data-compact="true"] .showcaseItem {
+  width: auto;
+  min-height: 0;
+  margin: 0;
+  justify-content: center;
+  rotate: none;
+  translate: none;
+  gap: 10px;
+}
+
+.root[data-compact="true"] .showcasePhone {
+  flex: 0 1 auto;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.root[data-compact="true"] .showcasePhone img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}
+
+.root[data-compact="true"] .showcaseLabel {
+  flex: none;
+}
+
+.root[data-compact="true"] .pageChart:has(.showcase) {
+  overflow: hidden;
+}
+
+.root[data-compact="true"] .showcaseLabel {
+  font-size: 10.5px;
+}
+
+/* ---- Versions of a design, switched with a toggle ---- */
+
+.compare {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.compareDescription {
+  margin: calc(0.6 * var(--k) * 1cqw) 0 0;
+  font-family: var(--font-ui);
+  font-size: calc(0.82 * var(--k) * 1cqw);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.root[data-compact="true"] .compareDescription {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.compareToggle {
+  display: flex;
+  gap: calc(0.3 * var(--k) * 1cqw);
+  margin-top: calc(1 * var(--k) * 1cqw);
+  padding: calc(0.25 * var(--k) * 1cqw);
+  border-radius: 999px;
+  background: rgb(var(--ink-rgb) / 0.08);
+}
+
+.compareOption {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(0.4 * var(--k) * 1cqw);
+  padding: calc(0.5 * var(--k) * 1cqw) calc(0.6 * var(--k) * 1cqw);
+  border: none;
+  border-radius: 999px;
+  background: none;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: calc(0.78 * var(--k) * 1cqw);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.compareOption[aria-pressed="true"] {
+  background: #fffdf8;
+  box-shadow: 0 1px 3px rgb(var(--ink-rgb) / 0.22);
+}
+
+.compareOption:focus-visible {
+  outline: calc(0.18 * var(--k) * 1cqw) solid var(--ink);
+  outline-offset: calc(0.1 * var(--k) * 1cqw);
+}
+
+.compareWinner {
+  padding: 0.15em 0.55em;
+  border-radius: 999px;
+  background: var(--accent-fill);
+  color: var(--accent-on);
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.compareScreens {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  gap: calc(1.2 * var(--k) * 1cqw);
+  margin-top: calc(1.2 * var(--k) * 1cqw);
+  animation: compareIn 0.35s ease both;
+}
+
+@keyframes compareIn {
+  from {
+    opacity: 0;
+    translate: 0 calc(0.5 * var(--k) * 1cqw);
+  }
+}
+
+.comparePhone {
+  height: 100%;
+  aspect-ratio: 375 / 812;
+  max-width: 48%;
+  padding: 0;
+  border: calc(0.35 * var(--k) * 1cqw) solid #1d1512;
+  border-radius: calc(1.2 * var(--k) * 1cqw);
+  background: #1d1512;
+  overflow: hidden;
+  box-shadow: 0 calc(0.4 * var(--k) * 1cqw) calc(1.2 * var(--k) * 1cqw) rgb(var(--ink-rgb) / 0.28);
+  cursor: zoom-in;
+  transition: translate 0.2s ease;
+}
+
+.comparePhone:hover {
+  translate: 0 calc(-0.3 * var(--k) * 1cqw);
+}
+
+.comparePhone:focus-visible {
+  outline: calc(0.18 * var(--k) * 1cqw) solid var(--ink);
+  outline-offset: calc(0.2 * var(--k) * 1cqw);
+}
+
+.comparePhone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: calc(0.85 * var(--k) * 1cqw);
+}
+
+.compareNote {
+  margin: calc(1 * var(--k) * 1cqw) 0 0;
+  font-family: var(--font-ui);
+  font-size: calc(0.78 * var(--k) * 1cqw);
+  line-height: 1.45;
+  text-align: center;
+  color: rgb(var(--ink-rgb) / 0.85);
+  animation: compareIn 0.35s ease both;
+}
+
+.root[data-reduced="true"] .compareScreens,
+.root[data-reduced="true"] .compareNote {
+  animation: none;
+}
+
+.root[data-compact="true"] .compareToggle {
+  margin-top: 14px;
+  padding: 3px;
+}
+
+.root[data-compact="true"] .compareOption {
+  min-height: 40px;
+  padding: 6px 8px;
+  font-size: 12.5px;
+}
+
+.root[data-compact="true"] .compareScreens {
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.root[data-compact="true"] .comparePhone {
+  border-width: 4px;
+  border-radius: 16px;
+}
+
+.root[data-compact="true"] .comparePhone img {
+  border-radius: 12px;
+}
+
+.root[data-compact="true"] .compareNote {
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+/* ---- Result numbers that count up ---- */
+
+.stats,
+.cards {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.statList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(1.4 * var(--k) * 1cqw);
+  margin: calc(1.2 * var(--k) * 1cqw) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.2 * var(--k) * 1cqw);
+  padding-top: calc(0.9 * var(--k) * 1cqw);
+  border-top: 1px solid rgb(var(--ink-rgb) / 0.18);
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: calc(4 * var(--k) * 1cqw);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--accent-text);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.statUnit {
+  margin-left: 0.18em;
+  font-size: 0.4em;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+.statLabel {
+  max-width: calc(20 * var(--k) * 1cqw);
+  font-family: var(--font-ui);
+  font-size: calc(0.82 * var(--k) * 1cqw);
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* ---- Cards that open one at a time ---- */
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.9 * var(--k) * 1cqw);
+  margin: calc(2 * var(--k) * 1cqw) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  border-radius: calc(0.35 * var(--k) * 1cqw);
+  background: rgb(255 255 255 / 0.45);
+  box-shadow: 0 0 0 1px rgb(var(--ink-rgb) / 0.12);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card[data-open] {
+  background: #fffdf8;
+  box-shadow: 0 0 0 1px rgb(var(--ink-rgb) / 0.2), 0 calc(0.3 * var(--k) * 1cqw) calc(0.9 * var(--k) * 1cqw) rgb(var(--ink-rgb) / 0.12);
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: calc(0.9 * var(--k) * 1cqw);
+  width: 100%;
+  padding: calc(1.15 * var(--k) * 1cqw) calc(1.2 * var(--k) * 1cqw);
+  border: none;
+  background: none;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.cardHead:focus-visible {
+  outline: calc(0.18 * var(--k) * 1cqw) solid var(--ink);
+  outline-offset: calc(0.1 * var(--k) * 1cqw);
+  border-radius: inherit;
+}
+
+.cardNo {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: calc(2 * var(--k) * 1cqw);
+  height: calc(2 * var(--k) * 1cqw);
+  border-radius: 50%;
+  background: var(--accent-fill);
+  color: var(--accent-on);
+  font-family: var(--font-display);
+  font-size: calc(1 * var(--k) * 1cqw);
+}
+
+.cardTitle {
+  flex: 1;
+  font-family: var(--font-ui);
+  font-size: calc(1.05 * var(--k) * 1cqw);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.cardChevron {
+  flex: none;
+  width: calc(0.55 * var(--k) * 1cqw);
+  height: calc(0.55 * var(--k) * 1cqw);
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  rotate: 45deg;
+  translate: 0 -25%;
+  transition: rotate 0.2s ease, translate 0.2s ease;
+}
+
+.card[data-open] .cardChevron {
+  rotate: 225deg;
+  translate: 0 25%;
+}
+
+.cardBody {
+  padding: 0 calc(1.2 * var(--k) * 1cqw) calc(1.2 * var(--k) * 1cqw) calc(4.1 * var(--k) * 1cqw);
+  font-family: var(--font-ui);
+  font-size: calc(0.95 * var(--k) * 1cqw);
+  line-height: 1.5;
+  color: var(--ink);
+  animation: cardOpen 0.25s ease both;
+}
+
+.cardBody > p {
+  margin: 0;
+}
+
+@keyframes cardOpen {
+  from {
+    opacity: 0;
+    translate: 0 -4px;
+  }
+}
+
+.cardQuote {
+  margin: calc(0.7 * var(--k) * 1cqw) 0 0;
+  padding-left: calc(0.8 * var(--k) * 1cqw);
+  border-left: 2px solid var(--accent-fill);
+}
+
+.cardQuote p {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: calc(1.05 * var(--k) * 1cqw);
+}
+
+.cardQuote cite {
+  display: block;
+  margin-top: calc(0.2 * var(--k) * 1cqw);
+  font-family: var(--font-mono);
+  font-size: calc(0.6 * var(--k) * 1cqw);
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(var(--ink-rgb) / 0.7);
+}
+
+.root[data-reduced="true"] .cardBody {
+  animation: none;
+}
+
+.root[data-compact="true"] .statValue {
+  font-size: 46px;
+}
+
+.root[data-compact="true"] .statLabel {
+  max-width: none;
+  font-size: 14px;
+}
+
+.root[data-compact="true"] .statList {
+  gap: 22px;
+  margin-top: 18px;
+}
+
+.root[data-compact="true"] .stat {
+  padding-top: 14px;
+}
+
+.root[data-compact="true"] .cardList {
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.root[data-compact="true"] .cardHead {
+  gap: 10px;
+  min-height: 52px;
+  padding: 10px 14px;
+}
+
+.root[data-compact="true"] .cardNo {
+  width: 26px;
+  height: 26px;
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .cardTitle {
+  font-size: 15px;
+}
+
+.root[data-compact="true"] .cardChevron {
+  width: 8px;
+  height: 8px;
+}
+
+.root[data-compact="true"] .cardBody {
+  padding: 0 14px 14px 50px;
+  font-size: 14px;
+}
+
+.root[data-compact="true"] .cardQuote p {
+  font-size: 16px;
+}
+
+.root[data-compact="true"] .cardQuote cite {
+  font-size: 10px;
+}
+
+/* ---- Polaroids pinned to a page ---- */
+
+.polaroids {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.8 * var(--k) * 1cqw);
+}
+
+.polaroidNote {
+  font-family: var(--font-mono);
+  font-size: calc(0.72 * var(--k) * 1cqw);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* Desktop: scattered across the page, two rows of three, each a little crooked. */
+.polaroidBoard {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.polaroidSlot {
+  position: absolute;
+  width: 40%;
+  rotate: var(--r, 0deg);
+  animation: polaroidDrop 0.55s cubic-bezier(0.25, 1.3, 0.5, 1) both;
+  animation-delay: calc(0.12s + var(--i) * 0.07s);
+}
+
+.polaroidSlot:nth-child(1) { left: 0%; top: 1%; --r: -5deg; }
+.polaroidSlot:nth-child(2) { left: 30.5%; top: 4%; --r: 3deg; }
+.polaroidSlot:nth-child(3) { left: 60%; top: 0%; --r: -2deg; }
+.polaroidSlot:nth-child(4) { left: 1.5%; top: 50%; --r: 4deg; }
+.polaroidSlot:nth-child(5) { left: 31%; top: 53%; --r: -3.5deg; }
+.polaroidSlot:nth-child(6) { left: 60%; top: 49%; --r: 5deg; }
+
+/* A single photo: one big polaroid in the middle of the page, as tall as the page allows. */
+.polaroidBoard[data-count="1"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.polaroidBoard[data-count="1"] .polaroidSlot {
+  position: relative;
+  left: auto;
+  top: auto;
+  width: auto;
+  height: 90%;
+  max-width: 88%;
+  aspect-ratio: 0.8;
+  --r: -2.5deg;
+}
+
+.polaroidBoard[data-count="1"] .polaroid {
+  height: 100%;
+  padding: 5.5% 5.5% 0;
+}
+
+.polaroidBoard[data-count="1"] .polaroid img {
+  flex: 1;
+  min-height: 0;
+  aspect-ratio: auto;
+  object-position: center 30%;
+}
+
+/* No caption: the wide bottom margin of a polaroid stays, empty. */
+.polaroid:not(:has(.polaroidCaption)) {
+  padding-bottom: 18%;
+}
+
+.polaroidBoard[data-count="1"] .polaroid:not(:has(.polaroidCaption)) {
+  padding-bottom: 16%;
+}
+
+.polaroidBoard[data-count="1"] .polaroidCaption {
+  min-height: 0;
+  padding: 0.9em 0 1.1em;
+  font-size: calc(0.95 * var(--k) * 1cqw);
+}
+
+@keyframes polaroidDrop {
+  from {
+    opacity: 0;
+    translate: 0 -12%;
+    scale: 1.08;
+  }
+}
+
+.polaroid {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 6% 6% 0;
+  border: none;
+  background: #fbf8f2;
+  box-shadow: 0 calc(0.25 * var(--k) * 1cqw) calc(0.7 * var(--k) * 1cqw) rgba(46, 33, 28, 0.28), 0 0 0 1px rgba(46, 33, 28, 0.06);
+  cursor: zoom-in;
+  transition: rotate 0.25s ease, scale 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* A strip of tape holding it to the page. */
+.polaroid::before {
+  content: "";
+  position: absolute;
+  top: -5%;
+  left: 50%;
+  width: 38%;
+  height: 9%;
+  translate: -50% 0;
+  rotate: -3deg;
+  background: rgba(244, 236, 214, 0.72);
+  box-shadow: 0 1px 2px rgba(46, 33, 28, 0.12);
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.05;
+  object-fit: cover;
+  object-position: center 35%;
+  background: rgba(46, 33, 28, 0.08);
+}
+
+.polaroidCaption {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.5em;
+  padding: 0.55em 0 0.7em;
+  font-family: var(--font-ui);
+  font-size: calc(0.62 * var(--k) * 1cqw);
+  line-height: 1.25;
+  text-align: center;
+  color: var(--ink);
+}
+
+.polaroidSlot:hover,
+.polaroidSlot:focus-within {
+  z-index: 2;
+}
+
+.polaroid:hover,
+.polaroid:focus-visible {
+  rotate: calc(var(--r, 0deg) * -1);
+  scale: 1.07;
+  box-shadow: 0 calc(0.6 * var(--k) * 1cqw) calc(1.4 * var(--k) * 1cqw) rgba(46, 33, 28, 0.32), 0 0 0 1px rgba(46, 33, 28, 0.06);
+}
+
+.polaroid:focus-visible {
+  outline: calc(0.18 * var(--k) * 1cqw) solid var(--ink);
+  outline-offset: calc(0.2 * var(--k) * 1cqw);
+}
+
+.root[data-reduced="true"] .polaroidSlot {
+  animation: none;
+}
+
+/* Phone: a two-column pile that scrolls with the page, still crooked. */
+.root[data-compact="true"] .polaroids {
+  gap: 16px;
+}
+
+.root[data-compact="true"] .polaroidNote {
+  font-size: 11px;
+}
+
+/* Three rows that share the page's height, so all six fit without scrolling whatever the phone; the photo in each
+   polaroid takes what height is left after its caption. */
+.root[data-compact="true"] .polaroidBoard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 16px 18px;
+  padding: 8px 6px 4px;
+}
+
+.root[data-compact="true"] .polaroidSlot {
+  position: relative;
+  left: auto;
+  top: auto;
+  width: auto;
+  min-height: 0;
+}
+
+.root[data-compact="true"] .polaroid {
+  height: 100%;
+  padding: 6px 6px 0;
+}
+
+.root[data-compact="true"] .polaroid img {
+  flex: 1;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+.root[data-compact="true"] .polaroidCaption {
+  min-height: 0;
+  padding: 5px 0 6px;
+}
+
+.root[data-compact="true"] .polaroidBoard[data-count="1"] {
+  display: flex;
+  padding: 12px 6px 8px;
+}
+
+.root[data-compact="true"] .polaroidBoard[data-count="1"] .polaroidSlot {
+  height: 100%;
+  max-width: 100%;
+}
+
+.root[data-compact="true"] .polaroidBoard[data-count="1"] .polaroid {
+  padding: 10px 10px 0;
+}
+
+.root[data-compact="true"] .polaroidBoard[data-count="1"] .polaroid:not(:has(.polaroidCaption)) {
+  padding-bottom: 44px;
+}
+
+.root[data-compact="true"] .polaroidBoard[data-count="1"] .polaroidCaption {
+  padding: 10px 0 12px;
+  font-size: 15px;
+}
+
+.root[data-compact="true"] .pageChart:has(.polaroids) {
+  overflow: hidden;
+}
+
+.root[data-compact="true"] .polaroid {
+  box-shadow: 0 3px 10px rgba(46, 33, 28, 0.26), 0 0 0 1px rgba(46, 33, 28, 0.06);
+}
+
+.root[data-compact="true"] .polaroidCaption {
+  font-size: 11.5px;
+}
+
+/* A cover designed as a whole page: the picture runs to the page edges, with a touch of shade where it meets the spine. */
+.pageFull {
+  position: relative;
+  padding: 0;
+  gap: 0;
+}
+
+.pageFull::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 84%, rgba(46, 33, 28, 0.2));
+  pointer-events: none;
+}
+
+.pageFull .plateWrap {
+  aspect-ratio: auto;
+}
+
+.pageFull .plateImage img {
+  object-fit: cover;
+  object-position: top;
+}
+
+.pageFull .zoomBtn {
+  z-index: 1;
 }
 
 .pageRight {
@@ -266,6 +1398,21 @@
   margin: 0 auto;
 }
 
+/* A photo: the whole picture, as large as fits on screen, never cropped or scrolled. */
+.lightboxFit {
+  min-height: 0;
+}
+
+.lightboxFit img {
+  flex: 0 1 auto;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background: none;
+}
+
 .lightboxClose {
   position: absolute;
   right: calc(2 * var(--k) * 1cqw);
@@ -295,6 +1442,8 @@
 
 /* A real picture in the plate: the whole picture is shown (contain), several sit side by side. */
 .plateImage {
+  /* Real pictures sit straight on the paper; the ruled border is only for the placeholder swatch. */
+  border: none;
   gap: calc(0.6 * var(--k) * 1cqw);
   align-items: stretch;
   justify-content: center;
@@ -360,13 +1509,9 @@
   color: var(--ink);
 }
 
-.descLabel {
-  margin: calc(1.2 * var(--k) * 1cqw) 0 calc(0.4 * var(--k) * 1cqw);
-  font-family: var(--font-mono);
-  font-size: calc(0.7 * var(--k) * 1cqw);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink);
+/* The gap a heading leaves before the text that follows it. */
+.heading + .lines {
+  margin-top: calc(1.2 * var(--k) * 1cqw);
 }
 
 .lines {
@@ -374,6 +1519,11 @@
   flex-direction: column;
   gap: calc(0.5 * var(--k) * 1cqw);
   max-width: calc(22 * var(--k) * 1cqw);
+}
+
+/* The text page's column runs the width of the page (less its margins), not a narrower measure that leaves it lopsided. */
+.pageRight .lines {
+  max-width: none;
 }
 
 .line {
@@ -384,18 +1534,30 @@
   text-wrap: pretty;
 }
 
-/* Text-only page: the heading opens the left page, the text starts at the top of the right one. */
-.titlePage {
-  justify-content: flex-start;
+.line strong {
+  font-weight: 700;
 }
 
-.titleHeading {
-  font-size: calc(3.2 * var(--k) * 1cqw);
-  line-height: 1.02;
+/* A bullet or numbered item: the marker hangs in the margin, wrapped lines align with the text. */
+.item {
+  display: flex;
+  gap: 0.55em;
 }
 
-.descLabelFirst {
-  margin-top: 0;
+.mark {
+  flex: none;
+  min-width: 1.1em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Items of one list sit closer together than separate paragraphs do. */
+.lines .line.item + .line.item {
+  margin-top: calc(-0.25 * var(--k) * 1cqw);
+}
+
+.flowLines .line.item + .line.item {
+  margin-top: calc(0.1 * var(--k) * 1cqw);
 }
 
 /* A frame with no picture: the text sits in the middle of the frame. */
@@ -602,10 +1764,6 @@
   font-size: calc(2 * var(--k) * 1cqw);
 }
 
-.frameDescLabel {
-  margin: calc(0.2 * var(--k) * 1cqw) 0;
-}
-
 .frameLines {
   display: contents;
 }
@@ -642,6 +1800,1918 @@
   color: var(--paper);
 }
 
+/* ---- Globe: the desk globe itself, opened up close, with a marker per place visited ---- */
+
+.globe {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.6 * var(--k) * 1cqw);
+  padding: calc(1.4 * var(--k) * 1cqw) calc(1.2 * var(--k) * 1cqw) calc(1.6 * var(--k) * 1cqw);
+  background: rgb(var(--scrim-rgb) / 0.78);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border-radius: calc(0.6 * var(--k) * 1cqw);
+  /* The globe itself never shrinks past globeStage's min-height, so on a short screen the text
+     below it (and the goal line) scrolls into view instead of being crushed or clipped. */
+  overflow-y: auto;
+}
+
+.globeStage {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: calc(20 * var(--k) * 1cqw);
+}
+
+/* Absolutely positioned so the canvas's own pixel size never feeds back into globeStage's flex
+   height — a canvas with height:100% inside a flex item sized by its own content is a circular
+   dependency that some browsers "resolve" by ballooning the canvas to its raw pixel attributes. */
+.globeCanvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* Dragging turns the globe, so a touch on it must not also scroll the panel. */
+  touch-action: none;
+}
+
+/* The country's name, floated over its pin each frame from GlobeSkin (transform + opacity). */
+.globeLabel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  padding: calc(0.3 * var(--k) * 1cqw) calc(0.9 * var(--k) * 1cqw);
+  border: calc(0.1 * var(--k) * 1cqw) solid rgb(var(--light-rgb) / 0.4);
+  border-radius: 999px;
+  background: rgb(var(--scrim-rgb) / 0.88);
+  color: var(--light);
+  font-family: var(--font-ui);
+  font-size: calc(0.85 * var(--k) * 1cqw);
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.progressBar {
+  width: min(100%, calc(18 * var(--k) * 1cqw));
+  height: calc(0.45 * var(--k) * 1cqw);
+  margin-top: calc(0.2 * var(--k) * 1cqw);
+  border-radius: 999px;
+  background: rgb(var(--light-rgb) / 0.16);
+  overflow: hidden;
+}
+
+.progressBar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+}
+
+.globeChips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: calc(0.35 * var(--k) * 1cqw);
+  max-width: calc(34 * var(--k) * 1cqw);
+  margin: calc(0.4 * var(--k) * 1cqw) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.globeChip {
+  padding: calc(0.25 * var(--k) * 1cqw) calc(0.75 * var(--k) * 1cqw);
+  border: calc(0.08 * var(--k) * 1cqw) solid rgb(var(--light-rgb) / 0.3);
+  border-radius: 999px;
+  background: transparent;
+  color: rgb(var(--light-rgb) / 0.85);
+  font-family: var(--font-ui);
+  font-size: calc(0.72 * var(--k) * 1cqw);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.globeChip:hover {
+  border-color: rgb(var(--light-rgb) / 0.6);
+  color: var(--light);
+}
+
+.globeChip[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.globeChip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.globeText {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.3 * var(--k) * 1cqw);
+  text-align: center;
+}
+
+.globeHeading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: calc(1.9 * var(--k) * 1cqw);
+  color: var(--light);
+}
+
+.globeStat {
+  margin: 0;
+  font-size: calc(0.95 * var(--k) * 1cqw);
+  color: var(--light);
+}
+
+.globeStat strong {
+  font-family: var(--font-display);
+  font-size: calc(1.3 * var(--k) * 1cqw);
+  font-weight: 400;
+}
+
+/* ---- Llama bank ---- */
+
+.llama {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.6 * var(--k) * 1cqw);
+  padding: calc(1.4 * var(--k) * 1cqw) calc(1.2 * var(--k) * 1cqw) calc(1.6 * var(--k) * 1cqw);
+  background: rgb(var(--scrim-rgb) / 0.78);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border-radius: calc(0.6 * var(--k) * 1cqw);
+  overflow-y: auto;
+}
+
+.llamaStage {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: calc(20 * var(--k) * 1cqw);
+}
+
+/* Absolutely positioned for the same reason as .globeCanvas: a canvas sized by height:100% inside
+   a content-sized flex item is a circular dependency that balloons the box in some browsers. */
+.llamaCanvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(0.4 * var(--k) * 1cqw);
+  outline: none;
+}
+
+.llamaCanvas:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* "+1" rising from the slot as each coin goes in. */
+.llamaFloat {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  font-family: var(--font-display);
+  font-size: calc(1.3 * var(--k) * 1cqw);
+  color: var(--accent);
+  text-shadow: 0 1px 6px rgb(0 0 0 / 0.5);
+  pointer-events: none;
+  animation: llamaFloat 0.9s ease-out forwards;
+}
+
+@keyframes llamaFloat {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 3.2 * var(--k) * 1cqw));
+  }
+}
+
+/* A milestone's message, in place of the hint for a few seconds. */
+.llamaMessage {
+  margin: 0;
+  max-width: calc(30 * var(--k) * 1cqw);
+  font-family: var(--font-display);
+  font-size: calc(1.05 * var(--k) * 1cqw);
+  color: var(--accent);
+  animation: llamaPop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+@keyframes llamaPop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.root[data-reduced="true"] .llamaFloat,
+.root[data-reduced="true"] .llamaMessage {
+  animation-duration: 0.01s;
+}
+
+.llamaText {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.3 * var(--k) * 1cqw);
+  text-align: center;
+}
+
+.llamaHeading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: calc(1.9 * var(--k) * 1cqw);
+  color: var(--light);
+}
+
+.llamaHint {
+  margin: 0;
+  max-width: calc(30 * var(--k) * 1cqw);
+  font-size: calc(0.8 * var(--k) * 1cqw);
+  color: rgb(var(--light-rgb) / 0.75);
+}
+
+.llamaCount {
+  margin: 0;
+  font-size: calc(0.95 * var(--k) * 1cqw);
+  color: var(--light);
+}
+
+.llamaCount strong {
+  font-family: var(--font-display);
+  font-size: calc(1.3 * var(--k) * 1cqw);
+  font-weight: 400;
+}
+
+/* ---- Phone: the rotary phone, working, beside the ways to get in touch ---- */
+
+.phone {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: center;
+  gap: calc(1.2 * var(--k) * 1cqw);
+  padding: calc(1.6 * var(--k) * 1cqw) calc(2.2 * var(--k) * 1cqw) calc(1.6 * var(--k) * 1cqw) calc(1 * var(--k) * 1cqw);
+  background: rgb(var(--scrim-rgb) / 0.78);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border-radius: calc(0.6 * var(--k) * 1cqw);
+  color: var(--light);
+  overflow-y: auto;
+}
+
+.phoneStage {
+  position: relative;
+  align-self: stretch;
+  min-height: calc(20 * var(--k) * 1cqw);
+}
+
+/* Absolutely positioned for the same reason as .globeCanvas. */
+.phoneCanvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: calc(0.4 * var(--k) * 1cqw);
+  outline: none;
+  touch-action: none;
+}
+
+.phoneCanvas:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.phoneText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(0.55 * var(--k) * 1cqw);
+}
+
+.phoneHeading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: calc(2.1 * var(--k) * 1cqw);
+  color: var(--light);
+}
+
+.phoneIntro {
+  margin: 0;
+  font-size: calc(0.9 * var(--k) * 1cqw);
+  line-height: 1.45;
+  color: rgb(var(--light-rgb) / 0.9);
+}
+
+/* What the dial is doing, or who picked up. Holds its height so the list below doesn't jump. */
+.phoneStatus,
+.phoneReply {
+  margin: 0;
+  min-height: 2.9em;
+  font-size: calc(0.8 * var(--k) * 1cqw);
+  line-height: 1.45;
+}
+
+.phoneStatus {
+  color: rgb(var(--light-rgb) / 0.7);
+}
+
+.phoneReply {
+  font-family: var(--font-display);
+  font-size: calc(1 * var(--k) * 1cqw);
+  line-height: 1.35;
+  color: var(--accent);
+  animation: llamaPop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.phoneDirectory {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(0.5 * var(--k) * 1cqw);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Speed-dial keys: big, plain buttons. */
+.phoneKey {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(0.5 * var(--k) * 1cqw);
+  padding: calc(0.45 * var(--k) * 1cqw) calc(1.1 * var(--k) * 1cqw) calc(0.45 * var(--k) * 1cqw) calc(0.45 * var(--k) * 1cqw);
+  border: calc(0.1 * var(--k) * 1cqw) solid rgb(var(--light-rgb) / 0.45);
+  border-radius: 999px;
+  background: none;
+  font-family: var(--font-ui);
+  font-size: calc(0.8 * var(--k) * 1cqw);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--light);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.phoneKey:hover:not(:disabled),
+.phoneKey:focus-visible,
+.phoneKey[data-lit] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.phoneKey:disabled:not([data-lit]) {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.phoneKey .phoneDigit {
+  width: 2em;
+  height: 2em;
+}
+
+.phoneKey:hover:not(:disabled) .phoneDigit,
+.phoneKey[data-lit] .phoneDigit {
+  background: rgb(0 0 0 / 0.12);
+}
+
+.phoneConnect {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(0.8 * var(--k) * 1cqw);
+  animation: llamaPop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.phoneConnect .chessLink,
+.root[data-compact="true"] .phoneConnect .chessLink {
+  margin-top: 0;
+}
+
+.phoneCopy {
+  padding: calc(0.4 * var(--k) * 1cqw) calc(0.9 * var(--k) * 1cqw);
+  border: calc(0.1 * var(--k) * 1cqw) solid rgb(var(--light-rgb) / 0.45);
+  border-radius: 999px;
+  background: none;
+  font-family: var(--font-ui);
+  font-size: calc(0.74 * var(--k) * 1cqw);
+  color: var(--light);
+  cursor: pointer;
+}
+
+.phoneCopy:hover,
+.phoneCopy:focus-visible {
+  border-color: var(--light);
+}
+
+
+
+
+.root[data-compact="true"] .phoneKey {
+  min-height: 44px;
+  padding: 0 12px 0 5px;
+  gap: 6px;
+  border-width: 1px;
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .phoneKey .phoneDigit {
+  width: 1.8em;
+  height: 1.8em;
+}
+
+.root[data-compact="true"] .phoneConnect {
+  gap: 10px;
+}
+
+.root[data-compact="true"] .phoneCopy {
+  min-height: 44px;
+  padding: 0 16px;
+  border-width: 1px;
+  font-size: 13px;
+}
+
+
+.phoneLink {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(0.45 * var(--k) * 1cqw);
+  padding: calc(0.35 * var(--k) * 1cqw) calc(0.9 * var(--k) * 1cqw) calc(0.35 * var(--k) * 1cqw) calc(0.35 * var(--k) * 1cqw);
+  border: calc(0.1 * var(--k) * 1cqw) solid rgb(var(--light-rgb) / 0.45);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: calc(0.72 * var(--k) * 1cqw);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--light);
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.phoneLink:hover,
+.phoneLink[data-lit] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.phoneLink[data-lit] {
+  animation: phoneLit 1.2s ease-in-out 2;
+}
+
+@keyframes phoneLit {
+  50% {
+    box-shadow: 0 0 0 calc(0.45 * var(--k) * 1cqw) rgb(240 196 106 / 0.35);
+  }
+}
+
+.phoneLink:focus-visible {
+  outline: calc(0.2 * var(--k) * 1cqw) solid var(--light);
+  outline-offset: calc(0.2 * var(--k) * 1cqw);
+}
+
+/* The number that "calls" this link on the dial. */
+.phoneDigit {
+  display: inline-grid;
+  place-items: center;
+  width: 1.9em;
+  height: 1.9em;
+  border-radius: 50%;
+  background: rgb(var(--light-rgb) / 0.14);
+  font-family: var(--font-display);
+  letter-spacing: 0;
+}
+
+.phoneLink:hover .phoneDigit,
+.phoneLink[data-lit] .phoneDigit {
+  background: rgb(0 0 0 / 0.12);
+}
+
+
+.root[data-reduced="true"] .phoneReply,
+.root[data-reduced="true"] .phoneLink[data-lit] {
+  animation-duration: 0.01s;
+}
+
+/* ---- Notes from mentees: a deck of paper notes ---- */
+
+.notes {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(1 * var(--k) * 1cqw);
+  padding: calc(1.8 * var(--k) * 1cqw) calc(2.4 * var(--k) * 1cqw) calc(1.8 * var(--k) * 1cqw);
+  background: rgb(var(--scrim-rgb) / 0.78);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border-radius: calc(0.6 * var(--k) * 1cqw);
+  color: var(--light);
+  text-align: center;
+}
+
+.notesHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.3 * var(--k) * 1cqw);
+}
+
+.noteDeck {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: min(100%, calc(32 * var(--k) * 1cqw));
+  margin-top: calc(0.4 * var(--k) * 1cqw);
+  cursor: pointer;
+  outline: none;
+  perspective: 900px;
+}
+
+.noteDeck:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: calc(0.6 * var(--k) * 1cqw);
+  border-radius: calc(0.4 * var(--k) * 1cqw);
+}
+
+.noteTop,
+.noteLeaveNext,
+.noteLeavePrev,
+.noteUnder1,
+.noteUnder2 {
+  position: absolute;
+  inset: 0;
+}
+
+.note {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: calc(1.6 * var(--k) * 1cqw) calc(1.9 * var(--k) * 1cqw) calc(1.3 * var(--k) * 1cqw);
+  border-radius: calc(0.2 * var(--k) * 1cqw);
+  background: #fbf6e9;
+  color: var(--ink);
+  text-align: left;
+  box-shadow: 0 calc(0.3 * var(--k) * 1cqw) calc(1.2 * var(--k) * 1cqw) rgb(0 0 0 / 0.35);
+}
+
+.note[data-tone="1"] {
+  background: #fbeeb0;
+}
+.note[data-tone="2"] {
+  background: #f6dfd8;
+}
+.note[data-tone="3"] {
+  background: #e2eedf;
+}
+
+.noteUnder1 {
+  rotate: 3deg;
+  translate: calc(0.5 * var(--k) * 1cqw) calc(0.3 * var(--k) * 1cqw);
+  filter: brightness(0.92);
+}
+
+.noteUnder2 {
+  rotate: -4deg;
+  translate: calc(-0.6 * var(--k) * 1cqw) calc(0.5 * var(--k) * 1cqw);
+  filter: brightness(0.85);
+}
+
+.noteTop {
+  rotate: -1deg;
+  animation: noteUp 0.35s ease both;
+}
+
+@keyframes noteUp {
+  from {
+    rotate: 3deg;
+    translate: calc(0.5 * var(--k) * 1cqw) calc(0.3 * var(--k) * 1cqw);
+  }
+}
+
+.noteLeaveNext {
+  z-index: 2;
+  animation: noteToss 0.38s cubic-bezier(0.4, 0, 0.7, 0.4) forwards;
+}
+
+.noteLeavePrev {
+  z-index: 2;
+  animation: noteTossBack 0.38s cubic-bezier(0.4, 0, 0.7, 0.4) forwards;
+}
+
+@keyframes noteToss {
+  from {
+    rotate: -1deg;
+  }
+  to {
+    rotate: 14deg;
+    translate: 120% -8%;
+    opacity: 0;
+  }
+}
+
+@keyframes noteTossBack {
+  from {
+    rotate: -1deg;
+  }
+  to {
+    rotate: -14deg;
+    translate: -120% -8%;
+    opacity: 0;
+  }
+}
+
+.noteMark {
+  height: calc(2.2 * var(--k) * 1cqw);
+  font-family: var(--font-display);
+  font-size: calc(4.4 * var(--k) * 1cqw);
+  line-height: 1;
+  color: #c2475f;
+}
+
+.noteQuote {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: calc(1.08 * var(--k) * 1cqw);
+  line-height: 1.6;
+}
+
+.noteBy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 calc(0.4 * var(--k) * 1cqw);
+  margin-top: calc(1 * var(--k) * 1cqw);
+  padding-top: calc(0.8 * var(--k) * 1cqw);
+  border-top: 1px solid rgb(var(--ink-rgb) / 0.15);
+  font-family: var(--font-ui);
+  font-size: calc(0.78 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.85);
+}
+
+.noteBy strong {
+  color: var(--ink);
+}
+
+.noteDate {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  letter-spacing: 0.08em;
+}
+
+.noteTranslated {
+  flex-basis: 100%;
+  margin-top: calc(0.25 * var(--k) * 1cqw);
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--ink-rgb) / 0.6);
+}
+
+.notesNav {
+  display: flex;
+  align-items: center;
+  gap: calc(1 * var(--k) * 1cqw);
+}
+
+.notesArrow {
+  width: calc(2.2 * var(--k) * 1cqw);
+  height: calc(2.2 * var(--k) * 1cqw);
+  padding: 0;
+  border: calc(0.1 * var(--k) * 1cqw) solid rgb(var(--light-rgb) / 0.5);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--light);
+  font-size: calc(1.1 * var(--k) * 1cqw);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.notesArrow:hover,
+.notesArrow:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.notesCount {
+  min-width: calc(3.5 * var(--k) * 1cqw);
+  font-family: var(--font-mono);
+  font-size: calc(0.8 * var(--k) * 1cqw);
+  letter-spacing: 0.14em;
+  color: rgb(var(--light-rgb) / 0.85);
+}
+
+.notesLinks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: calc(1.2 * var(--k) * 1cqw);
+}
+
+/* The chessboard's button brings a top margin on phones; here the two links sit on one centred line. */
+.root .notesLinks .chessLink,
+.root[data-compact="true"] .notesLinks .chessLink {
+  margin-top: 0;
+}
+
+.notesLinkQuiet {
+  font-family: var(--font-ui);
+  font-size: calc(0.8 * var(--k) * 1cqw);
+  color: var(--light);
+  text-underline-offset: 0.25em;
+}
+
+.notesLinkQuiet:hover,
+.notesLinkQuiet:focus-visible {
+  color: var(--accent);
+}
+
+.root[data-reduced="true"] .noteTop,
+.root[data-reduced="true"] .noteLeaveNext,
+.root[data-reduced="true"] .noteLeavePrev {
+  animation-duration: 0.01s;
+}
+
+.root[data-compact="true"][data-skin="notes"] .shell {
+  height: min(calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom)), 600px);
+}
+
+.root[data-compact="true"] .notes {
+  gap: 12px;
+  padding: 18px 16px 18px;
+  border-radius: 8px;
+}
+
+.root[data-compact="true"] .noteDeck {
+  width: 100%;
+}
+
+.root[data-compact="true"] .note {
+  padding: 18px 18px 14px;
+  border-radius: 3px;
+}
+
+.root[data-compact="true"] .noteMark {
+  height: 26px;
+  font-size: 52px;
+}
+
+.root[data-compact="true"] .noteQuote {
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.root[data-compact="true"] .noteBy {
+  margin-top: 10px;
+  padding-top: 8px;
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .notesArrow {
+  width: 44px;
+  height: 44px;
+  border-width: 1px;
+  font-size: 20px;
+}
+
+.root[data-compact="true"] .notesCount {
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .notesLinkQuiet {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .notesLinks {
+  gap: 2px 20px;
+}
+
+/* ---- Where I studied: the diploma unrolls from its tube ---- */
+
+.diploma {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.7 * var(--k) * 1cqw);
+  padding: calc(1.4 * var(--k) * 1cqw) calc(2.4 * var(--k) * 1cqw) calc(1.6 * var(--k) * 1cqw);
+  background: rgb(var(--scrim-rgb) / 0.78);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border-radius: calc(0.6 * var(--k) * 1cqw);
+  color: var(--light);
+  text-align: center;
+}
+
+.diplomaStage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: calc(36 * var(--k) * 1cqw);
+  max-width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The tube lies across the top; the diploma hangs from it. */
+.diplomaTube {
+  position: relative;
+  z-index: 2;
+  flex: none;
+  width: 104%;
+  height: calc(2 * var(--k) * 1cqw);
+  border-radius: calc(1 * var(--k) * 1cqw);
+  background: linear-gradient(180deg, #3a5294 0%, #213b82 45%, #142554 100%);
+  box-shadow: 0 calc(0.3 * var(--k) * 1cqw) calc(0.8 * var(--k) * 1cqw) rgb(0 0 0 / 0.45);
+}
+
+.diplomaTubeBand {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(0.35 * var(--k) * 1cqw);
+  background: linear-gradient(180deg, #e7c77e, #b08a3e 55%, #7d5f22);
+}
+
+.diplomaTubeBand:first-child {
+  left: 7%;
+}
+
+.diplomaTubeBand:nth-child(2) {
+  right: 9%;
+}
+
+/* The cap comes off to the right before the paper unrolls. */
+.diplomaTubeCap {
+  position: absolute;
+  top: calc(-0.15 * var(--k) * 1cqw);
+  right: calc(-0.9 * var(--k) * 1cqw);
+  width: calc(2.4 * var(--k) * 1cqw);
+  height: calc(2.3 * var(--k) * 1cqw);
+  border-radius: calc(0.5 * var(--k) * 1cqw) calc(1.1 * var(--k) * 1cqw) calc(1.1 * var(--k) * 1cqw) calc(0.5 * var(--k) * 1cqw);
+  background: linear-gradient(180deg, #3f5aa0, #1b3170);
+  animation: diplomaCap 0.5s cubic-bezier(0.5, 0, 0.7, 0.4) 0.25s forwards;
+}
+
+@keyframes diplomaCap {
+  40% {
+    translate: calc(1.2 * var(--k) * 1cqw) calc(-0.8 * var(--k) * 1cqw);
+    rotate: 20deg;
+  }
+  to {
+    translate: calc(3.6 * var(--k) * 1cqw) calc(3 * var(--k) * 1cqw);
+    rotate: 70deg;
+    opacity: 0;
+  }
+}
+
+.diplomaUnroll {
+  position: relative;
+  flex: none;
+  width: 96%;
+  aspect-ratio: 1024 / 724;
+  margin-top: calc(-0.8 * var(--k) * 1cqw);
+}
+
+.diplomaPaper {
+  position: absolute;
+  inset: 0;
+  display: block;
+  padding: 0;
+  border: none;
+  background: #f4f4f2;
+  box-shadow: 0 calc(0.4 * var(--k) * 1cqw) calc(1.4 * var(--k) * 1cqw) rgb(0 0 0 / 0.4);
+  cursor: zoom-in;
+  clip-path: inset(0 0 100% 0);
+  animation: diplomaUnroll 1.1s cubic-bezier(0.3, 0.6, 0.3, 1) 0.6s forwards;
+}
+
+.diplomaPaper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.diplomaPaper:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: calc(0.3 * var(--k) * 1cqw);
+}
+
+@keyframes diplomaUnroll {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* The rolled-up end of the paper, travelling down as it unrolls, and resting at the foot. */
+.diplomaRoll {
+  position: absolute;
+  left: -1%;
+  right: -1%;
+  top: 0;
+  height: calc(1.2 * var(--k) * 1cqw);
+  translate: 0 -50%;
+  border-radius: calc(0.6 * var(--k) * 1cqw);
+  background: linear-gradient(180deg, #fbf4e2 0%, #e6d4ad 55%, #c7b083 100%);
+  box-shadow: 0 calc(0.25 * var(--k) * 1cqw) calc(0.5 * var(--k) * 1cqw) rgb(0 0 0 / 0.35);
+  animation: diplomaRoll 1.1s cubic-bezier(0.3, 0.6, 0.3, 1) 0.6s forwards;
+}
+
+@keyframes diplomaRoll {
+  to {
+    top: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.diplomaNote {
+  margin: calc(0.4 * var(--k) * 1cqw) 0 0;
+  max-width: calc(36 * var(--k) * 1cqw);
+  font-family: var(--font-ui);
+  font-size: calc(0.9 * var(--k) * 1cqw);
+  line-height: 1.45;
+  color: rgb(var(--light-rgb) / 0.9);
+}
+
+.courses {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.5 * var(--k) * 1cqw);
+}
+
+.coursesLabel {
+  font-family: var(--font-mono);
+  font-size: calc(0.66 * var(--k) * 1cqw);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(var(--light-rgb) / 0.7);
+}
+
+/* The courses: small certificates in a loose fan; one lifts and straightens when pointed at. */
+.courseFan {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  /* room below for the outer certificates, which sit a little lower in the fan */
+  padding: calc(0.6 * var(--k) * 1cqw) 0 calc(1.3 * var(--k) * 1cqw);
+  list-style: none;
+}
+
+.course {
+  position: relative;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.2 * var(--k) * 1cqw);
+  width: calc(7.4 * var(--k) * 1cqw);
+  min-height: calc(6.2 * var(--k) * 1cqw);
+  margin: 0 calc(-0.25 * var(--k) * 1cqw);
+  padding: calc(1 * var(--k) * 1cqw) calc(0.7 * var(--k) * 1cqw) calc(0.6 * var(--k) * 1cqw);
+  border-radius: calc(0.2 * var(--k) * 1cqw);
+  background: #faf4e6;
+  color: #2b2433;
+  text-align: left;
+  box-shadow: 0 calc(0.25 * var(--k) * 1cqw) calc(0.7 * var(--k) * 1cqw) rgb(0 0 0 / 0.35);
+  rotate: calc(var(--d) * 2.4deg);
+  translate: 0 calc(var(--d) * var(--d) * 0.12 * var(--k) * 1cqw);
+  transition: rotate 0.2s ease, translate 0.2s ease, scale 0.2s ease;
+  outline: none;
+  animation: courseIn 0.45s cubic-bezier(0.25, 1.3, 0.5, 1) both;
+  animation-delay: calc(1.5s + var(--i) * 0.06s);
+}
+
+.course::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(0.45 * var(--k) * 1cqw);
+  border-radius: calc(0.2 * var(--k) * 1cqw) calc(0.2 * var(--k) * 1cqw) 0 0;
+  background: var(--tone);
+}
+
+@keyframes courseIn {
+  from {
+    opacity: 0;
+    translate: 0 calc(1.5 * var(--k) * 1cqw);
+  }
+}
+
+.course:hover,
+.course:focus-visible {
+  z-index: 2;
+  rotate: 0deg;
+  translate: 0 calc(-0.6 * var(--k) * 1cqw);
+  scale: 1.08;
+}
+
+.course:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent), 0 calc(0.25 * var(--k) * 1cqw) calc(0.7 * var(--k) * 1cqw) rgb(0 0 0 / 0.35);
+}
+
+.courseSchool {
+  font-family: var(--font-ui);
+  font-size: calc(0.62 * var(--k) * 1cqw);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tone);
+}
+
+.courseName {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: calc(0.8 * var(--k) * 1cqw);
+  line-height: 1.25;
+}
+
+.courseYear {
+  font-family: var(--font-mono);
+  font-size: calc(0.6 * var(--k) * 1cqw);
+  color: rgb(43 36 51 / 0.65);
+}
+
+.root[data-reduced="true"] .diplomaTubeCap,
+.root[data-reduced="true"] .diplomaPaper,
+.root[data-reduced="true"] .diplomaRoll,
+.root[data-reduced="true"] .course {
+  animation-duration: 0.01s;
+  animation-delay: 0s;
+}
+
+/* Phone: the diploma across the width, the courses in a row to swipe. */
+.root[data-compact="true"][data-skin="diploma"] .shell {
+  height: min(calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom)), 620px);
+}
+
+.root[data-compact="true"] .diploma {
+  gap: 10px;
+  padding: 16px 14px 16px;
+  border-radius: 8px;
+}
+
+.root[data-compact="true"] .diplomaStage {
+  width: 100%;
+}
+
+.root[data-compact="true"] .diplomaTube {
+  height: 18px;
+  border-radius: 9px;
+}
+
+.root[data-compact="true"] .diplomaTubeBand {
+  width: 3px;
+}
+
+.root[data-compact="true"] .diplomaTubeCap {
+  width: 22px;
+  height: 21px;
+  right: -8px;
+}
+
+.root[data-compact="true"] .diplomaPaper {
+  box-shadow: 0 4px 14px rgb(0 0 0 / 0.4);
+}
+
+.root[data-compact="true"] .diplomaRoll {
+  height: 11px;
+}
+
+
+
+
+
+
+
+
+
+
+.root[data-compact="true"] .diplomaNote {
+  max-width: none;
+  font-size: 13.5px;
+}
+
+.root[data-compact="true"] .coursesLabel {
+  font-size: 10px;
+}
+
+/* the row of certificates scrolls sideways within the panel instead of pushing past it */
+.root[data-compact="true"] .courses {
+  align-self: stretch;
+  min-width: 0;
+}
+
+.root[data-compact="true"] .courseFan {
+  justify-content: flex-start;
+  width: 100%;
+  gap: 10px;
+  padding: 6px 4px 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.root[data-compact="true"] .course {
+  width: 118px;
+  min-height: 92px;
+  margin: 0;
+  padding: 14px 10px 8px;
+  rotate: none;
+  translate: none;
+  scroll-snap-align: start;
+}
+
+.root[data-compact="true"] .courseSchool {
+  font-size: 9.5px;
+}
+
+.root[data-compact="true"] .courseName {
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .courseYear {
+  font-size: 10px;
+}
+
+/* ---- Résumé: sheets of paper, turned like pages, never scrolled ---- */
+
+.resume {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(0.3 * var(--k) * 1cqw);
+  background: #fdfaf3;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgb(var(--ink-rgb) / 0.06);
+}
+
+.resumeSheet {
+  --pad-x: calc(3.6 * var(--k) * 1cqw);
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: calc(3 * var(--k) * 1cqw) var(--pad-x) calc(1.2 * var(--k) * 1cqw);
+  color: var(--ink);
+  font-family: var(--font-ui);
+}
+
+.resumeHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: calc(2 * var(--k) * 1cqw);
+  margin-bottom: calc(1.6 * var(--k) * 1cqw);
+  padding-bottom: calc(1.2 * var(--k) * 1cqw);
+  border-bottom: 2px solid var(--ink);
+}
+
+.resumeHead[hidden] {
+  display: none;
+}
+
+.resumeName {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: calc(2.7 * var(--k) * 1cqw);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.resumeRole {
+  margin: calc(0.5 * var(--k) * 1cqw) 0 0;
+  font-size: calc(0.78 * var(--k) * 1cqw);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #b2364f;
+}
+
+.resumeContact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: calc(0.15 * var(--k) * 1cqw);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: calc(0.74 * var(--k) * 1cqw);
+  text-align: right;
+}
+
+.resumeContact a {
+  color: var(--ink);
+  text-underline-offset: 0.2em;
+}
+
+.resumeContact a:hover,
+.resumeContact a:focus-visible {
+  color: #b2364f;
+}
+
+.resumeBody {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.75fr 1fr;
+  align-content: start;
+  gap: calc(2.6 * var(--k) * 1cqw);
+  animation: resumeIn 0.3s ease both;
+}
+
+.resumeBodySingle {
+  grid-template-columns: 1fr;
+}
+
+@keyframes resumeIn {
+  from {
+    opacity: 0;
+    translate: calc(0.8 * var(--k) * 1cqw) 0;
+  }
+}
+
+.resumeSide {
+  padding-left: calc(1.8 * var(--k) * 1cqw);
+  border-left: 1px solid rgb(var(--ink-rgb) / 0.15);
+}
+
+.resumeSide:empty {
+  border-left: none;
+}
+
+/* One block of the résumé (a job, a list, a testimonial); its bottom padding is the space before the next. */
+.resumeBlock {
+  display: flow-root;
+  padding-bottom: calc(1.3 * var(--k) * 1cqw);
+}
+
+.resumeHeadingProbe {
+  display: flow-root;
+}
+
+.resumeBlock .line {
+  font-size: calc(0.84 * var(--k) * 1cqw);
+  line-height: 1.55;
+}
+
+.resumeBlock .line + .line {
+  margin-top: calc(0.5 * var(--k) * 1cqw);
+}
+
+.resumeH {
+  margin: 0 0 calc(0.7 * var(--k) * 1cqw);
+  font-size: calc(0.66 * var(--k) * 1cqw);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #b2364f;
+}
+
+.resumeCont {
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: rgb(var(--ink-rgb) / 0.55);
+}
+
+.resumeCompany {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: calc(1.2 * var(--k) * 1cqw);
+}
+
+.resumeRoleBlock {
+  margin-top: calc(0.35 * var(--k) * 1cqw);
+}
+
+.resumeRoleBlock + .resumeRoleBlock {
+  margin-top: calc(0.8 * var(--k) * 1cqw);
+}
+
+.resumeRoleLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: calc(1 * var(--k) * 1cqw);
+}
+
+.resumeRoleTitle {
+  font-size: calc(0.86 * var(--k) * 1cqw);
+  font-weight: 700;
+}
+
+.resumeDates {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: calc(0.68 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.65);
+}
+
+.resumeDetail {
+  margin: calc(0.1 * var(--k) * 1cqw) 0 0;
+  font-size: calc(0.76 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.7);
+}
+
+.resumeText {
+  margin: calc(0.3 * var(--k) * 1cqw) 0 0;
+  font-size: calc(0.82 * var(--k) * 1cqw);
+  line-height: 1.55;
+}
+
+.resumeList {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.6 * var(--k) * 1cqw);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resumeList li {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.1 * var(--k) * 1cqw);
+  font-size: calc(0.74 * var(--k) * 1cqw);
+  line-height: 1.4;
+}
+
+.resumeList strong {
+  font-weight: 700;
+}
+
+.resumeList span {
+  color: rgb(var(--ink-rgb) / 0.72);
+}
+
+.resumeQuote {
+  margin: 0;
+  padding-left: calc(0.9 * var(--k) * 1cqw);
+  border-left: 2px solid #b2364f;
+}
+
+.resumeQuote blockquote {
+  margin: 0;
+}
+
+.resumeQuote p {
+  margin: 0 0 calc(0.4 * var(--k) * 1cqw);
+  font-size: calc(0.8 * var(--k) * 1cqw);
+  line-height: 1.55;
+}
+
+.resumeQuote figcaption {
+  margin-top: calc(0.5 * var(--k) * 1cqw);
+  font-size: calc(0.72 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.75);
+}
+
+.resumeQuote figcaption strong {
+  color: var(--ink);
+}
+
+/* Page number and the arrows, at the foot of the sheet like a printed document. */
+.resumePager {
+  flex: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: calc(0.7 * var(--k) * 1cqw);
+  min-height: calc(2.4 * var(--k) * 1cqw);
+  padding-top: calc(0.6 * var(--k) * 1cqw);
+  border-top: 1px solid rgb(var(--ink-rgb) / 0.12);
+  font-family: var(--font-mono);
+  font-size: calc(0.7 * var(--k) * 1cqw);
+  letter-spacing: 0.12em;
+  color: rgb(var(--ink-rgb) / 0.7);
+}
+
+.resumeTurn {
+  width: calc(1.9 * var(--k) * 1cqw);
+  height: calc(1.9 * var(--k) * 1cqw);
+  padding: 0;
+  border: 1px solid rgb(var(--ink-rgb) / 0.35);
+  border-radius: 50%;
+  background: none;
+  color: var(--ink);
+  font-size: calc(0.95 * var(--k) * 1cqw);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.resumeTurn:hover:not(:disabled),
+.resumeTurn:focus-visible {
+  border-color: #b2364f;
+  background: #b2364f;
+  color: #fff;
+}
+
+.resumeTurn:disabled {
+  visibility: hidden;
+}
+
+/* The off-screen copy used to measure blocks: same widths as the real columns, never seen. */
+.resumeMeasure {
+  position: absolute;
+  top: 0;
+  left: var(--pad-x);
+  right: var(--pad-x);
+  visibility: hidden;
+  pointer-events: none;
+  animation: none;
+}
+
+.root[data-reduced="true"] .resumeBody {
+  animation: none;
+}
+
+/* Phone: one column. */
+.root[data-compact="true"][data-skin="resume"] .shell {
+  height: min(calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom)), 720px);
+}
+
+.root[data-compact="true"] .resumeSheet {
+  --pad-x: 20px;
+  padding: 22px var(--pad-x) 10px;
+}
+
+.root[data-compact="true"] .resumeHead {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+}
+
+.root[data-compact="true"] .resumeName {
+  font-size: 30px;
+}
+
+.root[data-compact="true"] .resumeRole {
+  margin-top: 6px;
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .resumeContact {
+  align-items: flex-start;
+  font-size: 13px;
+  text-align: left;
+}
+
+.root[data-compact="true"] .resumeBlock {
+  padding-bottom: 16px;
+}
+
+.root[data-compact="true"] .resumeBlock .line,
+.root[data-compact="true"] .resumeText {
+  font-size: 14px;
+}
+
+.root[data-compact="true"] .resumeH {
+  margin-bottom: 10px;
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .resumeCompany {
+  font-size: 18px;
+}
+
+.root[data-compact="true"] .resumeRoleTitle {
+  font-size: 14px;
+}
+
+.root[data-compact="true"] .resumeRoleLine {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.root[data-compact="true"] .resumeDates,
+.root[data-compact="true"] .resumeDetail {
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .resumeList li {
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .resumeQuote p {
+  font-size: 13.5px;
+}
+
+.root[data-compact="true"] .resumeQuote figcaption {
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .resumePager {
+  gap: 12px;
+  min-height: 52px;
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .resumeTurn {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+}
+
+/* ---- A postcard from home: front and back, flipped ---- */
+
+.postcardWrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.5 * var(--k) * 1cqw);
+  padding: calc(1.8 * var(--k) * 1cqw) calc(2.4 * var(--k) * 1cqw);
+  background: rgb(var(--scrim-rgb) / 0.78);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border-radius: calc(0.6 * var(--k) * 1cqw);
+  color: var(--light);
+  text-align: center;
+}
+
+.postcardWrap > .chessLink {
+  margin-top: calc(0.8 * var(--k) * 1cqw);
+  border: none;
+  cursor: pointer;
+}
+
+.postcard {
+  flex: 1;
+  min-height: 0;
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: 3 / 2;
+  margin-top: calc(1 * var(--k) * 1cqw);
+  padding: 0;
+  border: none;
+  background: none;
+  perspective: 1600px;
+  cursor: pointer;
+}
+
+.postcard:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: calc(0.4 * var(--k) * 1cqw);
+  border-radius: calc(0.4 * var(--k) * 1cqw);
+}
+
+.postcardInner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.3, 0.7, 0.2, 1);
+  rotate: 0 0 1 -1.5deg;
+}
+
+.postcard[data-back] .postcardInner {
+  transform: rotateY(180deg);
+}
+
+.postcardFront,
+.postcardBack {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: calc(0.5 * var(--k) * 1cqw);
+  box-shadow: 0 calc(0.5 * var(--k) * 1cqw) calc(1.6 * var(--k) * 1cqw) rgb(0 0 0 / 0.4);
+  overflow: hidden;
+}
+
+.postcardFront svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* The back: the note on the left, stamp and address on the right, the little map along the bottom. */
+.postcardBack {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  grid-template-rows: 1fr auto;
+  column-gap: calc(1.6 * var(--k) * 1cqw);
+  padding: calc(1.6 * var(--k) * 1cqw) calc(1.8 * var(--k) * 1cqw) calc(1 * var(--k) * 1cqw);
+  background: #fbf6ea;
+  color: #3a2733;
+  text-align: left;
+  transform: rotateY(180deg);
+}
+
+.postcardBack::before {
+  content: "";
+  position: absolute;
+  top: 12%;
+  bottom: 30%;
+  left: 55.5%;
+  width: 1px;
+  background: rgb(58 39 51 / 0.25);
+}
+
+.postcardMessage {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.35 * var(--k) * 1cqw);
+  font-family: var(--font-hand);
+  font-size: calc(1.9 * var(--k) * 1cqw);
+  line-height: 1.22;
+  color: #2b3a6b;
+}
+
+.postcardLine:last-child {
+  align-self: flex-end;
+}
+
+.postcardSide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.postcardStamps {
+  position: relative;
+  display: block;
+  width: calc(5 * var(--k) * 1cqw);
+}
+
+.postcardStamp {
+  display: block;
+  width: 100%;
+  rotate: 3deg;
+}
+
+.postcardPostmark {
+  position: absolute;
+  left: -55%;
+  top: 30%;
+  width: 80%;
+  rotate: -12deg;
+}
+
+.postcardAddress {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  gap: calc(0.5 * var(--k) * 1cqw);
+  margin-top: auto;
+  font-family: var(--font-hand);
+  font-size: calc(1.3 * var(--k) * 1cqw);
+  color: #2b3a6b;
+}
+
+.postcardAddress span {
+  padding: 0 0 calc(0.15 * var(--k) * 1cqw) calc(0.6 * var(--k) * 1cqw);
+  border-bottom: 1px solid rgb(58 39 51 / 0.3);
+}
+
+.postcardMap {
+  grid-column: 1 / -1;
+  display: block;
+  margin-top: calc(0.6 * var(--k) * 1cqw);
+}
+
+.postcardRoute {
+  display: block;
+  width: 100%;
+  max-height: calc(6.4 * var(--k) * 1cqw);
+}
+
+.root[data-reduced="true"] .postcardInner {
+  transition-duration: 0.01s;
+}
+
+.root[data-compact="true"][data-skin="postcard"] .shell {
+  height: min(calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom)), 520px);
+}
+
+.root[data-compact="true"] .postcardWrap {
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 14px;
+  border-radius: 8px;
+}
+
+.root[data-compact="true"] .postcard {
+  flex: none;
+  width: 100%;
+  height: auto;
+}
+
+/* Phone: the back is one column — the note, then the map; the stamp sits in the corner. */
+.root[data-compact="true"] .postcardBack {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  padding: 12px 14px 8px;
+}
+
+.root[data-compact="true"] .postcardBack::before,
+.root[data-compact="true"] .postcardAddress,
+.root[data-compact="true"] .postcardPostmark {
+  display: none;
+}
+
+.root[data-compact="true"] .postcardSide {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.root[data-compact="true"] .postcardStamps {
+  width: 34px;
+}
+
+.root[data-compact="true"] .postcardMessage {
+  padding-right: 40px;
+  font-size: 15px;
+  gap: 3px;
+}
+
+.root[data-compact="true"] .postcardMap {
+  margin-top: 2px;
+}
+
+.root[data-compact="true"] .postcardRoute {
+  max-height: 46px;
+}
+
+/* ---- Chessboard: a note, live chess.com ratings, and a profile link ---- */
+
+.chess {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(0.5 * var(--k) * 1cqw);
+  padding: calc(2 * var(--k) * 1cqw) calc(2.4 * var(--k) * 1cqw);
+  background: rgb(var(--scrim-rgb) / 0.78);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border-radius: calc(0.6 * var(--k) * 1cqw);
+  color: var(--light);
+  text-align: center;
+  overflow-y: auto;
+}
+
+/* A little board: 4 x 4 squares is enough to read as one. */
+.chessBoard {
+  flex: none;
+  width: calc(3.6 * var(--k) * 1cqw);
+  aspect-ratio: 1;
+  margin-bottom: calc(0.4 * var(--k) * 1cqw);
+  border-radius: calc(0.2 * var(--k) * 1cqw);
+  background: repeating-conic-gradient(#e9e2d6 0 25%, #8a6a55 0 50%) 0 0 / 50% 50%;
+  background-size: 25% 25%;
+  box-shadow: 0 0 0 calc(0.18 * var(--k) * 1cqw) #5b3a22;
+}
+
+.chessKicker {
+  font-family: var(--font-mono);
+  font-size: calc(0.72 * var(--k) * 1cqw);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgb(var(--light-rgb) / 0.7);
+}
+
+.chessHeading {
+  margin: 0 0 calc(0.3 * var(--k) * 1cqw);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: calc(1.9 * var(--k) * 1cqw);
+}
+
+.chessLine {
+  margin: 0;
+  max-width: calc(30 * var(--k) * 1cqw);
+  font-size: calc(0.95 * var(--k) * 1cqw);
+  line-height: 1.5;
+  color: rgb(var(--light-rgb) / 0.9);
+}
+
+.chessScores {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: calc(0.5 * var(--k) * 1cqw);
+  width: 100%;
+  max-width: calc(32 * var(--k) * 1cqw);
+  margin-top: calc(1 * var(--k) * 1cqw);
+}
+
+.chessTile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.15 * var(--k) * 1cqw);
+  padding: calc(0.7 * var(--k) * 1cqw) calc(0.4 * var(--k) * 1cqw);
+  border: calc(0.08 * var(--k) * 1cqw) solid rgb(var(--light-rgb) / 0.18);
+  border-radius: calc(0.4 * var(--k) * 1cqw);
+}
+
+.chessTileLabel {
+  font-family: var(--font-mono);
+  font-size: calc(0.62 * var(--k) * 1cqw);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(var(--light-rgb) / 0.65);
+}
+
+.chessTileValue {
+  font-family: var(--font-display);
+  font-size: calc(1.6 * var(--k) * 1cqw);
+  line-height: 1.1;
+}
+
+.chessTileBest {
+  font-size: calc(0.66 * var(--k) * 1cqw);
+  color: var(--accent);
+}
+
+.chessConfession {
+  margin: calc(0.3 * var(--k) * 1cqw) 0 0;
+  font-family: var(--font-ui);
+  font-size: calc(0.95 * var(--k) * 1cqw);
+  color: var(--accent);
+}
+
+.chessLink {
+  margin-top: calc(1 * var(--k) * 1cqw);
+  padding: calc(0.55 * var(--k) * 1cqw) calc(1.3 * var(--k) * 1cqw);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: calc(0.8 * var(--k) * 1cqw);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.18s ease;
+}
+
+.chessLink:hover {
+  background: var(--accent-hover);
+}
+
+.chessLink:focus-visible {
+  outline: calc(0.2 * var(--k) * 1cqw) solid var(--light);
+  outline-offset: calc(0.2 * var(--k) * 1cqw);
+}
+
 /* ---- Controls under the shell ---- */
 
 .nav {
@@ -672,6 +3742,11 @@
   align-items: center;
   justify-content: center;
   transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+/* No arrow where there is nowhere to go; its place is kept so the page count doesn't move. */
+.navBtn[aria-disabled="true"] {
+  visibility: hidden;
 }
 
 .navBtn:hover {
@@ -710,7 +3785,201 @@
   border-color: var(--paper);
 }
 
+/* ---- Chapters and reading progress, above the book ---- */
+
+.chapters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(0.5 * var(--k) * 1cqw);
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.12s;
+}
+
+.root[data-nav="true"] .chapters {
+  opacity: 1;
+}
+
+.chapterTabs {
+  display: flex;
+  gap: calc(0.4 * var(--k) * 1cqw);
+}
+
+.chapterTab {
+  padding: calc(0.35 * var(--k) * 1cqw) calc(0.9 * var(--k) * 1cqw);
+  border: calc(0.1 * var(--k) * 1cqw) solid rgba(245, 235, 220, 0.35);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(245, 235, 220, 0.8);
+  font-family: var(--font-mono);
+  font-size: calc(0.72 * var(--k) * 1cqw);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.chapterTab:hover {
+  border-color: rgba(245, 235, 220, 0.7);
+  color: var(--paper);
+}
+
+.chapterTab[aria-current="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.readProgress {
+  width: calc(24 * var(--k) * 1cqw);
+  height: calc(0.22 * var(--k) * 1cqw);
+  border-radius: 999px;
+  background: rgba(245, 235, 220, 0.18);
+  overflow: hidden;
+}
+
+.readProgress > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+/* ---- Desktop: text-only pages flowing across both sides of a spread ---- */
+
+.flow {
+  position: absolute;
+  inset: 0;
+  padding: calc(3.2 * var(--k) * 1cqw);
+  column-count: 2;
+  /* Right padding of the left page + the gutter + left padding of the right page. */
+  column-gap: calc(4.94 * var(--k) * 1cqw);
+  /* Fill the left side to the bottom before carrying on to the right, like a printed page. */
+  column-fill: auto;
+}
+
+.flowHead {
+  margin-bottom: calc(1.2 * var(--k) * 1cqw);
+  break-inside: avoid;
+  break-after: avoid;
+}
+
+.flowHeadNext {
+  margin-top: calc(1.8 * var(--k) * 1cqw);
+}
+
+.flowLines .line + .line,
+.flowLines + .flowLines {
+  margin-top: calc(0.5 * var(--k) * 1cqw);
+}
+
+/* A paragraph moves over to the right side whole rather than breaking mid-sentence across the gutter. */
+.flowLines .line {
+  break-inside: avoid;
+}
+
+.spreadFooter {
+  justify-content: flex-end;
+}
+
+/* ---- Phone: several pages run together in one view ---- */
+
+.articleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: calc(1 * var(--k) * 1cqw);
+  margin-top: calc(1.2 * var(--k) * 1cqw);
+}
+
+/* ---- Closing page: next case, say hello ---- */
+
+.endPage {
+  justify-content: center;
+}
+
+/* Following the last text, in the same flow: kept whole, set off a little from what's above. */
+.endBlock {
+  break-inside: avoid;
+}
+
+.flow .endBlock,
+.articleBlock + .endBlock {
+  margin-top: calc(2.4 * var(--k) * 1cqw);
+  padding-top: calc(1.6 * var(--k) * 1cqw);
+  border-top: calc(0.1 * var(--k) * 1cqw) solid rgba(46, 33, 28, 0.18);
+}
+
+.endActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(1 * var(--k) * 1cqw);
+  margin-top: calc(1.2 * var(--k) * 1cqw);
+}
+
+.endNext {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(0.3 * var(--k) * 1cqw);
+  max-width: calc(22 * var(--k) * 1cqw);
+  padding: calc(1 * var(--k) * 1cqw) calc(1.4 * var(--k) * 1cqw);
+  border: none;
+  border-radius: calc(0.4 * var(--k) * 1cqw);
+  background: var(--ink);
+  color: var(--paper);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.endNext:hover {
+  background: #45332b;
+}
+
+.endNextLabel {
+  font-family: var(--font-mono);
+  font-size: calc(0.72 * var(--k) * 1cqw);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.endNextTitle {
+  font-family: var(--font-display);
+  font-size: calc(1.3 * var(--k) * 1cqw);
+  line-height: 1.2;
+}
+
+.endHello {
+  padding: calc(0.5 * var(--k) * 1cqw) calc(1.2 * var(--k) * 1cqw);
+  border: calc(0.12 * var(--k) * 1cqw) solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: calc(0.82 * var(--k) * 1cqw);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.endHello:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.endNext:focus-visible,
+.endHello:focus-visible {
+  outline: calc(0.2 * var(--k) * 1cqw) solid var(--ink);
+  outline-offset: calc(0.2 * var(--k) * 1cqw);
+}
+
 /* The design has no focus style and the shell suppresses its outline; controls need one for the keyboard. */
+.chapterTab:focus-visible,
 .navBtn:focus-visible,
 .closeBtn:focus-visible,
 .link:focus-visible {
@@ -771,6 +4040,204 @@
   max-height: calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
 }
 
+.root[data-compact="true"][data-skin="globe"] .shell {
+  height: min(calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom)), 560px);
+}
+
+.root[data-compact="true"][data-skin="chess"] .shell {
+  height: auto;
+  max-height: calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+}
+
+.root[data-compact="true"] .chess {
+  position: relative;
+  gap: 8px;
+  padding: 24px 18px 26px;
+  border-radius: 8px;
+}
+
+.root[data-compact="true"] .chessBoard {
+  width: 44px;
+  margin-bottom: 4px;
+  box-shadow: 0 0 0 2px #5b3a22;
+}
+
+.root[data-compact="true"] .chessKicker {
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .chessHeading {
+  font-size: 22px;
+}
+
+.root[data-compact="true"] .chessLine {
+  max-width: 100%;
+  font-size: 15px;
+}
+
+.root[data-compact="true"] .chessScores {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  max-width: 100%;
+  margin-top: 12px;
+}
+
+.root[data-compact="true"] .chessTile {
+  padding: 10px 6px;
+  border-width: 1px;
+  border-radius: 6px;
+}
+
+.root[data-compact="true"] .chessTileLabel {
+  font-size: 10px;
+}
+
+.root[data-compact="true"] .chessTileValue {
+  font-size: 24px;
+}
+
+.root[data-compact="true"] .chessTileBest {
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .chessConfession {
+  font-size: 15px;
+}
+
+.root[data-compact="true"] .chessLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 14px;
+  padding: 0 20px;
+  font-size: 12px;
+}
+
+.root[data-compact="true"][data-skin="llama"] .shell {
+  height: min(calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom)), 560px);
+}
+
+.root[data-compact="true"][data-skin="phone"] .shell {
+  height: min(calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom)), 640px);
+}
+
+.root[data-compact="true"] .phone {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  padding: 14px 16px 18px;
+  border-radius: 8px;
+}
+
+.root[data-compact="true"] .phoneStage {
+  flex: none;
+  height: min(250px, 30dvh);
+  min-height: 0;
+}
+
+.root[data-compact="true"] .phoneText {
+  gap: 10px;
+}
+
+.root[data-compact="true"] .phoneHeading {
+  font-size: 22px;
+}
+
+.root[data-compact="true"] .phoneIntro {
+  font-size: 14px;
+}
+
+.root[data-compact="true"] .phoneStatus {
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .phoneReply {
+  font-size: 15px;
+}
+
+.root[data-compact="true"] .phoneDirectory {
+  gap: 6px;
+}
+
+.root[data-compact="true"] .phoneLink {
+  min-height: 44px;
+  gap: 8px;
+  padding: 0 16px 0 6px;
+  border-width: 1px;
+  font-size: 12px;
+}
+
+
+/* The chapter bar takes a row above the book; the sheet gives it back. */
+.root[data-compact="true"][data-chapters="true"] .shell {
+  height: min(calc(100dvh - 212px - env(safe-area-inset-top) - env(safe-area-inset-bottom)), 600px);
+}
+
+.root[data-compact="true"] .chapters {
+  gap: 8px;
+  max-width: calc(100% - 36px);
+}
+
+.root[data-compact="true"] .chapterTabs {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.root[data-compact="true"] .chapterTab {
+  min-height: 32px;
+  padding: 0 14px;
+  border-width: 1px;
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .readProgress {
+  width: min(100%, 320px);
+  height: 3px;
+}
+
+.root[data-compact="true"] .articleBlock {
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.root[data-compact="true"] .articleHeading {
+  margin-top: 12px;
+}
+
+.root[data-compact="true"] .articleBlock + .endBlock {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top-width: 1px;
+}
+
+.root[data-compact="true"] .endActions {
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.root[data-compact="true"] .endNext {
+  max-width: 100%;
+  padding: 14px 16px;
+  border-radius: 6px;
+}
+
+.root[data-compact="true"] .endNextLabel {
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .endNextTitle {
+  font-size: 18px;
+}
+
+.root[data-compact="true"] .endHello {
+  min-height: 44px;
+  padding: 0 20px;
+  border-width: 1px;
+  font-size: 12px;
+}
+
 /* A closed book is a single portrait cover, so it is not shifted half a spread off-centre. */
 .root[data-compact="true"][data-open="true"][data-skin="book"] .shell,
 .root[data-compact="true"][data-open="true"][data-skin="book"][data-cover-open="true"] .shell {
@@ -792,6 +4259,17 @@
 
 .root[data-compact="true"] .pageLeft {
   gap: 12px;
+}
+
+/* A full-page cover on a phone: the whole picture, centred, on its own background colour. */
+.root[data-compact="true"] .pageFull {
+  padding: 0;
+  gap: 0;
+}
+
+.root[data-compact="true"] .pageFull .plateImage img {
+  object-fit: contain;
+  object-position: center;
 }
 
 .root[data-compact="true"] .plate {
@@ -818,9 +4296,8 @@
   font-size: 22px;
 }
 
-.root[data-compact="true"] .descLabel {
-  margin: 18px 0 8px;
-  font-size: 11px;
+.root[data-compact="true"] .heading + .lines {
+  margin-top: 16px;
 }
 
 .root[data-compact="true"] .lines {
@@ -831,6 +4308,10 @@
 .root[data-compact="true"] .line {
   font-size: 15px;
   line-height: 1.6;
+}
+
+.root[data-compact="true"] .lines .line.item + .line.item {
+  margin-top: -4px;
 }
 
 .root[data-compact="true"] .openingLabel {
@@ -900,10 +4381,6 @@
   font-size: 22px;
 }
 
-.root[data-compact="true"] .frameDescLabel {
-  margin: 4px 0;
-}
-
 .root[data-compact="true"] .frameLines .line {
   font-size: 15px;
   line-height: 1.6;
@@ -919,6 +4396,89 @@
   padding: 0 16px;
   border-width: 1px;
   font-size: 11px;
+}
+
+.root[data-compact="true"] .globe {
+  gap: 10px;
+  padding: 14px 12px 18px;
+  border-radius: 8px;
+}
+
+.root[data-compact="true"] .globeHeading {
+  font-size: 20px;
+}
+
+.root[data-compact="true"] .globeStat {
+  font-size: 14px;
+}
+
+.root[data-compact="true"] .globeStat strong {
+  font-size: 19px;
+}
+
+.root[data-compact="true"] .globeStage {
+  min-height: 220px;
+}
+
+.root[data-compact="true"] .globeLabel {
+  padding: 5px 12px;
+  border-width: 1px;
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .progressBar {
+  width: min(100%, 220px);
+  height: 6px;
+  margin-top: 2px;
+}
+
+.root[data-compact="true"] .globeChips {
+  gap: 6px;
+  max-width: 100%;
+  margin-top: 4px;
+}
+
+.root[data-compact="true"] .globeChip {
+  min-height: 32px;
+  padding: 4px 12px;
+  border-width: 1px;
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .llama {
+  gap: 10px;
+  padding: 14px 12px 18px;
+  border-radius: 8px;
+}
+
+.root[data-compact="true"] .llamaStage {
+  min-height: 220px;
+}
+
+.root[data-compact="true"] .llamaFloat {
+  font-size: 20px;
+}
+
+.root[data-compact="true"] .llamaMessage {
+  max-width: 280px;
+  font-size: 15px;
+}
+
+.root[data-compact="true"] .llamaHeading {
+  font-size: 20px;
+}
+
+.root[data-compact="true"] .llamaHint {
+  max-width: 280px;
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .llamaCount {
+  font-size: 14px;
+}
+
+.root[data-compact="true"] .llamaCount strong {
+  font-size: 19px;
 }
 
 /* Controls */
@@ -975,6 +4535,10 @@
   align-items: flex-start;
 }
 
+.root[data-compact="true"] .lightbox:has(.lightboxFit) {
+  align-items: center;
+}
+
 .root[data-compact="true"] .lightboxPics {
   flex-direction: column;
   align-items: stretch;
@@ -993,6 +4557,22 @@
   height: auto;
 }
 
+/* …except a photo, which is shown whole within the screen however tall it is. */
+.root[data-compact="true"] .lightboxPics.lightboxFit {
+  height: 100%;
+  min-height: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.root[data-compact="true"] .lightboxFit img {
+  flex: 0 1 auto;
+  width: auto;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .root[data-compact="true"] .lightboxClose {
   right: auto;
   left: 50%;
@@ -1004,6 +4584,2355 @@
   font-size: 12px;
 }
 
-.root[data-compact="true"] .titleHeading {
+
+/* ---- Career path: stops down a line ---- */
+
+.timeline,
+.hobbies {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.timelineList {
+  --year: 3.3em;
+  --dot: 1.9em;
+  --gap: calc(1.5 * var(--k) * 1cqw);
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap);
+  margin: calc(1.2 * var(--k) * 1cqw) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: calc(0.95 * var(--k) * 1cqw);
+}
+
+/* The line runs from each dot down to the next; the pieces draw themselves in turn when the page is first seen. */
+.timelineStop:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 0.75em;
+  left: calc(var(--year) + var(--dot) / 2 - 1px);
+  width: 2px;
+  height: calc(100% + var(--gap));
+  background: rgb(var(--ink-rgb) / 0.2);
+  transform-origin: top;
+  scale: 1 0;
+  transition: scale 0.4s ease;
+  transition-delay: calc(0.4s + var(--i) * 0.18s);
+}
+
+.timeline[data-seen] .timelineStop::after {
+  scale: 1 1;
+}
+
+.timelineStop {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--year) var(--dot) 1fr;
+  align-items: start;
+  opacity: 0;
+  translate: 0 0.6em;
+  transition: opacity 0.45s ease, translate 0.45s ease;
+  transition-delay: calc(0.25s + var(--i) * 0.18s);
+}
+
+.timeline[data-seen] .timelineStop {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.timelineYear {
+  padding-top: 0.2em;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.85em;
+  letter-spacing: 0.08em;
+  color: rgb(var(--ink-rgb) / 0.6);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.timelineDot {
+  position: relative;
+  z-index: 1;
+  justify-self: center;
+  width: 0.85em;
+  height: 0.85em;
+  margin-top: 0.3em;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--paper, #f6efe2);
+}
+
+.timelineStop[data-now] .timelineDot {
+  border-color: #d62300;
+  background: #d62300;
+  box-shadow: 0 0 0 0.3em rgb(214 35 0 / 0.15);
+}
+
+.timelineBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  min-width: 0;
+}
+
+.timelineName {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-display);
+  font-size: 1.45em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.timelineNow {
+  padding: 0.2em 0.55em 0.15em;
+  border-radius: 999px;
+  background: #d62300;
+  font-family: var(--font-ui);
+  font-size: 0.45em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.timelineRole {
+  font-family: var(--font-ui);
+  font-size: 1em;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.timelineNote {
+  font-family: var(--font-ui);
+  font-size: 0.9em;
+  line-height: 1.35;
+  color: rgb(var(--ink-rgb) / 0.62);
+}
+
+.root[data-reduced="true"] .timelineStop::after,
+.root[data-reduced="true"] .timelineStop {
+  transition: none;
+}
+
+.root[data-compact="true"] .timelineList {
+  --gap: 20px;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+/* ---- Off the clock: a sheet of round stickers ---- */
+
+.hobbyGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-content: center;
+  gap: calc(2.2 * var(--k) * 1cqw) calc(0.8 * var(--k) * 1cqw);
+  margin: calc(1.2 * var(--k) * 1cqw) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: calc(1 * var(--k) * 1cqw);
+}
+
+.hobbySlot {
+  display: flex;
+  justify-content: center;
+  animation: polaroidDrop 0.5s cubic-bezier(0.25, 1.3, 0.5, 1) both;
+  animation-delay: calc(0.12s + var(--i) * 0.07s);
+}
+
+.hobbySlot:nth-child(3n + 1) { --r: -4deg; }
+.hobbySlot:nth-child(3n + 2) { --r: 3deg; }
+.hobbySlot:nth-child(3n) { --r: -1.5deg; }
+
+.hobby {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45em;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: var(--ink);
+  text-align: center;
+}
+
+.hobbyBadge {
+  display: grid;
+  place-items: center;
+  width: 5.6em;
+  height: 5.6em;
+  border-radius: 50%;
+  background: var(--tone);
+  color: #2e211c;
+  rotate: var(--r, 0deg);
+  box-shadow: 0 0.15em 0.4em rgba(46, 33, 28, 0.18), inset 0 0 0 0.3em rgba(255, 255, 255, 0.45);
+  transition: rotate 0.25s ease, scale 0.25s ease;
+}
+
+.hobbyBadge[data-icon="read"] { --tone: #f3d7a2; }
+.hobbyBadge[data-icon="draw"] { --tone: #f2c6c0; }
+.hobbyBadge[data-icon="gym"] { --tone: #cfe0cc; }
+.hobbyBadge[data-icon="yoga"] { --tone: #dcd6ee; }
+.hobbyBadge[data-icon="chess"] { --tone: #e6dccb; }
+.hobbyBadge[data-icon="travel"],
+.hobbyBadge[data-icon="globe"] { --tone: #c9dfec; }
+.hobbyBadge[data-icon="phone"] { --tone: #f6c9d4; }
+.hobbyBadge[data-icon="diploma"] { --tone: #cdd6ef; }
+.hobbyBadge[data-icon="notes"] { --tone: #e9d3b0; }
+.hobbyBadge[data-icon="cat"] { --tone: #e6e1da; }
+.hobbyBadge[data-icon="coin"] { --tone: #f3e1a8; }
+.hobbyBadge[data-icon="postcard"] { --tone: #f7cfb2; }
+.hobbyBadge[data-icon="resume"] { --tone: #dfe7dd; }
+
+.hobbyGlyph {
+  width: 50%;
+  height: 50%;
+}
+
+.hobbyLabel {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 1em;
+  line-height: 1.2;
+}
+
+.hobbyGo {
+  font-family: var(--font-ui);
+  font-size: 0.82em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent-text);
+}
+
+.hobby[data-link] {
+  cursor: pointer;
+}
+
+.hobby[data-link]:hover .hobbyBadge,
+.hobby[data-link]:focus-visible .hobbyBadge {
+  rotate: 0deg;
+  scale: 1.08;
+}
+
+.hobby[data-link]:hover .hobbyGo {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.hobby[data-link]:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.root[data-reduced="true"] .hobbySlot {
+  animation: none;
+}
+
+.root[data-compact="true"] .hobbyGrid {
+  gap: 22px 10px;
+  margin-top: 18px;
+  font-size: 13px;
+}
+
+/* ---- Zuko, the chatbot ---- */
+
+.chat {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.9 * var(--k) * 1cqw);
+  padding: calc(1.3 * var(--k) * 1cqw) calc(1.6 * var(--k) * 1cqw) calc(1.4 * var(--k) * 1cqw);
+  background: rgb(var(--scrim-rgb) / 0.82);
+  backdrop-filter: blur(18px) saturate(1.15);
+  border-radius: calc(0.6 * var(--k) * 1cqw);
+  color: var(--light);
+  font-size: calc(0.92 * var(--k) * 1cqw);
+}
+
+.chatHead {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  padding-bottom: 0.9em;
+  border-bottom: 1px solid rgb(var(--light-rgb) / 0.14);
+}
+
+.chatAvatar {
+  position: relative;
+  flex: none;
+  width: 3.2em;
+  height: 3.2em;
+  padding: 0;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: none;
+  overflow: hidden;
+}
+
+.chatAvatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+button.chatAvatar {
+  cursor: zoom-in;
+  transition: scale 0.2s ease, box-shadow 0.2s ease;
+}
+
+button.chatAvatar:hover {
+  scale: 1.08;
+  box-shadow: 0 0 0 0.25em rgb(240 196 106 / 0.25);
+}
+
+button.chatAvatar:focus-visible {
+  outline: 2px solid var(--light);
+  outline-offset: 2px;
+}
+
+.chatWho {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+}
+
+.chatName {
+  font-family: var(--font-display);
+  font-size: 1.5em;
+  line-height: 1.1;
+}
+
+.chatStatus {
+  font-family: var(--font-ui);
+  font-size: 0.82em;
+  letter-spacing: 0.04em;
+  color: rgb(var(--light-rgb) / 0.65);
+}
+
+/* The conversation: the only part that scrolls, and it keeps the newest bubble in view. */
+.chatLog {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.2em 0.2em 0.4em;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--light-rgb) / 0.25) transparent;
+}
+
+.chatRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45em;
+  animation: chatIn 0.28s ease both;
+}
+
+.chatRow[data-from="you"] {
+  align-items: flex-end;
+  margin-top: 0.5em;
+}
+
+.chatRow[data-from="you"] + .chatRow[data-from="zuko"] {
+  margin-top: 0.5em;
+}
+
+@keyframes chatIn {
+  from {
+    opacity: 0;
+    translate: 0 0.5em;
+  }
+}
+
+.chatBubble {
+  max-width: 86%;
+  margin: 0;
+  padding: 0.65em 0.95em;
+  border-radius: 1.1em 1.1em 1.1em 0.3em;
+  background: #fbf6e9;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 1em;
+  line-height: 1.45;
+}
+
+.chatRow[data-from="you"] .chatBubble {
+  border-radius: 1.1em 1.1em 0.3em 1.1em;
+  background: var(--accent);
+}
+
+.chatTyping {
+  display: flex;
+  gap: 0.3em;
+  padding: 0.85em 1em;
+}
+
+.chatTyping span {
+  width: 0.45em;
+  height: 0.45em;
+  border-radius: 50%;
+  background: rgb(var(--ink-rgb) / 0.45);
+  animation: chatDot 1s ease-in-out infinite;
+}
+
+.chatTyping span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.chatTyping span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes chatDot {
+  0%,
+  60%,
+  100% {
+    translate: 0 0;
+    opacity: 0.5;
+  }
+  30% {
+    translate: 0 -0.3em;
+    opacity: 1;
+  }
+}
+
+.chatOpen {
+  padding: 0.4em 0.9em;
+  border: 1px solid rgb(var(--light-rgb) / 0.35);
+  border-radius: 999px;
+  background: none;
+  color: var(--light);
+  font-family: var(--font-ui);
+  font-size: 0.85em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.chatOpen:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.chatOpen:focus-visible,
+.chatKey:focus-visible,
+.chatSend:focus-visible {
+  outline: 2px solid var(--light);
+  outline-offset: 2px;
+}
+
+/* Zuko's talking buttons: chunky and round, each its own colour, pressed down when clicked. */
+.chatButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55em;
+  min-height: 2.6em;
+}
+
+.chatKey {
+  --tone: #cfe0cc;
+  padding: 0.55em 1em 0.5em;
+  border: none;
+  border-radius: 999px;
+  background: var(--tone);
+  box-shadow: 0 0.25em 0 color-mix(in srgb, var(--tone), #2e211c 35%);
+  color: #2e211c;
+  font-family: var(--font-ui);
+  font-size: 0.9em;
+  font-weight: 700;
+  cursor: pointer;
+  translate: 0 0;
+  transition: translate 0.1s ease, box-shadow 0.1s ease, filter 0.15s ease;
+  animation: chatIn 0.3s ease both;
+  animation-delay: calc(var(--i) * 0.06s);
+}
+
+.chatKey:nth-child(4n + 2) {
+  --tone: #f3d7a2;
+}
+
+.chatKey:nth-child(4n + 3) {
+  --tone: #dcd6ee;
+}
+
+.chatKey:nth-child(4n) {
+  --tone: #f2c6c0;
+}
+
+.chatKey:hover {
+  filter: brightness(1.06);
+}
+
+.chatKey:active {
+  translate: 0 0.2em;
+  box-shadow: 0 0.05em 0 color-mix(in srgb, var(--tone), #2e211c 35%);
+}
+
+.chatKey:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.chatForm {
+  display: flex;
+  gap: 0.5em;
+}
+
+.chatInput {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7em 1em;
+  border: 1px solid rgb(var(--light-rgb) / 0.25);
+  border-radius: 999px;
+  background: rgb(var(--light-rgb) / 0.08);
+  color: var(--light);
+  font-family: var(--font-ui);
+  font-size: 1em;
+}
+
+.chatInput::placeholder {
+  color: rgb(var(--light-rgb) / 0.5);
+}
+
+.chatInput:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.chatSend {
+  padding: 0 1.3em;
+  border: none;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 0.85em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.chatSend:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.chatSend:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.root[data-reduced="true"] .chatRow,
+.root[data-reduced="true"] .chatKey {
+  animation: none;
+}
+
+.root[data-reduced="true"] .chatTyping span {
+  animation: none;
+  opacity: 0.7;
+}
+
+.root[data-compact="true"][data-skin="chat"] .shell {
+  height: min(calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom)), 640px);
+}
+
+.root[data-compact="true"] .chat {
+  gap: 10px;
+  padding: 14px 14px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+/* 16px in the field so a phone doesn't zoom in when it takes focus. */
+.root[data-compact="true"] .chatInput {
+  font-size: 16px;
+}
+
+.root[data-compact="true"] .chatKey {
+  font-size: 13.5px;
+}
+
+/* ---- Phones: everything tappable at least 44px tall, nothing set below 12px ---- */
+
+.root[data-compact="true"] .chatKey,
+.root[data-compact="true"] .compareOption,
+.root[data-compact="true"] .chatAvatar {
+  min-height: 44px;
+}
+
+.root[data-compact="true"] .chatAvatar {
+  width: 44px;
+  height: 44px;
+}
+
+.root[data-compact="true"] .chatInput,
+.root[data-compact="true"] .chatSend {
+  min-height: 44px;
+}
+
+.root[data-compact="true"] .chatButtons {
+  gap: 8px;
+}
+
+.root[data-compact="true"] .globeChip {
+  min-height: 40px;
+}
+
+/* The chips sit in tight rows; each reaches a little beyond its outline, so a fingertip on the gap still lands. */
+.root[data-compact="true"] .globeChip {
+  position: relative;
+}
+
+.root[data-compact="true"] .globeChip::after {
+  content: "";
+  position: absolute;
+  inset: -3px -3px;
+}
+
+.root[data-compact="true"] .resumeTurn {
+  width: 44px;
+  height: 44px;
+}
+
+/* The email and LinkedIn links are a line of small text; their touch area reaches above and below it. */
+.root[data-compact="true"] .resumeContact a {
+  position: relative;
+  display: inline-block;
+}
+
+.root[data-compact="true"] .resumeContact a::after {
+  content: "";
+  position: absolute;
+  inset: -14px -4px;
+}
+
+.root[data-compact="true"] .chartKicker,
+.root[data-compact="true"] .chessKicker,
+.root[data-compact="true"] .coverTag,
+.root[data-compact="true"] .kicker,
+.root[data-compact="true"] .polaroidNote,
+.root[data-compact="true"] .resumeH,
+.root[data-compact="true"] .resumeRole,
+.root[data-compact="true"] .coursesLabel,
+.root[data-compact="true"] .courseSchool,
+.root[data-compact="true"] .courseYear,
+.root[data-compact="true"] .chessTileLabel,
+.root[data-compact="true"] .chessTileBest,
+.root[data-compact="true"] .showcaseLabel,
+.root[data-compact="true"] .noteDate,
+.root[data-compact="true"] .noteTranslated,
+.root[data-compact="true"] .hobbyGo,
+.root[data-compact="true"] .timelineYear,
+.root[data-compact="true"] .polaroidCaption,
+.root[data-compact="true"] .cardQuote cite {
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .compareWinner,
+.root[data-compact="true"] .timelineNow {
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .coverMeta {
+  font-size: 12px;
+}
+
+/* ---- Desktop pages in a browser window ---- */
+
+.browser {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: none;
+  border-radius: calc(0.45 * var(--k) * 1cqw);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 calc(0.5 * var(--k) * 1cqw) calc(1.6 * var(--k) * 1cqw) rgb(var(--ink-rgb) / 0.28), 0 0 0 1px rgb(var(--ink-rgb) / 0.12);
+  cursor: zoom-in;
+  transition: translate 0.25s ease, box-shadow 0.25s ease;
+}
+
+.browser:hover {
+  translate: 0 calc(-0.25 * var(--k) * 1cqw);
+}
+
+.browser:focus-visible {
+  outline: calc(0.18 * var(--k) * 1cqw) solid var(--ink);
+  outline-offset: calc(0.2 * var(--k) * 1cqw);
+}
+
+.browserBar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: calc(0.3 * var(--k) * 1cqw);
+  height: calc(1.3 * var(--k) * 1cqw);
+  padding: 0 calc(0.6 * var(--k) * 1cqw);
+  background: #2b2a27;
+}
+
+.browserBar i {
+  width: calc(0.42 * var(--k) * 1cqw);
+  height: calc(0.42 * var(--k) * 1cqw);
+  border-radius: 50%;
+  background: #5a5852;
+}
+
+.browserView {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.browserView img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* The space a window may take; the window inside is sized to its page and sits where `data-align` says. */
+.fitBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+}
+
+.fitBox[data-align="start"] {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.fitBox[data-align="end"] {
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.fitBox > .browser {
+  flex: none;
+}
+
+/* Compare, desktop: one window, or the first in front of a second set back behind it. */
+.compareDesktop {
+  position: relative;
+  flex: 1;
+  min-height: calc(14 * var(--k) * 1cqw);
+  margin-top: calc(1.4 * var(--k) * 1cqw);
+  animation: chatIn 0.3s ease both;
+}
+
+.compareWindow {
+  position: absolute;
+}
+
+.compareDesktop[data-count="1"] .compareWindow {
+  inset: 0;
+}
+
+.compareDesktop[data-count="2"] .compareWindow:first-child {
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 80%;
+  height: 78%;
+}
+
+.compareDesktop[data-count="2"] .compareWindow:last-child {
+  right: 0;
+  bottom: 0;
+  width: 72%;
+  height: 70%;
+}
+
+.compareDesktop[data-count="2"] .compareWindow:hover {
+  z-index: 3;
+}
+
+/* Showcase, desktop: the list of screens on the left page, the window across the right. */
+.tour {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: calc(3 * var(--k) * 1cqw);
+}
+
+.tourSide {
+  display: flex;
+  flex-direction: column;
+  gap: calc(1.4 * var(--k) * 1cqw);
+  min-height: 0;
+}
+
+.tour .showcaseHead {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tourList {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.25 * var(--k) * 1cqw);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tourItem {
+  display: flex;
+  align-items: baseline;
+  gap: calc(0.8 * var(--k) * 1cqw);
+  width: 100%;
+  padding: calc(0.55 * var(--k) * 1cqw) calc(0.7 * var(--k) * 1cqw);
+  border: none;
+  border-radius: calc(0.3 * var(--k) * 1cqw);
+  background: none;
+  color: rgb(var(--ink-rgb) / 0.7);
+  font-family: var(--font-ui);
+  font-size: calc(0.95 * var(--k) * 1cqw);
+  text-align: left;
+  cursor: pointer;
+}
+
+.tourItem:hover {
+  background: rgb(var(--ink-rgb) / 0.05);
+  color: var(--ink);
+}
+
+.tourItem[aria-pressed="true"] {
+  background: rgb(var(--ink-rgb) / 0.08);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.tourItem:focus-visible {
+  outline: calc(0.18 * var(--k) * 1cqw) solid var(--ink);
+}
+
+.root[data-compact="true"] .tourNo {
+  display: none;
+}
+
+.tourNo {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: rgb(var(--ink-rgb) / 0.5);
+}
+
+.tourWindow {
+  min-height: 0;
+  align-self: stretch;
+  animation: chatIn 0.3s ease both;
+}
+
+/* The window sits in the middle of its page, both ways. */
+
+/* ---- Glossary: cards that turn over ---- */
+
+.glossary,
+.poll,
+.funnel,
+.migration,
+.quotes {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.glossaryGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(0, 1fr);
+  gap: calc(0.8 * var(--k) * 1cqw);
+  margin: calc(1.4 * var(--k) * 1cqw) 0 0;
+  padding: 0;
+  list-style: none;
+  perspective: 1200px;
+}
+
+.glossarySlot {
+  min-height: 0;
+}
+
+.glossaryCard {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.3, 0.7, 0.3, 1);
+}
+
+.glossaryCard[aria-pressed="true"] {
+  transform: rotateY(180deg);
+}
+
+.glossaryCard:focus-visible {
+  outline: calc(0.18 * var(--k) * 1cqw) solid var(--ink);
+  outline-offset: calc(0.15 * var(--k) * 1cqw);
+  border-radius: calc(0.4 * var(--k) * 1cqw);
+}
+
+.glossaryFront,
+.glossaryBack {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: calc(0.9 * var(--k) * 1cqw) calc(1 * var(--k) * 1cqw);
+  border-radius: calc(0.4 * var(--k) * 1cqw);
+  backface-visibility: hidden;
+}
+
+.glossaryFront {
+  justify-content: flex-end;
+  background: #fffdf8;
+  box-shadow: 0 0 0 1px rgb(var(--ink-rgb) / 0.14), 0 calc(0.2 * var(--k) * 1cqw) calc(0.6 * var(--k) * 1cqw) rgb(var(--ink-rgb) / 0.08);
+}
+
+.glossaryBack {
+  transform: rotateY(180deg);
+  gap: calc(0.3 * var(--k) * 1cqw);
+  background: var(--ink);
+  color: #f6f1e7;
+  font-family: var(--font-ui);
+  font-size: calc(0.78 * var(--k) * 1cqw);
+  line-height: 1.4;
+}
+
+.glossaryBackTerm {
+  font-weight: 700;
+  color: var(--accent-fill);
+}
+
+.glossaryTerm {
+  font-family: var(--font-display);
+  font-size: calc(1.35 * var(--k) * 1cqw);
+  line-height: 1.1;
+}
+
+.glossaryNote {
+  margin-top: calc(0.2 * var(--k) * 1cqw);
+  font-family: var(--font-ui);
+  font-size: calc(0.75 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.6);
+}
+
+.glossaryTurn {
+  position: absolute;
+  top: calc(0.7 * var(--k) * 1cqw);
+  right: calc(0.8 * var(--k) * 1cqw);
+  font-size: calc(0.95 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.45);
+}
+
+.root[data-reduced="true"] .glossaryCard {
+  transition: none;
+}
+
+/* ---- Poll ---- */
+
+.pollQuestion {
+  margin: calc(1.2 * var(--k) * 1cqw) 0 0;
+  font-family: var(--font-ui);
+  font-size: calc(1 * var(--k) * 1cqw);
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.pollOptions {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.6 * var(--k) * 1cqw);
+  margin: calc(1.2 * var(--k) * 1cqw) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pollOption {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  column-gap: calc(0.8 * var(--k) * 1cqw);
+  width: 100%;
+  padding: calc(0.8 * var(--k) * 1cqw) calc(1.1 * var(--k) * 1cqw);
+  border: 1px solid rgb(var(--ink-rgb) / 0.22);
+  border-radius: calc(0.45 * var(--k) * 1cqw);
+  background: #fffdf8;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.pollOption:hover:not(:disabled) {
+  border-color: var(--ink);
+}
+
+.pollOption:disabled {
+  cursor: default;
+}
+
+.pollOption:focus-visible {
+  outline: calc(0.18 * var(--k) * 1cqw) solid var(--ink);
+  outline-offset: calc(0.1 * var(--k) * 1cqw);
+}
+
+.pollOption[data-state="right"] {
+  border-color: #2f7a4a;
+  background: #e6f2e7;
+}
+
+.pollOption[data-state="wrong"] {
+  border-color: #b5452f;
+  background: #f8e6e0;
+}
+
+.pollOption[data-state="other"] {
+  opacity: 0.55;
+}
+
+.pollLabel {
+  font-family: var(--font-display);
+  font-size: calc(1.15 * var(--k) * 1cqw);
+}
+
+.pollNote {
+  grid-column: 1;
+  font-family: var(--font-ui);
+  font-size: calc(0.75 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.62);
+}
+
+.pollMark {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  padding: 0.25em 0.7em;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: calc(0.66 * var(--k) * 1cqw);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pollReveal {
+  margin: calc(1.2 * var(--k) * 1cqw) 0 0;
+  font-family: var(--font-ui);
+  font-size: calc(0.86 * var(--k) * 1cqw);
+  line-height: 1.5;
+  color: rgb(var(--ink-rgb) / 0.6);
+}
+
+.pollReveal[data-shown] {
+  color: var(--ink);
+  animation: chatIn 0.3s ease both;
+}
+
+.pollAgain {
+  align-self: flex-start;
+  margin-top: calc(0.6 * var(--k) * 1cqw);
+  padding: calc(0.3 * var(--k) * 1cqw) 0;
+  border: none;
+  background: none;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: calc(0.78 * var(--k) * 1cqw);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+/* ---- Funnel ---- */
+
+.funnelList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(1.3 * var(--k) * 1cqw);
+  margin: calc(1.2 * var(--k) * 1cqw) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.funnelStep {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: end;
+  column-gap: calc(0.9 * var(--k) * 1cqw);
+  row-gap: calc(0.35 * var(--k) * 1cqw);
+}
+
+.funnelValue {
+  grid-row: 1 / span 2;
+  min-width: 3.2ch;
+  font-family: var(--font-display);
+  font-size: calc(2.6 * var(--k) * 1cqw);
+  line-height: 1;
+  color: var(--ink);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.funnelTrack {
+  height: calc(0.75 * var(--k) * 1cqw);
+  border-radius: 999px;
+  background: rgb(var(--ink-rgb) / 0.08);
+  overflow: hidden;
+}
+
+.funnelBar {
+  display: block;
+  height: 100%;
+  width: calc(var(--share) * 100%);
+  min-width: calc(0.75 * var(--k) * 1cqw);
+  border-radius: inherit;
+  background: var(--accent-fill);
+  transform-origin: left;
+  scale: 0 1;
+  transition: scale 0.9s cubic-bezier(0.3, 0.7, 0.3, 1);
+  transition-delay: calc(var(--i) * 0.18s);
+}
+
+.funnel[data-seen] .funnelBar {
+  scale: 1 1;
+}
+
+.funnelLabel {
+  grid-column: 2;
+  font-family: var(--font-ui);
+  font-size: calc(0.82 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.75);
+}
+
+.funnelNote {
+  margin: calc(1 * var(--k) * 1cqw) 0 0;
+  font-family: var(--font-ui);
+  font-size: calc(0.78 * var(--k) * 1cqw);
+  line-height: 1.45;
+  color: rgb(var(--ink-rgb) / 0.62);
+}
+
+.root[data-reduced="true"] .funnelBar {
+  transition: none;
+}
+
+/* ---- Migration: from one column to the other ---- */
+
+.migrationCount {
+  display: flex;
+  align-items: baseline;
+  gap: calc(0.9 * var(--k) * 1cqw);
+  margin-top: calc(1 * var(--k) * 1cqw);
+}
+
+.migrationValue {
+  font-family: var(--font-display);
+  font-size: calc(3.4 * var(--k) * 1cqw);
+  line-height: 1;
+  color: var(--ink);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.migrationCaption {
+  max-width: calc(14 * var(--k) * 1cqw);
+  font-family: var(--font-ui);
+  font-size: calc(0.82 * var(--k) * 1cqw);
+  line-height: 1.35;
+  color: rgb(var(--ink-rgb) / 0.75);
+}
+
+.migrationBoard {
+  flex: none;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: calc(0.6 * var(--k) * 1cqw);
+  margin-top: calc(1.2 * var(--k) * 1cqw);
+}
+
+.migrationCol {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.5 * var(--k) * 1cqw);
+  min-height: 0;
+  padding: calc(0.7 * var(--k) * 1cqw);
+  border-radius: calc(0.45 * var(--k) * 1cqw);
+  background: rgb(var(--ink-rgb) / 0.05);
+}
+
+.migrationCol[data-to] {
+  background: #fffdf8;
+  box-shadow: 0 0 0 1px rgb(var(--ink-rgb) / 0.14);
+}
+
+.migrationCol ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: calc(0.3 * var(--k) * 1cqw);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.migrationHead {
+  font-family: var(--font-ui);
+  font-size: calc(0.7 * var(--k) * 1cqw);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgb(var(--ink-rgb) / 0.6);
+}
+
+.migrationItem {
+  padding: calc(0.25 * var(--k) * 1cqw) calc(0.5 * var(--k) * 1cqw);
+  border-radius: calc(0.25 * var(--k) * 1cqw);
+  background: rgb(var(--ink-rgb) / 0.07);
+  font-family: var(--font-ui);
+  font-size: calc(0.72 * var(--k) * 1cqw);
+  line-height: 1.3;
+  color: rgb(var(--ink-rgb) / 0.7);
+}
+
+.migrationItem[data-arrived] {
+  background: var(--accent-fill);
+  color: var(--accent-on);
+  font-weight: 600;
+  animation: migrateIn 0.35s cubic-bezier(0.3, 0.7, 0.3, 1) both;
+}
+
+@keyframes migrateIn {
+  from {
+    opacity: 0;
+    translate: -40% 0;
+  }
+}
+
+.migrationArrow {
+  align-self: center;
+  font-size: calc(1.3 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.4);
+}
+
+.migrationReplay {
+  align-self: flex-start;
+  margin-top: calc(0.6 * var(--k) * 1cqw);
+  padding: calc(0.3 * var(--k) * 1cqw) 0;
+  border: none;
+  background: none;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: calc(0.78 * var(--k) * 1cqw);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.root[data-reduced="true"] .migrationItem[data-arrived] {
+  animation: none;
+}
+
+/* ---- Quotes: a small deck ---- */
+
+.quoteCard {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: calc(1.4 * var(--k) * 1cqw) 0 0;
+  padding: calc(1.8 * var(--k) * 1cqw) calc(2 * var(--k) * 1cqw);
+  border-radius: calc(0.3 * var(--k) * 1cqw);
+  background: #fbf6e9;
+  box-shadow: 0 calc(0.3 * var(--k) * 1cqw) calc(1 * var(--k) * 1cqw) rgb(var(--ink-rgb) / 0.16), calc(0.5 * var(--k) * 1cqw) calc(0.5 * var(--k) * 1cqw) 0 calc(-0.1 * var(--k) * 1cqw) rgb(var(--ink-rgb) / 0.07);
+  rotate: -1deg;
+  cursor: pointer;
+  animation: chatIn 0.3s ease both;
+}
+
+.quoteCard[data-tone="1"] {
+  background: #fbeeb0;
+  rotate: 0.8deg;
+}
+
+.quoteCard[data-tone="2"] {
+  background: #e2eedf;
+  rotate: -0.4deg;
+}
+
+.quoteMark {
+  font-family: var(--font-display);
+  font-size: calc(3.4 * var(--k) * 1cqw);
+  line-height: 0.6;
+  color: var(--accent-text);
+}
+
+.quoteText {
+  margin: calc(0.6 * var(--k) * 1cqw) 0 0;
+  font-family: var(--font-display);
+  font-size: calc(1.35 * var(--k) * 1cqw);
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.quoteBy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  margin-top: calc(1.2 * var(--k) * 1cqw);
+  font-family: var(--font-ui);
+  font-size: calc(0.75 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.62);
+}
+
+.quoteBy strong {
+  color: var(--ink);
+}
+
+.quoteNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(1 * var(--k) * 1cqw);
+  margin-top: calc(1 * var(--k) * 1cqw);
+}
+
+.quoteArrow {
+  width: calc(2.2 * var(--k) * 1cqw);
+  height: calc(2.2 * var(--k) * 1cqw);
+  padding: 0;
+  border: 1px solid rgb(var(--ink-rgb) / 0.35);
+  border-radius: 50%;
+  background: none;
+  color: var(--ink);
+  font-size: calc(1.1 * var(--k) * 1cqw);
+  cursor: pointer;
+}
+
+.quoteArrow:hover {
+  border-color: var(--ink);
+}
+
+.quoteCount {
+  font-family: var(--font-mono);
+  font-size: calc(0.8 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.7);
+}
+
+/* ---- Phones ---- */
+
+.root[data-compact="true"] .browserBar {
+  height: 16px;
+  gap: 4px;
+  padding: 0 8px;
+}
+
+.root[data-compact="true"] .browserBar i {
+  width: 6px;
+  height: 6px;
+}
+
+.root[data-compact="true"] .browser {
+  border-radius: 6px;
+}
+
+.root[data-compact="true"] .compareDesktop {
+  min-height: 200px;
+  margin-top: 16px;
+}
+
+.root[data-compact="true"] .tour {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.root[data-compact="true"] .tourList {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.root[data-compact="true"] .tourList li {
+  flex: 1 1 auto;
+}
+
+.root[data-compact="true"] .tourItem {
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid rgb(var(--ink-rgb) / 0.2);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .tourWindow {
+  flex: 1;
+  min-height: 160px;
+}
+
+.root[data-compact="true"] .glossaryGrid {
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.root[data-compact="true"] .glossaryFront,
+.root[data-compact="true"] .glossaryBack {
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.root[data-compact="true"] .glossaryTerm {
+  font-size: 18px;
+}
+
+.root[data-compact="true"] .glossaryNote {
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .glossaryBack {
+  gap: 2px;
+  font-size: 12px;
+  line-height: 1.32;
+}
+
+.root[data-compact="true"] .glossaryTurn {
+  top: 8px;
+  right: 10px;
+  font-size: 14px;
+}
+
+.root[data-compact="true"] .pollQuestion {
+  margin-top: 14px;
+  font-size: 15px;
+}
+
+.root[data-compact="true"] .pollOptions {
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.root[data-compact="true"] .pollOption {
+  min-height: 52px;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.root[data-compact="true"] .pollLabel {
+  font-size: 17px;
+}
+
+.root[data-compact="true"] .pollNote {
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .pollMark {
+  font-size: 11px;
+}
+
+.root[data-compact="true"] .pollReveal {
+  margin-top: 14px;
+  font-size: 14px;
+}
+
+.root[data-compact="true"] .pollAgain {
+  min-height: 44px;
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .funnelList {
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.root[data-compact="true"] .funnelValue {
+  font-size: 34px;
+}
+
+.root[data-compact="true"] .funnelTrack {
+  height: 10px;
+}
+
+.root[data-compact="true"] .funnelLabel,
+.root[data-compact="true"] .funnelNote {
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .migrationValue {
+  font-size: 44px;
+}
+
+.root[data-compact="true"] .migrationCaption {
+  max-width: none;
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .migrationBoard {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr;
+  gap: 4px;
+  margin-top: 14px;
+}
+
+.root[data-compact="true"] .migrationArrow {
+  justify-self: center;
+  rotate: 90deg;
+}
+
+.root[data-compact="true"] .migrationCol {
+  gap: 6px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.root[data-compact="true"] .migrationCol ul {
+  gap: 4px;
+}
+
+.root[data-compact="true"] .migrationHead {
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .migrationItem {
+  padding: 3px 6px;
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .migrationArrow {
+  font-size: 16px;
+}
+
+.root[data-compact="true"] .migrationReplay {
+  min-height: 44px;
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .quoteCard {
+  margin-top: 16px;
+  padding: 22px 20px;
+  border-radius: 4px;
+}
+
+.root[data-compact="true"] .quoteMark {
+  font-size: 44px;
+}
+
+.root[data-compact="true"] .quoteText {
+  font-size: 18px;
+}
+
+.root[data-compact="true"] .quoteBy {
+  margin-top: 14px;
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .quoteArrow {
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
+}
+
+.root[data-compact="true"] .quoteCount {
+  font-size: 13px;
+}
+
+/* Five or more cards: tighter, so the open one still fits the page. */
+.cardList[data-count="5"],
+.cardList[data-count="6"] {
+  gap: calc(0.5 * var(--k) * 1cqw);
+  margin-top: calc(1.3 * var(--k) * 1cqw);
+}
+
+.cardList[data-count="5"] .cardHead,
+.cardList[data-count="6"] .cardHead {
+  padding-top: calc(0.75 * var(--k) * 1cqw);
+  padding-bottom: calc(0.75 * var(--k) * 1cqw);
+}
+
+.tour .showcaseHead {
+  align-items: flex-start;
+}
+
+/* ---- Personas ---- */
+
+.personas,
+.journey,
+.palette {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.persona {
+  display: flex;
+  flex-direction: column;
+  gap: calc(0.7 * var(--k) * 1cqw);
+  margin-top: calc(1 * var(--k) * 1cqw);
+  padding: calc(1 * var(--k) * 1cqw) calc(1.1 * var(--k) * 1cqw);
+  border-radius: calc(0.5 * var(--k) * 1cqw);
+  background: #fffdf8;
+  box-shadow: 0 0 0 1px rgb(var(--ink-rgb) / 0.12);
+  animation: chatIn 0.3s ease both;
+}
+
+.personaHead {
+  display: flex;
+  align-items: center;
+  gap: calc(0.9 * var(--k) * 1cqw);
+}
+
+.personaPhoto {
+  flex: none;
+  width: calc(4.2 * var(--k) * 1cqw);
+  height: calc(4.2 * var(--k) * 1cqw);
+  border-radius: 50%;
+}
+
+.personaWho {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  font-family: var(--font-ui);
+}
+
+.personaName {
+  font-family: var(--font-display);
+  font-size: calc(1.3 * var(--k) * 1cqw);
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.personaRole,
+.personaFacts {
+  font-size: calc(0.75 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.7);
+}
+
+.personaAbout {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: calc(0.8 * var(--k) * 1cqw);
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.personaTraits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(0.3 * var(--k) * 1cqw);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.personaTraits li {
+  padding: 0.25em 0.8em;
+  border-radius: 999px;
+  background: var(--accent-fill);
+  color: var(--accent-on);
+  font-family: var(--font-ui);
+  font-size: calc(0.7 * var(--k) * 1cqw);
+  font-weight: 700;
+}
+
+.personaCols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(1 * var(--k) * 1cqw);
+}
+
+.personaCols ul,
+.personaBehavior ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  margin: 0.4em 0 0;
+  padding: 0 0 0 1em;
+  font-family: var(--font-ui);
+  font-size: calc(0.72 * var(--k) * 1cqw);
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.personaLabel {
+  font-family: var(--font-ui);
+  font-size: calc(0.66 * var(--k) * 1cqw);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+/* ---- Journey: a mood line ---- */
+
+.journeyChart {
+  position: relative;
+  height: calc(14 * var(--k) * 1cqw);
+  margin: calc(2 * var(--k) * 1cqw) calc(0.8 * var(--k) * 1cqw) calc(0.6 * var(--k) * 1cqw);
+}
+
+.journeyChart svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.journeyLine {
+  fill: none;
+  stroke: var(--accent-fill);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* The line draws itself left to right when the page is first seen. */
+.journeyChart svg {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.2s cubic-bezier(0.3, 0.7, 0.3, 1) 0.2s;
+}
+
+.journey[data-seen] .journeyChart svg {
+  clip-path: inset(-10% -10% -10% -10%);
+}
+
+.journeyFace {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: calc(2.4 * var(--k) * 1cqw);
+  height: calc(2.4 * var(--k) * 1cqw);
+  translate: -50% -50%;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #fffdf8;
+  box-shadow: 0 0 0 1px rgb(var(--ink-rgb) / 0.14), 0 2px 6px rgb(var(--ink-rgb) / 0.12);
+  font-size: calc(1.3 * var(--k) * 1cqw);
+  line-height: 1;
+  cursor: pointer;
+  transition: scale 0.2s ease, box-shadow 0.2s ease;
+}
+
+.journeyFace[data-on] {
+  scale: 1.15;
+  box-shadow: 0 0 0 2px var(--accent-fill), 0 2px 8px rgb(var(--ink-rgb) / 0.18);
+}
+
+.journeyStages {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: calc(0.3 * var(--k) * 1cqw);
+}
+
+.journeyStage {
+  padding: calc(0.45 * var(--k) * 1cqw) calc(0.3 * var(--k) * 1cqw);
+  border: none;
+  border-top: 3px solid rgb(var(--ink-rgb) / 0.15);
+  background: none;
+  color: rgb(var(--ink-rgb) / 0.65);
+  font-family: var(--font-ui);
+  font-size: calc(0.72 * var(--k) * 1cqw);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+}
+
+.journeyStage[aria-selected="true"] {
+  border-top-color: var(--accent-fill);
+  color: var(--ink);
+}
+
+.journeyDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-top: calc(1 * var(--k) * 1cqw);
+  font-family: var(--font-ui);
+  font-size: calc(0.9 * var(--k) * 1cqw);
+  line-height: 1.5;
+  color: var(--ink);
+  animation: chatIn 0.3s ease both;
+}
+
+.journeyDetail p {
+  margin: 0;
+}
+
+.root[data-reduced="true"] .journeyChart svg {
+  transition: none;
+  clip-path: none;
+}
+
+/* ---- Palette ---- */
+
+.paletteLogo {
+  display: block;
+  width: 62%;
+  margin-top: calc(1.4 * var(--k) * 1cqw);
+}
+
+.paletteFont {
+  display: flex;
+  align-items: center;
+  gap: calc(0.9 * var(--k) * 1cqw);
+  margin-top: calc(1.4 * var(--k) * 1cqw);
+  color: var(--ink);
+}
+
+.paletteAa {
+  font-size: calc(3.4 * var(--k) * 1cqw);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.paletteFontName {
+  display: block;
+  font-size: calc(1.1 * var(--k) * 1cqw);
+  font-weight: 600;
+}
+
+.paletteFontNote {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: calc(0.72 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.65);
+}
+
+.paletteSwatches {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: calc(0.7 * var(--k) * 1cqw);
+  margin: calc(1.4 * var(--k) * 1cqw) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.paletteSwatch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  font-family: var(--font-ui);
+  animation: polaroidDrop 0.45s cubic-bezier(0.25, 1.3, 0.5, 1) both;
+  animation-delay: calc(var(--i) * 0.05s);
+}
+
+.paletteChip {
+  aspect-ratio: 1.3;
+  border-radius: calc(0.4 * var(--k) * 1cqw);
+  background: var(--c);
+  box-shadow: inset 0 0 0 1px rgb(var(--ink-rgb) / 0.08);
+}
+
+.paletteName {
+  font-size: calc(0.68 * var(--k) * 1cqw);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.paletteHex {
+  font-family: var(--font-mono);
+  font-size: calc(0.62 * var(--k) * 1cqw);
+  color: rgb(var(--ink-rgb) / 0.6);
+}
+
+.root[data-reduced="true"] .paletteSwatch {
+  animation: none;
+}
+
+/* ---- Phones ---- */
+
+.root[data-compact="true"] .persona {
+  gap: 10px;
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 8px;
+}
+
+.root[data-compact="true"] .personaPhoto {
+  width: 56px;
+  height: 56px;
+}
+
+.root[data-compact="true"] .personaName {
+  font-size: 20px;
+}
+
+.root[data-compact="true"] .personaRole,
+.root[data-compact="true"] .personaFacts,
+.root[data-compact="true"] .personaCols ul {
+  font-size: 12.5px;
+}
+
+.root[data-compact="true"] .personaAbout {
+  font-size: 13px;
+}
+
+.root[data-compact="true"] .personaTraits li,
+.root[data-compact="true"] .personaLabel {
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .personaCols {
+  gap: 12px;
+}
+
+.root[data-compact="true"] .journeyChart {
+  height: 150px;
+  margin: 26px 18px 10px;
+}
+
+.root[data-compact="true"] .journeyFace {
+  width: 38px;
+  height: 38px;
+  font-size: 20px;
+}
+
+.root[data-compact="true"] .journeyStage {
+  min-height: 44px;
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .journeyDetail {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.root[data-compact="true"] .paletteFont {
+  margin-top: 18px;
+}
+
+.root[data-compact="true"] .paletteAa {
+  font-size: 48px;
+}
+
+.root[data-compact="true"] .paletteFontName {
+  font-size: 17px;
+}
+
+.root[data-compact="true"] .paletteFontNote,
+.root[data-compact="true"] .paletteName,
+.root[data-compact="true"] .paletteHex {
+  font-size: 12px;
+}
+
+.root[data-compact="true"] .paletteSwatches {
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* Four numbers or more: smaller, so they all fit the page. */
+.statList[data-count="4"],
+.statList[data-count="5"] {
+  gap: calc(0.9 * var(--k) * 1cqw);
+}
+
+.statList[data-count="4"] .stat,
+.statList[data-count="5"] .stat {
+  padding-top: calc(0.6 * var(--k) * 1cqw);
+}
+
+.statList[data-count="4"] .statValue,
+.statList[data-count="5"] .statValue {
+  font-size: calc(2.8 * var(--k) * 1cqw);
+}
+
+.root[data-compact="true"] .statList[data-count="4"],
+.root[data-compact="true"] .statList[data-count="5"] {
+  gap: 14px;
+}
+
+.root[data-compact="true"] .statList[data-count="4"] .statValue,
+.root[data-compact="true"] .statList[data-count="5"] .statValue {
+  font-size: 36px;
+}
+
+/* Phones: the card takes the whole view, its sections spread down it. */
+.root[data-compact="true"] .persona {
+  flex: 1;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px 16px;
+}
+
+.root[data-compact="true"] .personaPhoto {
+  width: 64px;
+  height: 64px;
+}
+
+.root[data-compact="true"] .personaName {
   font-size: 22px;
+}
+
+/* Only tall phones have room for the behaviour section; the rest of the card always fits without scrolling. */
+@media (max-height: 899px) {
+  .root[data-compact="true"] .personaBehavior {
+    display: none;
+  }
+}
+
+/* Short phones: tighter still. */
+@media (max-height: 760px) {
+
+  .root[data-compact="true"] .persona {
+    gap: 8px;
+    margin-top: 10px;
+    padding: 12px 14px;
+  }
+
+  /* The tabs already name them. */
+  .root[data-compact="true"] .personas .chartTitle {
+    display: none;
+  }
+
+  .root[data-compact="true"] .personas .compareToggle {
+    margin-top: 10px;
+  }
+
+  .root[data-compact="true"] .personaPhoto {
+    width: 56px;
+    height: 56px;
+  }
+
+  .root[data-compact="true"] .personaName {
+    font-size: 20px;
+  }
+
+  .root[data-compact="true"] .personaAbout {
+    font-size: 13.5px;
+  }
+
+  .root[data-compact="true"] .personaCols ul {
+    gap: 2px;
+    margin-top: 4px;
+    font-size: 12.5px;
+    line-height: 1.3;
+  }
+}
+
+.root[data-compact="true"] .personaAbout {
+  font-size: 14.5px;
+}
+
+.root[data-compact="true"] .personaCols ul,
+.root[data-compact="true"] .personaBehavior ul {
+  font-size: 13.5px;
+}
+
+.root[data-compact="true"] .personaRole,
+.root[data-compact="true"] .personaFacts {
+  font-size: 13px;
+}
+
+/* More than six stickers: smaller, so three rows still fit the page. */
+.hobbyGrid[data-many] {
+  gap: calc(1.1 * var(--k) * 1cqw) calc(0.6 * var(--k) * 1cqw);
+  font-size: calc(0.84 * var(--k) * 1cqw);
+}
+
+.hobbyGrid[data-many] .hobbyBadge {
+  width: 4.6em;
+  height: 4.6em;
+}
+
+.root[data-compact="true"] .hobbyGrid[data-many] {
+  gap: 14px 8px;
+  font-size: 12.5px;
+}
+
+.root[data-compact="true"] .hobbyGrid[data-many] .hobbyBadge {
+  width: 52px;
+  height: 52px;
+}
+
+/* ---- A 3D model on a turntable ---- */
+
+.model3d {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.model3dStage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  margin-top: calc(0.6 * var(--k) * 1cqw);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.model3dStage[data-ready] {
+  opacity: 1;
+}
+
+.model3dStage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.model3dStage canvas:active {
+  cursor: grabbing;
+}
+
+.model3dHint {
+  margin: calc(0.4 * var(--k) * 1cqw) 0 0;
+  font-family: var(--font-ui);
+  font-size: calc(0.75 * var(--k) * 1cqw);
+  text-align: center;
+  color: rgb(var(--ink-rgb) / 0.6);
+}
+
+.root[data-compact="true"] .model3dHint {
+  font-size: 12px;
+}
+
+/* Three photos: bigger, scattered down the whole page. */
+.polaroidBoard[data-count="3"] .polaroidSlot {
+  width: 50%;
+}
+
+.polaroidBoard[data-count="3"] .polaroidSlot:nth-child(1) { left: 0%; top: 0%; --r: -5deg; }
+.polaroidBoard[data-count="3"] .polaroidSlot:nth-child(2) { left: 48%; top: 14%; --r: 4deg; }
+.polaroidBoard[data-count="3"] .polaroidSlot:nth-child(3) { left: 18%; top: 46%; --r: -2deg; }
+
+.root[data-compact="true"] .polaroidBoard[data-count="3"] {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.root[data-compact="true"] .polaroidBoard[data-count="3"] .polaroidSlot {
+  width: auto;
+}
+
+.root[data-compact="true"] .polaroidBoard[data-count="3"] .polaroidSlot:nth-child(3) {
+  grid-column: 1 / span 2;
+  justify-self: center;
+  width: 60%;
+}
+
+.root[data-compact="true"] .polaroidBoard[data-count="3"] .polaroidSlot:nth-child(n) {
+  left: auto;
+  top: auto;
+}
+
+/* Desktop tour: a smaller title, with room before the short text under it. */
+.tour .showcaseTitle {
+  font-size: calc(2 * var(--k) * 1cqw);
+}
+
+.tour .showcaseIntro {
+  margin-top: calc(1.1 * var(--k) * 1cqw);
+}
+
+.root[data-compact="true"] .tour .showcaseIntro {
+  margin-top: 10px;
+}
+
+/* ---- An embedded prototype ---- */
+
+.protoStage {
+  position: relative;
+  min-height: 0;
+  align-self: stretch;
+}
+
+.protoStage iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+}
+
+.protoNote {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: calc(0.75 * var(--k) * 1cqw);
+  line-height: 1.45;
+  color: rgb(var(--ink-rgb) / 0.62);
+}
+
+/* Phones: the prototype fills the view; its own screens are reached by tapping through it. */
+.root[data-compact="true"] .proto .protoList,
+.root[data-compact="true"] .proto .showcaseIntro {
+  display: none;
+}
+
+.root[data-compact="true"] .protoStage {
+  flex: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgb(var(--ink-rgb) / 0.12);
+}
+
+.root[data-compact="true"] .protoNote {
+  font-size: 12px;
+}
+
+/* Eleven screens to list: tighter rows than the screenshot tour. */
+.proto .tourSide {
+  gap: calc(1 * var(--k) * 1cqw);
+}
+
+.proto .tourList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 calc(0.4 * var(--k) * 1cqw);
+}
+
+.proto .tourItem {
+  padding-top: calc(0.32 * var(--k) * 1cqw);
+  padding-bottom: calc(0.32 * var(--k) * 1cqw);
+  font-size: calc(0.85 * var(--k) * 1cqw);
+}
+
+/* Phones: a poster of the app and a button that opens it full screen. */
+.protoPoster {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.protoPhone {
+  flex: 0 1 auto;
+  min-height: 0;
+  height: 100%;
+  max-height: 420px;
+  aspect-ratio: 390 / 844;
+  padding: 6px;
+  border: none;
+  border-radius: 28px;
+  background: #101828;
+  box-shadow: 0 18px 36px -12px rgb(16 24 40 / 0.4);
+  cursor: pointer;
+}
+
+.protoPhone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 22px;
+}
+
+.root[data-compact="true"] .protoPoster .chessLink {
+  margin-top: 0;
+}
+
+.protoFull {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background: #101828;
+}
+
+.protoBar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: calc(6px + env(safe-area-inset-top)) 12px 6px 18px;
+  color: #f5e9d9;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.protoFull iframe {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  border: none;
+  background: #f9fafb;
+}
+
+.protoClose {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgb(245 233 217 / 0.4);
+  border-radius: 999px;
+  background: none;
+  color: #f5e9d9;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.protoClose:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Four photos: two crooked rows of two. */
+.polaroidBoard[data-count="4"] .polaroidSlot {
+  width: 44%;
+}
+
+.polaroidBoard[data-count="4"] .polaroidSlot:nth-child(1) { left: 2%; top: 0%; --r: -4deg; }
+.polaroidBoard[data-count="4"] .polaroidSlot:nth-child(2) { left: 52%; top: 4%; --r: 3deg; }
+.polaroidBoard[data-count="4"] .polaroidSlot:nth-child(3) { left: 4%; top: 50%; --r: 2.5deg; }
+.polaroidBoard[data-count="4"] .polaroidSlot:nth-child(4) { left: 53%; top: 52%; --r: -3deg; }
+
+.root[data-compact="true"] .polaroidBoard[data-count="4"] {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.root[data-compact="true"] .polaroidBoard[data-count="4"] .polaroidSlot:nth-child(n) {
+  left: auto;
+  top: auto;
+  width: auto;
 }

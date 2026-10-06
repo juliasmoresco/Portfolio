@@ -1,0 +1,70 @@
+{
+  "skin": "notes",
+  "title": "Kind words",
+  "kind": "Mentorship",
+  "hotspotLabel": "Notes from mentees",
+  "links": [
+    {
+      "label": "Read all reviews on ADPList",
+      "href": "https://adplist.org/mentors/julia-moresco"
+    },
+    {
+      "label": "Book a session",
+      "href": "https://adplist.org/mentors/julia-moresco"
+    }
+  ],
+  "notes": [
+    {
+      "quote": "Julia is an incredible, attentive professional. I’ve had the chance to do a few mentoring sessions with her, and to me she’s the best mentor on the platform.",
+      "snippet": "The best mentor on the platform",
+      "name": "Diogo R.",
+      "role": "UX/UI Designer",
+      "date": "Apr 2024",
+      "translated": true
+    },
+    {
+      "quote": "Júlia has a great heart. She is so kind as a person and you can feel it in her professional advice too. She can help you, point out things that you need to improve and teach important lessons. All this with a lot of empathy and kindness.",
+      "snippet": "All this with a lot of empathy and kindness",
+      "name": "Luiza G.",
+      "role": "UI/UX Designer",
+      "date": "Aug 2022"
+    },
+    {
+      "quote": "Julia seems genuinely preoccupied with finding the best way to help. At the end of our session she provided me a personalized resource full of indications and tips, which really was above my expectations.",
+      "snippet": "A personalized resource full of tips",
+      "name": "Joana G.",
+      "role": "UX/UI Designer",
+      "date": "Jul 2024"
+    },
+    {
+      "quote": "I love the guidance Júlia gives. She’s very smart, experienced and great at explaining! I’m so grateful for her help in growing my career. Highly recommend!",
+      "snippet": "Smart, experienced and great at explaining",
+      "name": "Jéssica K.",
+      "role": "Junior UX Designer",
+      "date": "Aug 2024",
+      "translated": true
+    },
+    {
+      "quote": "I’ve only just completed my first session with Julia and I’m excited for the next one. Julia was empathetic and encouraging and gave actionable steps to take.",
+      "snippet": "Empathetic, encouraging, with actionable steps",
+      "name": "Ariyike A.",
+      "role": "Product Designer",
+      "date": "Nov 2022"
+    },
+    {
+      "quote": "The session with Júlia was great. I felt completely at ease asking my questions, and she gave me plenty of material that will help me a lot to improve my portfolio. She’s very transparent and attentive to detail, and shows incredible dedication from the start of the session to the end.",
+      "snippet": "Incredible dedication, start to end",
+      "name": "Ryan C.",
+      "role": "UX/UI Designer",
+      "date": "Oct 2023",
+      "translated": true
+    }
+  ],
+  "pages": [
+    {
+      "lines": [
+        "Notes from designers I’ve mentored on ADPList since 2022."
+      ]
+    }
+  ]
+}

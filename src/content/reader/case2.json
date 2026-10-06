@@ -1,224 +1,430 @@
 {
   "skin": "book",
-  "title": "Loyalty Tiers – Designing a Scalable VIP Experience",
-  "tag": "Case study · QSR",
-  "year": "2023",
+  "title": "Bringing Retirement into HUB",
+  "tag": "Case study · Fintech",
+  "year": "2021–2022",
   "role": "Product Design, User Research",
-  "spine": "#6F9F9A",
+  "spine": "#D9A514",
+  "accent": {
+    "fill": "#F2B705",
+    "on": "#1B1A18",
+    "text": "#1B1A18"
+  },
   "pages": [
     {
       "kicker": "Overview",
-      "heading": "Project Summary",
+      "heading": "Advisors had everything in one place. Except retirement.",
       "lines": [
-        "Loyalty Tiers is a redesigned tiered rewards experience for Burger King's mobile app. The feature was adapted for RBI’s global platform to support recognition, motivation, and long-term engagement.",
-        "Client: Restaurants Brands International – Burger King Spain",
-        "My Role: Product Designer – Research, Competitive Benchmarking, Prototyping",
-        "Other participants: Valentina Lopes (Product Manager)",
-        "Platform: Burger King App (Mobile and Desktop)"
+        "At XP Inc., one of Brazil's largest investment brokers, advisors run their day in HUB. Retirement was the exception: it still lived in **Connect**, an older platform.",
+        "**Client:** XP Inc.",
+        "**My role:** Product Designer",
+        "**Team:** with Jaqueline Manso (Product Designer)",
+        "**Platform:** HUB, XP's web platform for advisors",
+        "**Timeline:** Oct 2021 – Apr 2022"
       ],
-      "image": "case2-cover"
+      "image": "hub-cover",
+      "fullPage": true,
+      "pageColor": "#1b1a18"
     },
     {
       "kicker": "Overview",
-      "heading": "Project Summary",
+      "heading": "The problem: a product left behind",
       "lines": [
-        "Timeline: 2023",
-        "Team: Product, Engineering, CRO, Marketing, Intl Research"
-      ]
-    },
-    {
-      "kicker": "Overview",
-      "heading": "Context",
-      "lines": [
-        "The Loyalty Tiers feature was originally developed and launched in the standalone Burger King Spain app, introducing a VIP level called Superking for highly engaged users. The tier included exclusive benefits like third-party rewards (e.g. Netflix, Apple), aiming to boost retention and reward frequency.",
-        "When the Iberia region migrated to RBI’s white-label app infrastructure, we were tasked with supporting this feature in the new ecosystem, ensuring continuity for existing Superking users while adapting the experience to new tech constraints and regional scalability."
-      ]
-    },
-    {
-      "kicker": "Overview",
-      "heading": "Context",
-      "lines": [
-        "Beyond migration, the broader goal was to evolve the feature into a scalable global model — with clear upgrade paths, configurable tier rules, and UX patterns that could support a future third level and flexible benefits across markets.",
-        "The program needed to be designed to scale globally, with room for a third tier and flexible benefits across regions."
-      ]
-    },
-    {
-      "kicker": "Overview",
-      "heading": "Problem",
-      "lines": [
-        "Without tiers, Burger King's loyalty program offered the same rewards to all users — creating a flat experience with no recognition or progression. While Superking had existed in Spain, migrating it into the white-label app required a redesign that balanced clarity, scalability, and user motivation.",
-        "The lack of a tier system made it hard to:",
-        "Encourage more frequent or higher-value purchases",
-        "Retain VIP users with meaningful perks",
-        "Communicate progress or status"
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Research & Design Process",
-      "lines": [
-        "Our research focused on validating whether users understood the tier concept and perceived value in progressing through it, especially within a new, multi-market infrastructure.",
-        "We began with hypotheses based on internal feedback and business goals, then tested early prototypes to identify friction in comprehension, discoverability, and interaction."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Desk Research",
-      "lines": [
-        "Conducted competitive analysis of leading loyalty programs",
-        "Documented tier structures, benefits, and UX patterns for reward states, onboarding, and progress tracking",
-        "Examined existing research and data insights",
-        "Studied user behavior patterns from previous loyalty program experiments"
+        "Connect had a confusing structure and dated components. It slowed advisors down, created support tickets and kept retirement apart from the rest of HUB.",
+        "The brief: move every retirement operation into HUB, and improve each journey on the way. We'd know it worked if we saw:",
+        "- fewer support tickets",
+        "- happier advisors",
+        "- more pension assets under custody via HUB",
+        "- more advisors using HUB, more often"
       ],
-      "image": "case2-01",
-      "caption": "Sitemap"
+      "glossary": {
+        "kicker": "Pension 101",
+        "title": "A few words first",
+        "items": [
+          {
+            "term": "Portability",
+            "note": "Portabilidade",
+            "body": "Moving money between pension plans: into XP from elsewhere (external), or within XP (internal)."
+          },
+          {
+            "term": "Contribution",
+            "note": "Aporte",
+            "body": "Money paid into a plan: a first deposit, a one-off top-up or a monthly amount."
+          },
+          {
+            "term": "Withdrawal",
+            "note": "Resgate",
+            "body": "Taking money out of a pension plan, in part or in full."
+          },
+          {
+            "term": "PGBL & VGBL",
+            "body": "Brazil's two kinds of private pension. Taxed differently, each suits a different client."
+          },
+          {
+            "term": "Tax table",
+            "note": "Progressivo or regressivo",
+            "body": "Two ways a plan can be taxed when money comes out, each with its own restrictions."
+          },
+          {
+            "term": "Insurer",
+            "note": "Seguradora",
+            "body": "Plans are run by insurers (XP Seguros, Icatu, SulAmérica…), each with its own rules."
+          }
+        ]
+      }
     },
     {
       "kicker": "Process",
-      "heading": "User Research",
+      "heading": "Start where it hurts most",
       "lines": [
-        "We ran two rounds of moderated usability testing with BK and non-BK customers in the UK, using early interactive prototypes of the new tiered loyalty system. These sessions focused on how users interpreted the Superking concept, discovered rewards, and understood the logic behind locked vs. unlocked offers."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "User Research",
-      "lines": [
-        "Participants were asked to complete tasks like checking their loyalty status, exploring benefits, and attempting to redeem partner rewards. While the interface was visually engaging, many users struggled to understand how to qualify for Superking, where to find third-party offers, and what actions unlocked specific rewards."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Key Findings",
-      "lines": [
-        "Through usability testing and interviews, we uncovered several friction points that made it difficult for users to understand and engage with the tiered loyalty system.",
-        "Progress and qualification rules were unclear. Many users weren’t sure how to become or stay a Superking, and some didn’t even realize their tier had changed.",
-        "Partner rewards lacked visibility. External offers were often overlooked or misunderstood due to naming and placement."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Key Findings",
-      "lines": [
-        "Some users questioned the value of the rewards. For example, rewards like Netflix were appreciated but didn’t always feel worth the required effort.",
-        "Language and status tracking caused confusion. Locked rewards lacked explanation, and users weren’t sure what benefits were currently available.",
-        "Navigation patterns were consistent. Most users accessed the program via the Loyalty Bar or Rewards tab, helping inform where key information should be surfaced."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Design Priorities & Solutions",
-      "lines": [
-        "Clarify Tier Status & Progression:",
-        "Created a Loyalty Bar displaying status, progress, and contextual guidance",
-        "Implemented clear messaging about earning and maintaining Superking status",
-        "Added celebratory modals for tier changes and upgrades",
-        "Surface Value Clearly:",
-        "Displayed locked rewards in King view with preview of attainable benefits"
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Design Priorities & Solutions",
-      "lines": [
-        "Created dedicated onboarding to explain tier system and benefits",
-        "Improve Reward Interaction:",
-        "Refined CTA states to distinguish between locked and unlocked offers",
-        "Design for Scale:",
-        "Developed a modular UI framework designed to support a future third tier and potential rollout across other RBI brands, such as Popeyes and Firehouse Subs"
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Design Priorities & Solutions",
-      "lines": [
-        "Integrated region-specific, configurable copy using Sanity, enabling localized adjustments without dev effort."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Solution",
-      "lines": [
-        "1. User Sign-Up and King Tier Onboarding — Logged-out and King-tier users are introduced to the program with clear entry points and tier messaging, setting expectations early."
+        "Retirement in Connect covered many operations: portability, contributions, withdrawals, beneficiary changes and more. Stakeholders wanted them all in HUB by Q2 2022.",
+        "We started with **portability**, external and internal. It had the most complaints, the most business rules and the most technical effort.",
+        "Each discovery started the same way: business, operations and tech together, looking at volumes, support tickets and the main pain points."
       ],
-      "image": [
-        "case2-02",
-        "case2-03"
-      ]
+      "compare": {
+        "kicker": "Before and after",
+        "title": "Where a portability starts",
+        "device": "desktop",
+        "variants": [
+          {
+            "label": "Before · Connect",
+            "images": [
+              "hub-connect-2",
+              "hub-connect-4"
+            ],
+            "note": "Connect asked for the destination insurer first, then led into one long form."
+          },
+          {
+            "label": "After · HUB",
+            "images": [
+              "hub-new",
+              "hub-review"
+            ],
+            "note": "HUB starts from the plans: pick one, choose what to do (external or internal portability, or a new investment), then go step by step."
+          }
+        ]
+      }
     },
     {
       "kicker": "Process",
-      "heading": "Solution",
+      "heading": "Discovery: rules on top of rules",
       "lines": [
-        "2. Loyalty Bar and King Home Experience — The Loyalty Bar communicates current status, crowns, and progress toward Superking, helping users understand what’s next."
+        "Portability is complex. Every insurer working with XP has its own rules, payment methods and data to collect, and portability between XP plans works differently again.",
+        "PGBL and VGBL plans add tax restrictions on top, depending on the plan's tax table.",
+        "The open question was whether advisors themselves understood all these differences, and how the product could help them."
       ],
-      "image": "case2-04"
+      "cards": {
+        "kicker": "Five pain points",
+        "title": "What got in the way",
+        "items": [
+          {
+            "title": "Destination first was confusing.",
+            "body": "Connect's very first step was choosing the destination insurer, before anything else."
+          },
+          {
+            "title": "One plan at a time.",
+            "body": "A portability couldn't start from more than one origin plan."
+          },
+          {
+            "title": "External or internal?",
+            "body": "Advisors and clients didn't understand how each kind of portability is requested."
+          },
+          {
+            "title": "Too many fields.",
+            "body": "The forms asked for lots of registration data that wasn't needed."
+          },
+          {
+            "title": "Words that didn't help.",
+            "body": "“Intracorretora” portability or “internal transfer”? The terms caused confusion."
+          }
+        ]
+      },
+      "artRight": true
     },
     {
       "kicker": "Process",
-      "heading": "Solution",
+      "heading": "From pain points to bets",
       "lines": [
-        "3. King Rewards View with Locked Superking Benefits — Locked rewards are visible to King users, teasing the benefits of reaching Superking and increasing motivation to upgrade."
+        "We grouped the pain points, studied the business rules and limits, and drew a blueprint of the journey, comparing Connect with HUB.",
+        "Each opportunity became a hypothesis with a clear upside and a clear risk. We ranked them by support volume, technical feasibility and fit with the business goals.",
+        "The boldest one: letting advisors start from a **list of funds** instead of a client. Nothing like it existed in Connect."
       ],
-      "image": [
-        "case2-05",
-        "case2-06"
-      ]
+      "cards": {
+        "kicker": "Four opportunities",
+        "title": "What we bet on",
+        "items": [
+          {
+            "title": "Start from the fund list",
+            "body": "Begin from the plans available, not the client. The upside: faster search and room to grow. The risk: nothing like it existed in Connect."
+          },
+          {
+            "title": "Keep the client search",
+            "body": "For existing plans and everything tied to a client, keep the client-first path advisors already knew."
+          },
+          {
+            "title": "Use the advisors' words",
+            "body": "Find out which terms advisors actually use for each kind of portability, and name things that way."
+          },
+          {
+            "title": "Teach inside the flow",
+            "body": "Bring insurer rules, tax tables and plan details into the journey itself, instead of piling up disclaimers."
+          }
+        ]
+      }
     },
     {
-      "kicker": "Process",
-      "heading": "Solution",
+      "kicker": "Research",
+      "heading": "Saying it the advisor's way",
       "lines": [
-        "Rewards (Tier 1)"
+        "Connect called the same thing by different names, and advisors didn't always know which was which.",
+        "So we tested the words too, as part of the research with advisors.",
+        "In HUB, each option also carries a one-line description, so the name never has to do all the work."
       ],
-      "image": "case2-07"
+      "poll": {
+        "kicker": "Your turn",
+        "title": "What would you call it?",
+        "question": "An advisor wants to move a client's money from one XP pension plan to another. Which name would they look for?",
+        "options": [
+          {
+            "label": "Portabilidade Interna",
+            "note": "Internal portability"
+          },
+          {
+            "label": "Transferência Interna",
+            "note": "Internal transfer"
+          },
+          {
+            "label": "Intracorretora",
+            "note": "Within the broker"
+          }
+        ],
+        "answer": 2,
+        "reveal": "Most advisors knew internal portability as “Intracorretora”, the word they'd used for years.",
+        "prompt": "Pick one to see what advisors said.",
+        "answerLabel": "Advisors' pick"
+      },
+      "artRight": true
     },
     {
-      "kicker": "Process",
-      "heading": "Solution",
+      "kicker": "Research",
+      "heading": "Testing with advisors",
       "lines": [
-        "4. User Achieves Superking Tier — Celebratory moment when a user becomes Superking — designed to reinforce achievement and signal access to exclusive benefits."
+        "We validated the refined prototype with advisors of different experience levels, in two waves.",
+        "**Concept test:** 5 semi-structured interviews about the new flow, the terms and how clear the first steps were.",
+        "**Usability test:** a Maze test sent to about 430 advisors. 46 completed it, with three tasks: start a portability, choose the origin plan and finish the flow.",
+        "We measured task success, drop-off and satisfaction after each task (ASQ)."
       ],
-      "image": "case2-08"
+      "funnel": {
+        "kicker": "Usability test",
+        "title": "Who took part",
+        "steps": [
+          {
+            "value": 430,
+            "label": "advisors invited by email"
+          },
+          {
+            "value": 46,
+            "label": "completed the Maze test"
+          },
+          {
+            "value": 41,
+            "label": "task success rate",
+            "display": "90%"
+          }
+        ],
+        "note": "Plus 5 in-depth interviews with advisors of different experience levels."
+      }
     },
     {
-      "kicker": "Process",
-      "heading": "Solution",
+      "kicker": "Research",
+      "heading": "Habit, or a usability problem?",
       "lines": [
-        "5. Superking Home and Tier Indicator — The Loyalty Bar and homepage modules now reflect the new status, creating a sense of progression and earned exclusivity."
+        "Most of the flow passed, with small fixes. One part split opinions: starting a new plan from the **fund list**.",
+        "Advisors were used to starting from the origin plan, as in Connect, and one said in Maze it felt more logical. In an interview, another saw value in the fund list but was thrown at first, out of habit.",
+        "Task success was still 90%. So was it a usability problem, or years of Connect? With 46 testers, we couldn't be sure."
       ],
-      "image": [
-        "case2-09",
-        "case2-10"
-      ]
+      "compare": {
+        "kicker": "Two ways in",
+        "title": "Fund first or client first?",
+        "device": "desktop",
+        "variants": [
+          {
+            "label": "Start from a fund",
+            "images": [
+              "hub-funds"
+            ],
+            "note": "New: browse the plans available, compare them, and start a new investment or a portability."
+          },
+          {
+            "label": "Start from a client",
+            "images": [
+              "hub-clients"
+            ],
+            "note": "Familiar: find the client, see their plans and act on them."
+          }
+        ]
+      },
+      "artRight": true
     },
     {
-      "kicker": "Process",
-      "heading": "Solution",
+      "kicker": "Outcome",
+      "heading": "Letting the pilot decide",
       "lines": [
-        "6. Superking Rewards — Superking users can access exclusive rewards. Layout and naming adjustments improved clarity."
+        "The roadmap had to keep moving, so instead of holding the release, we built the answer into it.",
+        "The four offices that run the most portabilities used the new flow for real, with weekly sessions to present it, train advisors and collect feedback. Advisors were split into Beta and non-Beta groups, and feedback came in through Medallia.",
+        "The answer: the fund list was validated. Advisors got used to it and agreed it made sense for the product."
       ],
-      "image": "case2-11"
+      "timeline": {
+        "kicker": "Rollout",
+        "title": "From a pilot to every office",
+        "stops": [
+          {
+            "year": "01",
+            "name": "Controlled",
+            "role": "46 advisors",
+            "note": "Beta group, with weekly check-ins"
+          },
+          {
+            "year": "02",
+            "name": "Expanded",
+            "role": "74 offices",
+            "note": "About 4,600 advisors, 45% of the base"
+          },
+          {
+            "year": "03",
+            "name": "Network-wide",
+            "role": "Every advisor with HUB access",
+            "note": "With regular feedback sessions"
+          }
+        ]
+      }
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "Moving house, one room at a time",
+      "lines": [
+        "We started in October 2021. By April 2022, **92%** of retirement features had been built into HUB, and the number of offices using it kept growing.",
+        "Initial Contribution reused the same navigation as portability. Tested with 150 advisors, it reached an **80%** task success rate.",
+        "Feedback praised the speed, the ease of use and how clear the navigation was."
+      ],
+      "migration": {
+        "kicker": "Connect → HUB",
+        "title": "What moved",
+        "from": "Connect",
+        "to": "HUB",
+        "items": [
+          "External portability",
+          "Internal portability",
+          "Initial contribution",
+          "One-off contribution",
+          "Monthly contribution",
+          "Withdrawal",
+          "Withdrawal simulation",
+          "Tracking",
+          "Detailed statement",
+          "Client positions",
+          "Fund comparator"
+        ],
+        "value": 92,
+        "unit": "%",
+        "caption": "of retirement features built into HUB by April 2022"
+      },
+      "artRight": true
     },
     {
       "kicker": "Outcome",
       "heading": "Results",
-      "lines": [
-        "Following the launch in Spain, the updated Loyalty Tiers experience led to measurable improvements:",
-        "+3.2 pt increase in users reaching the Superking tier (Tier 2 conversion)",
-        "+2.7 pt lift in redemption of third-party rewards",
-        "+1.9 pt increase in monthly transactions from Superking users",
-        "These results confirm that the redesign not only improved usability but also boosted key business metrics related to engagement and retention."
-      ]
+      "lines": [],
+      "stats": {
+        "kicker": "Results",
+        "title": "What it added up to",
+        "items": [
+          {
+            "value": 90,
+            "unit": "%",
+            "label": "task success starting a portability, with 46 testers"
+          },
+          {
+            "value": 4600,
+            "label": "advisors using it in the expanded rollout, about 45% of the base"
+          },
+          {
+            "value": 80,
+            "unit": "%",
+            "label": "task success on Initial Contribution, with 150 testers"
+          }
+        ]
+      },
+      "right": {
+        "quotes": {
+          "kicker": "In their words",
+          "title": "What advisors said",
+          "note": "Advisor feedback, translated from Portuguese",
+          "items": [
+            {
+              "text": "Every migration I ran went absolutely smoothly and was easy to do."
+            },
+            {
+              "text": "Lots of products, and a very easy portability system."
+            },
+            {
+              "text": "Signing up and portability are easy to understand."
+            },
+            {
+              "text": "The pension portability process is excellent: quick and practical for both advisor and client."
+            },
+            {
+              "text": "I had the chance to request a portability to XP, and it was simple and quick. Congratulations on the efficiency."
+            },
+            {
+              "text": "A fast portability process, easy to run, with competitive funds available."
+            }
+          ]
+        }
+      }
     },
     {
       "kicker": "Outcome",
-      "heading": "Reflection",
-      "lines": [
-        "This project revealed how subtle UX friction can prevent users from perceiving value in loyalty. Tiers are not just about exclusivity, they're about clarity, anticipation, and rewarding consistent behavior.",
-        "By aligning business logic with user comprehension and interface clarity, we helped turn a transactional system into a more aspirational and rewarding experience.",
-        "The scalable architecture now allows Burger King to evolve their loyalty tiers globally and experiment with deeper personalization and benefit structures."
-      ]
+      "heading": "The final result",
+      "lines": [],
+      "showcase": {
+        "kicker": "Outcome · The result",
+        "title": "The final result",
+        "device": "desktop",
+        "intro": [
+          "Retirement now lives where advisors already work: a fund list to start from, client positions to act on, and guided steps for each operation."
+        ],
+        "screens": [
+          {
+            "image": "hub-funds",
+            "label": "Fund list"
+          },
+          {
+            "image": "hub-fund-detail",
+            "label": "Plan details"
+          },
+          {
+            "image": "hub-new",
+            "label": "New contract"
+          },
+          {
+            "image": "hub-clients",
+            "label": "Client positions"
+          },
+          {
+            "image": "hub-review",
+            "label": "Fund review"
+          },
+          {
+            "image": "hub-topup-review",
+            "label": "One-off contribution"
+          },
+          {
+            "image": "hub-topup-summary",
+            "label": "Summary"
+          }
+        ]
+      }
     }
   ]
 }

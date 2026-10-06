@@ -1,0 +1,65 @@
+.screen {
+  flex: 1;
+  background: var(--g-tint);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--status-h) 24px calc(var(--home-h) + 14px);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 48px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gridBtn {
+  display: grid;
+  grid-template-columns: 52px 1fr 52px;
+  padding: 0;
+}
+.gridBtn span {
+  text-align: center;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0;
+  font-size: 14px;
+  color: var(--n600);
+}
+.divider span {
+  flex: 1;
+  height: 1px;
+  background: var(--n200);
+}
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  color: var(--n600);
+  margin-top: 4px;
+}
+.signup button {
+  min-height: 44px;
+  color: var(--g700);
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0 4px;
+}
+.signup button:hover {
+  color: var(--g800);
+}

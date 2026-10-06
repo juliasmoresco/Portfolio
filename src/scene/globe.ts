@@ -33,12 +33,31 @@ const LAND: LonLat[][] = [
 
 const W = 1024;
 const H = 512;
+/** The sphere's radius in `makeGlobe()`'s own local units — exported so markers can sit exactly on it. */
+export const GLOBE_SPHERE_RADIUS = 0.5;
 
-function makeMapTexture(): THREE.CanvasTexture {
+/**
+ * A point on the sphere's own surface for a given [lon, lat], in the sphere mesh's local space —
+ * add markers as children of `makeGlobe()`'s sphere (findable by name: `.getObjectByName("sphere")`)
+ * and they inherit its rotation, staying glued to the right spot as the globe turns. Matches the
+ * same lon/lat convention the map texture above uses (u = (lon+180)/360, v = (90-lat)/180),
+ * combined with three.js's standard equirectangular UV-to-sphere mapping.
+ */
+export function pointOnGlobe(lon: number, lat: number, r: number): THREE.Vector3 {
+  const u = (lon + 180) / 360;
+  const v = (90 - lat) / 180;
+  const phi = v * Math.PI;
+  const theta = u * 2 * Math.PI;
+  return new THREE.Vector3(-r * Math.sin(phi) * Math.cos(theta), r * Math.cos(phi), r * Math.sin(phi) * Math.sin(theta));
+}
+
+/** `scale` renders the same map at a higher resolution, for close-ups. */
+function makeMapTexture(scale = 1): THREE.CanvasTexture {
   const c = document.createElement("canvas");
-  c.width = W;
-  c.height = H;
+  c.width = W * scale;
+  c.height = H * scale;
   const g = c.getContext("2d")!;
+  g.scale(scale, scale);
   const x = (lon: number) => ((lon + 180) / 360) * W;
   const y = (lat: number) => ((90 - lat) / 180) * H;
 
@@ -108,7 +127,17 @@ function makeMapTexture(): THREE.CanvasTexture {
   return t;
 }
 
-/** Names matter to nothing here; the scene finds the globe's meshes by traversal. */
+/** Just the map-wrapped sphere, centred at the origin. `detail` sharpens the map and mesh for close-ups. */
+export function makeGlobeSphere(detail = 1): THREE.Mesh {
+  const sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(GLOBE_SPHERE_RADIUS, 48 * detail, 32 * detail),
+    new THREE.MeshStandardMaterial({ map: makeMapTexture(detail), roughness: 0.55, metalness: 0.05 }),
+  );
+  sphere.name = "sphere";
+  return sphere;
+}
+
+/** The whole desk globe: sphere, brass meridian ring and wooden base. */
 export function makeGlobe(): THREE.Group {
   const globe = new THREE.Group();
   globe.name = "globe";
@@ -117,14 +146,15 @@ export function makeGlobe(): THREE.Group {
   const wood = new THREE.MeshStandardMaterial({ color: 0x5b3a22, roughness: 0.62 });
 
   const CENTRE_Y = 0.72;
-  const SPHERE_R = 0.5;
   const RING_R = 0.53;
 
   const base = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.34, 0.06, 40), wood);
+  base.name = "base";
   base.position.y = 0.03;
 
   // Everything above the base turns together, so the ring can be shown at an angle.
   const assembly = new THREE.Group();
+  assembly.name = "assembly";
   assembly.rotation.y = 0.75;
 
   // The stem meets the bottom of the ring.
@@ -140,12 +170,12 @@ export function makeGlobe(): THREE.Group {
   const tilted = new THREE.Group();
   tilted.position.y = CENTRE_Y;
   tilted.rotation.z = 0.41; // 23.5 degrees
-  const sphere = new THREE.Mesh(new THREE.SphereGeometry(SPHERE_R, 48, 32), new THREE.MeshStandardMaterial({ map: makeMapTexture(), roughness: 0.55, metalness: 0.05 }));
+  const sphere = makeGlobeSphere();
   sphere.rotation.y = -1.2; // turn the Atlantic toward the room
   const capTop = new THREE.Mesh(new THREE.SphereGeometry(0.028, 16, 12), brass);
-  capTop.position.y = SPHERE_R + 0.005;
+  capTop.position.y = GLOBE_SPHERE_RADIUS + 0.005;
   const capBottom = capTop.clone();
-  capBottom.position.y = -(SPHERE_R + 0.005);
+  capBottom.position.y = -(GLOBE_SPHERE_RADIUS + 0.005);
   tilted.add(sphere, capTop, capBottom);
 
   assembly.add(stem, ring, tilted);

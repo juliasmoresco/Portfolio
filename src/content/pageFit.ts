@@ -12,7 +12,17 @@ export function estimateTextHeight(lines: string[]): number {
   const CHARS_PER_LINE = 42;
   const LINE = 16;
   const GAP = 5;
-  return lines.reduce((h, l) => h + Math.max(1, Math.ceil(l.length / CHARS_PER_LINE)) * LINE, 0) + GAP * Math.max(0, lines.length - 1);
+  return lines.reduce((h, l) => h + Math.max(1, Math.ceil(visibleLength(l) / CHARS_PER_LINE)) * LINE, 0) + GAP * Math.max(0, lines.length - 1);
+}
+
+/**
+ * A line may use **bold** and start a list item ("- " bullet, "1. " number). The markers aren't shown, but a list item
+ * is set in from the margin, which costs about as much room as three characters.
+ */
+export function visibleLength(line: string): number {
+  const item = /^(?:- |\d+\. )/.test(line);
+  const text = line.replace(/\*\*/g, "").replace(/^- /, "");
+  return item ? text.length + 3 : text.length;
 }
 
 /** Room for text under the kicker and heading. A heading longer than ~22 characters wraps to a second line. */

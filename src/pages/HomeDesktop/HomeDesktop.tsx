@@ -1,7 +1,8 @@
 import { useCallback, useRef } from "react";
-import { getReaderItem, hotspotLabels, hotspotSpines } from "../../content";
+import { getReaderItem, hotspotArt, boardNotes, hotspotLabels, hotspotSpines } from "../../content";
 import { HotspotList } from "../../components/HotspotList/HotspotList";
 import { OfficeScene, type OfficeSceneHandle } from "../../components/OfficeScene/OfficeScene";
+import { QuickNav } from "../../components/QuickNav/QuickNav";
 import { Reader } from "../../components/Reader/Reader";
 import { useShelfHome } from "../../hooks/useShelfHome";
 import { HOTSPOT_IDS } from "../../scene/hotspots";
@@ -25,10 +26,12 @@ export function HomeDesktop() {
     <div className={styles.page}>
       <div className={styles.stage}>
         <div className={styles.scene}>
-          <OfficeScene ref={scene} daylight={daylight} labels={hotspotLabels} spines={hotspotSpines} />
+          <OfficeScene ref={scene} daylight={daylight} labels={hotspotLabels} spines={hotspotSpines} art={hotspotArt} notes={boardNotes} />
         </div>
 
         <div className={styles.scrim} />
+
+        <QuickNav className={styles.quickNav} />
 
         <div className={styles.intro}>
           <h1 className={styles.title}>
@@ -36,7 +39,7 @@ export function HomeDesktop() {
             <br />
             my office
           </h1>
-          <p className={styles.lede}>There’s no menu here, just my real office. Click around and see what you find.</p>
+          <p className={styles.lede}>Click around and see what you find — or use the menu for a quicker way through.</p>
           <div className={styles.counter}>
             <span>
               {found.length} of {HOTSPOT_IDS.length} discovered
@@ -58,7 +61,7 @@ export function HomeDesktop() {
 
         <HotspotList onFocusItem={(id) => scene.current?.highlight(id)} inert={!!openId} />
 
-        {readerItem && <Reader key={openId} item={readerItem} onClose={onClose} />}
+        {readerItem && <Reader key={openId} id={openId ?? undefined} item={readerItem} onClose={onClose} />}
       </div>
     </div>
   );

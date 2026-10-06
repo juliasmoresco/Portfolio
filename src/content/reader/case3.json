@@ -1,210 +1,572 @@
 {
   "skin": "book",
-  "title": "Redesigning Menu & Offers Management for Operators",
-  "tag": "Case study · QSR",
-  "year": "2024",
-  "role": "Product Design, User Research",
-  "spine": "#D98A4A",
+  "title": "BoraInvest: Making Investing Feel Possible",
+  "tag": "Case study · Thesis",
+  "year": "2023",
+  "role": "UX Research, Product Design",
+  "spine": "#12B76A",
+  "accent": {
+    "fill": "#12B76A",
+    "on": "#FFFFFF",
+    "text": "#027A48"
+  },
   "pages": [
     {
       "kicker": "Overview",
-      "heading": "Project Summary",
+      "heading": "Young Brazilians know they should invest. They just don't feel ready.",
       "lines": [
-        "Redesigned the offer setup experience in Sanity to reduce errors and improve operator efficiency.",
-        "Client: Restaurants Brand International – Burger King",
-        "My Role: Senior Product Designer – Discovery, Research Strategy, Process Mapping",
-        "Other participants: Eduardo Javier (Senior Product Designer)",
-        "Platform: Sanity CMS, POS integrations (Oracle, NCR, Winrest, SICOM)",
-        "Timeline: Q3 2024",
-        "Markets: CH, DE, UK, Iberia"
+        "My final thesis in Visual Design at UFRGS: a mobile app that makes learning about investing feel possible, practical and trustworthy for young first-time investors.",
+        "**Project:** Final thesis (TCC), UFRGS",
+        "**My role:** UX research, product design, prototyping",
+        "**Advisor:** Prof. Sandro Fetter",
+        "**Platform:** Mobile app (iOS & Android)",
+        "**Year:** 2023"
       ],
-      "image": "case3-cover"
+      "image": "bora-cover",
+      "fullPage": true,
+      "pageColor": "#ecfdf3"
     },
     {
       "kicker": "Overview",
-      "heading": "Context",
+      "heading": "The problem: interest is up, confidence isn't",
       "lines": [
-        "Operators across markets manage menus and offers through a content platform (Sanity) that integrates with various systems like POS, payment providers, and order aggregators. Despite the flexibility of the system, managing and configuring PLUs, offers, combos, and pricing remains complex, manual, and error-prone.",
-        "This discovery effort was initiated to understand how operators set up and manage content, and to identify opportunities for reducing errors, simplifying workflows, and improving confidence in the output."
-      ]
-    },
-    {
-      "kicker": "Overview",
-      "heading": "Problem",
-      "lines": [
-        "As Burger King scaled its operations across multiple markets and systems, there was growing concern around how operators managed complex configurations in Sanity, particularly offers, PLUs, and product bundles. Stakeholders observed recurring bugs, launch delays, and inconsistent execution of campaigns."
-      ]
-    },
-    {
-      "kicker": "Overview",
-      "heading": "Problem",
-      "lines": [
-        "This discovery was launched to investigate whether the tools, workflows, and support structures in place were helping or hindering operators in doing their jobs effectively. We suspected that behind the visible symptoms, misconfigurations, duplicated content, and support tickets, there were deeper usability and process issues that needed to be uncovered and understood."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Design & Research Process",
-      "lines": [
-        "We structured this discovery in two main phases: understanding the current state and mapping where friction accumulates. The process was iterative and collaborative, designed to reflect both the operator's day-to-day experience and the technical landscape behind each task.",
-        "What we did:",
-        "Conducted 12 stakeholder interviews with operators and digital managers across CH, DE, UK, and global rollout teams to surface pain points"
+        "Young Brazilians are joining the stock market, but financial literacy is still low, and most people don't invest at all.",
+        "Learning tools fall short: most stock market learning apps are rated below 3.9 stars, and brokers' tools sit behind paywalls. The challenges:",
+        "- little trust, and investing feels complicated",
+        "- jargon and technical content",
+        "- theory that never turns into practice"
       ],
-      "image": "case3-01",
-      "caption": "Interviews with Operators"
+      "stats": {
+        "kicker": "The starting point",
+        "title": "Brazil and its money",
+        "items": [
+          {
+            "value": 30,
+            "unit": "%",
+            "label": "of Brazilians invest at all (ANBIMA, 2022)"
+          },
+          {
+            "value": 23,
+            "unit": "%",
+            "label": "of mentions go to savings accounts, the most used investment"
+          },
+          {
+            "value": 62,
+            "unit": "%",
+            "label": "of individual investors on the stock exchange are under 39 (B3, 2022)"
+          },
+          {
+            "display": "74th",
+            "label": "Brazil's rank in financial literacy, out of 144 countries"
+          }
+        ]
+      }
     },
     {
       "kicker": "Process",
-      "heading": "Design & Research Process",
+      "heading": "A full design cycle, start to finish",
       "lines": [
-        "Created detailed journey maps of core workflows, such as creating offers, configuring combos, and launching new products",
-        "Performed a bug analysis on recent loyalty-related misconfigurations — revealing that 41% were caused by offer setup issues",
-        "Analyzed how core tools (like Sanity and FKB) are used across different parts of the workflow, and reviewed Jira and Fire logs to identify misconfiguration patterns."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Design & Research Process",
-      "lines": [
-        "Mapped role-specific tasks to understand different needs across content creation, localization, and PLU management"
+        "The project went from discovery to a tested high-fidelity prototype, using Design Thinking with Lean Inception to scope an MVP.",
+        "I wanted to understand not just what people needed to learn, but how they take in financial information, and what stops them."
       ],
-      "image": "case3-02",
-      "caption": "Previous Offer Creation Page – Long Scroll with Unstructured Content"
+      "timeline": {
+        "kicker": "Double diamond",
+        "title": "Four phases",
+        "stops": [
+          {
+            "year": "01",
+            "name": "Discover",
+            "role": "Market data, app benchmarks, expert consultation"
+          },
+          {
+            "year": "02",
+            "name": "Define",
+            "role": "Requirements, personas and journeys"
+          },
+          {
+            "year": "03",
+            "name": "Ideate",
+            "role": "Information architecture, flows, wireframes"
+          },
+          {
+            "year": "04",
+            "name": "Prototype",
+            "role": "High-fidelity UI and usability tests"
+          }
+        ]
+      },
+      "artRight": true
     },
     {
-      "kicker": "Process",
-      "heading": "Key Findings",
+      "kicker": "Research",
+      "heading": "Listening first",
       "lines": [
-        "1. Content Management is Time-Consuming — Operators reported that tasks like creating offers, updating prices, and editing PLUs are slow and repetitive, often involving multiple tools and manual steps.",
-        "2. Reliance on Offer Duplication — Due to interface complexity and fear of misconfiguration, users frequently duplicate existing offers instead of creating new ones from scratch.",
-        "3. PLU Management Challenges — Configuring and syncing PLUs across platforms and vendors (e.g., SICOM vs. NCR) is a slow process, often hindered by manual approvals."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Key Findings",
-      "lines": [
-        "4. Sanity's Interface Lacks Intuitiveness — While flexible, Sanity's interface presents unclear fields and sparse documentation, posing challenges especially for new users.",
-        "5. Trial-and-Error Workflow — Teams heavily rely on testing and guesswork, with most troubleshooting done manually and lacking clear error guidance.",
-        "6. Absence of a Single Source of Truth — Operators depend on various tools like Excel, email, FKB, Sanity, and shared folders, without a unified or automated content validation system."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Key Findings",
-      "lines": [
-        "7. Desire for Role-Based Customization — Operators expressed the need for interfaces tailored to their specific roles or markets, displaying only relevant fields."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Opportunities & Recommendations",
-      "lines": [
-        "Simplify Offer Creation: Create guided workflows or templates for building offers from scratch",
-        "Clarify Fields: Add tooltips and documentation links directly in the platform",
-        "Validate Configurations: Automate PLU validation across systems to catch mismatches earlier",
-        "Improve Error Feedback: Make error messages specific and actionable when content fails to load properly"
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Opportunities & Recommendations",
-      "lines": [
-        "Streamline Duplications: Offer safe duplication options that flag outdated content or sync issues",
-        "Role-based UI Customization: Show only the fields relevant to each user profile or market",
-        "Centralize Learning Resources: Consolidate tutorials, FKB guides, and release notes into an accessible help center"
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Solution: New Offer Creation Flow",
-      "lines": [
-        "The first initiative we moved forward with to address misconfiguration issues was simplifying the offer creation page. Previously, this page featured an overwhelming vertical scroll with technical, unintuitive architecture, making it difficult for operators to navigate or feel confident when building an offer from scratch.",
-        "The new flow introduces a tabbed layout that divides the process into manageable steps, guiding users through offer creation with more structure and clarity."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Solution: New Offer Creation Flow",
-      "lines": [
-        "Users can now click the \"Create\" button in the top navigation bar to start a new offer."
+        "I started from data: ANBIMA's “Raio X do Investidor 2022” survey on how Brazilians save and invest, plus B3 and Febraban studies.",
+        "I benchmarked three apps that teach or simulate investing, looking at visuals, structure and usability.",
+        "And I consulted two market experts, an investment advisor and an economist, about what each investor profile needs."
       ],
-      "image": "case3-03"
+      "stats": {
+        "kicker": "Research",
+        "title": "Where the insights came from",
+        "items": [
+          {
+            "value": 5878,
+            "label": "people in the ANBIMA survey I analyzed"
+          },
+          {
+            "value": 3,
+            "label": "apps benchmarked: TradeMap, Trading Game and Forex Game"
+          },
+          {
+            "value": 2,
+            "label": "market experts consulted: an advisor and an economist"
+          }
+        ]
+      }
     },
     {
-      "kicker": "Process",
-      "heading": "Solution: New Offer Creation Flow",
+      "kicker": "Research",
+      "heading": "What the research said",
       "lines": [
-        "A panel opens with clearly defined tabs, allowing users to navigate through the necessary inputs step by step.",
-        "After completing their inputs, users can publish the offer."
+        "Put together, the data, the benchmark and the experts pointed to four findings.",
+        "The biggest one: before talking about the stock market, the app had to teach financial education, because most people struggle to save in the first place."
       ],
-      "image": "case3-04",
-      "caption": "New Offer Creation Page"
+      "cards": {
+        "kicker": "Four findings",
+        "title": "What holds people back",
+        "items": [
+          {
+            "title": "Most people don't invest at all.",
+            "body": "69% don't save or invest, mostly for lack of money; lack of interest (8%) and insecurity (7%) come next."
+          },
+          {
+            "title": "Jargon is the wall.",
+            "body": "Experts said stock market knowledge is low, and the hardest part is understanding the technical terms."
+          },
+          {
+            "title": "Safety comes first.",
+            "body": "Security is the top reason for choosing a product, and most investors are conservative, afraid to lose what they have."
+          },
+          {
+            "title": "Learning tools fall short.",
+            "body": "Learning apps are poorly rated, and the good tools from brokers are paid."
+          }
+        ]
+      },
+      "artRight": true
     },
     {
-      "kicker": "Process",
-      "heading": "Solution: New Offer Creation Flow",
+      "kicker": "Define",
+      "heading": "Two people to design for",
       "lines": [
-        "Upon clicking \"Publish,\" a modal will display any errors or warnings:",
-        "If there are errors, the offer cannot be published.",
-        "If there are only warnings, users can choose to proceed or resolve them first."
+        "From the research came two personas: one driven by curiosity and learning, the other by practical goals and caution.",
+        "Empathy maps helped me see their emotional triggers and what might stop them, so the app could answer both."
       ],
-      "image": "case3-05",
-      "caption": "Modal"
+      "personas": {
+        "kicker": "Personas",
+        "title": "Meet Clara and Lucas",
+        "items": [
+          {
+            "name": "Clara, the beginner",
+            "role": "Marketing analyst",
+            "image": "bora-clara",
+            "facts": [
+              "28",
+              "Graduate",
+              "Porto Alegre"
+            ],
+            "traits": [
+              "Proactive",
+              "Curious",
+              "Flexible"
+            ],
+            "about": "Young and ambitious, always looking to grow. Busy, but willing to put in the time to learn about money.",
+            "context": [
+              "Does everything on her phone",
+              "Little time to study: works full time",
+              "Paying off credit card debt",
+              "Knows she needs help"
+            ],
+            "needs": [
+              "Learn about finance and investing",
+              "Build an emergency fund",
+              "Learn by doing, interactively"
+            ],
+            "behavior": [
+              "Looks for new, interactive ways to learn about investing",
+              "Open to digital tools that improve her money skills"
+            ]
+          },
+          {
+            "name": "Lucas, the cautious",
+            "role": "Civil engineering intern",
+            "image": "bora-lucas",
+            "facts": [
+              "23",
+              "Student",
+              "Cachoeira do Sul"
+            ],
+            "traits": [
+              "Skeptical",
+              "Pragmatic",
+              "Unhurried"
+            ],
+            "about": "Prefers proven methods, values security, and wants evidence before he decides anything.",
+            "context": [
+              "Avoids money apps on his phone",
+              "Has time to study, but doesn't",
+              "Keeps his savings in a savings account",
+              "Wary of the stock market"
+            ],
+            "needs": [
+              "Reliable information",
+              "Convenience and ease of use",
+              "Personal support for his doubts"
+            ],
+            "behavior": [
+              "Trusts proven methods and his own experience",
+              "Wants evidence before trying anything new"
+            ]
+          }
+        ]
+      }
     },
     {
-      "kicker": "Process",
-      "heading": "Solution: New Offer Creation Flow",
+      "kicker": "Define",
+      "heading": "Mapping the ups and downs",
       "lines": [
-        "Once published, users are redirected to the offer list where they can:",
-        "View the offer's validation status",
-        "See error indicators on problematic offers",
-        "Identify unpublished items marked as drafts"
+        "I mapped both personas' journeys from curiosity to action: what they do, feel and ask at every stage.",
+        "The dips showed where support had to step in, so the app is built on progressive disclosure: one small step at a time, with help at the hard parts."
       ],
-      "image": "case3-06",
-      "caption": "Validations"
+      "journey": {
+        "kicker": "Journey map",
+        "title": "Two journeys",
+        "people": [
+          {
+            "who": "Clara",
+            "stages": [
+              {
+                "name": "Discovery",
+                "moods": [
+                  5
+                ],
+                "doing": "Finds the app, gets excited by interactive learning, goes through onboarding and signs up.",
+                "feeling": "Excited that it could help her build real money skills."
+              },
+              {
+                "name": "Learning",
+                "moods": [
+                  2,
+                  4
+                ],
+                "doing": "Explores the learning tracks in her free time and picks up the basics.",
+                "feeling": "Some concepts are hard, but the app's resources help her through."
+              },
+              {
+                "name": "Applying",
+                "moods": [
+                  5
+                ],
+                "doing": "Uses the simulator to try scenarios, then makes better decisions about her own money.",
+                "feeling": "Gains confidence, and that keeps her learning."
+              },
+              {
+                "name": "Keeping up",
+                "moods": [
+                  2,
+                  4
+                ],
+                "doing": "Follows market news, manages her profile and takes the investor profile test.",
+                "feeling": "Market swings are unsettling, but up-to-date news helps her adapt."
+              }
+            ]
+          },
+          {
+            "who": "Lucas",
+            "stages": [
+              {
+                "name": "Discovery",
+                "moods": [
+                  3,
+                  4
+                ],
+                "doing": "Finds the app, drawn by its promise of reliable information and proven ways to protect his money, and signs up.",
+                "feeling": "Some resistance to a new approach, eased by trustworthy, evidence-based information."
+              },
+              {
+                "name": "Learning",
+                "moods": [
+                  5,
+                  5
+                ],
+                "doing": "Works through tracks on protecting his money: diversification, emergency funds, saving.",
+                "feeling": "Feels secure in his decisions, and values how easy the app is to use."
+              },
+              {
+                "name": "Applying",
+                "moods": [
+                  2,
+                  4
+                ],
+                "doing": "Uses the simulator to weigh scenarios and risks, and follows the market news.",
+                "feeling": "Market swings are hard, but up-to-date news helps him decide and adapt."
+              },
+              {
+                "name": "Keeping up",
+                "moods": [
+                  5
+                ],
+                "doing": "Applies what he learned to his own finances and uses his profile for guidance that fits his investor type.",
+                "feeling": "Confident he's making safe decisions, without unnecessary risks."
+              }
+            ]
+          }
+        ]
+      },
+      "artRight": true
     },
     {
-      "kicker": "Process",
-      "heading": "Solution: New Offer Creation Flow",
+      "kicker": "Ideate",
+      "heading": "Learn, practice, explore",
       "lines": [
-        "This new structure not only improves clarity and reduces friction, but also reinforces confidence by making validation steps visible and more actionable."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Solution: Automating PLU Configuration",
-      "lines": [
-        "In parallel with the new offer creation flow, we began exploring ways to reduce PLU-related errors, one of the most frequent and costly issues reported during discovery.",
-        "Operators previously had to manage PLUs manually across various tools and vendors, often copying codes from Excel sheets or relying on memory. This created inconsistencies, sync failures, and misconfigured experiences across POS systems."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Solution: Automating PLU Configuration",
-      "lines": [
-        "The proposed solution was to automate PLU validation and setup by connecting Sanity more directly with source-of-truth systems. We designed a new experience where:",
-        "PLU fields validate automatically as users type or paste entries",
-        "The system checks for duplicates, format mismatches, or vendor-specific conflicts",
-        "Warnings are surfaced inline with suggested corrections",
-        "Certain fields auto-populate based on the selected market and POS vendor"
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Solution: Automating PLU Configuration",
-      "lines": [
-        "This would reduce dependency on workaround sheets, improve confidence, and reduce the number of misconfigurations caused by manual PLU setup."
+        "The app is organized around three pillars, so learning always leads to doing:",
+        "- **Learn:** learning tracks, from financial education to the stock market",
+        "- **Practice:** quizzes, exercises and an investment simulator",
+        "- **Explore:** market news and indicators, for context"
       ],
-      "image": "case3-07",
-      "caption": "PLU Sync Page"
+      "compare": {
+        "kicker": "Information architecture",
+        "title": "Three pillars",
+        "variants": [
+          {
+            "label": "Learn",
+            "images": [
+              "bora2-home",
+              "bora2-trilha"
+            ],
+            "note": "Home shows where you left off and your progress; each track is a series of short lessons."
+          },
+          {
+            "label": "Practice",
+            "images": [
+              "bora2-quiz",
+              "bora2-sim"
+            ],
+            "note": "A quiz closes each lesson, and a simulator lets you try investing without risking real money."
+          },
+          {
+            "label": "Explore",
+            "images": [
+              "bora2-news",
+              "bora2-artigo"
+            ],
+            "note": "Market news and indices for context, and short articles that explain the ideas behind each lesson."
+          }
+        ]
+      }
+    },
+    {
+      "kicker": "Ideate",
+      "heading": "Learning by doing",
+      "lines": [
+        "Every lesson ends with a quiz and a practical exercise, so theory turns into something people can use.",
+        "Feedback is always encouraging, in plain language, and the right answer comes with a short explanation.",
+        "Try one of the app's real questions:"
+      ],
+      "poll": {
+        "kicker": "From the app",
+        "title": "Quiz time",
+        "question": "What is the 50-30-20 method?",
+        "options": [
+          {
+            "label": "A way to split your income in three"
+          },
+          {
+            "label": "An investment strategy for beginners"
+          },
+          {
+            "label": "An accounting technique for companies"
+          }
+        ],
+        "answer": 0,
+        "reveal": "It splits your net income: 50% for essentials, 30% for personal spending and 20% for savings and goals. It's one of the first lessons in the Financial Education track.",
+        "prompt": "Pick one to see the answer.",
+        "answerLabel": "Right answer"
+      },
+      "artRight": true
+    },
+    {
+      "kicker": "Visual identity",
+      "heading": "Friendly on purpose",
+      "lines": [
+        "The brand had to lower the intimidation around investing. “Bora” is Brazilian slang for “let's go”: an invitation to act, in an everyday tone.",
+        "Neutrals and soft greens suggest growth and trust, Work Sans keeps things clear and friendly, and all the copy uses short sentences and encouraging verbs.",
+        "Everything lives in a Figma style guide, built for consistency and accessibility."
+      ],
+      "palette": {
+        "kicker": "Style guide",
+        "title": "BoraInvest's look",
+        "logo": "bora-logo",
+        "font": {
+          "name": "Work Sans",
+          "note": "Regular to Bold, from display to text sizes"
+        },
+        "colors": [
+          {
+            "name": "Primary",
+            "hex": "#12B76A"
+          },
+          {
+            "name": "Primary 700",
+            "hex": "#027A48"
+          },
+          {
+            "name": "Primary 50",
+            "hex": "#ECFDF3"
+          },
+          {
+            "name": "Secondary",
+            "hex": "#9E77ED"
+          },
+          {
+            "name": "Gray 900",
+            "hex": "#101828"
+          },
+          {
+            "name": "Gray 500",
+            "hex": "#667085"
+          },
+          {
+            "name": "Warning",
+            "hex": "#F79009"
+          },
+          {
+            "name": "Error",
+            "hex": "#F04438"
+          }
+        ]
+      }
     },
     {
       "kicker": "Outcome",
-      "heading": "Next Steps",
+      "heading": "Testing with 10 people",
       "lines": [
-        "Following this discovery, the next step is to prioritize and validate the most impactful opportunities through prototyping and co-design sessions with operators. Our goal is to reduce the number of bugs caused by misconfiguration and build more confidence for users managing menus and offers at scale."
-      ]
+        "I tested the prototype in Maze with 10 people aged 18 to 35 with little investing knowledge, across four tasks: sign in, finish a lesson's quiz, simulate an investment, and find the IBOVESPA index.",
+        "I scored each task with the Single Usability Metric (SUM), which combines completion, time, errors and satisfaction. Every task scored above 96%, and Maze rated the test's usability 88.",
+        "Two changes came out of it: onboarding that advances with a tap, like Stories, and market indices right on the Home."
+      ],
+      "chart": {
+        "kicker": "Usability test",
+        "title": "How each task did",
+        "groups": [
+          {
+            "title": "SUM score",
+            "subtitle": "Completion, time, errors and satisfaction",
+            "bars": [
+              {
+                "label": "Sign in",
+                "value": 98.7
+              },
+              {
+                "label": "Lesson & quiz",
+                "value": 98.4
+              },
+              {
+                "label": "Simulate",
+                "value": 96.5
+              },
+              {
+                "label": "Find IBOVESPA",
+                "value": 99
+              }
+            ]
+          },
+          {
+            "title": "Direct success",
+            "subtitle": "Finished on the expected path",
+            "bars": [
+              {
+                "label": "Sign in",
+                "value": 80
+              },
+              {
+                "label": "Lesson & quiz",
+                "value": 88.9
+              },
+              {
+                "label": "Simulate",
+                "value": 88.9
+              },
+              {
+                "label": "Find IBOVESPA",
+                "value": 100
+              }
+            ]
+          }
+        ],
+        "color": "#12B76A"
+      }
+    },
+    {
+      "kicker": "Outcome",
+      "heading": "The final result",
+      "lines": [],
+      "prototype": {
+        "kicker": "Outcome · The result",
+        "title": "Try the prototype",
+        "path": "bora/",
+        "intro": [
+          "The prototype, redesigned in 2026 on top of what testing showed: onboarding that advances like Stories, market indices right on the Home, and a clearer path through every lesson."
+        ],
+        "screens": [
+          {
+            "id": "onboarding",
+            "label": "Onboarding"
+          },
+          {
+            "id": "login",
+            "label": "Sign in"
+          },
+          {
+            "id": "home",
+            "label": "Home"
+          },
+          {
+            "id": "trilha",
+            "label": "Track 1"
+          },
+          {
+            "id": "aula",
+            "label": "Lesson · video"
+          },
+          {
+            "id": "artigo",
+            "label": "Article"
+          },
+          {
+            "id": "exercicio",
+            "label": "Exercise"
+          },
+          {
+            "id": "quiz",
+            "label": "Quiz"
+          },
+          {
+            "id": "news",
+            "label": "News"
+          },
+          {
+            "id": "sim",
+            "label": "Simulator"
+          },
+          {
+            "id": "profile",
+            "label": "Profile"
+          }
+        ],
+        "note": "Tap through it like a phone, or jump to a screen.",
+        "poster": "bora2-onboarding"
+      }
     }
   ]
 }

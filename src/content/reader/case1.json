@@ -8,177 +8,294 @@
   "pages": [
     {
       "kicker": "Overview",
-      "heading": "Project Summary",
+      "heading": "Guests want to redeem. They just don’t know how.",
       "lines": [
-        "Mapped friction in the loyalty flow across Kiosk, Drive Thru, and Cashier to improve offer redemption.",
-        "Client: Restaurants Brand International - Burger King – QSR Industry (CH, DE, UK, NZ)",
-        "My Role: Senior Product Designer",
-        "Other participants: Valentina Lopes (Product Manager)",
-        "Platform: BK Mobile App + Kiosk + Drive Thru",
-        "Timeline: Q4 2024"
+        "Many guests add a loyalty offer and never use it in the restaurant. They don’t doubt the deal. Something breaks in the last few steps, and I was asked to find out what.",
+        "**Client:** Restaurant Brands International (RBI) – Burger King (CH, DE, UK, NZ)",
+        "**My Role:** Senior Product Designer",
+        "**Other participants:** Valentina Lopes (Product Manager)",
+        "**Platform:** BK Mobile App + Kiosk + Drive Thru",
+        "**Timeline:** Q4 2024"
       ],
-      "image": "case1-cover"
+      "image": "case1-cover",
+      "fullPage": true,
+      "pageColor": "#f4ebdc"
     },
     {
       "kicker": "Overview",
-      "heading": "Context",
+      "heading": "The problem: offers added, offers not redeemed",
       "lines": [
-        "As Burger King expanded its loyalty program to in-restaurant channels like Kiosk and Drive Thru, we began to notice a growing gap between what the product offered and how users actually experienced it.",
-        "Across multiple markets, we heard the same story: guests were eager to redeem rewards, but often didn’t know how. Codes were hard to find, scanning wasn’t intuitive, and the app didn’t provide enough clarity to guide users through the process."
-      ]
-    },
-    {
-      "kicker": "Overview",
-      "heading": "Context",
-      "lines": [
-        "This project began with a clear goal: understand the barriers guests face when redeeming offers in person, and design a more intuitive, consistent experience that supports both guest satisfaction and business goals."
-      ]
-    },
-    {
-      "kicker": "Overview",
-      "heading": "Problem",
-      "lines": [
-        "Following the launch of in-store loyalty features, markets began reporting friction points, especially in Kiosk and Drive Thru channels. Redemption rates were lower than expected, and support teams flagged recurring guest complaints.",
-        "At that stage, we didn’t yet know exactly where the problem was. We suspected that the app experience wasn’t aligning with user expectations, particularly during in-restaurant journeys.",
-        "The goal was to dig deeper:",
-        "What was getting in the way of a successful redemption?"
-      ]
-    },
-    {
-      "kicker": "Overview",
-      "heading": "Problem",
-      "lines": [
-        "Was the friction tied to the interface, the environment, or both?",
-        "And how could we make the process more intuitive for guests already engaged with the brand?"
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Design Process",
-      "lines": [
-        "To understand what was happening, we focused on real usage in real environments, pairing user research with data to identify where and why the experience broke down."
+        "Burger King’s loyalty app runs in Switzerland, Germany, the UK and New Zealand, and guests can redeem at the kiosk, the counter or the drive-thru. After in-store loyalty launched, markets reported friction: many guests added an offer, but far fewer completed the redemption.",
+        "The data showed where guests dropped off. It couldn’t tell us why.",
+        "My goal, with Valentina Lopes, our PM, was to understand what gets in the way and design a more consistent redemption experience."
       ],
-      "image": "case1-01",
-      "caption": "Design Process Diagram"
+      "chart": {
+        "kicker": "The problem",
+        "title": "Guests set out to order on mobile, then ended up redeeming in the restaurant",
+        "color": "#d62300",
+        "groups": [
+          {
+            "title": "Tapped “Mobile Order” on an offer or reward",
+            "subtitle": "…and then completed an in-restaurant order",
+            "bars": [
+              {
+                "label": "Switzerland",
+                "value": 73
+              },
+              {
+                "label": "UK",
+                "value": 28
+              },
+              {
+                "label": "New Zealand",
+                "value": 33
+              }
+            ]
+          },
+          {
+            "title": "Picked a service mode and restaurant",
+            "subtitle": "…and then completed an in-restaurant order",
+            "bars": [
+              {
+                "label": "Switzerland",
+                "value": 49
+              },
+              {
+                "label": "UK",
+                "value": 19
+              },
+              {
+                "label": "New Zealand",
+                "value": 17
+              }
+            ]
+          }
+        ]
+      },
+      "hideHeading": true
     },
     {
       "kicker": "Process",
-      "heading": "Research Approach",
+      "heading": "The approach: go where it happens",
       "lines": [
-        "We used a combination of qualitative and quantitative methods across markets:",
-        "Field Observations: Conducted in four restaurants (CH and DE), capturing how guests used the app across Kiosk, Drive Thru, and Cashier ordering.",
-        "User Interviews: 23 guests and 3 cashiers shared first-hand experiences and pain points.",
-        "Post-Visit Surveys: Provided additional context on guest expectations and scanning behavior."
+        "We started at the desk with app reviews, funnel analysis, past research and competitor benchmarks. Then we went to the restaurants.",
+        "- **Field observations:** four restaurants (CH and DE), across kiosk, drive-thru and cashier ordering.",
+        "- **Interviews:** 23 guests and 3 cashiers.",
+        "- **Surveys:** post-visit, on guest expectations and scanning behavior."
       ],
-      "image": [
-        "case1-02",
-        "case1-03"
+      "polaroids": {
+        "note": "Field visits · Switzerland & Germany",
+        "photos": [
+          {
+            "image": "case1-12",
+            "caption": "One of the four restaurants"
+          },
+          {
+            "image": "case1-09",
+            "caption": "The kiosk wall"
+          },
+          {
+            "image": "case1-08",
+            "caption": "Recruiting guests to talk"
+          },
+          {
+            "image": "case1-11",
+            "caption": "“This code is not valid”"
+          },
+          {
+            "image": "case1-10",
+            "caption": "“Please proceed to front counter”"
+          },
+          {
+            "image": "case1-07",
+            "caption": "Notes between interviews"
+          }
+        ]
+      }
+    },
+    {
+      "kicker": "Process",
+      "heading": "In the restaurant",
+      "lines": [
+        "Guests struggled to get their phones to connect to the kiosk. They looked around the app for their loyalty code, and some didn’t understand why a code was needed at all.",
+        "At the counter, cashiers kept stepping in to fix things by hand.",
+        "Everything we heard and saw came down to three problems."
       ],
-      "caption": "Restaurant Visit - DE - Field Observation Study and User Interviews · Research Analysis Board"
+      "cards": {
+        "kicker": "Three problems",
+        "title": "What got in the way",
+        "items": [
+          {
+            "title": "Guests couldn’t find their code.",
+            "body": "It lived in a tab or behind a floating button.",
+            "quote": "Can’t find my code",
+            "source": "App store reviews"
+          },
+          {
+            "title": "Pre-selection confused them.",
+            "body": "Many didn’t know they could pre-select several offers, and some thought adding a second coupon cancelled the first because the code changed."
+          },
+          {
+            "title": "Buttons and language weren’t clear.",
+            "body": "“Add to Mobile Order” and “Redeem in Restaurant” looked too similar, and the instructions sounded written for the company, not the guest."
+          }
+        ]
+      },
+      "artRight": true
     },
     {
       "kicker": "Process",
-      "heading": "Research Approach",
+      "heading": "Three bets",
       "lines": [
-        "App Store Review Analysis: Uncovered patterns of confusion, such as “can’t find my code” and “QR didn’t work.”",
-        "Amplitude Funnel Analysis: Identified key drop-off points between /redeem, MyCode, and scan events, especially for logged-out users.",
-        "Internal Research Review: Included past discoveries from related Kiosk and Service Mode initiatives.",
-        "Competitor Benchmarking: Compared how leading QSRs handle scanning, onboarding, and loyalty flow clarity."
+        "Each problem became a test, with a goal of improving redemptions by more than 5%, based on funnel data from DE, CH, UK and NZ.",
+        "We could control which variant each restaurant got, so we removed the default and ran the variants against each other."
       ],
-      "image": "case1-04",
-      "caption": "Competitor Analysis, App Reviews and Desk Research Figjam Board"
+      "compare": {
+        "kicker": "Bet 1",
+        "variants": [
+          {
+            "label": "A · Floating button",
+            "images": [
+              "case1-13",
+              "case1-20"
+            ],
+            "note": "A floating QR button over the app, opening “Your Code”: the code, with the in-restaurant order below it."
+          },
+          {
+            "label": "B · Top bar",
+            "images": [
+              "case1-14",
+              "case1-21"
+            ],
+            "note": "A QR icon in the top navigation bar, opening a sheet with the code. It performed better.",
+            "winner": true
+          }
+        ],
+        "title": "Where should the code live?"
+      },
+      "artRight": true
     },
     {
       "kicker": "Process",
-      "heading": "Synthesis & Insights Mapping",
+      "heading": "Bet 2: Improve pre-selection or remove it?",
       "lines": [
-        "We organized the findings into five key areas of friction:",
-        "1. Code Discovery & Navigation — Loyalty codes weren’t easy to locate or visually emphasized.",
-        "2. Offer Activation & Pre-selection — Users were unsure if multiple offers could be combined or whether selections canceled previous ones.",
-        "3. Scanning Experience & Physical Cues — Inconsistent flows and limited scanner guidance at Drive Thru and Kiosk."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Synthesis & Insights Mapping",
-      "lines": [
-        "4. CTA Labeling & Flow Clarity — Button hierarchy misled users, especially between Mobile Order and In-Restaurant.",
-        "5. Tone & Language — Instructions and labels felt overly technical or internal-facing."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Opportunities & Recommendations",
-      "lines": [
-        "Rather than redesigning from scratch, we focused on simplifying and clarifying the experience:",
-        "Improve CTA labels and hierarchy to better reflect user intent",
-        "Make the loyalty code more visible and easier to access, especially in logged-out states",
-        "Refine the offer selection flow with clearer feedback and simpler logic",
-        "Unify the scanning flow across Kiosk, Cashier, and Drive Thru"
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Opportunities & Recommendations",
-      "lines": [
-        "Adopt more guest-friendly language throughout the journey"
-      ]
-    },
-    {
-      "kicker": "Outcome",
-      "heading": "Experiments & Impact",
-      "lines": [
-        "We defined three experiments to evaluate the most impactful improvements in the in-restaurant redemption flow. Each focused on a different pain point identified in the research.",
-        "1. Redesigned CTA Labels — We tested five different label variations to improve clarity between \"Add to Mobile Order\" and \"Use in Restaurant.\" We also refined button hierarchy and iconography to better match guest expectations across the Offers and Rewards journeys."
+        "**Experiment 2** kept pre-selection and added clear feedback when guests select several offers: confirmation states and a simpler summary. **Experiment 2.2** removed it, with one offer per scan and no pre-selected cart. Both also made the loyalty code easier to find.",
+        "The results were not conclusive: neither version clearly beat the other. Both improved on what we had, but the gap between them wasn’t big enough to call a winner."
       ],
-      "image": "case1-05"
+      "compare": {
+        "kicker": "Bet 2",
+        "title": "Improve pre-selection or remove it?",
+        "variants": [
+          {
+            "label": "Experiment 2 · Improve it",
+            "images": [
+              "case1-22",
+              "case1-23"
+            ],
+            "note": "Pre-selection stays, with clear feedback: a count on Scan, and a simple summary before guests scan and redeem."
+          },
+          {
+            "label": "Experiment 2.2 · Remove it",
+            "images": [
+              "case1-24",
+              "case1-25"
+            ],
+            "note": "No pre-selected cart: one offer per scan, straight to the code."
+          }
+        ]
+      },
+      "artRight": true
     },
     {
       "kicker": "Outcome",
-      "heading": "Experiments & Impact",
-      "lines": [
-        "2. Updated Pre-selection Flow — This version introduced clear feedback when users selected multiple offers, including confirmation states and a simplified summary view. The goal was to reduce confusion about whether offers had been successfully added or replaced.",
-        "3. Simplified Redemption Model — We explored an alternative approach with one-offer-per-scan logic. This removed the concept of a pre-selected cart entirely, focusing on clarity and predictability."
-      ]
+      "heading": "Bet 3: Clearer buttons",
+      "lines": [],
+      "compare": {
+        "kicker": "Bet 3",
+        "title": "Clearer buttons",
+        "description": "We tested five label variations to tell “Add to Mobile Order” apart from “Use in Restaurant”, and refined the button hierarchy and icons on the offers and rewards pages.",
+        "variants": [
+          {
+            "label": "Control",
+            "images": [
+              "case1-16"
+            ],
+            "note": "“Mobile Order” and “Redeem In-Store”: two actions that looked too alike."
+          },
+          {
+            "label": "Winning variant",
+            "images": [
+              "case1-15"
+            ],
+            "note": "“Scan In Restaurant” and “Add to Mobile Order”, each with its own icon.",
+            "winner": true
+          }
+        ]
+      },
+      "right": {
+        "stats": {
+          "kicker": "Bet 3 · Results",
+          "title": "What clearer buttons changed",
+          "items": [
+            {
+              "value": 2.5,
+              "signed": true,
+              "decimals": 1,
+              "unit": "pts",
+              "label": "lift in conversion, from offer added to redeemed"
+            },
+            {
+              "value": -7.3,
+              "decimals": 1,
+              "unit": "pts",
+              "label": "scanning errors"
+            },
+            {
+              "display": "Fewer",
+              "label": "staff interventions, as guests could finish the journey on their own"
+            }
+          ]
+        }
+      }
     },
     {
       "kicker": "Outcome",
-      "heading": "Experiments & Impact",
-      "lines": [
-        "Each experiment was designed to target a specific conversion drop-off point. Combined, they aimed to reduce friction and increase successful redemptions by +5–10%, based on funnel data from DE, CH, UK, and NZ."
-      ]
-    },
-    {
-      "kicker": "Outcome",
-      "heading": "Impact",
-      "lines": [
-        "The impact of these adjustments was tangible:",
-        "+2.5 point lift in conversion from offer added to redeemed",
-        "–7.3 point reduction in scanning errors",
-        "Fewer staff interventions as users were better equipped to complete the journey independently"
-      ]
-    },
-    {
-      "kicker": "Outcome",
-      "heading": "Impact",
-      "lines": [
-        "We’re currently preparing to test Experiment 2 × 3, which combines the simplified redemption model with the updated CTA strategy. At the time I was working on the project, this test was still pending. Our hypothesis is that combining the two most promising ideas will further reduce friction and improve in-store conversion — especially by aligning the interface more closely with user intent."
-      ]
-    },
-    {
-      "kicker": "Outcome",
-      "heading": "Impact",
-      "lines": [
-        "These changes also opened up future opportunities in personalization. Many users displayed consistent habits, redeeming the same offers, visiting at regular times. Recognizing these patterns could be the next step in moving from transactional flows to experiences that build lasting relationships."
-      ]
-    },
-    {
-      "kicker": "Outcome",
-      "heading": "Reflection",
-      "lines": [
-        "This project reinforced the value of grounding product improvements in both real-world observation and behavioral data. While the loyalty feature itself was functional, the lack of clarity, consistency, and contextual guidance created unnecessary friction.",
-        "By focusing on what guests actually needed in the moment, not just what the system could technically support, we outlined a clear path toward a more intuitive and rewarding in-store loyalty experience."
-      ]
+      "heading": "The final result",
+      "lines": [],
+      "showcase": {
+        "kicker": "Outcome · The decision",
+        "title": "The final result",
+        "intro": [
+          "The top navigation bar kept performing better than the other versions, so the team shipped it and refined the UI around it: a clearer My Code page, and the new buttons from Bet 3.",
+          "It rolled out across all markets and is now part of the Guest UI/UX Standards used across RBI’s brands."
+        ],
+        "screens": [
+          {
+            "image": "case1-26",
+            "label": "Offers list"
+          },
+          {
+            "image": "case1-27",
+            "label": "Offer"
+          },
+          {
+            "image": "case1-28",
+            "label": "Reward"
+          },
+          {
+            "image": "case1-29",
+            "label": "Rewards list – mobile order"
+          },
+          {
+            "image": "case1-30",
+            "label": "Rewards list – in restaurant"
+          },
+          {
+            "image": "case1-31",
+            "label": "Scan QR code"
+          }
+        ]
+      }
     }
   ]
 }

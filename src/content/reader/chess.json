@@ -1,18 +1,21 @@
 {
-  "skin": "folder",
-  "opening": "hinge",
-  "openingLabel": "Unfolds on its hinge",
+  "skin": "chess",
   "title": "Chess",
   "kind": "Aside",
   "spine": "#9A8FAE",
+  "chessUsername": "gambitodajulita",
+  "links": [
+    {
+      "label": "Challenge me on chess.com",
+      "href": "https://www.chess.com/member/gambitodajulita"
+    }
+  ],
   "pages": [
     {
       "kicker": "Off the clock",
-      "plate": "board placeholder",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "I've been playing since school and used to compete in tournaments.",
+        "My ratings would like you to believe otherwise."
       ]
     }
   ]

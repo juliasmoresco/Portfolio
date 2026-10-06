@@ -16,6 +16,20 @@ const data = (b: Block): Payload => (b[b.type] ?? {}) as Payload;
 
 export const plain = (rt: RichText[] = []): string => rt.map((r) => r.plain_text).join("");
 
+/**
+ * Notion text with its bold kept, as **bold** (the Reader's own markup). Spaces at the edges of a bold run stay outside
+ * the asterisks, so "**My Role: **Senior" becomes "**My Role:** Senior".
+ */
+export function markup(rt: RichText[] = []): string {
+  return rt
+    .map((r) => {
+      const m = /^(\s*)([\s\S]*?)(\s*)$/.exec(r.plain_text)!;
+      return r.annotations.bold && m[2] ? `${m[1]}**${m[2]}**${m[3]}` : r.plain_text;
+    })
+    .join("")
+    .replace(/\*\*\*\*/g, "");
+}
+
 /** Tidy spacing without losing soft line breaks, which builders use ("Degree\nSchool"). */
 export const tidy = (s: string): string =>
   s
@@ -48,8 +62,10 @@ function soleLink(rt: RichText[]): { text: string; url: string } | null {
 }
 
 /** Walk Notion's blocks depth-first, so columns and synced blocks read in the order a person reads them. */
-export function flatten(blocks: Block[]): Item[] {
+export function flatten(blocks: Block[], rich = false): Item[] {
   const out: Item[] = [];
+  // With `rich`, bold is kept as **bold** and a bulleted item starts with "- " (case studies); otherwise plain text.
+  const text = (rt: RichText[] | undefined) => tidy(rich ? markup(rt) : plain(rt));
   let numbered = 0;
 
   for (const b of blocks) {
@@ -63,7 +79,7 @@ export function flatten(blocks: Block[]): Item[] {
       case "heading_3": {
         const text = tidy(plain(d.rich_text));
         if (text) out.push({ kind: "heading", level: Number(b.type.slice(-1)) as 1 | 2 | 3, text });
-        out.push(...flatten(kids));
+        out.push(...flatten(kids, rich));
         break;
       }
       case "paragraph": {
@@ -75,25 +91,25 @@ export function flatten(blocks: Block[]): Item[] {
           out.push({ kind: "heading", level: 4, text: lead.lead });
           if (lead.rest) out.push({ kind: "text", text: lead.rest });
         } else {
-          const text = tidy(plain(rt));
-          if (text) out.push({ kind: "text", text });
+          const t = text(rt);
+          if (t) out.push({ kind: "text", text: t });
         }
-        out.push(...flatten(kids));
+        out.push(...flatten(kids, rich));
         break;
       }
       case "bulleted_list_item":
       case "numbered_list_item": {
         const n = b.type === "numbered_list_item" ? ++numbered : 0;
-        let text = tidy(plain(d.rich_text));
+        let body = text(d.rich_text);
         // Plain paragraphs nested under an item belong to it ("Skills" > "Vibe-coding" > "Claude Code, ...").
         const own = kids.filter((k) => k.type === "paragraph");
         const rest = kids.filter((k) => k.type !== "paragraph");
         for (const k of own) {
-          const t = tidy(plain(data(k).rich_text));
-          if (t) text += (text ? "\n" : "") + t;
+          const t = text(data(k).rich_text);
+          if (t) body += (body ? "\n" : "") + t;
         }
-        if (text) out.push({ kind: "text", text: n ? `${n}. ${text}` : text });
-        out.push(...flatten(rest));
+        if (body) out.push({ kind: "text", text: n ? `${n}. ${body}` : rich ? `- ${body}` : body });
+        out.push(...flatten(rest, rich));
         break;
       }
       case "quote":
@@ -101,10 +117,10 @@ export function flatten(blocks: Block[]): Item[] {
       case "toggle": {
         const rt = d.rich_text ?? [];
         const link = soleLink(rt);
-        const text = tidy(plain(rt));
+        const t = text(rt);
         if (link) out.push({ kind: "link", ...link });
-        else if (text) out.push({ kind: "text", text });
-        out.push(...flatten(kids));
+        else if (t) out.push({ kind: "text", text: t });
+        out.push(...flatten(kids, rich));
         break;
       }
       case "bookmark":
@@ -121,7 +137,7 @@ export function flatten(blocks: Block[]): Item[] {
       case "column_list":
       case "column":
       case "synced_block":
-        out.push(...flatten(kids));
+        out.push(...flatten(kids, rich));
         break;
       case "divider":
       case "table_of_contents":

@@ -1,0 +1,165 @@
+/* Fixed px sizing throughout, like the mobile pills (Reader.module.css's compact mode reasoning
+   applies here too): this is UI chrome, not room content, so it doesn't scale with the stage. */
+.toggle {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgb(var(--light-rgb) / 0.28);
+  border-radius: 999px;
+  background: rgb(var(--scrim-rgb) / 0.55);
+  backdrop-filter: blur(6px);
+  color: var(--light);
+  font: inherit;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  border-color: rgb(var(--light-rgb) / 0.5);
+}
+
+.toggle[aria-expanded="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.toggle:active {
+  transform: scale(0.96);
+}
+
+.toggle:focus-visible {
+  outline: 2px solid var(--accent-hover);
+  outline-offset: 2px;
+}
+
+/* A translucent sheet along the right edge of the viewport — a dropdown's behaviour (no backdrop,
+   dismisses on outside click / Escape / a choice) in a sidesheet's shape. */
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  /* Matches the room, not the browser window: on desktop the room is a fixed-aspect box that can be
+     shorter than a tall window, and --quicknav-panel-height (set by the page) follows its real
+     height so the sheet never spills into the flat grey below it. Mobile's room IS the window, so
+     it doesn't set the variable and this default applies. */
+  height: min(var(--quicknav-panel-height, 100dvh), 100dvh);
+  width: min(320px, 86vw);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: calc(16px + env(safe-area-inset-top)) 14px calc(16px + env(safe-area-inset-bottom));
+  background: rgb(var(--scrim-rgb) / 0.82);
+  backdrop-filter: blur(18px) saturate(1.15);
+  box-shadow: -24px 0 60px rgba(0, 0, 0, 0.4);
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.3, 0, 0.1, 1);
+  z-index: 3;
+}
+
+.panelOpen {
+  transform: translateX(0);
+}
+
+.panelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 0 4px;
+}
+
+.panelTitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--light);
+}
+
+.close {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgb(var(--light-rgb) / 0.28);
+  border-radius: 999px;
+  background: none;
+  color: var(--light);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.close:hover {
+  border-color: rgb(var(--light-rgb) / 0.5);
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--accent-hover);
+  outline-offset: 2px;
+}
+
+.item,
+.subItem,
+.reset {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 10px;
+  background: none;
+  color: var(--light);
+  font: inherit;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.item:hover,
+.subItem:hover,
+.reset:hover {
+  background: rgb(var(--light-rgb) / 0.1);
+}
+
+.item:focus-visible,
+.subItem:focus-visible,
+.reset:focus-visible {
+  outline: 2px solid var(--accent-hover);
+  outline-offset: -2px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 4px 0;
+  padding-top: 6px;
+  border-top: 1px solid rgb(var(--light-rgb) / 0.14);
+}
+
+.groupLabel {
+  padding: 4px 12px 2px;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(var(--light-rgb) / 0.55);
+}
+
+.subItem {
+  padding-left: 22px;
+  font-size: 13.5px;
+  color: rgb(var(--light-rgb) / 0.85);
+  text-wrap: pretty;
+}
+
+.reset {
+  margin-top: 6px;
+  padding-top: 10px;
+  border-top: 1px solid rgb(var(--light-rgb) / 0.14);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgb(var(--light-rgb) / 0.6);
+}

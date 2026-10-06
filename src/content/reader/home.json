@@ -1,0 +1,15 @@
+{
+  "skin": "postcard",
+  "title": "A postcard from home",
+  "kind": "Where I’m from",
+  "hotspotLabel": "Postcard from home",
+  "pages": [
+    {
+      "lines": [
+        "Hi from the south of Brazil!",
+        "I was born in Rio Pardo, a small town on the Jacuí river, and today I live in Porto Alegre, where that same river meets the Guaíba. So I just followed the river.",
+        "— Júlia"
+      ]
+    }
+  ]
+}

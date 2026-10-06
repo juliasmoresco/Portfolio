@@ -1,11 +1,546 @@
 {
-  "skin": "frame",
+  "skin": "chat",
   "title": "Zuko",
+  "kind": "Ask me anything",
   "tag": "My cat",
+  "chat": {
+    "greeting": [
+      "Meow! I'm Zuko, and my mom, Júlia, taught me how to talk with buttons.",
+      "I know 6 words today: Play, Treat, Pets, Food, Sachê and Brush.",
+      "Don't believe a cat can talk with buttons? Tap my photo.",
+      "I know a lot about her and her work. Tap one of my buttons or type a question."
+    ],
+    "avatar": "zuko-avatar",
+    "photo": {
+      "image": "zuko-buttons",
+      "alt": "Zuko, a black-and-white cat, sitting with a paw on one of his talking buttons"
+    },
+    "start": [
+      "who",
+      "now",
+      "case",
+      "contact"
+    ],
+    "placeholder": "Ask Zuko about Júlia…",
+    "answers": [
+      {
+        "id": "who",
+        "button": "Who is Júlia?",
+        "keywords": [
+          "who",
+          "who is",
+          "who is she",
+          "about her",
+          "tell me about her",
+          "introduce",
+          "introduction",
+          "background",
+          "quem",
+          "quem e",
+          "sobre ela"
+        ],
+        "reply": [
+          "Júlia is a **senior product designer** from Porto Alegre, Brazil. She's been designing digital products since 2018.",
+          "She has worked across fintech, quick-service restaurants, consulting and education, always where user needs, business goals and product growth meet.",
+          "She also feeds me. Top-tier human."
+        ],
+        "open": {
+          "id": "about",
+          "label": "Read her About"
+        },
+        "next": [
+          "now",
+          "case",
+          "process"
+        ]
+      },
+      {
+        "id": "now",
+        "button": "What does she do now?",
+        "keywords": [
+          "now",
+          "right now",
+          "currently",
+          "current",
+          "today",
+          "these days",
+          "work now",
+          "working on",
+          "job",
+          "ambush",
+          "binance",
+          "crypto",
+          "agora",
+          "atualmente",
+          "hoje"
+        ],
+        "reply": [
+          "She's a **Senior Product Designer at Ambush**, a consultancy.",
+          "Today she designs crypto experiences for **Binance.US**, on web and mobile, with the Exchange and Growth teams: trading flows, experiments, funnels and end-to-end journeys.",
+          "Before that, she spent two and a half years designing Loyalty, CRM, Offers and Kiosk for **Restaurant Brands International**: Burger King, Popeyes and Firehouse Subs."
+        ],
+        "open": {
+          "id": "resume",
+          "label": "See her résumé"
+        },
+        "next": [
+          "experience",
+          "case",
+          "contact"
+        ]
+      },
+      {
+        "id": "experience",
+        "button": "Where has she worked?",
+        "keywords": [
+          "experience",
+          "worked",
+          "companies",
+          "company",
+          "career",
+          "history",
+          "previous",
+          "before",
+          "jobs",
+          "resume",
+          "cv",
+          "kobe",
+          "xp",
+          "warren",
+          "fintech",
+          "trabalhou",
+          "empresas",
+          "experiencia",
+          "carreira",
+          "curriculo"
+        ],
+        "reply": [
+          "Here's her path, oldest first:",
+          "**Kobe Apps** (2018–2021), a software house: intern, then UX/UI designer, building design systems and running design sprints.",
+          "**XP Inc.** (2021–2022): the pension plan product, end to end.",
+          "**Warren** (2022): a trading experience that gave clients access to US stocks.",
+          "**Ambush** (2022–now): Loyalty, CRM, Offers and Kiosk for RBI's brands, and now crypto at Binance.US."
+        ],
+        "open": {
+          "id": "resume",
+          "label": "See her résumé"
+        },
+        "next": [
+          "case",
+          "education",
+          "tools"
+        ]
+      },
+      {
+        "id": "case",
+        "button": "Show me a project",
+        "keywords": [
+          "project",
+          "projects",
+          "case",
+          "case study",
+          "portfolio",
+          "work samples",
+          "loyalty",
+          "burger king",
+          "bk",
+          "rbi",
+          "restaurant",
+          "restaurants",
+          "kiosk",
+          "redeem",
+          "redemption",
+          "offers",
+          "results",
+          "impact",
+          "projeto",
+          "projetos"
+        ],
+        "reply": [
+          "My favorite story (I've heard it many times, from her lap): **in-restaurant loyalty at Burger King**, in Switzerland, Germany, the UK and New Zealand.",
+          "Guests added offers in the app but never redeemed them at the restaurant. Júlia and her PM went to four restaurants and talked to 23 guests and 3 cashiers.",
+          "They turned three problems into three A/B tests. Clearer buttons alone lifted conversion by **2.5 points** and cut scanning errors by **7.3 points**.",
+          "The design shipped in every market and is now part of RBI's Guest UI/UX Standards."
+        ],
+        "open": {
+          "id": "case1",
+          "label": "Read the full case"
+        },
+        "next": [
+          "process",
+          "now",
+          "contact"
+        ]
+      },
+      {
+        "id": "process",
+        "button": "How does she work?",
+        "keywords": [
+          "process",
+          "approach",
+          "method",
+          "methodology",
+          "how does she work",
+          "how she works",
+          "design process",
+          "research",
+          "user research",
+          "experiment",
+          "experiments",
+          "experimentation",
+          "a b",
+          "ab test",
+          "testing",
+          "data",
+          "metrics",
+          "growth",
+          "processo",
+          "pesquisa"
+        ],
+        "reply": [
+          "Research first. She goes where things happen: restaurants, interviews, app reviews, funnels.",
+          "Then she turns what she learns into experiments she can measure, and lets the data pick the winner.",
+          "These days she's especially into **user research, experimentation, growth strategy** and scalable design operations."
+        ],
+        "open": {
+          "id": "case1",
+          "label": "See it in a case"
+        },
+        "next": [
+          "tools",
+          "case",
+          "mentoring"
+        ]
+      },
+      {
+        "id": "tools",
+        "button": "What tools does she use?",
+        "keywords": [
+          "tools",
+          "tool",
+          "figma",
+          "software",
+          "stack",
+          "amplitude",
+          "analytics",
+          "ai",
+          "claude",
+          "vibe coding",
+          "lovable",
+          "skills",
+          "prototype",
+          "prototyping",
+          "ferramentas",
+          "habilidades"
+        ],
+        "reply": [
+          "**Figma** for design and prototyping; **Amplitude**, **Datadog** and **Google Analytics** for data; Miro and FigJam for workshops.",
+          "She's big on AI tools too: Claude Code, Claude Design, Lovable, Figma Make. She built this office with Claude Code. I supervised from the shelf."
+        ],
+        "open": {
+          "id": "resume",
+          "label": "See her résumé"
+        },
+        "next": [
+          "education",
+          "process"
+        ]
+      },
+      {
+        "id": "education",
+        "button": "Where did she study?",
+        "keywords": [
+          "study",
+          "studied",
+          "studies",
+          "education",
+          "degree",
+          "university",
+          "college",
+          "ufrgs",
+          "school",
+          "course",
+          "courses",
+          "specialization",
+          "diploma",
+          "graduate",
+          "estudou",
+          "estudo",
+          "faculdade",
+          "formacao",
+          "curso",
+          "cursos"
+        ],
+        "reply": [
+          "She studied **Visual Design at UFRGS**, the Federal University of Rio Grande do Sul (2016–2023).",
+          "And she never stopped: specializations at PM3 (AI Product, Product Growth), Awari (User Research) and Meiuca (Design Systems), plus courses at the Interaction Design Foundation, IDEO U and Mergo."
+        ],
+        "open": {
+          "id": "studies",
+          "label": "See her diploma"
+        },
+        "next": [
+          "languages",
+          "mentoring"
+        ]
+      },
+      {
+        "id": "mentoring",
+        "button": "Does she mentor?",
+        "keywords": [
+          "mentor",
+          "mentors",
+          "mentoring",
+          "mentorship",
+          "adplist",
+          "advice",
+          "career advice",
+          "session",
+          "sessions",
+          "mentee",
+          "mentees",
+          "mentoria"
+        ],
+        "reply": [
+          "Yes! She mentors UX and product designers on **ADPList**, since 2022, in weekly sessions about career growth.",
+          "Her mentees leave very kind notes. Some are pinned on the cork board."
+        ],
+        "open": {
+          "id": "mentees",
+          "label": "Read the kind words"
+        },
+        "next": [
+          "contact",
+          "process"
+        ]
+      },
+      {
+        "id": "contact",
+        "button": "How do I reach her?",
+        "keywords": [
+          "contact",
+          "email",
+          "e mail",
+          "mail",
+          "linkedin",
+          "reach",
+          "reach her",
+          "hire",
+          "hiring",
+          "available",
+          "availability",
+          "freelance",
+          "message",
+          "talk to her",
+          "get in touch",
+          "call",
+          "contato",
+          "contratar",
+          "falar com ela"
+        ],
+        "reply": [
+          "The fastest way is email: **juliasmoresco@gmail.com**.",
+          "She's also on LinkedIn, and you can book a mentoring session with her on ADPList.",
+          "Or use the pink phone on the shelf. It actually dials."
+        ],
+        "open": {
+          "id": "phone",
+          "label": "Call her"
+        },
+        "next": [
+          "who",
+          "case"
+        ]
+      },
+      {
+        "id": "languages",
+        "button": "What languages does she speak?",
+        "keywords": [
+          "language",
+          "languages",
+          "english",
+          "portuguese",
+          "italian",
+          "speak",
+          "speaks",
+          "idioma",
+          "idiomas",
+          "ingles",
+          "italiano",
+          "fala"
+        ],
+        "reply": [
+          "**Portuguese** is her first language, her **English** is fully professional, and she's learning **Italian** (A2 for now).",
+          "I'm fluent in buttons."
+        ],
+        "next": [
+          "location",
+          "contact"
+        ]
+      },
+      {
+        "id": "location",
+        "button": "Where is she from?",
+        "keywords": [
+          "live",
+          "lives",
+          "based",
+          "location",
+          "located",
+          "brazil",
+          "brasil",
+          "porto alegre",
+          "rio pardo",
+          "city",
+          "country",
+          "timezone",
+          "time zone",
+          "remote",
+          "where is she from",
+          "is she from",
+          "where does she live",
+          "mora",
+          "onde mora"
+        ],
+        "reply": [
+          "She lives in **Porto Alegre**, in the south of Brazil, and works with teams abroad from there.",
+          "She was born in Rio Pardo, a small town on the Jacuí river. That same river reaches Porto Alegre, so she says she just followed it."
+        ],
+        "open": {
+          "id": "home",
+          "label": "See the postcard"
+        },
+        "next": [
+          "hobbies",
+          "languages"
+        ]
+      },
+      {
+        "id": "hobbies",
+        "button": "What does she do for fun?",
+        "keywords": [
+          "hobby",
+          "hobbies",
+          "fun",
+          "for fun",
+          "free time",
+          "spare time",
+          "weekend",
+          "chess",
+          "travel",
+          "travels",
+          "traveling",
+          "travelling",
+          "yoga",
+          "pilates",
+          "gym",
+          "read",
+          "reading",
+          "books",
+          "draw",
+          "drawing",
+          "tempo livre",
+          "xadrez",
+          "viagem",
+          "viajar"
+        ],
+        "reply": [
+          "Reading, drawing, the gym, yoga and pilates.",
+          "Chess, too: she used to play in tournaments. Her ratings would like you to believe otherwise.",
+          "And travel: 9 countries so far, and the goal is 30."
+        ],
+        "open": {
+          "id": "chess",
+          "label": "Play a game"
+        },
+        "next": [
+          "zuko",
+          "location"
+        ]
+      },
+      {
+        "id": "zuko",
+        "button": "Who are you, Zuko?",
+        "keywords": [
+          "zuko",
+          "about you",
+          "who are you",
+          "cat",
+          "kitty",
+          "treat",
+          "treats",
+          "buttons",
+          "meow",
+          "pets",
+          "gato"
+        ],
+        "reply": [
+          "Me? I'm Zuko, Júlia's cat and her first intern.",
+          "She taught me to talk with buttons when I was a kitten. I know 6 words: Play, Treat, Pets, Food, Sachê and Brush. Tap my photo if you need proof.",
+          "Now I also know everything about her work. Ask away."
+        ],
+        "next": [
+          "who",
+          "hobbies"
+        ]
+      },
+      {
+        "id": "hello",
+        "button": "Hi Zuko!",
+        "keywords": [
+          "hi",
+          "hello",
+          "hey",
+          "hiya",
+          "oi",
+          "ola",
+          "good morning",
+          "good afternoon",
+          "bom dia",
+          "boa tarde"
+        ],
+        "reply": [
+          "Meow! Hi there.",
+          "What do you want to know about Júlia?"
+        ]
+      },
+      {
+        "id": "thanks",
+        "button": "Thanks!",
+        "keywords": [
+          "thanks",
+          "thank",
+          "thank you",
+          "thx",
+          "ty",
+          "cheers",
+          "obrigado",
+          "obrigada",
+          "valeu"
+        ],
+        "reply": [
+          "Purr. Anytime.",
+          "If you want to talk to Júlia herself, the pink phone is right there."
+        ],
+        "open": {
+          "id": "phone",
+          "label": "Call her"
+        }
+      }
+    ],
+    "fallback": [
+      "Mrrp? I don't know that one yet. I'm a cat, after all.",
+      "Try one of my buttons, or ask Júlia herself:"
+    ],
+    "fallbackOpen": {
+      "id": "phone",
+      "label": "Call Júlia"
+    }
+  },
   "pages": [
     {
-      "kicker": "He says",
-      "lines": ["Food", "Pets", "Play", "Treat", "Brush", "Pouch"]
+      "kicker": "Meet Zuko",
+      "lines": []
     }
   ]
 }

@@ -92,7 +92,7 @@ export const numberOf = (p: Prop): number | null => (typeof p?.number === "numbe
 
 export function buildCase(id: string, cfg: CaseConfig, page: PageInfo, blocks: Block[]): EntryResult {
   const warnings: string[] = [];
-  const items = flatten(blocks);
+  const items = flatten(blocks, true);
   warnings.push(...skippedNotes(items, id));
   const sections = sectionize(items, cfg.sectionLevel ?? 3);
   const namer = new ImageNamer(id);

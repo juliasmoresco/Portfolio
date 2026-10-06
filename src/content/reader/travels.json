@@ -1,42 +1,13 @@
 {
-  "skin": "book",
-  "title": "Travels",
-  "kind": "Journal",
-  "tag": "Travel journal",
-  "year": "[Year]",
-  "role": "[Role]",
-  "spine": "#6F9F9A",
+  "skin": "globe",
+  "title": "Where I've been",
   "hotspotLabel": "Where I have been",
+  "tag": "Travel map",
+  "visited": ["Switzerland", "Brazil", "Italy", "France", "Greece", "Argentina", "Uruguay", "Germany", "United States"],
+  "goal": 30,
   "pages": [
     {
-      "kicker": "Trip 01",
-      "heading": "[Place]",
-      "plate": "place photo placeholder",
-      "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
-      ]
-    },
-    {
-      "kicker": "Trip 02",
-      "heading": "[Place]",
-      "plate": "place photo placeholder",
-      "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
-      ]
-    },
-    {
-      "kicker": "Trip 03",
-      "heading": "[Place]",
-      "plate": "place photo placeholder",
-      "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
-      ]
+      "lines": []
     }
   ]
 }

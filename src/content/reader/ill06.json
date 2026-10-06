@@ -1,15 +1,14 @@
 {
   "skin": "frame",
   "title": "Illustration 06",
+  "hotspotLabel": "Zuko, my first intern",
+  "hideTitle": true,
   "spine": "#B8746A",
   "pages": [
     {
-      "kicker": "Framed",
-      "plate": "artwork placeholder",
+      "image": "ill06-01",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "Meet Zuko, my first intern. He talks way too much while we work."
       ]
     }
   ]

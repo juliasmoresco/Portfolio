@@ -16,7 +16,13 @@ export type PackItem = { kind: "text"; text: string } | { kind: "image"; name: s
 /** A paragraph longer than a whole page is split at sentence ends. */
 export function splitLong(paragraph: string, limit: number): string[] {
   if (estimateTextHeight([paragraph]) <= limit) return [paragraph];
-  const sentences = paragraph.split(/(?<=[.!?”"])\s+/);
+  // A **bold** run stays whole: a sentence end inside one is not a place to split.
+  const sentences: string[] = [];
+  for (const part of paragraph.split(/(?<=[.!?”"])\s+/)) {
+    const prev = sentences[sentences.length - 1];
+    if (prev !== undefined && (prev.match(/\*\*/g) ?? []).length % 2) sentences[sentences.length - 1] = `${prev} ${part}`;
+    else sentences.push(part);
+  }
   const out: string[] = [];
   let cur = "";
   for (const s of sentences) {

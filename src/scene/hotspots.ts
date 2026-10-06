@@ -1,6 +1,7 @@
 /**
- * The 19 hotspots that open a Reader. The README lists 17; Résumé and Zuko (the owner's cat) were
- * added afterwards. Order is also the keyboard list's order.
+ * The hotspots that open a Reader. The README lists 17; Résumé and Zuko (the owner's cat) were added afterwards, and
+ * three of the wall's illustrations later gave way to the cork board of mentees' notes. Order is also the keyboard
+ * list's order.
  */
 export const HOTSPOT_IDS = [
   "about",
@@ -8,7 +9,6 @@ export const HOTSPOT_IDS = [
   "case2",
   "case3",
   "case4",
-  "case5",
   "chess",
   "studies",
   "travels",
@@ -17,9 +17,8 @@ export const HOTSPOT_IDS = [
   "llama",
   "cat",
   "ill01",
-  "ill02",
-  "ill03",
-  "ill04",
+  "mentees",
+  "home",
   "ill05",
   "ill06",
 ] as const;

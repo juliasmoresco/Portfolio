@@ -3,64 +3,120 @@
   "title": "About me",
   "kind": "About",
   "tag": "About",
-  "year": "[Year]",
-  "role": "[Role]",
+  "year": "Since 2018",
+  "role": "Senior Product Designer",
   "spine": "#8A6A55",
   "pages": [
     {
-      "kicker": "Who",
-      "heading": "About me",
+      "kicker": "About me",
+      "heading": "Hi, I'm Júlia",
       "lines": [
-        "Hi, I’m Júlia, a Senior Product Designer with a strong visual design foundation and a strategic mindset for building scalable digital products."
+        "I'm a senior product designer, and I've been designing digital products since 2018. I've worked across fintech, quick-service restaurants, consulting and education, and today I'm designing at Binance.US through Ambush.",
+        "Whatever the industry, my work sits in the same place: where user needs, business goals and product growth meet. I get there through thoughtful design decisions, experimentation and outcomes we can measure."
+      ],
+      "polaroids": {
+        "photos": [
+          {
+            "image": "about-portrait"
+          }
+        ]
+      }
+    },
+    {
+      "kicker": "About me",
+      "heading": "How it started",
+      "lines": [
+        "My design career began long before my first job. As a kid, I was already making images in Illustrator and Photoshop, running blogs to share my creations, and designing layouts for my Neopets and my Tumblr.",
+        "That curiosity turned into a career. I started in branding and games as a visual designer, then joined Kobe Apps, a software house, as an intern. That's where I fell in love with product design, and I've been growing in it ever since."
       ]
     },
     {
-      "kicker": "How I work",
-      "heading": "Practice",
+      "kicker": "About me",
+      "heading": "What I've learned along the way",
       "lines": [
-        "Over the past few years, I’ve designed, launched, and optimized digital experiences across B2C and B2B environments, contributing to products in quick-service restaurants, fintech, consulting, and education. My work is focused on connecting user needs, business goals, and product growth through thoughtful design decisions, experimentation, and measurable outcomes."
+        "After Kobe, I spent several years in fintech, at investment companies like XP and Warren, and later at Ambush, where I now work on Binance.US. I've also worked with Restaurant Brands International, on brands like Burger King, Popeyes, Firehouse Subs and Tim Hortons."
       ]
     },
     {
-      "kicker": "How I work",
-      "heading": "Practice",
+      "kicker": "About me",
+      "heading": "What I've learned along the way",
       "lines": [
-        "Working in consultancy has allowed me to collaborate with multidisciplinary teams across different markets, business models, and stages of product maturity. This has strengthened my ability to navigate complexity, adapt quickly, and create solutions grounded in both customer reality and operational constraints.",
-        "Beyond product design execution, I have a strong interest in user research, experimentation, growth strategy, and scalable design operations."
-      ]
+        "Working in consultancy put me in front of different markets, business models and product stages. It taught me to handle complexity, adapt fast, and design for both what customers need and what operations can actually deliver.",
+        "Today I'm especially drawn to user research, experimentation, growth strategy and scalable design operations."
+      ],
+      "timeline": {
+        "kicker": "The path so far",
+        "title": "Where I've worked",
+        "stops": [
+          {
+            "year": "2018",
+            "name": "Kobe Apps",
+            "role": "UX/UI intern, then UX/UI designer",
+            "note": "Software house"
+          },
+          {
+            "year": "2021",
+            "name": "XP Inc.",
+            "role": "Product designer",
+            "note": "Investments"
+          },
+          {
+            "year": "2022",
+            "name": "Warren",
+            "role": "Senior product designer",
+            "note": "Investments"
+          },
+          {
+            "year": "2022",
+            "name": "Ambush",
+            "role": "Senior product designer",
+            "note": "Consultancy · fintech and food-service clients",
+            "now": true
+          }
+        ]
+      }
     },
     {
-      "kicker": "Testimonial",
-      "heading": "Valentina Lopes Costa",
+      "kicker": "About me",
+      "heading": "Beyond work",
       "lines": [
-        "“I’ve worked with many talented people, but Julia stands out as the best product designer I’ve ever had the chance to collaborate with.",
-        "She led the design for both our app and website - not only making them look great, but work significantly better for the user. Her designs were clean, intuitive, and always rooted in solving real problems with elegance and clarity."
-      ]
-    },
-    {
-      "kicker": "Testimonial",
-      "heading": "Valentina Lopes Costa",
-      "lines": [
-        "But what really set her apart was her work behind the scenes - she took on the challenge of simplifying complex internal tools used by our platform operators and completely transformed them into intuitive, efficient workflows.",
-        "Julia didn’t just elevate our product - she raised the bar for the entire tech org. Some of the best design patterns we use across the platform started with her. Other teams actively adopted her simplification frameworks because they were just that effective."
-      ]
-    },
-    {
-      "kicker": "Testimonial",
-      "heading": "Valentina Lopes Costa",
-      "lines": [
-        "On top of all that, she’s an incredible team member - collaborative, thoughtful, and always willing to go the extra mile to support the people around her.",
-        "If you’re building a product and want it to truly shine, Julia is the designer you want on your team.”",
-        "Product Manager at Restaurants Brand International"
-      ]
-    },
-    {
-      "kicker": "Testimonial",
-      "heading": "Nicolau Monteiro",
-      "lines": [
-        "“During my career, I have rarely come across real professionals like Júlia. She has never failed to impress me with her skills as a Product Designer. Júlia is an exceptionally talented designer that understands users, technology, and design. Her energy and can-do attitude are contagious and helped us ship many products and features. I am sure she will achieve great things in her career. Go Júlia!!",
-        "Product Manager"
-      ]
+        "Outside of work, I read, draw, go to the gym, and do yoga and pilates. I play chess whenever I can, and I love traveling to discover new places."
+      ],
+      "artRight": true,
+      "hobbies": {
+        "kicker": "Off the clock",
+        "title": "When I'm not designing",
+        "items": [
+          {
+            "icon": "read",
+            "label": "Reading"
+          },
+          {
+            "icon": "draw",
+            "label": "Drawing"
+          },
+          {
+            "icon": "gym",
+            "label": "Gym"
+          },
+          {
+            "icon": "yoga",
+            "label": "Yoga & pilates"
+          },
+          {
+            "icon": "chess",
+            "label": "Chess",
+            "open": "chess",
+            "openLabel": "Play a game"
+          },
+          {
+            "icon": "travel",
+            "label": "Traveling",
+            "open": "travels",
+            "openLabel": "Spin the globe"
+          }
+        ]
+      }
     }
   ]
 }

@@ -3,9 +3,5 @@ export const READER_DURATION_MS = 420;
 /** Duration of a page turn (the leaf's transition is .62s in the CSS). */
 export const PAGE_TURN_MS = 620;
 
-/**
- * Slot labels baked into the layout, not into content: the design marks where an
- * image plate and a description go. Placeholders like the rest of the copy.
- */
+/** Marks an image plate whose artwork hasn't been made yet (the page's `plate` text says what goes there). */
 export const IMAGE_TAG = "[Image]";
-export const DESCRIPTION_LABEL = "[Description]";

@@ -1,26 +1,157 @@
 {
-  "skin": "folder",
-  "opening": "binder",
-  "openingLabel": "Cover flips open",
+  "skin": "resume",
   "title": "Résumé",
   "kind": "Document",
+  "tag": "CV",
+  "year": "2026",
+  "role": "Senior Product Designer",
+  "person": "Júlia Moresco",
+  "location": "Porto Alegre, Brazil",
+  "links": [
+    {
+      "label": "juliasmoresco@gmail.com",
+      "href": "mailto:juliasmoresco@gmail.com"
+    },
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/julia-moresco/"
+    }
+  ],
   "pages": [
     {
-      "kicker": "Skills",
+      "kicker": "Profile",
+      "heading": "About me",
       "lines": [
-        "Vibe-coding and AI tools: Claude Design, Claude Code, ChatGPT, Gemini, Lovable, Figma Make",
-        "Prototyping: Figma, Adobe XD",
-        "Analytics: Amplitude, Data Dog, Google Analytics",
-        "Adobe Creative Suite: Photoshop, Illustrator, InDesign, After Effects",
-        "Additional: Miro, Figjam, Mural, Basic knowledge of CSS and HTML."
+        "I've helped launch and improve digital products for global financial platforms and one of the world's largest QSR groups, across mobile, desktop and internal tools. I like taking complex systems and making them simple for real people.",
+        "My approach rests on curiosity, collaboration and a belief that the best design is informed by real user behavior. I do my best work where research, exploration and close collaboration with cross-functional teams drive decisions."
       ]
     },
     {
-      "kicker": "Languages",
+      "kicker": "Experience",
+      "heading": "Binance.US",
+      "lines": [
+        "Senior Product Designer · Ambush",
+        "06/2025 – Present",
+        "Designing crypto experiences across web and mobile for the Exchange and Growth teams. I focus on core trading workflows, experimentation, funnel optimization and end-to-end customer journeys."
+      ]
+    },
+    {
+      "kicker": "Experience",
+      "heading": "RBI",
+      "lines": [
+        "Senior Product Designer · Ambush",
+        "Burger King, Popeyes, Firehouse Subs",
+        "12/2022 – 06/2025",
+        "Designed Loyalty, CRM, Offers and Kiosk experiences for one of the world's largest QSR groups, across mobile, desktop and internal platforms. I led design end to end, worked closely with cross-functional teams, and helped evolve a multi-brand Design System."
+      ]
+    },
+    {
+      "kicker": "Experience",
+      "heading": "Warren",
+      "lines": [
+        "Senior Product Designer",
+        "05/2022 – 12/2022",
+        "Designed an end-to-end trading experience, built with Apex Fintech Solutions, that gave Warren's clients access to US stocks inside the app. I owned the growth roadmap and the full design process, from discovery and prototyping to stakeholder facilitation."
+      ]
+    },
+    {
+      "kicker": "Experience",
+      "heading": "XP Inc.",
+      "lines": [
+        "Product Designer",
+        "09/2021 – 05/2022",
+        "Worked on the Pension Plan product for Asset Management Services. I owned the design process end to end (discovery, testing, prototyping, stakeholder validation) and used user research and data to improve the experience."
+      ]
+    },
+    {
+      "kicker": "Experience",
+      "heading": "Kobe Apps",
+      "lines": [
+        "UX/UI Designer",
+        "05/2019 – 09/2021",
+        "Worked on projects for many brands at a Brazilian software company. I led a team building Design Systems, ran design sprints and helped define product goals. I also helped improve internal design processes such as research, Design Ops, accessibility and analytics. I worked with PMs, designers, engineers and stakeholders on product strategy, experience mapping, research and workshops, using Agile and Lean Inception."
+      ]
+    },
+    {
+      "kicker": "Experience",
+      "heading": "Kobe Apps",
+      "lines": [
+        "UX/UI Intern",
+        "09/2018 – 05/2019",
+        "Designed interfaces for mobile apps, websites and responsive landing pages, using Design Sprints and Design Thinking. My routine included wireframes, prototypes, user flows, documentation and customer presentations."
+      ]
+    },
+    {
+      "kicker": "Education",
+      "heading": "Education",
+      "lines": [
+        "Bachelor's in Visual Design — Universidade Federal do Rio Grande do Sul (2016–2023)",
+        "Specialization in AI Product Specialist — PM3 (2026)",
+        "Specialization in Product Growth — PM3 (2026)",
+        "Specialization in User Research — Awari (2021)",
+        "Specialization in Design Systems & Operations — Meiuca (2020)",
+        "Courses in UX, UI, Product Management, and User Research — The Interaction Design Foundation (2020–2021)"
+      ]
+    },
+    {
+      "kicker": "Education",
+      "heading": "Education",
+      "lines": [
+        "UX Writing Course — Mergo User Experience (2020)",
+        "Design Thinking Course — IDEO U (2020)"
+      ]
+    },
+    {
+      "kicker": "Skills",
+      "heading": "Skills",
+      "lines": [
+        "Vibe-coding and AI tools: Claude Design, Claude Code, ChatGPT, Gemini, Lovable, Figma Make",
+        "Prototyping: Figma, Adobe XD",
+        "Analytics: Amplitude, Datadog, Google Analytics",
+        "Adobe Creative Suite: Photoshop, Illustrator, InDesign, After Effects",
+        "Additional: Miro, FigJam, Mural, basic knowledge of HTML and CSS"
+      ]
+    },
+    {
+      "kicker": "Skills",
+      "heading": "Languages",
       "lines": [
         "English – Full Professional Fluency",
         "Portuguese – Native",
         "Italian – A2 (currently taking a course)"
+      ]
+    },
+    {
+      "kicker": "Testimonials",
+      "heading": "Valentina Lopes Costa",
+      "lines": [
+        "“I've worked with many talented people, but Julia stands out as the best product designer I've ever had the chance to collaborate with.",
+        "She led the design for both our app and website - not only making them look great, but work significantly better for the user. Her designs were clean, intuitive, and always rooted in solving real problems with elegance and clarity."
+      ]
+    },
+    {
+      "kicker": "Testimonials",
+      "heading": "Valentina Lopes Costa",
+      "lines": [
+        "But what really set her apart was her work behind the scenes - she took on the challenge of simplifying complex internal tools used by our platform operators and completely transformed them into intuitive, efficient workflows.",
+        "Julia didn't just elevate our product - she raised the bar for the entire tech org. Some of the best design patterns we use across the platform started with her. Other teams actively adopted her simplification frameworks because they were just that effective."
+      ]
+    },
+    {
+      "kicker": "Testimonials",
+      "heading": "Valentina Lopes Costa",
+      "lines": [
+        "On top of all that, she's an incredible team member - collaborative, thoughtful, and always willing to go the extra mile to support the people around her.",
+        "If you're building a product and want it to truly shine, Julia is the designer you want on your team.”",
+        "Product Manager at Restaurant Brands International"
+      ]
+    },
+    {
+      "kicker": "Testimonials",
+      "heading": "Nicolau Monteiro",
+      "lines": [
+        "“During my career, I have rarely come across real professionals like Júlia. She has never failed to impress me with her skills as a Product Designer. Júlia is an exceptionally talented designer that understands users, technology, and design. Her energy and can-do attitude are contagious and helped us ship many products and features. I am sure she will achieve great things in her career. Go Júlia!!”",
+        "Product Manager"
       ]
     }
   ]

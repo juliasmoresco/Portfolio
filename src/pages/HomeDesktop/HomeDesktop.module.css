@@ -33,6 +33,15 @@
     linear-gradient(0deg, rgb(var(--scrim-rgb) / 0.82) 0%, rgb(var(--scrim-rgb) / 0.4) 26%, rgb(var(--scrim-rgb) / 0) 46%);
 }
 
+.quickNav {
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  /* The sidesheet is `position: fixed` (viewport-relative), so it needs telling how tall the room
+     actually is here — the .stage box above, not the browser window, which can be taller than it. */
+  --quicknav-panel-height: calc(100vw * 9.6 / 16);
+}
+
 .intro {
   position: absolute;
   left: 4%;

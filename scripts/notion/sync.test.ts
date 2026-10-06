@@ -102,6 +102,13 @@ describe("flatten", () => {
     expect(items.map((i) => (i as { text: string }).text)).toEqual(["1. First", "2. Second", "Skill\nA, B"]);
   });
 
+  it("keeps bold as **bold** and bullets as '- ' when asked for rich text, as case studies do", () => {
+    const blocks = [p({ t: "My Role: ", bold: true }, "Senior"), li("plain item"), block("numbered_list_item", { rich_text: rich({ t: "Lead.", bold: true }, " rest") })];
+    const texts = (rich: boolean) => flatten(blocks, rich).map((i) => (i as { text: string }).text);
+    expect(texts(true)).toEqual(["**My Role:** Senior", "- plain item", "1. **Lead.** rest"]);
+    expect(texts(false)).toEqual(["My Role: Senior", "plain item", "1. Lead. rest"]);
+  });
+
   it("reports what it cannot show instead of dropping it silently", () => {
     const items = flatten([block("video", { type: "external", external: { url: "https://youtu.be/x" } }), block("table", {})]);
     expect(items.map((i) => i.kind)).toEqual(["note", "note"]);

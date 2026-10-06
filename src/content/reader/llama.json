@@ -1,16 +1,20 @@
 {
-  "skin": "frame",
+  "skin": "llama",
   "title": "Llama bank",
   "kind": "Object",
+  "hotspotLabel": "Feed the llama",
+  "milestones": [
+    { "at": 10, "text": "A bus ticket's worth. She's thrilled." },
+    { "at": 25, "text": "Enough for a coffee in Rome." },
+    { "at": 50, "text": "She's saving for a trip!" },
+    { "at": 100, "text": "Plane tickets? Almost." },
+    { "at": 250, "text": "She's planning a world tour." },
+    { "at": 500, "text": "Honestly, she's richer than me now." },
+    { "at": 1000, "text": "A llama of means. Thank you, patron." }
+  ],
   "pages": [
     {
-      "kicker": "Framed",
-      "plate": "artwork placeholder",
-      "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
-      ]
+      "lines": ["Tap the llama to drop in a coin. No real money involved — she's just a good listener."]
     }
   ]
 }

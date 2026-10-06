@@ -8,6 +8,7 @@
 
   /* Paper + ink */
   --ink: #2e211c;
+  --ink-rgb: 46 33 28;
   --paper: #f5ebdc;
   --paper-warm: #f7f0e2;
   --paper-shade: #e4d8c2;
@@ -24,4 +25,6 @@
   --font-display: "Playfair Display", Georgia, serif;
   --font-ui: Karla, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-hand: Caveat, "Segoe Print", "Bradley Hand", cursive;
+  --font-script: "Pinyon Script", "Snell Roundhand", "Apple Chancery", cursive;
 }

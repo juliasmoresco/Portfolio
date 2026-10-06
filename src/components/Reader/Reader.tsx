@@ -1,16 +1,52 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import type { ReaderItem } from "../../content";
+import { getReaderItem, type ReaderItem } from "../../content";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
+import { emitSelect } from "../../scene/events";
+import type { SceneHotspotId } from "../../scene/hotspots";
 import { PAGE_TURN_MS, READER_DURATION_MS } from "./copy";
 import { buildViews, type CompactViewProps } from "./compact";
+import { ChessSkin } from "./ChessSkin";
+import { GlobeSkin } from "./GlobeSkin";
+import { LlamaSkin } from "./LlamaSkin";
+import { ChatSkin } from "./ChatSkin";
+import { NotesSkin } from "./NotesSkin";
+import { PostcardSkin } from "./PostcardSkin";
+import { ResumeSkin } from "./ResumeSkin";
+import { DiplomaSkin } from "./DiplomaSkin";
+import { PhoneSkin } from "./PhoneSkin";
+import { EndBlock, type EndProps } from "./parts";
+import { buildSpreads, roomLeft } from "./spreads";
 import { BookSkin, FolderSkin, FrameSkin } from "./skins";
 import { ZoomContext, type ZoomTarget } from "./zoom";
 import styles from "./Reader.module.css";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
+/** The books that end on a closing page, and which case each one leads on to (the last leads nowhere). */
+const NEXT_CASE: Record<string, string | null> = { about: "case1", case1: null };
+const CONTACT_ID = "phone";
+/** The "The end · Next case · Say hello" block after a book's last page. Switched off for now; the code stays. */
+const SHOW_END_BLOCK = false;
+/** Room the closing block needs (kicker, heading, two buttons), in pageFit's units. */
+const END_BLOCK_HEIGHT = 190;
+
+/** The chapter bar (Overview · Process · Outcome, with a progress line) above a book. Switched off for now; the code stays. */
+const SHOW_CHAPTER_BAR = false;
+
+/** Runs of pages sharing a kicker ("Overview", "Process", …), as chapters. Fewer than two means no chapter bar. */
+function chaptersOf(pages: ReaderItem["pages"]): { label: string; page: number }[] {
+  const out: { label: string; page: number }[] = [];
+  pages.forEach((p, i) => {
+    const label = p.kicker?.trim();
+    if (label && label !== out[out.length - 1]?.label) out.push({ label, page: i });
+  });
+  return out.length > 1 ? out : [];
+}
+
 interface Props {
   item: ReaderItem;
+  /** The hotspot id it was opened for; lets a case end by pointing on to the next one. */
+  id?: string;
   /** Called after the closing animation, so the page can return focus and drop the overlay. */
   onClose: () => void;
   className?: string;
@@ -32,7 +68,7 @@ interface Props {
  * The dialog role sits on the root, which holds the shell *and* the pager/Close controls. The
  * prototype put it on the shell alone, which left those controls outside an aria-modal dialog.
  */
-export function Reader({ item, onClose, className, compact = false }: Props) {
+export function Reader({ item, id, onClose, className, compact = false }: Props) {
   const reduced = usePrefersReducedMotion();
   const skin = item.skin;
   const isBook = skin === "book";
@@ -63,6 +99,8 @@ export function Reader({ item, onClose, className, compact = false }: Props) {
   }, []);
 
   const root = useRef<HTMLDivElement>(null);
+  const prevBtn = useRef<HTMLButtonElement>(null);
+  const nextBtn = useRef<HTMLButtonElement>(null);
   const timers = useRef<{ cover?: number; turn?: number; close?: number }>({});
   const closingRef = useRef(false);
   const onCloseRef = useRef(onClose);
@@ -103,11 +141,32 @@ export function Reader({ item, onClose, className, compact = false }: Props) {
   }, []);
 
   // Books and folders page (a turning leaf on desktop; on a phone each page is two views, image then text).
-  // Frames are a single view.
-  const paged = skin !== "frame";
+  // Frames, the globe, the llama bank, the chessboard and the phone are a single view.
+  const paged = skin === "book" || skin === "folder";
   const views = useMemo(() => buildViews(pages), [pages]);
-  const count = compact ? views.length : pages.length;
+  const spreads = useMemo(() => buildSpreads(pages, item.title), [pages, item.title]);
+  const chapters = useMemo(() => (SHOW_CHAPTER_BAR && isBook ? chaptersOf(pages) : []), [isBook, pages]);
+  const nextId = id !== undefined && id in NEXT_CASE ? NEXT_CASE[id] : undefined;
+  const hasEnd = SHOW_END_BLOCK && isBook && nextId !== undefined;
+  // The closing block joins the last text rather than taking a page of its own: always on a phone (a view
+  // scrolls), on desktop when the last spread is text with room left for it.
+  const lastSpread = spreads[spreads.length - 1];
+  const endInline =
+    hasEnd && (compact || (!!lastSpread && !lastSpread.art && roomLeft(lastSpread.pages.map((i) => pages[i]), item.title) >= END_BLOCK_HEIGHT));
+  const count = (compact ? views.length : paged ? spreads.length : pages.length) + (hasEnd && !endInline ? 1 : 0);
   const index = compact ? view : spread;
+  // The arrow at an end is hidden; if it had keyboard focus, hand it to the other one rather than lose it.
+  useEffect(() => {
+    const active = document.activeElement;
+    if (index === count - 1 && active === nextBtn.current) prevBtn.current?.focus({ preventScroll: true });
+    else if (index === 0 && active === prevBtn.current) nextBtn.current?.focus({ preventScroll: true });
+  }, [index, count]);
+  const atEnd = hasEnd && !endInline && index === count - 1;
+  const endProps: EndProps = {
+    next: nextId ? getReaderItem(nextId)?.title : undefined,
+    onNext: nextId ? () => emitSelect({ id: nextId as SceneHotspotId }) : undefined,
+    onHello: () => emitSelect({ id: CONTACT_ID as SceneHotspotId }),
+  };
 
   const goTo = useCallback(
     (i: number) => {
@@ -120,26 +179,26 @@ export function Reader({ item, onClose, className, compact = false }: Props) {
     [closing, count, reduced],
   );
 
-  const turn = useCallback(
-    (dir: 1 | -1) => {
-      if (compact) {
-        goTo(view + dir);
-        return;
-      }
-      if (turning || closing) return;
-      const next = spread + dir;
-      if (next < 0 || next >= pages.length) return;
-      if (reduced) {
-        setSpread(next);
-        return;
-      }
-      setTurning(dir > 0 ? "next" : "prev");
+  /** Desktop: turn straight to spread `next` (one leaf turn, however far). */
+  const flipTo = (next: number) => {
+    if (turning || closing || next === spread || next < 0 || next >= count) return;
+    if (reduced) {
       setSpread(next);
-      window.clearTimeout(timers.current.turn);
-      timers.current.turn = window.setTimeout(() => setTurning(null), PAGE_TURN_MS);
-    },
-    [compact, goTo, view, turning, closing, spread, pages.length, reduced],
-  );
+      return;
+    }
+    setTurning(next > spread ? "next" : "prev");
+    setSpread(next);
+    window.clearTimeout(timers.current.turn);
+    timers.current.turn = window.setTimeout(() => setTurning(null), PAGE_TURN_MS);
+  };
+
+  const turn = (dir: 1 | -1) => (compact ? goTo(view + dir) : flipTo(spread + dir));
+
+  /** Jump to a chapter's first page. */
+  const openChapter = (page: number) => {
+    if (compact) goTo(views.findIndex((v) => v.pages.includes(page)));
+    else flipTo(spreads.findIndex((s) => s.pages.includes(page)));
+  };
 
   useEffect(() => {
     const trapTab = (e: KeyboardEvent) => {
@@ -183,13 +242,17 @@ export function Reader({ item, onClose, className, compact = false }: Props) {
     if (zoom) lightboxClose.current?.focus({ preventScroll: true });
   }, [zoom]);
 
-  const pageIndex = compact ? (views[Math.min(view, views.length - 1)]?.page ?? 0) : spread;
+  const pageIndex = compact ? (views[Math.min(view, views.length - 1)]?.pages[0] ?? 0) : paged ? (spreads[Math.min(spread, spreads.length - 1)]?.pages[0] ?? 0) : spread;
+  const spreadPages = paged && !compact ? (spreads[Math.min(spread, spreads.length - 1)]?.pages ?? [0]).map((i) => pages[i]) : undefined;
   const page = pages[Math.min(pageIndex, Math.max(pages.length - 1, 0))];
+  const chapter = atEnd ? chapters.length - 1 : chapters.reduce((cur, c, i) => (c.page <= pageIndex ? i : cur), -1);
   const open = shown && !closing;
   const navVisible = open && (!isBook || coverOpen);
   const showPager = paged && count > 1;
   const pageLabel = `${String(index + 1).padStart(2, "0")} / ${String(count).padStart(2, "0")}`;
-  const compactViews: CompactViewProps | undefined = compact ? { views, view, onViewChange: setView, scrollerRef: scroller } : undefined;
+  const compactViews: CompactViewProps | undefined = compact
+    ? { views, view, onViewChange: setView, scrollerRef: scroller, end: hasEnd ? <EndBlock {...endProps} /> : undefined }
+    : undefined;
 
   return (
     <div
@@ -207,26 +270,50 @@ export function Reader({ item, onClose, className, compact = false }: Props) {
       data-turning={turning ?? "none"}
       data-reduced={reduced}
       data-compact={compact}
+      data-chapters={chapters.length > 0}
     >
       <div className={styles.scrim} onClick={requestClose} />
 
       <ZoomContext.Provider value={enlarge}>
       <div className={styles.stage} inert={!!zoom}>
+        {chapters.length > 0 && (
+          <nav className={styles.chapters} aria-label="Chapters" inert={!navVisible}>
+            <div className={styles.chapterTabs}>
+              {chapters.map((c, i) => (
+                <button key={c.page} type="button" className={styles.chapterTab} aria-current={i === chapter ? "true" : undefined} onClick={() => openChapter(c.page)}>
+                  {c.label}
+                </button>
+              ))}
+            </div>
+            <div className={styles.readProgress} aria-hidden="true">
+              <span style={{ width: `${((index + 1) / count) * 100}%` }} />
+            </div>
+          </nav>
+        )}
         <div className={styles.shell}>
-          {skin === "book" && <BookSkin item={item} page={page} compact={compactViews} />}
-          {skin === "folder" && <FolderSkin item={item} page={page} compact={compactViews} />}
+          {skin === "book" && <BookSkin item={item} page={page} spreadPages={spreadPages} compact={compactViews} end={compact || !hasEnd ? undefined : atEnd ? { props: endProps, inline: false } : endInline && spread === spreads.length - 1 ? { props: endProps, inline: true } : undefined} />}
+          {skin === "folder" && <FolderSkin item={item} page={page} spreadPages={spreadPages} compact={compactViews} />}
           {skin === "frame" && <FrameSkin item={item} page={page} />}
+          {skin === "globe" && <GlobeSkin item={item} />}
+          {skin === "llama" && <LlamaSkin item={item} />}
+          {skin === "chess" && <ChessSkin item={item} />}
+          {skin === "phone" && <PhoneSkin item={item} />}
+          {skin === "notes" && <NotesSkin item={item} />}
+          {skin === "postcard" && <PostcardSkin item={item} />}
+          {skin === "resume" && <ResumeSkin item={item} compact={compact} />}
+          {skin === "diploma" && <DiplomaSkin item={item} />}
+          {skin === "chat" && <ChatSkin item={item} />}
         </div>
 
         {/* Hidden until the cover is open (books), so Tab can't reach invisible controls. */}
         <div className={styles.nav} inert={!navVisible}>
           {showPager && (
             <>
-              <button type="button" className={styles.navBtn} aria-label="Previous page" aria-disabled={index === 0} onClick={() => turn(-1)}>
+              <button ref={prevBtn} type="button" className={styles.navBtn} aria-label="Previous page" aria-disabled={index === 0} onClick={() => turn(-1)}>
                 ‹
               </button>
               <span className={styles.pageLabel}>{pageLabel}</span>
-              <button type="button" className={styles.navBtn} aria-label="Next page" aria-disabled={index === count - 1} onClick={() => turn(1)}>
+              <button ref={nextBtn} type="button" className={styles.navBtn} aria-label="Next page" aria-disabled={index === count - 1} onClick={() => turn(1)}>
                 ›
               </button>
             </>
@@ -240,7 +327,7 @@ export function Reader({ item, onClose, className, compact = false }: Props) {
 
       {zoom && (
         <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label={`${zoom.alt || item.title} (enlarged)`} onClick={closeZoom}>
-          <div className={`${styles.lightboxPics} ${zoom.images.length === 1 ? styles.lightboxSingle : ""}`}>
+          <div className={`${styles.lightboxPics} ${zoom.fit ? styles.lightboxFit : zoom.images.length === 1 ? styles.lightboxSingle : ""}`}>
             {zoom.images.map((src) => (
               <img key={src} src={src} alt={zoom.alt} draggable={false} />
             ))}
@@ -253,7 +340,7 @@ export function Reader({ item, onClose, className, compact = false }: Props) {
 
       {showPager && (
         <p className={styles.srOnly} aria-live="polite">
-          {`Page ${index + 1} of ${count}${page.heading ? `: ${page.heading}` : ""}`}
+          {atEnd ? `Page ${index + 1} of ${count}: the end` : `Page ${index + 1} of ${count}${page.heading ? `: ${page.heading}` : ""}`}
         </p>
       )}
     </div>

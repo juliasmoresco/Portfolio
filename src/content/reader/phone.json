@@ -1,5 +1,5 @@
 {
-  "skin": "frame",
+  "skin": "phone",
   "title": "Say hello",
   "kind": "Contact",
   "links": [
@@ -16,12 +16,36 @@
       "href": "https://adplist.org/mentors/julia-moresco"
     }
   ],
+  "speedDial": [
+    {
+      "digit": "1",
+      "link": "LinkedIn",
+      "text": "LinkedIn picked up. Let's connect!"
+    },
+    {
+      "digit": "2",
+      "link": "Email",
+      "text": "Straight to my inbox. I read every one."
+    },
+    {
+      "digit": "3",
+      "link": "ADPList",
+      "text": "The mentorship line. Book a session and let's talk career."
+    },
+    {
+      "digit": "0",
+      "text": "Operator speaking. Well, it's Zuko. Meow. Try 1, 2 or 3."
+    }
+  ],
+  "wrongNumber": "Nobody home at {digit}. Try 1, 2 or 3.",
   "pages": [
     {
       "kicker": "Contact",
       "lines": [
-        "juliasmoresco@gmail.com",
-        "As a mentor, I organize weekly meetings to aid the growth and career progress of UX professionals. Please schedule a time with me if you're interested:"
+        "Let's talk about product design, career growth or a project you have in mind.",
+        "Email: juliasmoresco@gmail.com",
+        "Based in: Porto Alegre, Brazil",
+        "Mentorship: I mentor UX and product design professionals in weekly sessions focused on career growth. If you'd like to join, book a time with me below."
       ]
     }
   ]

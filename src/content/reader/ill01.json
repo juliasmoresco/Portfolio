@@ -1,15 +1,14 @@
 {
   "skin": "frame",
   "title": "Illustration 01",
+  "hotspotLabel": "Johnny Cash poster",
+  "hideTitle": true,
   "spine": "#B8746A",
   "pages": [
     {
-      "kicker": "Framed",
-      "plate": "artwork placeholder",
+      "image": "ill01-01",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "I love Johnny Cash, and this poster hangs in my office. :)"
       ]
     }
   ]

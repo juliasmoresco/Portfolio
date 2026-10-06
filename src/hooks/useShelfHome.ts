@@ -50,7 +50,9 @@ export function useShelfHome() {
         return;
       }
       if (!isHotspotId(id) || !getReaderItem(id)) return;
-      returnFocus.current = document.activeElement as HTMLElement | null;
+      // Going from one Reader straight to another (a case's "Next case"), keep the original opener.
+      const active = document.activeElement as HTMLElement | null;
+      if (!active?.closest('[role="dialog"]')) returnFocus.current = active;
       setOpenId(id);
       setChip((c) => ({ ...c, visible: false }));
       setFound((f) => (f.includes(id) ? f : [...f, id]));

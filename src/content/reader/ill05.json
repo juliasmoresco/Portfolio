@@ -1,15 +1,14 @@
 {
   "skin": "frame",
   "title": "Illustration 05",
+  "hotspotLabel": "Moka, my intern",
+  "hideTitle": true,
   "spine": "#B8746A",
   "pages": [
     {
-      "kicker": "Framed",
-      "plate": "artwork placeholder",
+      "image": "ill05-01",
       "lines": [
-        "[Description] line one placeholder.",
-        "[Description] line two placeholder.",
-        "[Description] line three placeholder."
+        "Meet Moka, my intern. She's new, but very dedicated."
       ]
     }
   ]

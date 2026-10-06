@@ -10,7 +10,7 @@
  *   - `dispose()` releases the renderer, GL context, geometries, textures, listeners
  *   - `start()` bails out cleanly if `dispose()` ran while assets were loading
  *   - all GLBs are requested in parallel instead of one after another
- *   - optional props (llama, phone) warn instead of failing silently
+ *   - optional props (the cat) warn instead of failing silently
  *   - `reducedMotion` switches off pointer drift and auto-pan
  *
  * Talks to the page only through the `shelf:*` window events in `./events`.
@@ -20,9 +20,24 @@ import { GLTFLoader, type GLTF } from "three/addons/loaders/GLTFLoader.js";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { emitHover, emitReady, emitSelect } from "./events";
 import { makeGlobe } from "./globe";
-import { MOON_LAMP_ID, MOON_LAMP_LABEL, type Daylight, type SceneHotspotId, type WallTone } from "./hotspots";
+import { makeLlama } from "./llama";
+import { dressBook } from "./bookDetails";
+import { replaceChessSet } from "./chess";
+import { replaceDiplomaTube } from "./diploma";
+import { makeCorkBoard, type BoardNote } from "./corkboard";
+import { makePostcard } from "./postcard";
+import { makeRotaryPhone } from "./phone";
+import { PlantSway } from "./plantSway";
+import { refineZuko, ZukoLife } from "./zuko";
+import { isHotspotId, MOON_LAMP_ID, MOON_LAMP_LABEL, type Daylight, type SceneHotspotId, type WallTone } from "./hotspots";
 
 const HOVER_EMISSIVE = 0x8a5a12;
+/** On touch, how far (px) from a tap an object still counts as tapped: a fingertip is about 44px across. */
+const TOUCH_REACH = 24;
+
+/** The key light's shadow frustum for the desktop layout. Portrait widens it (see wide() in applyView)
+ *  while the wall shelf sits above the bookcase, then this is restored the moment desktop returns. */
+const SHADOW_HOME = { left: -3.2, right: 3.8, top: 4.2, bottom: -1.2 };
 
 /** Hotspots that are books on the shelf: hovering one slides a book out toward the viewer, like pulling it off. */
 const BOOK_IDS: readonly string[] = ["about", "case1", "case2", "case3", "case4", "case5", "resume"];
@@ -30,6 +45,11 @@ const BOOK_IDS: readonly string[] = ["about", "case1", "case2", "case3", "case4"
 const TINTED_IDS: readonly string[] = ["about", "case1", "case2", "case3", "case4", "case5"];
 /** How far a hovered book slides out (scene units; the bookcase is 3 tall). */
 const PULL_DISTANCE = 0.09;
+/** Clicking a book flies it off the shelf to the camera (ms), and the Reader is asked to open partway through. */
+const FLIGHT_MS = 560;
+const FLIGHT_OPEN_AT = 0.7;
+/** The flying book ends up this share of the screen's height, centred, where the Reader takes over. */
+const FLIGHT_END_SCREEN = 0.3;
 
 /**
  * Bookcase compartments filled with decorative books that are hotspots, by compartment key
@@ -46,8 +66,6 @@ export interface OfficeSceneAssets {
   src: string;
   /** wall-shelf-plant.glb */
   shelf: string;
-  llama: string;
-  phone: string;
   /** cat-talking-button.glb: the owner's own cat, sitting on the floor beside the bookcase. */
   cat: string;
 }
@@ -76,6 +94,10 @@ export interface OfficeSceneOptions {
   labels: Readonly<Record<string, string>>;
   /** #RRGGBB per hotspot id (from content): tints that entry's books on the shelf. Read once at start. */
   spines: Readonly<Record<string, string>>;
+  /** Picture URL per illustration hotspot id (from content), shown in its print or frame. Read once at start. */
+  art: Readonly<Record<string, string>>;
+  /** The few words pinned to the cork board, one note per mentee review (from content). Read once at start. */
+  notes: readonly BoardNote[];
 }
 
 export const DEFAULT_OPTIONS: Omit<OfficeSceneOptions, "assets"> = {
@@ -91,6 +113,8 @@ export const DEFAULT_OPTIONS: Omit<OfficeSceneOptions, "assets"> = {
   reducedMotion: false,
   labels: {},
   spines: {},
+  art: {},
+  notes: [],
 };
 
 interface HotspotGroup {
@@ -127,8 +151,10 @@ const LIGHT_PRESETS: Record<
 > = {
   afternoon: { exp: 1.22, key: [0xffd7a4, 2.2, -4.4, 3.9, 4.0], fill: [0xc8d8e2, 0.5], rim: [0xffc48c, 0.4], hemi: [0xffeedd, 0x5a564e, 1.05], amb: [0xffe4c4, 0.32] },
   "golden hour": { exp: 1.34, key: [0xff9f4d, 2.8, -6.2, 1.9, 3.0], fill: [0x8fb4cc, 0.36], rim: [0xff8a3c, 0.85], hemi: [0xffd9a8, 0x4a3a2c, 0.8], amb: [0xffc98a, 0.28] },
-  overcast: { exp: 1.1, key: [0xf2f4f6, 1.5, -2.4, 4.6, 4.2], fill: [0xdfe6ea, 0.7], rim: [0xe8eef2, 0.3], hemi: [0xf4f6f8, 0x55534f, 1.15], amb: [0xeef1f3, 0.34] },
-  "evening lamp": { exp: 1.12, key: [0xffb862, 1.4, -1.2, 3.4, 2.6], fill: [0x5a6f8c, 0.26], rim: [0xffa64d, 1.1], hemi: [0x6a5f52, 0x2a2622, 0.5], amb: [0xffb870, 0.22] },
+  // Soft and grey: a lower key and more sky, so the yellow lacquer sits in the same flat light as the wall.
+  overcast: { exp: 1.02, key: [0xe9edf1, 1.15, -2.4, 4.6, 4.2], fill: [0xd9e0e5, 0.8], rim: [0xdfe5ea, 0.22], hemi: [0xe6ebef, 0x4a4946, 1.3], amb: [0xe2e7eb, 0.42] },
+  // Night: cool moonlight through the room, and the moon lamp (see applyLight) as the one warm pool.
+  "evening lamp": { exp: 1.22, key: [0x9db3d6, 0.8, -4.0, 3.6, 3.0], fill: [0x55668a, 0.38], rim: [0xffa64d, 0.45], hemi: [0x46506a, 0x221e1a, 0.8], amb: [0x76819c, 0.24] },
 };
 
 const WALL_TONES: Record<WallTone, number> = {
@@ -141,9 +167,8 @@ const WALL_TONES: Record<WallTone, number> = {
 
 const POSTER_LABELS: Record<string, string> = {
   ill01: "Illustration 01",
-  ill02: "Illustration 02",
-  ill03: "Illustration 03",
-  ill04: "Illustration 04",
+  mentees: "Notes from mentees",
+  home: "Postcard from home",
   ill05: "Illustration 05",
   ill06: "Illustration 06",
 };
@@ -267,12 +292,43 @@ export class OfficeScene {
   private groups: Record<string, HotspotGroup> = {};
   private cols: Column[] = [];
 
+  // Portrait-only layout: the wall shelf and illustrations move to sit above the bookcase (mobile),
+  // then move back to their desktop spot the moment the aspect stops being portrait. Desktop's own
+  // framing never reads any of this, so it can never drift from what it's always been.
+  private wallShelf: THREE.Object3D | null = null;
+  private posters: THREE.Object3D | null = null;
+  private wallHomeShelf = new THREE.Vector3();
+  private wallHomePosters = new THREE.Vector3();
+  private wallDelta = new THREE.Vector3();
+  private bookBox: THREE.Box3 | null = null;
+  private wallHomeBox: THREE.Box3 | null = null;
+  /** Zuko's box, world space; folded into the portrait fit too (desktop already shows him fine). */
+  private catBox: THREE.Box3 | null = null;
+  private plantSway: PlantSway | null = null;
+  private zukoLife: ZukoLife | null = null;
+  /** Off in desktop. The key light is tuned for the wall shelf's normal height, near the light's own
+   *  y=3.9; relocated above the bookcase it's near or above the light, so portrait needs its own fill. */
+  private wallLight: THREE.PointLight | null = null;
+
   private raycaster = new THREE.Raycaster();
   private pointer = new THREE.Vector2(-2, -2);
   private mouseN = new THREE.Vector2(0, 0);
   private hovered: string | null = null;
   private pull = new Map<THREE.Mesh, { k: number; base: THREE.Vector3; dir: THREE.Vector3 }>();
   private pullMesh: THREE.Mesh | null = null;
+  /** A book on its way from the shelf to the camera, and what to put back once the Reader has covered it. */
+  private flight: {
+    id: string;
+    mesh: THREE.Mesh;
+    t0: number;
+    from: THREE.Vector3;
+    to: THREE.Vector3;
+    q0: THREE.Quaternion;
+    q1: THREE.Quaternion;
+    restPos: THREE.Vector3;
+    restQuat: THREE.Quaternion;
+    opened: boolean;
+  } | null = null;
   private lastHitMesh: THREE.Mesh | null = null;
   private heroes = new Map<string, THREE.Mesh>();
   private armed: string | null = null;
@@ -313,9 +369,19 @@ export class OfficeScene {
         return null;
       });
     const pRequired = Promise.all([loader.loadAsync(a.src), loader.loadAsync(a.shelf)]);
-    const pLlama = optional(a.llama, "the llama bank");
-    const pPhone = optional(a.phone, "the rotary phone");
     const pCat = optional(a.cat, "Zuko");
+    const texLoader = new THREE.TextureLoader();
+    const pArt = Promise.all(
+      Object.entries(o.art).map(([id, url]) =>
+        texLoader.loadAsync(url).then(
+          (t) => [id, t] as const,
+          (e: unknown) => {
+            console.warn(`[office-scene] could not load the picture for ${id}; showing the placeholder`, e);
+            return null;
+          },
+        ),
+      ),
+    );
 
     const renderer = new THREE.WebGLRenderer({ antialias: !lowq, alpha: true });
     renderer.setPixelRatio(Math.min(devicePixelRatio, lowq ? 1.5 : 2));
@@ -344,10 +410,7 @@ export class OfficeScene {
     key.shadow.blurSamples = lowq ? 8 : 16;
     key.shadow.bias = -0.0004;
     key.shadow.normalBias = 0.03;
-    key.shadow.camera.left = -3.2;
-    key.shadow.camera.right = 3.8;
-    key.shadow.camera.top = 4.2;
-    key.shadow.camera.bottom = -1.2;
+    Object.assign(key.shadow.camera, SHADOW_HOME);
     scene.add(key);
     const fill = new THREE.DirectionalLight(0xc8d8e2, 0.42);
     fill.position.set(4.2, 1.4, 2.6);
@@ -365,12 +428,37 @@ export class OfficeScene {
       if (this.disposed) return;
       throw e;
     }
-    const [llamaGltf, phoneGltf, catGltf] = await Promise.all([pLlama, pPhone, pCat]);
+    const [catGltf, artList] = await Promise.all([pCat, pArt]);
+    const art = new Map(artList.filter((x) => x !== null));
+    art.forEach((t) => {
+      t.colorSpace = THREE.SRGBColorSpace;
+      t.anisotropy = 8;
+    });
+    const aspectOf = (t: THREE.Texture) => {
+      const img = t.image as { width: number; height: number };
+      return img.width / img.height;
+    };
     // Everything below is synchronous, so a dispose() during loading is the only race.
     if (this.disposed) return;
 
     const model = bookshelfGltf.scene;
     enableShadows(model);
+    // The back of each compartment shares the shelves' inner lacquer; a deeper shade gives the
+    // compartments depth instead of reading as one flat yellow surface.
+    const backs = new Map<THREE.Material, THREE.Material>();
+    model.traverse((n) => {
+      const m = n as THREE.Mesh;
+      if (!m.isMesh || !/^back_/.test(m.name)) return;
+      const src = m.material as THREE.MeshStandardMaterial;
+      if (!backs.has(src)) {
+        const deeper = src.clone();
+        deeper.color.multiplyScalar(0.72);
+        backs.set(src, deeper);
+      }
+      m.material = backs.get(src)!;
+    });
+    replaceChessSet(model);
+    replaceDiplomaTube(model);
 
     const box = new THREE.Box3().setFromObject(model);
     const size = new THREE.Vector3();
@@ -431,9 +519,16 @@ export class OfficeScene {
     // unframed prints taped flat to the wall
     const mkPrint = (w: number, h: number, x: number, y: number, tint: string, id: string) => {
       const g = new THREE.Group();
+      // A real picture keeps the print's area but takes the picture's own proportions (a landscape piece hangs landscape).
+      const pic = art.get(id);
+      if (pic) {
+        const area = w * h;
+        w = Math.sqrt(area * aspectOf(pic));
+        h = area / w;
+      }
       const paper = new THREE.Mesh(
         new THREE.BoxGeometry(w, h, 0.008),
-        new THREE.MeshStandardMaterial({ map: makePlaceholderTexture(tint), roughness: 0.92 }),
+        new THREE.MeshStandardMaterial({ map: pic ?? makePlaceholderTexture(tint), roughness: 0.92 }),
       );
       paper.castShadow = true;
       paper.receiveShadow = true;
@@ -452,12 +547,19 @@ export class OfficeScene {
       f.receiveShadow = true;
       const mount = new THREE.Mesh(new THREE.PlaneGeometry(w - 0.035, h - 0.035), mountMat);
       mount.position.z = 0.02;
-      const art = new THREE.Mesh(
-        new THREE.PlaneGeometry(w - 0.1, h - 0.12),
-        new THREE.MeshStandardMaterial({ map: makePlaceholderTexture(tint), roughness: 0.88 }),
-      );
-      art.position.z = 0.022;
-      g.add(f, mount, art);
+      // A frame keeps its size, so a real picture fills the window and is trimmed evenly off the long side.
+      const pic = art.get(id);
+      const winW = w - 0.1;
+      const winH = h - 0.12;
+      if (pic) {
+        const k = winW / winH / aspectOf(pic);
+        if (k < 1) pic.repeat.set(k, 1);
+        else pic.repeat.set(1, 1 / k);
+        pic.offset.set((1 - pic.repeat.x) / 2, (1 - pic.repeat.y) / 2);
+      }
+      const picture = new THREE.Mesh(new THREE.PlaneGeometry(winW, winH), new THREE.MeshStandardMaterial({ map: pic ?? makePlaceholderTexture(tint), roughness: 0.88 }));
+      picture.position.z = 0.022;
+      g.add(f, mount, picture);
       g.position.set(x, y, z);
       g.rotation.x = -0.075;
       g.name = id;
@@ -467,11 +569,29 @@ export class OfficeScene {
 
     const SHELF_Y = 2.6;
     posters.add(mkPrint(0.44, 0.58, -1.42, 1.76, "#c08878", "ill01"));
-    posters.add(mkPrint(0.38, 0.5, -0.82, 1.64, "#7fa39c", "ill02"));
-    posters.add(mkPrint(0.42, 0.56, -0.26, 1.78, "#c8a86a", "ill03"));
-    posters.add(mkPrint(0.36, 0.48, 0.28, 1.62, "#9a8fae", "ill04"));
-    posters.add(mkLeaner(0.4, 0.52, -0.62, SHELF_Y + 0.3, WALL_Z + 0.15, "#b8746a", "ill05"));
-    posters.add(mkLeaner(0.34, 0.44, -0.12, SHELF_Y + 0.26, WALL_Z + 0.15, "#6f9f9a", "ill06"));
+    // the cork board of mentees' notes, where three illustrations used to hang
+    {
+      const board = makeCorkBoard(1.12, 0.7, o.notes);
+      const g = new THREE.Group();
+      g.add(board);
+      g.position.set(-0.36, 1.72, WALL_Z + 0.004);
+      g.name = "mentees";
+      g.userData.posterId = "mentees";
+      posters.add(g);
+    }
+    // a postcard from home, taped to the wall beside the board
+    {
+      const g = new THREE.Group();
+      g.add(makePostcard(0.4));
+      g.position.set(0.53, 1.6, WALL_Z + 0.004);
+      g.rotation.z = 0.06;
+      g.name = "home";
+      g.userData.posterId = "home";
+      posters.add(g);
+    }
+    // Shifted right of the plant pot's own footprint (roughly x -1.3..-0.9) so they don't overlap it.
+    posters.add(mkLeaner(0.4, 0.52, -0.3, SHELF_Y + 0.3, WALL_Z + 0.15, "#b8746a", "ill05"));
+    posters.add(mkLeaner(0.34, 0.44, 0.2, SHELF_Y + 0.26, WALL_Z + 0.15, "#6f9f9a", "ill06"));
     scene.add(posters);
 
     // wall shelf + trailing plant (GLB)
@@ -493,6 +613,17 @@ export class OfficeScene {
       const obj = wsInner.getObjectByName(n);
       if (obj) obj.position.z += 0.16;
     });
+    // Even after that, 8 of the plant's 18 modelled vines still pass straight through the board's
+    // solid depth partway down (visible as leaves poking out of the wood). Each vine is its own
+    // mesh, so nudge just those — always forward, out past the board's front face, so every vine
+    // stays visible cascading down in front of the shelf rather than ducking out of sight behind it.
+    const plantNode = wsInner.getObjectByName("plant");
+    const VINE_CLEAR_SHIFT: Record<string, number> = { "1": 0.65, "2": 0.7, "3": 0.64, "4": 0.52, "15": 0.34, "16": 0.4, "17": 0.76, "18": 0.76 };
+    plantNode?.children.forEach((child) => {
+      const m = /^vine_(\d+)_/.exec(child.name);
+      const shift = m && VINE_CLEAR_SHIFT[m[1]];
+      if (shift) child.position.z += shift;
+    });
 
     const plankNode = wsInner.getObjectByName("shelf_body") || wsInner;
     const plankBox = new THREE.Box3().setFromObject(plankNode);
@@ -507,6 +638,29 @@ export class OfficeScene {
       wallShelf.position.y += SHELF_Y - pb.max.y;
       wallShelf.position.z += WALL_Z + 0.07 - pb.min.z;
     }
+
+    if (plantNode) {
+      wallShelf.updateWorldMatrix(true, true);
+      this.plantSway = new PlantSway(plantNode);
+    }
+
+    // Remember the desktop ("home") layout, and work out how far the wall shelf + illustrations
+    // need to move (as one rigid unit) to sit just above the bookcase, for portrait screens only.
+    this.wallShelf = wallShelf;
+    this.posters = posters;
+    this.wallHomeShelf.copy(wallShelf.position);
+    this.wallHomePosters.copy(posters.position);
+    // meshBox (not THREE.Box3.setFromObject) so each object's own position is folded in correctly.
+    this.bookBox = meshBox(model);
+    this.wallHomeBox = meshBox(wallShelf).union(meshBox(posters));
+    const wallGap = 0.4; // clearance between the bookcase's top and the relocated wall shelf
+    this.wallDelta.set(
+      (this.bookBox.min.x + this.bookBox.max.x) / 2 - (this.wallHomeBox.min.x + this.wallHomeBox.max.x) / 2,
+      this.bookBox.max.y + wallGap - this.wallHomeBox.min.y,
+      0,
+    );
+    this.wallLight = new THREE.PointLight(0xffd7a4, 0, 3.2, 2);
+    scene.add(this.wallLight);
 
     // Named bookcase parts, and a helper for a compartment's boards sorted bottom to top.
     const named: Record<string, THREE.Mesh> = {};
@@ -525,8 +679,8 @@ export class OfficeScene {
 
     // llama bank — sits on a real shelf board next to the About books
     let llama: THREE.Object3D | null = null;
-    if (llamaGltf) {
-      const obj = llamaGltf.scene;
+    {
+      const obj = makeLlama();
       try {
         enableShadows(obj);
         scene.add(obj);
@@ -553,10 +707,10 @@ export class OfficeScene {
       }
     }
 
-    // rotary phone (GLB) — empty compartment, top of the right-hand column
+    // rotary phone (built in code, see phone.ts) — empty compartment, top of the right-hand column
     let phoneMeshes: THREE.Mesh[] = [];
-    if (phoneGltf) {
-      const phone = phoneGltf.scene;
+    {
+      const phone = makeRotaryPhone();
       try {
         enableShadows(phone);
         scene.add(phone);
@@ -607,16 +761,12 @@ export class OfficeScene {
         // The model already exports facing forward (nose and button both point toward the camera at
         // rotation 0), square to the room like the bookcase — so no added turn, unlike the llama/phone.
 
-        // A few whiskers read stiff and oversized up close; a modest, centred shrink softens them
-        // without needing new geometry. His markings and proportions are his own and untouched.
-        const WHISKERS = ["whisker_0_0", "whisker_0_1", "whisker_1_0", "whisker_1_1", "whisker_2_0", "whisker_2_1", "whisker_3_0", "whisker_3_1"];
-        const BROW_WHISKERS = ["brow_whisker_0_0", "brow_whisker_1_0", "brow_whisker_0_1", "brow_whisker_1_1"];
-        WHISKERS.forEach((n) => cat.getObjectByName(n)?.scale.setScalar(0.78));
-        BROW_WHISKERS.forEach((n) => cat.getObjectByName(n)?.scale.setScalar(0.5));
-        cat.getObjectByName("chin")?.scale.setScalar(0.85);
+        refineZuko(cat);
+        this.zukoLife = new ZukoLife(cat);
 
         cat.updateWorldMatrix(true, true);
         catMeshes = collectMeshes(cat);
+        this.catBox = meshBox(cat);
       } catch (e) {
         console.warn("[office-scene] could not place Zuko", e);
         scene.remove(cat);
@@ -659,6 +809,7 @@ export class OfficeScene {
 
     // fill remaining empty compartments with decorative books, remembering which compartment each belongs to
     const fillerByCompartment: Record<string, THREE.Mesh[]> = {};
+    const standingFiller: THREE.Mesh[] = [];
     try {
       const occupied: THREE.Box3[] = [];
       model.traverse((n) => {
@@ -721,6 +872,7 @@ export class OfficeScene {
             bk.position.set(x + w / 2 + (lean ? h * Math.sin(lean) * 0.5 : 0), y0 + (h / 2) * Math.cos(lean), zc);
             filler.add(bk);
             (fillerByCompartment[L + i] ||= []).push(bk);
+            standingFiller.push(bk);
             x += w * Math.cos(lean) + (lean ? h * Math.sin(lean) * 0.5 : 0) + 0.004;
           }
           // a short horizontal stack leaning against the row
@@ -783,6 +935,12 @@ export class OfficeScene {
     );
     this.applySpines();
     this.setupPull();
+    // After the spine tint, so each book's bands are cut from its final colour.
+    const modelBooks: THREE.Mesh[] = [];
+    model.traverse((n) => {
+      if ((n as THREE.Mesh).isMesh && /^book_\d+$/.test(n.name)) modelBooks.push(n as THREE.Mesh);
+    });
+    [...modelBooks, ...standingFiller].forEach(dressBook);
     if (moonGlobe) {
       this.lampMat = moonGlobe.material as Standard;
       this.lampMat.emissive = new THREE.Color(0xffe6b8);
@@ -808,9 +966,16 @@ export class OfficeScene {
     this.applyWall(o.walltone);
     this.setHints(o.hints);
 
+    let lastFrame = performance.now();
     const loop = () => {
       this.raf = requestAnimationFrame(loop);
       const c = this.camera;
+      const now = performance.now();
+      const dt = Math.min((now - lastFrame) / 1000, 0.05);
+      lastFrame = now;
+      if (!this.opts.reducedMotion) this.plantSway?.update(now / 1000, dt);
+      this.stepFlight(now);
+      this.zukoLife?.update(now, this.opts.reducedMotion);
       if (this.hintsOn) {
         const p = 0.5 + 0.5 * Math.sin(performance.now() / 620);
         const hx = Math.round(0x1a + p * 0x3a);
@@ -822,6 +987,7 @@ export class OfficeScene {
       if (this.pull.size) {
         const on = !this.opts.reducedMotion;
         this.pull.forEach((p, m) => {
+          if (m === this.flight?.mesh) return;
           const target = on && m === this.pullMesh ? 1 : 0;
           if (p.k === target) return;
           p.k += (target - p.k) * 0.18;
@@ -889,7 +1055,63 @@ export class OfficeScene {
 
   /** Used by the mobile shell to open whatever is currently armed. */
   openArmed(): void {
-    if (this.armed) emitSelect({ id: this.armed as SceneHotspotId });
+    if (this.armed) this.open(this.armed);
+  }
+
+  /** Open a hotspot's Reader. A shelf book first flies to the camera (unless motion is reduced). */
+  private open(id: string): void {
+    if (this.flight) return;
+    const mesh = BOOK_IDS.includes(id) && !this.opts.reducedMotion ? (this.pullMesh && this.groups[id]?.meshes.includes(this.pullMesh) ? this.pullMesh : this.heroOf(id)) : null;
+    const parent = mesh?.parent;
+    if (!mesh || !parent) {
+      emitSelect({ id: id as SceneHotspotId });
+      return;
+    }
+    const from = mesh.getWorldPosition(new THREE.Vector3());
+    const ahead = this.camera.getWorldDirection(new THREE.Vector3());
+    const bookH = meshBox(mesh).getSize(new THREE.Vector3()).y;
+    const endDist = bookH / (2 * Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2)) * FLIGHT_END_SCREEN);
+    const to = this.camera.position.clone().addScaledVector(ahead, endDist);
+    // Turn a quarter round so the cover (the book's side) faces the room, with a slight tilt back.
+    const q1 = mesh.quaternion.clone().multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(0.12, -Math.PI / 2, 0)));
+    const rest = this.pull.get(mesh);
+    this.flight = {
+      id,
+      mesh,
+      t0: performance.now(),
+      from,
+      to,
+      q0: mesh.quaternion.clone(),
+      q1,
+      restPos: rest ? rest.base.clone() : mesh.position.clone(),
+      restQuat: mesh.quaternion.clone(),
+      opened: false,
+    };
+  }
+
+  private stepFlight(now: number): void {
+    const f = this.flight;
+    if (!f) return;
+    const t = (now - f.t0) / FLIGHT_MS;
+    if (!f.opened && t >= FLIGHT_OPEN_AT) {
+      f.opened = true;
+      emitSelect({ id: f.id as SceneHotspotId });
+    }
+    // Held in front of the camera a little longer, behind the Reader's scrim, then put back on the shelf.
+    if (t >= 2) {
+      f.mesh.position.copy(f.restPos);
+      f.mesh.quaternion.copy(f.restQuat);
+      const p = this.pull.get(f.mesh);
+      if (p) p.k = 0;
+      this.flight = null;
+      return;
+    }
+    const k = Math.min(t, 1);
+    const e = k < 0.5 ? 4 * k * k * k : 1 - (-2 * k + 2) ** 3 / 2;
+    const world = f.from.clone().lerp(f.to, e);
+    world.y += Math.sin(Math.PI * e) * 0.18;
+    f.mesh.position.copy(f.mesh.parent!.worldToLocal(world));
+    f.mesh.quaternion.slerpQuaternions(f.q0, f.q1, e);
   }
 
   dispose(): void {
@@ -1007,6 +1229,8 @@ export class OfficeScene {
       groups.about.meshes = groups.case3.meshes;
       groups.case3.meshes = aboutMeshes;
     }
+    // A shelf whose case has no entry (it was taken out of the portfolio) keeps its books, as plain decoration.
+    for (let i = 1; i <= 5; i++) if (!isHotspotId("case" + i)) delete groups["case" + i];
     posters.children.forEach((frame) => {
       const id = frame.userData.posterId as string;
       groups[id] = { label: POSTER_LABELS[id] || "Illustration", meshes: collectMeshes(frame) };
@@ -1035,7 +1259,10 @@ export class OfficeScene {
       const night = preset === "evening lamp";
       const dusk = preset === "golden hour";
       this.lampMat.emissiveIntensity = night ? 1.5 : dusk ? 0.7 : 0.3;
-      if (this.lampLight) this.lampLight.intensity = night ? 1.5 : dusk ? 0.5 : 0.0;
+      if (this.lampLight) {
+        this.lampLight.intensity = night ? 3.4 : dusk ? 0.5 : 0.0;
+        this.lampLight.distance = night ? 4.2 : 2.4;
+      }
     }
   }
 
@@ -1103,20 +1330,53 @@ export class OfficeScene {
     if (!this.tGoal) this.tGoal = this.target.clone();
     const tGoal = this.tGoal;
     this.userMoved = false;
+    const shadowCam = this.lights?.key.shadow.camera;
     const wide = () => {
       const asp = this.camera.aspect || 1.6;
       this.framedPortrait = asp < 1.15;
       if (asp >= 1.15) {
+        // desktop: exactly the original layout and framing, untouched by anything portrait does.
+        this.wallShelf?.position.copy(this.wallHomeShelf);
+        this.posters?.position.copy(this.wallHomePosters);
+        if (this.wallLight) this.wallLight.intensity = 0;
+        if (shadowCam && shadowCam.top !== SHADOW_HOME.top) {
+          Object.assign(shadowCam, SHADOW_HOME);
+          shadowCam.updateProjectionMatrix();
+        }
         this.camBase.set(1.0, 1.95, 8.3);
         tGoal.set(1.45, 1.6, 0);
         return;
       }
-      // portrait: fit the whole room by WIDTH — wall art included — and pull the camera up a little
+      // portrait: the wall shelf and illustrations move to sit above the bookcase (mobile only —
+      // see wallDelta), then the camera fits that stacked shape by width AND height, whichever needs
+      // more distance, centred on it.
+      this.wallShelf?.position.copy(this.wallHomeShelf).add(this.wallDelta);
+      this.posters?.position.copy(this.wallHomePosters).add(this.wallDelta);
+      if (this.wallLight && this.wallHomeBox) {
+        const c = this.wallHomeBox.getCenter(new THREE.Vector3()).add(this.wallDelta);
+        this.wallLight.position.set(c.x, c.y, c.z + 0.9);
+        this.wallLight.intensity = 1.1;
+      }
+      if (shadowCam) {
+        // The stacked shape reaches higher and wider than the desktop frustum covers, with real
+        // margin so nothing sits near the frustum's edge (which reads as dull, muddy shadow acne).
+        Object.assign(shadowCam, { left: -2.6, right: 4.6, top: 6.4, bottom: SHADOW_HOME.bottom });
+        shadowCam.updateProjectionMatrix();
+      }
       const fovP = (this.camera.fov * Math.PI) / 180;
-      const halfW = 3.5;
-      const d = Math.min(Math.max(halfW / (Math.tan(fovP / 2) * asp), 7), 22);
-      this.camBase.set(1.1, 2.0, d);
-      tGoal.set(1.3, 1.7, 0);
+      const wallBox = this.wallHomeBox?.clone().translate(this.wallDelta) ?? null;
+      let room = this.bookBox ? this.bookBox.clone() : null;
+      if (room && wallBox) room.union(wallBox);
+      if (room && this.catBox) room.union(this.catBox);
+      const cx = room ? (room.min.x + room.max.x) / 2 : 2.6;
+      const cy = room ? (room.min.y + room.max.y) / 2 : 2.2;
+      const halfW = room ? (room.max.x - room.min.x) / 2 + 0.3 : 1.6;
+      const halfH = room ? (room.max.y - room.min.y) / 2 + 0.3 : 2.2;
+      const dW = halfW / (Math.tan(fovP / 2) * asp);
+      const dH = halfH / Math.tan(fovP / 2);
+      const d = Math.min(Math.max(Math.max(dW, dH), 5), 32);
+      this.camBase.set(cx, cy + 0.2, d);
+      tGoal.set(cx, cy, 0);
     };
     if (!v || v === "wide" || !this.cols.length) {
       this.currentView = "wide";
@@ -1202,6 +1462,22 @@ export class OfficeScene {
     return hit ? (hit.object.userData.hotspot as string) : null;
   }
 
+  /**
+   * A touch that just misses: the object nearest to it, within `reach` px. Small things (the llama, the diploma tube,
+   * the moon lamp) are only a few pixels wide on a phone, far less than a fingertip, so a tap looks around itself in
+   * widening rings and takes the first object it finds.
+   */
+  private hitNear(ev: MouseEvent, reach: number): string | null {
+    for (let r = 6; r <= reach; r += 6) {
+      for (let k = 0; k < 12; k++) {
+        const a = (k / 12) * Math.PI * 2;
+        const id = this.hitTest({ clientX: ev.clientX + Math.cos(a) * r, clientY: ev.clientY + Math.sin(a) * r } as MouseEvent);
+        if (id) return id;
+      }
+    }
+    return null;
+  }
+
   /** Which book slides out: the one under the pointer, or the group's tallest when there is no pointer. */
   private choosePull(id: string | null, ev: PointerEvent | MouseEvent | null): void {
     if (!id || !BOOK_IDS.includes(id) || !this.groups[id]) {
@@ -1271,6 +1547,7 @@ export class OfficeScene {
     if (this.hovered) this.setEmissive(this.hovered, 0x000000);
     this.hovered = id;
     this.choosePull(id, ev);
+    if (id === "cat") this.zukoLife?.poke();
     if (id) this.setEmissive(id, HOVER_EMISSIVE);
     this.container.style.cursor = id ? "pointer" : "default";
     const r = this.container.getBoundingClientRect();
@@ -1285,6 +1562,8 @@ export class OfficeScene {
   private onMove = (ev: PointerEvent) => {
     if (this.opts.parallax === "off" && ev.pointerType === "touch") return;
     this.setHover(this.hitTest(ev), ev);
+    // hitTest aimed the raycaster at the pointer; a quick pass through the plant rustles it.
+    if (!this.opts.reducedMotion) this.plantSway?.brush(this.raycaster.ray, Math.min(1, Math.hypot(ev.movementX, ev.movementY) / 20));
   };
 
   private onLeave = (ev: PointerEvent) => {
@@ -1302,7 +1581,7 @@ export class OfficeScene {
       this.dragged = false;
       return;
     }
-    const id = this.hitTest(ev);
+    const id = this.hitTest(ev) ?? (touchLayout ? this.hitNear(ev, TOUCH_REACH) : null);
     if (touchLayout) this.mouseN.set(0, 0);
     if (!id) {
       if (tapConfirm) {
@@ -1317,7 +1596,7 @@ export class OfficeScene {
       return;
     }
     this.armed = null;
-    emitSelect({ id: id as SceneHotspotId });
+    this.open(id);
     if (touchLayout) this.setHover(null, null);
   };
 }

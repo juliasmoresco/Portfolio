@@ -1,0 +1,136 @@
+.scroll {
+  padding-top: var(--status-h);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px 24px 32px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: -10px;
+}
+
+.h1 {
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 600;
+}
+
+.bell {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--n700);
+}
+
+.steps {
+  border-radius: 20px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 0 14px;
+}
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.num {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--g700);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex: none;
+}
+
+.line {
+  flex: 1;
+  width: 2px;
+  background: var(--n200);
+  margin: 6px 0;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 22px;
+  min-width: 0;
+}
+
+.stepTitle {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.money {
+  height: 52px;
+  border-radius: 12px;
+  border: 1px solid var(--n300);
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+.money:focus-within {
+  border-color: var(--g600);
+  box-shadow:
+    inset 0 0 0 0.5px var(--g600),
+    0 0 0 4px var(--g100);
+}
+
+.currency {
+  color: var(--n500);
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.moneyInput {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 600;
+  height: 100%;
+  font-variant-numeric: tabular-nums;
+}
+.moneyInput:focus-visible {
+  box-shadow: none;
+}
+
+.tip {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--y50);
+  border-radius: 16px;
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--y900);
+}

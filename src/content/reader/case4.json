@@ -1,232 +1,336 @@
 {
   "skin": "book",
-  "title": "Retirement Operations in HUB",
-  "tag": "Case study · Fintech",
-  "year": "2021",
-  "role": "Product Design, User Research",
-  "spine": "#2E211C",
+  "title": "Welcome to My Office: The Story of This Portfolio",
+  "tag": "Case study · This portfolio",
+  "year": "2026",
+  "role": "Concept, Design, Art Direction",
+  "spine": "#E8B931",
+  "accent": {
+    "fill": "#E8B931",
+    "on": "#2E211C",
+    "text": "#2E211C"
+  },
   "pages": [
     {
       "kicker": "Overview",
-      "heading": "Project Details",
+      "heading": "A portfolio with no menu",
       "lines": [
-        "Migrated complex operations from a legacy platform into a scalable internal tool for advisors.",
-        "Client: XP Inc. — one of Brazil's largest investment brokers",
-        "My Role: Lead Product Designer, responsible for discovery, research, journey mapping, prototyping, testing, and stakeholder alignment",
-        "Team: Designed in collaboration with Jaqueline Manso (Product Designer)",
-        "Platforms: Internal web platform (HUB)",
-        "Year: 2021"
+        "People often compliment my office when they see it behind me on video calls. It's full of things that say who I am, so I put the same things in my portfolio: click an object and it tells you about my work.",
+        "**Role:** Concept, design and art direction",
+        "**Built with:** Claude Design (prototype and 3D objects) and Claude Code (the site)",
+        "**Stack:** React, TypeScript, three.js",
+        "**Timeline:** Sep – Oct 2026"
       ],
-      "image": "case4-cover"
+      "image": "story-cover",
+      "fullPage": true,
+      "pageColor": "#3b3128"
     },
     {
-      "kicker": "Overview",
-      "heading": "Context",
+      "kicker": "The idea",
+      "heading": "Why an office",
       "lines": [
-        "HUB is XP's platform where financial advisors handle client investments and access essential tools for their daily work. However, retirement-related operations—such as portability, contributions, and redemptions—were still being managed through a legacy platform called Connect. This older system had an outdated information architecture and interface, which caused inefficiencies, increased support tickets, and kept the retirement product disconnected from the rest of the investment ecosystem."
+        "Most portfolios look alike: a grid of thumbnails and an About page. I wanted mine to feel like me.",
+        "So the home is my real office, with the same bookcase, plant, globe, chess set, cat and pink phone. There's no navigation bar: you explore, and each thing you find opens a piece of my story.",
+        "For anyone in a hurry, a small menu lists everything too."
       ],
-      "image": "case4-01",
-      "caption": "Legacy Connect Platform"
+      "poll": {
+        "kicker": "Your turn",
+        "title": "A quick guess",
+        "question": "How many things can you click in this office?",
+        "options": [
+          {
+            "label": "9"
+          },
+          {
+            "label": "13"
+          },
+          {
+            "label": "17"
+          }
+        ],
+        "answer": 2,
+        "reveal": "17 objects to discover, plus the moon lamp, which changes the light. The first prototype already promised “0 of 17 discovered”, and with this book on the shelf, the office finally lives up to it.",
+        "prompt": "Pick one to see the answer.",
+        "answerLabel": "Answer"
+      },
+      "artRight": true
     },
     {
-      "kicker": "Overview",
-      "heading": "Problem",
+      "kicker": "The real office",
+      "heading": "The real thing",
       "lines": [
-        "The challenge was to migrate all retirement functionalities from Connect into HUB, not just technically, but with a redesigned and improved experience for advisors. The project involved:",
-        "Mapping and rebuilding key journeys like External and Internal Portability, One-Time and Monthly Contributions, Withdrawals, Simulations, and more.",
-        "Reducing support demand.",
-        "Increasing advisor satisfaction and engagement."
-      ]
-    },
-    {
-      "kicker": "Overview",
-      "heading": "Problem",
-      "lines": [
-        "Increase in the value of pension custody for operations carried out via the Hub channel. (AUC)",
-        "Increase engagement on the Hub platform (unique users x usage frequency)."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Strategy and Design Process",
-      "lines": [
-        "To prioritize the work, we started with the most problematic flow: External Portability. It had the highest volume of complaints and involved complex rules due to the involvement of different insurance providers."
+        "Everything on the shelf is something I own: the yellow bookcase, the plant, the moon lamp, the chess board, my diploma tube, the llama bank and the Johnny Cash poster. And Zuko, of course.",
+        "Keeping it real was the point. The portfolio is my office, so the details had to be mine, down to the colour of the shelves."
       ],
-      "image": "case4-02",
-      "caption": "Design Process Diagram"
+      "polaroids": {
+        "note": "My office, in real life",
+        "photos": [
+          {
+            "image": "story-real-room",
+            "caption": "The whole wall"
+          },
+          {
+            "image": "story-real-shelf",
+            "caption": "The bookcase"
+          },
+          {
+            "image": "story-real-wall",
+            "caption": "The wall and the shelf"
+          },
+          {
+            "image": "story-real-llama",
+            "caption": "The llama bank"
+          }
+        ]
+      }
     },
     {
       "kicker": "Process",
-      "heading": "Discovery",
+      "heading": "From a sketch to a real site",
       "lines": [
-        "We began the discovery phase by prioritizing External and Internal Portability, which had the most complaints and complexity. We hosted workshops with stakeholders from business, operations, and technology, presenting volumetric data and analyzing the most frequent support tickets.",
-        "From these sessions, we mapped the following pain points:",
-        "Advisors were confused by Connect’s journey, especially the requirement to first select the destination insurer.",
-        "They couldn't start a transfer with multiple origin plans."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Discovery",
-      "lines": [
-        "There was low understanding of the differences between external and internal portability.",
-        "There were excessive mandatory fields.",
-        "Terms like “Intracorretora” or “Transferência Interna” caused friction."
+        "It started on paper: a quick sketch of the wall, the shelf and the bookcase, with notes on what each thing would open.",
+        "I took it to **Claude Design** to prototype the room and model the 3D objects, then moved to **Claude Code** to build the site for real, with real content, real interactions and a phone version."
       ],
-      "image": "case4-03",
-      "caption": "Workshop with Stakeholders"
+      "compare": {
+        "kicker": "Three stages",
+        "title": "Sketch, prototype, site",
+        "device": "desktop",
+        "variants": [
+          {
+            "label": "Sketch",
+            "images": [
+              "story-sketch"
+            ],
+            "note": "Pencil on paper: the welcome line, the plant, the chess board, the graduation tube and the books as projects."
+          },
+          {
+            "label": "Prototype",
+            "images": [
+              "story-prototype"
+            ],
+            "note": "Claude Design: the 3D room and the Reader, with placeholders for every piece of content."
+          },
+          {
+            "label": "Today",
+            "images": [
+              "story-today"
+            ],
+            "note": "Claude Code: real cases, my real objects, Zuko, the cork board of reviews and a postcard from home."
+          }
+        ]
+      }
     },
     {
       "kicker": "Process",
-      "heading": "Discovery",
+      "heading": "From my office to 3D",
       "lines": [
-        "We conducted an opportunity analysis based on advisor needs and business constraints, which resulted in four main clusters:",
-        "1. Fund List Navigation: Introduce a new way to start a portability based on investment funds rather than client name. Hypothesis: this would increase scalability and streamline search. Risk: unfamiliar to advisors used to Connect.",
-        "2. Client Search Optimization: Maintain a client-first option for existing plans and build continuity from the legacy experience."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Discovery",
-      "lines": [
-        "3. Terminology Clarity: Run quantitative tests to identify preferred terminology for key concepts like portability types. Adjust language to match user mental models.",
-        "4. In-flow Educational Content: Insert contextual explanations about insurers, tax regimes (PGBL/VGBL), and operational rules to reduce reliance on disclaimers and improve self-sufficiency.",
-        "These were prioritized based on support volume, technical feasibility, and alignment with business KPIs."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Understanding the User Context",
-      "lines": [
-        "The journey involved distinct business rules per insurer, variations based on payment methods, and distinctions between progressive and regressive tax regimes. Advisors had developed workarounds and mental shortcuts from years of Connect use, making it critical that our redesign supported both learnability and familiarity."
+        "After the sketch, I designed the room in **Claude Design**, where I also modelled the main objects in 3D, starting with the bookcase. Drag it around.",
+        "Then I moved to **Claude Code** to build the real site. I directed the work end to end: the concept, the content, how each object behaves and every visual detail, reviewing each change on desktop and on a phone."
       ],
-      "image": "case4-04",
-      "caption": "Feature Mapping and Rules"
+      "model3d": {
+        "kicker": "3D model",
+        "title": "The bookcase",
+        "model": "bookshelf",
+        "note": "Drag to turn it"
+      }
     },
     {
-      "kicker": "Process",
-      "heading": "Understanding the User Context",
+      "kicker": "The objects",
+      "heading": "Every object has a job",
       "lines": [
-        "We created a journey blueprint to:",
-        "Compare Connect and HUB flows.",
-        "Highlight where content, filters, and entry points could support decision-making.",
-        "Anticipate user misconceptions based on legacy behaviors."
+        "Each object opens something that fits it. The globe spins to the countries I've visited, the phone dials my contacts, and the diploma tube unrolls my real diploma.",
+        "The cork board holds notes from mentees, the postcard flips to say where I'm from, and Zuko, my cat, answers questions about my work.",
+        "Try them from here:"
       ],
-      "image": "case4-05",
-      "caption": "Journey Blueprint"
+      "hobbies": {
+        "kicker": "Shortcuts",
+        "title": "Open one",
+        "items": [
+          {
+            "icon": "globe",
+            "label": "Globe",
+            "open": "travels",
+            "openLabel": "Spin it"
+          },
+          {
+            "icon": "phone",
+            "label": "Pink phone",
+            "open": "phone",
+            "openLabel": "Call me"
+          },
+          {
+            "icon": "diploma",
+            "label": "Diploma",
+            "open": "studies",
+            "openLabel": "Unroll it"
+          },
+          {
+            "icon": "notes",
+            "label": "Cork board",
+            "open": "mentees",
+            "openLabel": "Read notes"
+          },
+          {
+            "icon": "cat",
+            "label": "Zuko",
+            "open": "cat",
+            "openLabel": "Ask him"
+          },
+          {
+            "icon": "chess",
+            "label": "Chess set",
+            "open": "chess",
+            "openLabel": "Play"
+          },
+          {
+            "icon": "coin",
+            "label": "Llama bank",
+            "open": "llama",
+            "openLabel": "Drop a coin"
+          },
+          {
+            "icon": "postcard",
+            "label": "Postcard",
+            "open": "home",
+            "openLabel": "Flip it"
+          },
+          {
+            "icon": "resume",
+            "label": "Résumé",
+            "open": "resume",
+            "openLabel": "Read it"
+          }
+        ]
+      },
+      "artRight": true
     },
     {
-      "kicker": "Process",
-      "heading": "Design Critique and Stakeholder Alignment",
+      "kicker": "Mobile",
+      "heading": "The same room, in your hand",
       "lines": [
-        "Once we translated the mapped journey into prototypes, we ran Design Critique sessions with stakeholders from legal, operations, business, and tech. These sessions became part of our regular process.",
-        "They allowed us to:",
-        "Validate all edge cases involving multiple insurers.",
-        "Address restrictions in portability types.",
-        "Adjust copy and inputs to reduce misunderstanding."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "Design Critique and Stakeholder Alignment",
-      "lines": [
-        "Test alternative UI patterns to reduce complexity (e.g., modals, tabs, smart default selections)."
+        "On a phone, the whole office still fits the screen. You pinch and drag to look around, tap once to name an object and tap again to open it.",
+        "I audited it like any product: small objects got an invisible touch area, every button became at least 44px, no text is smaller than 12px, and nothing that opens needs scrolling."
       ],
-      "image": "case4-06"
+      "stats": {
+        "kicker": "Mobile audit",
+        "title": "Made for thumbs",
+        "items": [
+          {
+            "display": "9 → 57",
+            "unit": "px",
+            "label": "how wide the llama is to a fingertip, after adding a touch area"
+          },
+          {
+            "value": 44,
+            "unit": "px",
+            "label": "the smallest button on a phone"
+          },
+          {
+            "value": 12,
+            "unit": "px",
+            "label": "the smallest text on a phone"
+          }
+        ]
+      }
     },
     {
-      "kicker": "Process",
-      "heading": "User Research",
+      "kicker": "Content",
+      "heading": "Telling each case its own way",
       "lines": [
-        "We structured the research in two waves:",
-        "1. Concept Testing",
-        "5 semi-structured interviews with advisors of different experience levels.",
-        "Assessed perceptions of the new flow, terminology, and how intuitive the first steps were.",
-        "2. Quantitative Usability Test (Maze)",
-        "~430 advisors received test invitations.",
-        "46 completed the Maze test with 3 main tasks: start a portability, select the origin plan, complete the flow."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "User Research",
-      "lines": [
-        "Metrics analyzed: Task Success Rate (TSR), drop-off rate, and ASQ satisfaction.",
-        "Key results:",
-        "90% success rate.",
-        "Advisors were initially confused by the fund-first flow but adapted.",
-        "Modals helped guide them.",
-        "Recall components in the origin step improved contextual awareness.",
-        "Feedback suggested the Fund List would gain relevance with future features like the Plan Comparator."
-      ]
-    },
-    {
-      "kicker": "Process",
-      "heading": "User Research",
-      "lines": [
-        "We recognized the Maze sample was small, so we incorporated continuous feedback loops into the pilot phase."
+        "The words live in Notion and sync into the books. The cases are told with pages built for them, so you do something on each one: answer a quiz, flip a card, compare versions, watch a number move.",
+        "Those pieces are reusable, so every new case can pick the ones that tell its story best."
       ],
-      "image": "case4-07"
-    },
-    {
-      "kicker": "Process",
-      "heading": "Pilot Strategy",
-      "lines": [
-        "We executed a phased rollout:",
-        "4 high-volume offices selected for the pilot.",
-        "Weekly syncs to collect feedback and reinforce training.",
-        "Split users into Beta and Non-Beta groups to monitor behavioral differences.",
-        "Metrics tracked via Medallia and usage dashboards."
-      ]
+      "glossary": {
+        "kicker": "The toolkit",
+        "title": "Pages you can play with",
+        "items": [
+          {
+            "term": "Compare",
+            "note": "Toggle",
+            "body": "Switch between versions of a design: before and after, A and B, sketch and site."
+          },
+          {
+            "term": "Quiz",
+            "note": "Poll",
+            "body": "Guess first, then see what users actually said or did."
+          },
+          {
+            "term": "Count-up",
+            "note": "Stats",
+            "body": "Results that count up the first time you see the page."
+          },
+          {
+            "term": "Funnel",
+            "note": "Research",
+            "body": "How many people took part at each step."
+          },
+          {
+            "term": "Journey",
+            "note": "Mood line",
+            "body": "A persona's ups and downs; tap a stage to read it."
+          },
+          {
+            "term": "Migration",
+            "note": "Move",
+            "body": "Features moving from an old system to a new one, one by one."
+          }
+        ]
+      }
     },
     {
       "kicker": "Outcome",
-      "heading": "Outcomes",
-      "lines": [
-        "By April 2022:",
-        "92% of retirement features were integrated into HUB.",
-        "Advisors reported ease of use and smooth migration processes.",
-        "Feedback highlighted improvements in system speed, usability, and navigation clarity.",
-        "“All migration processes I ran were smooth and successful.”",
-        "“Very easy to execute, great selection of funds.”"
-      ]
-    },
-    {
-      "kicker": "Outcome",
-      "heading": "Outcomes",
-      "lines": [
-        "“The process is intuitive, fast, and easy to explain to clients.”",
-        "Engagement increased, with approximately 4,600 advisors (45% of the base) active during phased rollout.",
-        "The pilot gradually expanded:",
-        "Controlled: 46 advisors",
-        "Expanded: 74 offices (~4,600 advisors, or 45% of the base)",
-        "Network-wide: All advisors with HUB access",
-        "We also tested similar journeys like Initial Contribution using the same navigation logic:"
-      ]
-    },
-    {
-      "kicker": "Outcome",
-      "heading": "Outcomes",
-      "lines": [
-        "150 testers participated",
-        "80% task success rate",
-        "Heatmaps showed good engagement and clarity",
-        "Comments highlighted clarity, intuitiveness, and ease of use"
-      ],
-      "image": "case4-08"
-    },
-    {
-      "kicker": "Outcome",
-      "heading": "Reflection",
-      "lines": [
-        "This initiative combined legacy platform migration with a user-centered redesign approach. By leveraging research, product strategy, and agile iteration, we delivered a scalable and intuitive experience for advisors. Key learnings included designing for habitual behaviors, enabling clear educational moments, and continuously validating through real user feedback."
-      ]
-    },
-    {
-      "kicker": "Outcome",
-      "heading": "Final Result",
+      "heading": "The final result",
       "lines": [],
-      "image": "case4-09"
+      "showcase": {
+        "kicker": "Outcome · The result",
+        "title": "Open the office",
+        "device": "desktop",
+        "intro": [
+          "Seventeen objects to discover, plus a moon lamp. Three case studies, a résumé, a cat who chats, and no menu you have to use. Close this book and look around."
+        ],
+        "screens": [
+          {
+            "image": "story-today",
+            "label": "The office"
+          },
+          {
+            "image": "story-travels",
+            "label": "Globe"
+          },
+          {
+            "image": "story-phone",
+            "label": "Pink phone"
+          },
+          {
+            "image": "story-studies",
+            "label": "Diploma"
+          },
+          {
+            "image": "story-mentees",
+            "label": "Cork board"
+          },
+          {
+            "image": "story-cat",
+            "label": "Zuko"
+          },
+          {
+            "image": "story-home",
+            "label": "Postcard"
+          },
+          {
+            "image": "story-chess",
+            "label": "Chess"
+          },
+          {
+            "image": "story-llama",
+            "label": "Llama bank"
+          },
+          {
+            "image": "story-case1",
+            "label": "A case study"
+          }
+        ]
+      }
     }
   ]
 }

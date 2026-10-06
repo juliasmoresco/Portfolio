@@ -1,0 +1,180 @@
+.screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--status-h);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.bars {
+  display: flex;
+  gap: 6px;
+  padding: 8px 24px 0;
+}
+.seg {
+  flex: 1;
+  height: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.segFill {
+  height: 100%;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 24px 0;
+}
+
+.skip {
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--g700);
+  border-radius: 8px;
+}
+
+.stageArea {
+  flex: 1;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.tile {
+  width: 248px;
+  height: 248px;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.chips {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.chipPos {
+  position: absolute;
+}
+
+.chip {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 12px 16px;
+  box-shadow: var(--float);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--n800);
+}
+
+.chipText {
+  display: contents;
+}
+
+.row,
+.row .chipText {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.col,
+.col .chipText {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.big,
+.big .chipText {
+  font-size: 18px;
+  font-weight: 700;
+  gap: 2px;
+}
+.chip strong {
+  font-weight: 600;
+}
+.headline {
+  font-size: 14px;
+  line-height: 20px;
+}
+.col .headline + .muted {
+  margin-top: -2px;
+}
+.muted {
+  font-size: 13px;
+  color: var(--n600);
+  font-weight: 400;
+}
+.miniTrack {
+  width: 96px;
+  height: 6px;
+  border-radius: 6px;
+  background: var(--n200);
+  overflow: hidden;
+  display: block;
+}
+.miniFill {
+  display: block;
+  height: 100%;
+  background: var(--g600);
+}
+
+.bubble {
+  max-width: 230px;
+}
+
+.typing {
+  display: flex;
+  gap: 4px;
+  padding: 6px 2px;
+}
+.typing i {
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  background: currentColor;
+  display: block;
+}
+
+.text {
+  padding: 0 28px 32px;
+  min-height: 222px;
+}
+.textInner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.textInner h2 {
+  text-wrap: pretty;
+  color: var(--n800);
+}
+.textInner p {
+  text-wrap: pretty;
+}
+
+.footer {
+  padding: 0 24px calc(var(--home-h) + 14px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hint {
+  font-size: 14px;
+  color: var(--n600);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

@@ -4,8 +4,6 @@ import type { OfficeScene as OfficeSceneInstance, OfficeSceneOptions } from "../
 import type { SceneHotspotId } from "../../scene/hotspots";
 import bookshelfUrl from "../../assets/models/bookshelf.glb?url";
 import wallShelfUrl from "../../assets/models/wall-shelf-plant.glb?url";
-import llamaUrl from "../../assets/models/llama-bank.glb?url";
-import phoneUrl from "../../assets/models/rotary-telephone.glb?url";
 import catUrl from "../../assets/models/cat-talking-button.glb?url";
 import posterLandscapeUrl from "../../assets/poster-landscape.webp";
 import posterPortraitUrl from "../../assets/poster-portrait.webp";
@@ -14,8 +12,6 @@ import styles from "./OfficeScene.module.css";
 const ASSETS: OfficeSceneOptions["assets"] = {
   src: bookshelfUrl,
   shelf: wallShelfUrl,
-  llama: llamaUrl,
-  phone: phoneUrl,
   cat: catUrl,
 };
 
@@ -63,7 +59,7 @@ export function OfficeScene({ className, ref, ...props }: OfficeSceneProps) {
   }, []);
 
   const optionsRef = useRef<Omit<OfficeSceneOptions, "assets"> | null>(null);
-  const { daylight, walltone, hints, view, parallax, autopan, quality, tap, touchControls, labels, spines } = props;
+  const { daylight, walltone, hints, view, parallax, autopan, quality, tap, touchControls, labels, spines, art, notes } = props;
   // Keep the latest props reachable from the async start below (assigned in an effect, not during render).
   useEffect(() => {
     optionsRef.current = {
@@ -79,6 +75,8 @@ export function OfficeScene({ className, ref, ...props }: OfficeSceneProps) {
       reducedMotion,
       labels: labels ?? {},
       spines: spines ?? {},
+      art: art ?? {},
+      notes: notes ?? [],
     };
   });
 

@@ -1,0 +1,251 @@
+.screen {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  position: relative;
+}
+
+.top {
+  flex: none;
+}
+
+.bar {
+  height: 52px;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.close {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.barTitle {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.head {
+  padding: 12px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.count {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.countText {
+  font-size: 15px;
+  color: var(--n600);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.countText strong {
+  font-weight: 700;
+  color: var(--n800);
+}
+
+.track {
+  height: 8px;
+  border-radius: 8px;
+  background: var(--n200);
+  overflow: hidden;
+}
+.trackFill {
+  height: 100%;
+  border-radius: 8px;
+}
+
+.question {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  text-wrap: pretty;
+  min-height: 80px;
+}
+
+.panel {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: 24px 20px calc(var(--home-h) + 160px);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option {
+  background: var(--white);
+  border: 2px solid transparent;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--n800);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: start;
+  transition:
+    background-color 0.25s,
+    border-color 0.25s,
+    opacity 0.25s,
+    color 0.25s;
+}
+.option:disabled {
+  cursor: default;
+}
+.option:focus-visible {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+.right {
+  background: var(--g100);
+  border-color: var(--g600);
+  color: var(--g900);
+}
+.right .mark {
+  color: var(--g700);
+}
+.wrong {
+  background: var(--r50);
+  border-color: var(--r600);
+  color: var(--r700);
+}
+.wrong .mark {
+  color: var(--r600);
+}
+.dim {
+  opacity: 0.7;
+  color: var(--n600);
+}
+
+.mark {
+  display: flex;
+}
+
+.feedback {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--white);
+  border-radius: 24px 24px 0 0;
+  padding: 20px 24px calc(var(--home-h) + 6px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 -12px 32px -8px rgba(16, 24, 40, 0.25);
+  z-index: 3;
+}
+
+.feedbackText {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.feedbackText > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.feedbackTitle {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.feedbackBody {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--n600);
+}
+
+/* ---------- Result ---------- */
+.result {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--g-tint);
+}
+
+.resultBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 0 28px;
+}
+
+.burst {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.piece {
+  position: absolute;
+  width: 6px;
+  border-radius: 1px;
+}
+
+.score {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--g800);
+  font-variant-numeric: tabular-nums;
+}
+
+.resultText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+.resultText p {
+  text-wrap: pretty;
+}
+.resultText strong {
+  font-weight: 600;
+  color: var(--n800);
+}
+
+.resultKicker {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--g700);
+  background: var(--g100);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.resultActions {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 24px calc(var(--home-h) + 6px);
+}

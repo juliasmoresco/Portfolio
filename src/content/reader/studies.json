@@ -1,33 +1,57 @@
 {
-  "skin": "folder",
-  "opening": "tube",
-  "openingLabel": "Slides out and unrolls",
+  "skin": "diploma",
   "title": "Where I studied",
-  "kind": "Studies",
-  "spine": "#C8A86A",
+  "kind": "Education",
+  "hotspotLabel": "Where I studied",
+  "degree": {
+    "school": "Universidade Federal do Rio Grande do Sul",
+    "short": "UFRGS",
+    "degree": "Bachelor’s in Visual Design",
+    "person": "Júlia Moresco",
+    "years": "2016 – 2023",
+    "place": "Porto Alegre · Rio Grande do Sul",
+    "image": "studies-diploma"
+  },
+  "courses": [
+    {
+      "school": "PM3",
+      "course": "AI Product Specialist",
+      "year": "2026"
+    },
+    {
+      "school": "PM3",
+      "course": "Product Growth",
+      "year": "2026"
+    },
+    {
+      "school": "Awari",
+      "course": "User Research",
+      "year": "2021"
+    },
+    {
+      "school": "Interaction Design Foundation",
+      "course": "UX, UI, Product Management and User Research",
+      "year": "2020–2021"
+    },
+    {
+      "school": "Meiuca",
+      "course": "Design Systems & Operations",
+      "year": "2020"
+    },
+    {
+      "school": "IDEO U",
+      "course": "Design Thinking",
+      "year": "2020"
+    },
+    {
+      "school": "Mergo",
+      "course": "UX Writing",
+      "year": "2020"
+    }
+  ],
   "pages": [
     {
-      "kicker": "Studies",
-      "lines": [
-        "Bachelor in Visual Design — Universidade Federal do Rio Grande do Sul (2016-2023)",
-        "Specialization in AI Product Specialist — PM3 (2026)",
-        "Specialization in Product Growth — PM3 (2026)"
-      ]
-    },
-    {
-      "kicker": "Studies",
-      "lines": [
-        "Specialization in User Research — Awari (2021)",
-        "Specialization in Design Systems & Operations — Meiuca (2020)",
-        "Courses in UX, UI, Product Management, and User Research — The Interaction Design Foundation (2020–2021)"
-      ]
-    },
-    {
-      "kicker": "Studies",
-      "lines": [
-        "UX Writing Course — Mergo User Experience (2020)",
-        "Design Thinking Course — IDEO U (2020)"
-      ]
+      "lines": []
     }
   ]
 }
