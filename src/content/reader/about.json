@@ -27,7 +27,7 @@
       "heading": "How it started",
       "lines": [
         "I've always loved creating things on the computer, but design became a path when I started studying Visual Design at UFRGS. In parallel, I worked as a freelance branding designer.",
-        "My first step into tech was at UFRGS's education and technology center, working on an RPG that taught children what it's like to live as an older person. Then I joined Kobe Apps, a software house, as an intern, and that's where I fell in love with product design."
+        "My first step into tech was an internship at NUTED, UFRGS's center for digital technology in education, designing an RPG that taught children what it's like to live as an older person. Then I joined Kobe Apps, a software house, as an intern, and that's where I fell in love with product design."
       ]
     },
     {
@@ -48,6 +48,12 @@
         "kicker": "The path so far",
         "title": "Where I've worked",
         "stops": [
+          {
+            "year": "2017",
+            "name": "NUTED · UFRGS",
+            "role": "Game and visual design intern",
+            "note": "Educational technology"
+          },
           {
             "year": "2018",
             "name": "Kobe Apps",
