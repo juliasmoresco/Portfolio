@@ -73,12 +73,13 @@ function BarChart({ chart }: { chart: PageChart }) {
                 <span className={styles.chartTrack} aria-hidden="true">
                   <span className={styles.chartFill} style={{ width: `${b.value}%`, animationDelay: `${0.15 + 0.08 * row++}s` }} />
                 </span>
-                <span className={styles.chartValue}>{b.value}%</span>
+                <span className={styles.chartValue}>{chart.approximate ? "~" : ""}{b.value}%</span>
               </li>
             ))}
           </ul>
         </section>
       ))}
+      {chart.note && <figcaption className={styles.panelNote}>{chart.note}</figcaption>}
     </figure>
   );
 }

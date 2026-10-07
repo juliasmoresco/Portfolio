@@ -71,6 +71,7 @@ export function Stats({ stats }: { stats: PageStats }) {
           <Stat key={it.label} item={it} run={seen} index={i} />
         ))}
       </ul>
+      {stats.note && <p className={styles.panelNote}>{stats.note}</p>}
     </div>
   );
 }

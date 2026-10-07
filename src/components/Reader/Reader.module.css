@@ -7063,3 +7063,16 @@ button.chatAvatar:focus-visible {
     display: none;
   }
 }
+
+/* Small print under a chart or a row of numbers: a confidentiality note, a source. */
+.panelNote {
+  margin: calc(0.8 * var(--k) * 1cqw) 0 0;
+  font-family: var(--font-ui);
+  font-size: calc(0.66 * var(--k) * 1cqw);
+  line-height: 1.45;
+  color: rgb(var(--ink-rgb) / 0.62);
+}
+
+.root[data-compact="true"] .panelNote {
+  font-size: 12px;
+}

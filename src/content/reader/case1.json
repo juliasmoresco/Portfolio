@@ -40,15 +40,15 @@
             "bars": [
               {
                 "label": "Switzerland",
-                "value": 73
+                "value": 70
               },
               {
                 "label": "UK",
-                "value": 28
+                "value": 30
               },
               {
                 "label": "New Zealand",
-                "value": 33
+                "value": 35
               }
             ]
           },
@@ -58,19 +58,21 @@
             "bars": [
               {
                 "label": "Switzerland",
-                "value": 49
+                "value": 50
               },
               {
                 "label": "UK",
-                "value": 19
+                "value": 20
               },
               {
                 "label": "New Zealand",
-                "value": 17
+                "value": 15
               }
             ]
           }
-        ]
+        ],
+        "approximate": true,
+        "note": "Numbers adjusted for confidentiality: they show the pattern only."
       },
       "hideHeading": true
     },
@@ -238,23 +240,21 @@
           "title": "What clearer buttons changed",
           "items": [
             {
-              "value": 2.5,
-              "signed": true,
-              "decimals": 1,
               "unit": "pts",
-              "label": "lift in conversion, from offer added to redeemed"
+              "label": "lift in conversion, from offer added to redeemed",
+              "display": "~+2"
             },
             {
-              "value": -7.3,
-              "decimals": 1,
               "unit": "pts",
-              "label": "scanning errors"
+              "label": "scanning errors",
+              "display": "~−7"
             },
             {
               "display": "Fewer",
               "label": "staff interventions, as guests could finish the journey on their own"
             }
-          ]
+          ],
+          "note": "Numbers adjusted for confidentiality: they show the pattern only."
         }
       }
     },

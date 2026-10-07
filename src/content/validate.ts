@@ -143,6 +143,8 @@ export function assertReaderItem(id: string, v: unknown): asserts v is ReaderIte
       if (!c || typeof c !== "object" || typeof c.title !== "string" || !c.title) bad(`pages[${i}].chart needs a title`);
       if (c!.kicker !== undefined && typeof c!.kicker !== "string") bad(`pages[${i}].chart.kicker must be a string`);
       if (c!.color !== undefined && (typeof c!.color !== "string" || !HEX.test(c!.color))) bad(`pages[${i}].chart.color must be a #RRGGBB colour`);
+      if (c!.note !== undefined && typeof c!.note !== "string") bad(`pages[${i}].chart.note must be a string`);
+      if (c!.approximate !== undefined && typeof c!.approximate !== "boolean") bad(`pages[${i}].chart.approximate is true or false`);
       const gs = c!.groups;
       if (!Array.isArray(gs) || gs.length === 0) bad(`pages[${i}].chart.groups must be a non-empty list`);
       (gs as Record<string, unknown>[]).forEach((g, j) => {
@@ -177,6 +179,7 @@ export function assertReaderItem(id: string, v: unknown): asserts v is ReaderIte
     if (pg!.stats !== undefined) {
       const st = pg!.stats as { items?: Record<string, unknown>[] } | null;
       if (!st || !Array.isArray(st.items) || st.items.length === 0) bad(`pages[${i}].stats needs a list of items`);
+      if ((st as { note?: unknown }).note !== undefined && typeof (st as { note?: unknown }).note !== "string") bad(`pages[${i}].stats.note must be a string`);
       st!.items!.forEach((it, j) => {
         if (!it || typeof it.label !== "string" || (it.value === undefined ? typeof it.display !== "string" : typeof it.value !== "number")) {
           bad(`pages[${i}].stats.items[${j}] needs a label and either a number (value) or a word (display)`);
