@@ -54,7 +54,7 @@ export function HomeMobile() {
 
       <div className={styles.topBar}>
         <div className={styles.heading}>
-          <div className={styles.title}>{t.title}</div>
+          <h1 className={styles.title}>{t.title}</h1>
           <div className={styles.count}>{t.found(found.length, HOTSPOT_IDS.length)}</div>
         </div>
         <div className={styles.actions}>

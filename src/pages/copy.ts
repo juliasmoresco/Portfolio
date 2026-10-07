@@ -19,7 +19,7 @@ const HOME = {
   pt: {
     title: "Bem-vindo(a) ao meu escritório",
     lede: "Clique nos objetos e descubra o que cada um guarda. Com pressa? Use o menu.",
-    hintTouch: "Toque nos objetos e descubra o que cada um guarda. Arraste ou use dois dedos para dar zoom. Com pressa? Use o menu.",
+    hintTouch: "Toque, arraste e dê zoom para explorar, ou use o menu se estiver com pressa.",
     discovered: (n: number, total: number) => `${n} de ${total} descobertos`,
     found: (n: number, total: number) => `${n} de ${total} encontrados`,
     hints: "Dicas",

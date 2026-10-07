@@ -17,6 +17,7 @@
  */
 import * as THREE from "three";
 import { GLTFLoader, type GLTF } from "three/addons/loaders/GLTFLoader.js";
+import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { emitHover, emitReady, emitSelect } from "./events";
 import { makeGlobe } from "./globe";
@@ -375,7 +376,8 @@ export class OfficeScene {
     const a = o.assets;
 
     // Kick every download off up front. Optional props degrade to null.
-    const loader = new GLTFLoader();
+    // The models are meshopt-compressed (gltf-transform meshopt): a fraction of the download, the same geometry.
+    const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
     const bytes = new Map<string, [loaded: number, total: number]>();
     const track = (url: string) => (e: ProgressEvent) => {
       bytes.set(url, [e.loaded, e.lengthComputable ? e.total : e.loaded]);

@@ -21,9 +21,10 @@ const FORELEGS = [
 ];
 
 export function refineZuko(cat: THREE.Object3D): void {
-  WHISKERS.forEach((n) => cat.getObjectByName(n)?.scale.setScalar(0.78));
-  BROW_WHISKERS.forEach((n) => cat.getObjectByName(n)?.scale.setScalar(0.5));
-  cat.getObjectByName("chin")?.scale.setScalar(0.85);
+  // Multiplied, not set: a compressed (quantized) model keeps part of each mesh's size in its node scale.
+  WHISKERS.forEach((n) => cat.getObjectByName(n)?.scale.multiplyScalar(0.78));
+  BROW_WHISKERS.forEach((n) => cat.getObjectByName(n)?.scale.multiplyScalar(0.5));
+  cat.getObjectByName("chin")?.scale.multiplyScalar(0.85);
 
   for (const f of FORELEGS) {
     const leg = cat.getObjectByName(f.leg) as THREE.Mesh | undefined;
