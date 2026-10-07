@@ -1,12 +1,12 @@
 {
   "skin": "chess",
   "title": "Xadrez",
-  "kind": "À parte",
+  "kind": "Hobby",
   "spine": "#9A8FAE",
   "chessUsername": "gambitodajulita",
   "links": [
     {
-      "label": "Me desafie no chess.com",
+      "label": "Me desafia no chess.com",
       "href": "https://www.chess.com/member/gambitodajulita"
     }
   ],
@@ -14,8 +14,8 @@
     {
       "kicker": "Fora do expediente",
       "lines": [
-        "Jogo desde a escola e já participei de torneios.",
-        "Meus ratings preferem que você não acredite."
+        "Jogo desde a época da escola e já participei de torneios.",
+        "Meu rating atual não ajuda muito a provar isso."
       ]
     }
   ]

@@ -7,8 +7,8 @@
     "greeting": [
       "Miau! Eu sou o Zuko, e a minha mãe, a Júlia, me ensinou a falar com botões.",
       "Hoje eu sei 6 palavras: Play, Treat, Pets, Food, Sachê e Brush.",
-      "Não acredita que um gato fala com botões? Toque na minha foto.",
-      "Eu sei muita coisa sobre ela e o trabalho dela. Toque num dos meus botões ou digite uma pergunta."
+      "Não acredita que gato fala com botão? Toca na minha foto.",
+      "Eu sei um monte de coisa sobre ela e o trabalho dela. Toca num dos meus botões ou manda uma pergunta."
     ],
     "avatar": "zuko-avatar",
     "photo": {
@@ -45,9 +45,9 @@
           "conte sobre"
         ],
         "reply": [
-          "Júlia é uma **product designer sênior** de Porto Alegre. Ela desenha produtos digitais desde 2018.",
-          "Já trabalhou com fintech, fast food, consultoria e educação, sempre onde as necessidades das pessoas, os objetivos do negócio e o crescimento do produto se encontram.",
-          "Ela também me dá comida. Humana nota dez."
+          "A Júlia é **product designer sênior** e mora em Porto Alegre. Ela trabalha com produtos digitais desde 2018.",
+          "Já passou por fintech, fast food, consultoria e educação, sempre no meio do caminho entre o que as pessoas precisam, o que o negócio quer e o que faz o produto crescer.",
+          "E ela me dá comida. Humana nota dez."
         ],
         "open": {
           "id": "about",
@@ -87,8 +87,8 @@
         ],
         "reply": [
           "Ela é **Product Designer Sênior na Ambush**, uma consultoria.",
-          "Hoje ela desenha experiências de cripto para a **Binance.US**, na web e no mobile, com os times de Exchange e Growth: fluxos de trading, experimentos, funis e jornadas de ponta a ponta.",
-          "Antes disso, passou dois anos e meio desenhando Loyalty, CRM, Ofertas e Totens para a **Restaurant Brands International**: Burger King, Popeyes e Firehouse Subs."
+          "Hoje ela cria experiências de cripto para a **Binance.US**, na web e no app, com os times de Exchange e Growth: fluxos de trading, experimentos, funis e jornadas de ponta a ponta.",
+          "Antes disso, passou dois anos e meio cuidando de fidelidade, CRM, ofertas e totens para a **Restaurant Brands International**: Burger King, Popeyes e Firehouse Subs."
         ],
         "open": {
           "id": "resume",
@@ -131,11 +131,11 @@
           "antes"
         ],
         "reply": [
-          "Aqui está o caminho dela, do mais antigo ao mais recente:",
-          "**Kobe Apps** (2018–2021), uma software house: estagiária, depois designer de UX/UI, construindo design systems e conduzindo design sprints.",
-          "**XP Inc.** (2021–2022): o produto de previdência, de ponta a ponta.",
-          "**Warren** (2022): uma experiência de investimento que deu aos clientes acesso a ações americanas.",
-          "**Ambush** (2022–hoje): Loyalty, CRM, Ofertas e Totens para as marcas da RBI, e agora cripto na Binance.US."
+          "Lá vai, do mais antigo pro mais recente:",
+          "**Kobe Apps** (2018–2021), uma software house: começou como estagiária e virou designer de UX/UI, montando design systems e tocando design sprints.",
+          "**XP Inc.** (2021–2022): cuidou do produto de previdência de ponta a ponta.",
+          "**Warren** (2022): criou a experiência que deu aos clientes acesso a ações americanas.",
+          "**Ambush** (2022–hoje): fidelidade, CRM, ofertas e totens para as marcas da RBI, e agora cripto na Binance.US."
         ],
         "open": {
           "id": "resume",
@@ -180,10 +180,10 @@
           "totem"
         ],
         "reply": [
-          "Minha história favorita (já ouvi muitas vezes, no colo dela): **fidelidade no restaurante no Burger King**, na Suíça, na Alemanha, no Reino Unido e na Nova Zelândia.",
-          "Os clientes adicionavam ofertas no app, mas nunca resgatavam no restaurante. A Júlia e a PM dela foram a quatro restaurantes e conversaram com 23 clientes e 3 atendentes.",
-          "Elas transformaram três problemas em três testes A/B. Só os botões mais claros aumentaram a conversão em **2,5 pontos** e reduziram os erros de leitura em **7,3 pontos**.",
-          "O design foi lançado em todos os mercados e hoje faz parte dos Guest UI/UX Standards da RBI."
+          "Minha história favorita (já ouvi várias vezes, no colo dela): **a fidelidade no restaurante do Burger King**, na Suíça, na Alemanha, no Reino Unido e na Nova Zelândia.",
+          "As pessoas adicionavam ofertas no app, mas nunca usavam no restaurante. A Júlia e a PM dela foram em quatro restaurantes e conversaram com 23 clientes e 3 atendentes.",
+          "Elas transformaram três problemas em três testes A/B. Só deixar os botões mais claros já aumentou a conversão em **2,5 pontos** e diminuiu os erros de leitura em **7,3 pontos**.",
+          "O design foi para todos os países e hoje faz parte do padrão de UI/UX da RBI."
         ],
         "open": {
           "id": "case1",
@@ -232,9 +232,9 @@
           "jeito de trabalhar"
         ],
         "reply": [
-          "Pesquisa primeiro. Ela vai aonde as coisas acontecem: restaurantes, entrevistas, avaliações de apps, funis.",
-          "Depois transforma o que aprende em experimentos que dá para medir, e deixa os dados escolherem o vencedor.",
-          "Hoje ela curte especialmente **pesquisa com usuários, experimentação, estratégia de crescimento** e operações de design que escalam."
+          "Primeiro, pesquisa. Ela vai onde as coisas acontecem: restaurantes, entrevistas, avaliações de apps, funis.",
+          "Depois transforma o que descobriu em testes que dá para medir, e deixa os dados escolherem o vencedor.",
+          "Hoje ela curte mesmo é **pesquisa com usuários, experimentação, estratégia de growth** e Design Ops."
         ],
         "open": {
           "id": "case1",
@@ -274,7 +274,7 @@
         ],
         "reply": [
           "**Figma** para design e prototipação; **Amplitude**, **Datadog** e **Google Analytics** para dados; Miro e FigJam para workshops.",
-          "Ela também é fã de ferramentas de IA: Claude Code, Claude Design, Lovable, Figma Make. Ela construiu este escritório com o Claude Code. Eu supervisionei da estante."
+          "Ela também é fã de ferramentas de IA: Claude Code, Claude Design, Lovable, Figma Make. Esse escritório aqui ela fez com o Claude Code. Eu supervisionei da estante."
         ],
         "open": {
           "id": "resume",
@@ -316,7 +316,7 @@
         ],
         "reply": [
           "Ela estudou **Design Visual na UFRGS**, a Universidade Federal do Rio Grande do Sul (2016–2023).",
-          "E nunca parou: especializações na PM3 (AI Product, Product Growth), na Awari (User Research) e na Meiuca (Design Systems), além de cursos na Interaction Design Foundation, na IDEO U e na Mergo."
+          "E não parou mais: fez especializações na PM3 (AI Product, Product Growth), na Awari (User Research) e na Meiuca (Design Systems), além de cursos na Interaction Design Foundation, na IDEO U e na Mergo."
         ],
         "open": {
           "id": "studies",
@@ -350,8 +350,8 @@
           "orientacao"
         ],
         "reply": [
-          "Sim! Ela dá mentoria para designers de UX e de produto no **ADPList** desde 2022, em sessões semanais sobre crescimento de carreira.",
-          "Os mentorados deixam bilhetes muito carinhosos. Alguns estão no mural."
+          "Dá sim! Ela faz mentoria com designers de UX e de produto no **ADPList** desde 2022, em sessões semanais sobre carreira.",
+          "O pessoal deixa recados muito fofos. Alguns estão no mural."
         ],
         "open": {
           "id": "mentees",
@@ -397,8 +397,8 @@
         ],
         "reply": [
           "O jeito mais rápido é por email: **juliasmoresco@gmail.com**.",
-          "Ela também está no LinkedIn, e dá para marcar uma mentoria com ela no ADPList.",
-          "Ou use o telefone rosa na estante. Ele disca de verdade."
+          "Ela também está no LinkedIn, e dá pra marcar uma mentoria no ADPList.",
+          "Ou usa o telefone rosa da estante. Ele disca de verdade."
         ],
         "open": {
           "id": "phone",
@@ -430,7 +430,7 @@
           "portugues"
         ],
         "reply": [
-          "**Português** é a língua materna dela, o **inglês** é fluente no nível profissional, e ela está aprendendo **italiano** (A2, por enquanto).",
+          "**Português** é a língua nativa dela, o **inglês** é fluente, e ela está aprendendo **italiano** (A2, por enquanto).",
           "Eu sou fluente em botões."
         ],
         "next": [
@@ -469,8 +469,8 @@
           "fuso"
         ],
         "reply": [
-          "Ela mora em **Porto Alegre**, no sul do Brasil, e trabalha de lá com times no exterior.",
-          "Ela nasceu em Rio Pardo, uma cidade pequena às margens do rio Jacuí. Esse mesmo rio chega a Porto Alegre, então ela diz que só seguiu o rio."
+          "Ela mora em **Porto Alegre**, no sul do Brasil, e trabalha de lá com times de fora.",
+          "Ela nasceu em Rio Pardo, uma cidadezinha na beira do rio Jacuí. Esse mesmo rio chega em Porto Alegre, então ela diz que só seguiu o rio."
         ],
         "open": {
           "id": "home",
@@ -518,9 +518,9 @@
           "viagens"
         ],
         "reply": [
-          "Leitura, desenho, academia, yoga e pilates.",
-          "Xadrez também: ela jogava torneios. Os ratings dela preferem que você não acredite.",
-          "E viagens: 9 países até agora, e a meta é 30."
+          "Ler, desenhar, academia, yoga e pilates.",
+          "Xadrez também: ela já jogou torneios. O rating atual dela não ajuda muito a provar.",
+          "E viajar: já foram 9 países, e a meta é chegar a 30."
         ],
         "open": {
           "id": "chess",
@@ -555,8 +555,8 @@
         ],
         "reply": [
           "Eu? Sou o Zuko, o gato da Júlia e o primeiro estagiário dela.",
-          "Ela me ensinou a falar com botões quando eu era filhote. Sei 6 palavras: Play, Treat, Pets, Food, Sachê e Brush. Toque na minha foto se precisar de prova.",
-          "Agora também sei tudo sobre o trabalho dela. Pode perguntar."
+          "Ela me ensinou a falar com botões quando eu era filhote. Sei 6 palavras: Play, Treat, Pets, Food, Sachê e Brush. Se quiser prova, toca na minha foto.",
+          "Agora também sei tudo do trabalho dela. Pode perguntar."
         ],
         "next": [
           "who",
@@ -608,8 +608,8 @@
           "brigada"
         ],
         "reply": [
-          "Purr. Quando quiser.",
-          "Se quiser falar com a própria Júlia, o telefone rosa está bem ali."
+          "Purr. Imagina!",
+          "Se quiser falar com a Júlia, o telefone rosa tá bem ali."
         ],
         "open": {
           "id": "phone",
@@ -618,8 +618,8 @@
       }
     ],
     "fallback": [
-      "Mrrp? Essa eu ainda não sei. Sou um gato, afinal.",
-      "Tente um dos meus botões ou pergunte para a própria Júlia:"
+      "Mrrp? Essa eu ainda não sei. Sou um gato, né.",
+      "Tenta um dos meus botões ou pergunta direto pra Júlia:"
     ],
     "fallbackOpen": {
       "id": "phone",

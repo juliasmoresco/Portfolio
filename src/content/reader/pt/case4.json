@@ -15,7 +15,7 @@
       "kicker": "Visão geral",
       "heading": "Um portfólio sem menu",
       "lines": [
-        "As pessoas sempre elogiam meu escritório quando o veem atrás de mim nas videochamadas. Ele é cheio de coisas que dizem quem eu sou, então coloquei as mesmas coisas no meu portfólio: clique num objeto e ele conta sobre o meu trabalho.",
+        "Sempre que alguém vê meu escritório atrás de mim numa call, vem elogio. Ele é cheio de coisas que têm a ver comigo, então levei essas mesmas coisas para o portfólio: é só clicar num objeto para conhecer meu trabalho.",
         "**Papel:** conceito, design e direção de arte",
         "**Feito com:** Claude Design (protótipo e objetos 3D) e Claude Code (o site)",
         "**Stack:** React, TypeScript, three.js",
@@ -29,9 +29,9 @@
       "kicker": "A ideia",
       "heading": "Por que um escritório",
       "lines": [
-        "A maioria dos portfólios é parecida: uma grade de miniaturas e uma página Sobre. Eu queria que o meu tivesse a minha cara.",
-        "Então a home é o meu escritório de verdade, com a mesma estante, planta, globo, tabuleiro de xadrez, gato e telefone rosa. Não tem barra de navegação: você explora, e cada coisa que encontra abre um pedaço da minha história.",
-        "Para quem está com pressa, um menu pequeno também lista tudo."
+        "A maioria dos portfólios é parecida: uma grade de projetos e uma página Sobre. Eu queria um que tivesse a minha cara.",
+        "Então a home é o meu escritório de verdade, com a mesma estante, a planta, o globo, o xadrez, o gato e o telefone rosa. Não tem menu de navegação: você explora, e cada coisa que encontra conta um pedaço da minha história.",
+        "Para quem está com pressa, tem um menu pequeno com tudo."
       ],
       "poll": {
         "kicker": "Sua vez",
@@ -49,7 +49,7 @@
           }
         ],
         "answer": 2,
-        "reveal": "17 objetos para descobrir, mais a luminária de lua, que muda a luz. O primeiro protótipo já prometia “0 de 17 descobertos”, e com este livro na estante o escritório finalmente cumpre a promessa.",
+        "reveal": "São 17 objetos para descobrir, mais a luminária de lua, que muda a luz. O primeiro protótipo já prometia “0 de 17 descobertos”, e com este livro na estante a conta finalmente fecha.",
         "prompt": "Escolha uma para ver a resposta.",
         "answerLabel": "Resposta"
       },
@@ -59,8 +59,8 @@
       "kicker": "O escritório de verdade",
       "heading": "O de verdade",
       "lines": [
-        "Tudo na estante é algo que eu tenho: a estante amarela, a planta, a luminária de lua, o tabuleiro de xadrez, o canudo do meu diploma, o cofrinho de lhama e o pôster do Johnny Cash. E o Zuko, claro.",
-        "Ser real era o ponto. O portfólio é o meu escritório, então os detalhes tinham que ser meus, até a cor das prateleiras."
+        "Tudo o que está ali existe de verdade: a estante amarela, a planta, a luminária de lua, o xadrez, o canudo do meu diploma, o cofrinho de lhama e o pôster do Johnny Cash. E o Zuko, claro.",
+        "Essa era a ideia: o portfólio é o meu escritório, então os detalhes tinham que ser os meus, até a cor das prateleiras."
       ],
       "polaroids": {
         "note": "Meu escritório, na vida real",
@@ -88,8 +88,8 @@
       "kicker": "Processo",
       "heading": "De um rascunho a um site de verdade",
       "lines": [
-        "Começou no papel: um rascunho rápido da parede, da prateleira e da estante, com anotações do que cada coisa abriria.",
-        "Levei para o **Claude Design** para prototipar a sala e modelar os objetos 3D, depois passei para o **Claude Code** para construir o site de verdade, com conteúdo real, interações reais e uma versão para celular."
+        "Tudo começou no papel: um rascunho rápido da parede, da prateleira e da estante, com anotações do que cada coisa ia abrir.",
+        "Levei a ideia para o **Claude Design** para prototipar a sala e modelar os objetos em 3D. Depois, passei para o **Claude Code** para construir o site de verdade, com conteúdo, interações e versão para celular."
       ],
       "compare": {
         "kicker": "Três etapas",
@@ -108,7 +108,7 @@
             "images": [
               "story-prototype"
             ],
-            "note": "Claude Design: a sala 3D e o leitor, com espaços reservados para cada conteúdo."
+            "note": "Claude Design: a sala em 3D e os livros, ainda com textos provisórios."
           },
           {
             "label": "Hoje",
@@ -124,8 +124,8 @@
       "kicker": "Processo",
       "heading": "Do meu escritório para o 3D",
       "lines": [
-        "Depois do rascunho, desenhei a sala no **Claude Design**, onde também modelei os principais objetos em 3D, começando pela estante. Arraste para girar.",
-        "Depois passei para o **Claude Code** para construir o site de verdade. Dirigi o trabalho de ponta a ponta: o conceito, o conteúdo, como cada objeto se comporta e cada detalhe visual, revisando cada mudança no desktop e no celular."
+        "Depois do rascunho, criei a sala no **Claude Design**, onde também modelei os principais objetos em 3D, começando pela estante. Arraste para girar.",
+        "Depois fui para o **Claude Code** construir o site de verdade. Conduzi tudo de ponta a ponta: o conceito, o conteúdo, como cada objeto funciona e cada detalhe visual, revisando cada mudança no desktop e no celular."
       ],
       "model3d": {
         "kicker": "Modelo 3D",
@@ -138,8 +138,8 @@
       "kicker": "Os objetos",
       "heading": "Cada objeto tem uma função",
       "lines": [
-        "Cada objeto abre algo que combina com ele. O globo gira para os países que visitei, o telefone disca meus contatos e o canudo desenrola o meu diploma de verdade.",
-        "O mural guarda bilhetes de mentorados e colegas, o cartão-postal vira para contar de onde eu sou, e o Zuko, meu gato, responde perguntas sobre o meu trabalho.",
+        "Cada objeto abre algo que combina com ele. O globo gira até os países que já visitei, o telefone liga para os meus contatos e o canudo desenrola o meu diploma de verdade.",
+        "O mural guarda recados de colegas e mentorados, o cartão-postal vira para contar de onde eu sou, e o Zuko, meu gato, responde perguntas sobre o meu trabalho.",
         "Experimente daqui:"
       ],
       "hobbies": {
@@ -208,8 +208,8 @@
       "kicker": "Celular",
       "heading": "A mesma sala, na sua mão",
       "lines": [
-        "No celular, o escritório inteiro ainda cabe na tela. Você aproxima e arrasta para olhar em volta, e toca num objeto para abri-lo.",
-        "Auditei como qualquer produto: objetos pequenos ganharam uma área de toque invisível, todo botão passou a ter pelo menos 44px, nenhum texto é menor que 12px e nada que abre precisa de rolagem."
+        "No celular, o escritório inteiro continua cabendo na tela. Dá para arrastar e dar zoom para olhar em volta, e é só tocar num objeto para abrir.",
+        "Revisei como qualquer produto: os objetos pequenos ganharam uma área de toque invisível, todo botão tem pelo menos 44px, nenhum texto é menor que 12px e nada do que abre precisa de rolagem."
       ],
       "stats": {
         "kicker": "Auditoria mobile",
@@ -218,7 +218,7 @@
           {
             "display": "9 → 57",
             "unit": "px",
-            "label": "a largura da lhama para a ponta do dedo, depois da área de toque"
+            "label": "o tamanho da lhama para o dedo, com a área de toque"
           },
           {
             "value": 44,
@@ -237,8 +237,8 @@
       "kicker": "Conteúdo",
       "heading": "Contando cada case do seu jeito",
       "lines": [
-        "Os textos ficam no Notion e sincronizam com os livros. Os cases são contados com páginas feitas para eles, então você faz algo em cada uma: responde um quiz, vira um cartão, compara versões, vê um número subir.",
-        "Essas peças são reutilizáveis, então cada case novo pode escolher as que contam melhor a sua história."
+        "Os textos ficam no Notion e vão direto para os livros. E cada case tem páginas feitas para ele, onde você interage: responde um quiz, vira um cartão, compara versões, vê um número subir.",
+        "Essas peças podem ser reaproveitadas, então cada case novo usa as que contam melhor a sua história."
       ],
       "glossary": {
         "kicker": "A caixa de ferramentas",
@@ -252,12 +252,12 @@
           {
             "term": "Quiz",
             "note": "Enquete",
-            "body": "Dê seu palpite e depois veja o que os usuários realmente disseram ou fizeram."
+            "body": "Você dá o seu palpite e depois vê o que os usuários disseram ou fizeram de verdade."
           },
           {
             "term": "Contagem",
             "note": "Números",
-            "body": "Resultados que sobem na primeira vez que você vê a página."
+            "body": "Números que vão subindo quando a página aparece."
           },
           {
             "term": "Funil",
@@ -267,12 +267,12 @@
           {
             "term": "Jornada",
             "note": "Linha de humor",
-            "body": "Os altos e baixos de uma persona; toque numa etapa para ler."
+            "body": "Os altos e baixos de uma persona; toque numa etapa para ver."
           },
           {
             "term": "Migração",
             "note": "Mudança",
-            "body": "Funcionalidades indo de um sistema antigo para um novo, uma a uma."
+            "body": "Funcionalidades passando de um sistema antigo para o novo, uma por uma."
           }
         ]
       }
@@ -286,7 +286,7 @@
         "title": "Abra o escritório",
         "device": "desktop",
         "intro": [
-          "Dezessete objetos para descobrir, mais uma luminária de lua. Três cases, um currículo, um gato que conversa e nenhum menu obrigatório. Feche este livro e olhe em volta."
+          "Dezessete objetos para descobrir, mais uma luminária de lua. Três cases, um currículo, um gato que conversa e nenhum menu obrigatório. Fecha este livro e dá uma olhada por aí."
         ],
         "screens": [
           {

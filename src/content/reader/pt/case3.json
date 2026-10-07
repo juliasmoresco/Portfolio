@@ -1,6 +1,6 @@
 {
   "skin": "book",
-  "title": "BoraInvest: fazendo investir parecer possível",
+  "title": "BoraInvest: investir sem medo de começar",
   "tag": "Case · TCC",
   "year": "2023",
   "role": "Pesquisa de UX, Design de Produto",
@@ -13,9 +13,9 @@
   "pages": [
     {
       "kicker": "Visão geral",
-      "heading": "Os jovens brasileiros sabem que deveriam investir. Só não se sentem prontos.",
+      "heading": "Os jovens sabem que deveriam investir. Só não se sentem preparados.",
       "lines": [
-        "Meu TCC em Design Visual na UFRGS: um app que faz aprender sobre investimentos parecer possível, prático e confiável para jovens que vão investir pela primeira vez.",
+        "Meu TCC em Design Visual na UFRGS: um app que torna o aprendizado sobre investimentos mais simples, prático e confiável para quem nunca investiu.",
         "**Projeto:** Trabalho de Conclusão de Curso (TCC), UFRGS",
         "**Meu papel:** pesquisa de UX, design de produto, prototipação",
         "**Orientador:** Prof. Sandro Fetter",
@@ -28,12 +28,12 @@
     },
     {
       "kicker": "Visão geral",
-      "heading": "O problema: o interesse cresce, a confiança não",
+      "heading": "O problema: o interesse cresce, a confiança não acompanha",
       "lines": [
-        "Os jovens brasileiros estão chegando à bolsa, mas a educação financeira ainda é baixa, e a maioria das pessoas nem investe.",
-        "As ferramentas de aprendizado deixam a desejar: a maioria dos apps sobre bolsa tem nota abaixo de 3,9, e as ferramentas das corretoras são pagas. Os desafios:",
-        "- pouca confiança, e investir parece complicado",
-        "- jargão e conteúdo técnico",
+        "Cada vez mais jovens estão chegando à bolsa, mas a educação financeira no Brasil ainda é baixa, e a maioria das pessoas nem investe.",
+        "E as opções para aprender não ajudam: a maioria dos apps sobre bolsa tem nota abaixo de 3,9, e as ferramentas das corretoras são pagas. Os desafios:",
+        "- pouca confiança: investir parece complicado",
+        "- muito jargão e conteúdo técnico",
         "- teoria que nunca vira prática"
       ],
       "stats": {
@@ -48,7 +48,7 @@
           {
             "value": 23,
             "unit": "%",
-            "label": "das menções são à poupança, o investimento mais usado"
+            "label": "citam a poupança, o investimento mais usado"
           },
           {
             "value": 62,
@@ -64,10 +64,10 @@
     },
     {
       "kicker": "Processo",
-      "heading": "Um ciclo de design completo, do início ao fim",
+      "heading": "Um processo completo, do começo ao fim",
       "lines": [
-        "O projeto foi da descoberta a um protótipo de alta fidelidade testado, usando Design Thinking com Lean Inception para definir um MVP.",
-        "Eu queria entender não só o que as pessoas precisavam aprender, mas como elas absorvem informação financeira, e o que as trava."
+        "O projeto foi da pesquisa até um protótipo de alta fidelidade testado com usuários, usando Design Thinking e Lean Inception para definir o MVP.",
+        "Eu queria entender não só o que as pessoas precisavam aprender, mas como elas lidam com informação sobre dinheiro, e o que as faz travar."
       ],
       "timeline": {
         "kicker": "Duplo diamante",
@@ -99,11 +99,11 @@
     },
     {
       "kicker": "Pesquisa",
-      "heading": "Primeiro, ouvir",
+      "heading": "Antes de tudo, ouvir",
       "lines": [
-        "Comecei pelos dados: a pesquisa “Raio X do Investidor 2022”, da ANBIMA, sobre como os brasileiros poupam e investem, além de estudos da B3 e da Febraban.",
-        "Fiz benchmark de três apps que ensinam ou simulam investimentos, olhando visual, estrutura e usabilidade.",
-        "E consultei dois especialistas do mercado, um assessor de investimentos e uma economista, sobre o que cada perfil de investidor precisa."
+        "Comecei pelos dados: o “Raio X do Investidor 2022”, da ANBIMA, sobre como os brasileiros guardam e investem dinheiro, além de estudos da B3 e da Febraban.",
+        "Fiz o benchmark de três apps que ensinam ou simulam investimentos, olhando visual, estrutura e usabilidade.",
+        "E conversei com dois especialistas do mercado, um assessor de investimentos e uma economista, sobre o que cada perfil de investidor precisa."
       ],
       "stats": {
         "kicker": "Pesquisa",
@@ -128,28 +128,28 @@
       "kicker": "Pesquisa",
       "heading": "O que a pesquisa disse",
       "lines": [
-        "Juntos, os dados, o benchmark e os especialistas apontaram quatro descobertas.",
-        "A maior delas: antes de falar de bolsa, o app precisava ensinar educação financeira, porque a maioria das pessoas tem dificuldade até para poupar."
+        "Juntando os dados, o benchmark e as conversas com especialistas, cheguei a quatro descobertas.",
+        "A principal: antes de falar de bolsa, o app precisava falar de educação financeira, porque a maioria das pessoas não consegue nem guardar dinheiro."
       ],
       "cards": {
         "kicker": "Quatro descobertas",
-        "title": "O que trava as pessoas",
+        "title": "O que impede as pessoas de investir",
         "items": [
           {
             "title": "A maioria nem investe.",
-            "body": "69% não poupam nem investem, principalmente por falta de dinheiro; falta de interesse (8%) e insegurança (7%) vêm depois."
+            "body": "69% não guardam nem investem dinheiro, principalmente porque não sobra; depois vêm falta de interesse (8%) e insegurança (7%)."
           },
           {
-            "title": "O jargão é o muro.",
-            "body": "Os especialistas disseram que o conhecimento sobre bolsa é baixo, e o mais difícil é entender os termos técnicos."
+            "title": "O jargão afasta.",
+            "body": "Segundo os especialistas, as pessoas sabem pouco sobre bolsa, e o mais difícil é entender os termos técnicos."
           },
           {
-            "title": "Segurança vem primeiro.",
-            "body": "Segurança é o principal motivo para escolher um produto, e a maioria dos investidores é conservadora, com medo de perder o que tem."
+            "title": "Segurança em primeiro lugar.",
+            "body": "Segurança é o principal critério na hora de escolher um investimento, e a maioria é conservadora, com medo de perder o que tem."
           },
           {
-            "title": "As ferramentas de aprendizado deixam a desejar.",
-            "body": "Os apps de aprendizado são mal avaliados, e as boas ferramentas das corretoras são pagas."
+            "title": "As ferramentas para aprender não ajudam.",
+            "body": "Os apps educativos são mal avaliados, e as ferramentas boas das corretoras são pagas."
           }
         ]
       },
@@ -157,10 +157,10 @@
     },
     {
       "kicker": "Definir",
-      "heading": "Duas pessoas para quem desenhar",
+      "heading": "Duas pessoas no centro do projeto",
       "lines": [
-        "Da pesquisa nasceram duas personas: uma movida por curiosidade e aprendizado, a outra por objetivos práticos e cautela.",
-        "Mapas de empatia me ajudaram a ver os gatilhos emocionais e o que poderia travá-los, para o app atender os dois."
+        "Da pesquisa nasceram duas personas: uma movida pela curiosidade e pela vontade de aprender, a outra por objetivos práticos e muita cautela.",
+        "Os mapas de empatia me ajudaram a entender o que motiva e o que trava cada um, para o app funcionar para os dois."
       ],
       "personas": {
         "kicker": "Personas",
@@ -180,11 +180,11 @@
               "Curiosa",
               "Flexível"
             ],
-            "about": "Jovem e ambiciosa, sempre buscando crescer. Ocupada, mas disposta a dedicar tempo para aprender sobre dinheiro.",
+            "about": "Jovem e ambiciosa, sempre querendo crescer. Tem pouco tempo, mas topa reservar um pouco para aprender sobre dinheiro.",
             "context": [
               "Faz tudo pelo celular",
               "Pouco tempo para estudar: trabalha em tempo integral",
-              "Pagando dívidas do cartão de crédito",
+              "Quitando dívidas do cartão",
               "Sabe que precisa de ajuda"
             ],
             "needs": [
@@ -194,7 +194,7 @@
             ],
             "behavior": [
               "Busca formas novas e interativas de aprender a investir",
-              "Aberta a ferramentas digitais que melhorem sua relação com o dinheiro"
+              "Aberta a ferramentas digitais que melhorem a relação dela com o dinheiro"
             ]
           },
           {
@@ -211,20 +211,20 @@
               "Pragmático",
               "Sem pressa"
             ],
-            "about": "Prefere métodos comprovados, valoriza segurança e quer provas antes de decidir qualquer coisa.",
+            "about": "Prefere o que já foi testado, valoriza segurança e quer provas antes de decidir qualquer coisa.",
             "context": [
               "Evita apps de dinheiro no celular",
-              "Tem tempo para estudar, mas não estuda",
-              "Guarda o dinheiro na poupança",
-              "Desconfia da bolsa"
+              "Até tem tempo para estudar, mas não estuda",
+              "Deixa o dinheiro na poupança",
+              "Tem um pé atrás com a bolsa"
             ],
             "needs": [
               "Informação confiável",
               "Praticidade e facilidade de uso",
-              "Atendimento pessoal para tirar dúvidas"
+              "Alguém para tirar as dúvidas dele"
             ],
             "behavior": [
-              "Confia em métodos comprovados e na própria experiência",
+              "Confia no que já foi testado e na própria experiência",
               "Quer provas antes de experimentar algo novo"
             ]
           }
@@ -233,10 +233,10 @@
     },
     {
       "kicker": "Definir",
-      "heading": "Mapeando os altos e baixos",
+      "heading": "Os altos e baixos da jornada",
       "lines": [
-        "Mapeei a jornada das duas personas da curiosidade à ação: o que fazem, sentem e perguntam em cada etapa.",
-        "As quedas mostraram onde o apoio precisava entrar, então o app foi construído com revelação progressiva: um passo pequeno de cada vez, com ajuda nas partes difíceis."
+        "Mapeei a jornada das duas personas, da curiosidade até a ação: o que fazem, sentem e perguntam em cada etapa.",
+        "Os pontos baixos mostraram onde o app precisava dar apoio. Por isso ele apresenta tudo aos poucos: um passo pequeno de cada vez, com ajuda nas partes difíceis."
       ],
       "journey": {
         "kicker": "Mapa de jornada",
@@ -251,7 +251,7 @@
                   5
                 ],
                 "doing": "Encontra o app, se empolga com o aprendizado interativo, passa pelo onboarding e se cadastra.",
-                "feeling": "Animada porque o app pode ajudá-la a lidar de verdade com o dinheiro."
+                "feeling": "Empolgada porque o app pode ajudar ela a cuidar melhor do dinheiro."
               },
               {
                 "name": "Aprendizado",
@@ -260,15 +260,15 @@
                   4
                 ],
                 "doing": "Explora as trilhas no tempo livre e aprende o básico.",
-                "feeling": "Alguns conceitos são difíceis, mas os recursos do app a ajudam a seguir."
+                "feeling": "Alguns conceitos são difíceis, mas o app ajuda ela a seguir em frente."
               },
               {
                 "name": "Aplicação",
                 "moods": [
                   5
                 ],
-                "doing": "Usa o simulador para testar cenários e depois decide melhor sobre o próprio dinheiro.",
-                "feeling": "Ganha confiança, e isso a mantém aprendendo."
+                "doing": "Usa o simulador para testar cenários e passa a tomar decisões melhores com o próprio dinheiro.",
+                "feeling": "Ganha confiança, e isso faz ela continuar aprendendo."
               },
               {
                 "name": "Acompanhamento",
@@ -276,8 +276,8 @@
                   2,
                   4
                 ],
-                "doing": "Acompanha as notícias do mercado, gerencia o perfil e faz o teste de perfil de investidor.",
-                "feeling": "As oscilações do mercado assustam, mas as notícias atualizadas a ajudam a se adaptar."
+                "doing": "Acompanha as notícias do mercado, ajusta o perfil e faz o teste de perfil de investidor.",
+                "feeling": "Os sobe e desce do mercado assustam, mas as notícias ajudam ela a se adaptar."
               }
             ]
           },
@@ -290,8 +290,8 @@
                   3,
                   4
                 ],
-                "doing": "Encontra o app, atraído pela promessa de informação confiável e formas comprovadas de proteger o dinheiro, e se cadastra.",
-                "feeling": "Certa resistência a uma abordagem nova, aliviada por informação confiável e baseada em evidências."
+                "doing": "Encontra o app atraído pela promessa de informação confiável e de jeitos seguros de proteger o dinheiro, e se cadastra.",
+                "feeling": "Fica com um pé atrás com a novidade, mas a informação confiável e embasada deixa ele mais tranquilo."
               },
               {
                 "name": "Aprendizado",
@@ -300,7 +300,7 @@
                   5
                 ],
                 "doing": "Faz trilhas sobre proteger o dinheiro: diversificação, reserva de emergência, poupança.",
-                "feeling": "Sente-se seguro nas decisões e valoriza como o app é fácil de usar."
+                "feeling": "Se sente seguro nas decisões e gosta de como o app é fácil de usar."
               },
               {
                 "name": "Aplicação",
@@ -309,15 +309,15 @@
                   4
                 ],
                 "doing": "Usa o simulador para pesar cenários e riscos e acompanha as notícias do mercado.",
-                "feeling": "As oscilações são difíceis, mas as notícias atualizadas o ajudam a decidir e se adaptar."
+                "feeling": "Os sobe e desce do mercado incomodam, mas as notícias ajudam ele a decidir e se adaptar."
               },
               {
                 "name": "Acompanhamento",
                 "moods": [
                   5
                 ],
-                "doing": "Aplica o que aprendeu nas próprias finanças e usa o perfil para orientações que combinam com seu tipo de investidor.",
-                "feeling": "Confiante de que toma decisões seguras, sem riscos desnecessários."
+                "doing": "Coloca em prática o que aprendeu e usa o perfil para receber dicas que combinam com o tipo de investidor que ele é.",
+                "feeling": "Confiante de que está decidindo com segurança, sem correr riscos à toa."
               }
             ]
           }
@@ -329,10 +329,10 @@
       "kicker": "Idear",
       "heading": "Aprender, praticar, explorar",
       "lines": [
-        "O app se organiza em três pilares, para que aprender sempre leve a fazer:",
+        "O app se organiza em três pilares, para que aprender sempre leve à prática:",
         "- **Aprender:** trilhas de conhecimento, da educação financeira à bolsa",
         "- **Praticar:** quizzes, exercícios e um simulador de investimentos",
-        "- **Explorar:** notícias e indicadores do mercado, para dar contexto"
+        "- **Explorar:** notícias e indicadores do mercado, para entender o contexto"
       ],
       "compare": {
         "kicker": "Arquitetura da informação",
@@ -344,7 +344,7 @@
               "borapt-home",
               "borapt-trilha"
             ],
-            "note": "A Home mostra onde você parou e o seu progresso; cada trilha é uma série de aulas curtas."
+            "note": "A Home mostra onde você parou e quanto já avançou; cada trilha é uma sequência de aulas curtas."
           },
           {
             "label": "Praticar",
@@ -352,7 +352,7 @@
               "borapt-quiz",
               "borapt-sim"
             ],
-            "note": "Um quiz fecha cada aula, e um simulador deixa você experimentar investir sem arriscar dinheiro de verdade."
+            "note": "Cada aula termina com um quiz, e o simulador deixa você testar investimentos sem arriscar dinheiro de verdade."
           },
           {
             "label": "Explorar",
@@ -360,7 +360,7 @@
               "borapt-news",
               "borapt-artigo"
             ],
-            "note": "Notícias e índices do mercado para dar contexto, e artigos curtos que explicam as ideias por trás de cada aula."
+            "note": "Notícias e índices do mercado para entender o contexto, e artigos curtos que aprofundam cada aula."
           }
         ]
       }
@@ -369,9 +369,9 @@
       "kicker": "Idear",
       "heading": "Aprender fazendo",
       "lines": [
-        "Toda aula termina com um quiz e um exercício prático, para que a teoria vire algo que dá para usar.",
-        "O feedback é sempre encorajador, em linguagem simples, e a resposta certa vem com uma explicação curta.",
-        "Experimente uma pergunta de verdade do app:"
+        "Toda aula termina com um quiz e um exercício prático, para a teoria virar algo útil no dia a dia.",
+        "O retorno é sempre positivo, em linguagem simples, e a resposta certa vem com uma explicação curta.",
+        "Tenta responder uma pergunta de verdade do app:"
       ],
       "poll": {
         "kicker": "Do app",
@@ -389,7 +389,7 @@
           }
         ],
         "answer": 0,
-        "reveal": "Ele divide a renda líquida: 50% para o essencial, 30% para gastos pessoais e 20% para poupar e investir. É uma das primeiras aulas da trilha de Educação Financeira.",
+        "reveal": "Ele divide o que você recebe: 50% para o essencial, 30% para gastos pessoais e 20% para guardar e investir. É uma das primeiras aulas da trilha de Educação Financeira.",
         "prompt": "Escolha uma para ver a resposta.",
         "answerLabel": "Resposta certa"
       },
@@ -397,11 +397,11 @@
     },
     {
       "kicker": "Identidade visual",
-      "heading": "Amigável de propósito",
+      "heading": "Leve de propósito",
       "lines": [
-        "A marca precisava tirar o peso de investir. “Bora” é um convite para agir, no tom do dia a dia.",
-        "Neutros e verdes suaves sugerem crescimento e confiança, a Work Sans deixa tudo claro e amigável, e todos os textos usam frases curtas e verbos que encorajam.",
-        "Tudo vive num guia de estilo no Figma, pensado para consistência e acessibilidade."
+        "A marca precisava tirar o peso de investir. “Bora” é um convite para começar, do jeito que a gente fala no dia a dia.",
+        "Tons neutros e verdes suaves passam crescimento e confiança, a Work Sans deixa tudo claro e amigável, e os textos usam frases curtas e verbos que dão aquele empurrãozinho.",
+        "Tudo isso está num guia de estilo no Figma, pensado para manter a consistência e a acessibilidade."
       ],
       "palette": {
         "kicker": "Guia de estilo",
@@ -451,9 +451,9 @@
       "kicker": "Resultado",
       "heading": "Testando com 10 pessoas",
       "lines": [
-        "Testei o protótipo no Maze com 10 pessoas de 18 a 35 anos, com pouco conhecimento sobre investimentos, em quatro tarefas: entrar, terminar o quiz de uma aula, simular um investimento e achar o índice IBOVESPA.",
-        "Avaliei cada tarefa com a Single Usability Metric (SUM), que combina conclusão, tempo, erros e satisfação. Todas passaram de 96%, e o Maze deu nota 88 para a usabilidade.",
-        "Saíram duas mudanças: um onboarding que avança com um toque, como os Stories, e os índices do mercado direto na Home."
+        "Testei o protótipo no Maze com 10 pessoas de 18 a 35 anos que sabiam pouco sobre investimentos, com quatro tarefas: entrar, terminar o quiz de uma aula, simular um investimento e encontrar o IBOVESPA.",
+        "Avaliei cada tarefa com a Single Usability Metric (SUM), que junta conclusão, tempo, erros e satisfação. Todas passaram de 96%, e o Maze deu nota 88 para a usabilidade.",
+        "O teste rendeu duas mudanças: um onboarding que avança com um toque, como os Stories, e os índices do mercado direto na Home."
       ],
       "chart": {
         "kicker": "Teste de usabilidade",
@@ -516,7 +516,7 @@
         "title": "Experimente o protótipo",
         "path": "bora/",
         "intro": [
-          "Construído a partir do que o teste mostrou: onboarding que avança como os Stories, índices do mercado direto na Home e um caminho mais claro em cada aula."
+          "Ajustado a partir do que o teste mostrou: onboarding no estilo Stories, índices do mercado direto na Home e um caminho mais claro em cada aula."
         ],
         "screens": [
           {
@@ -564,7 +564,7 @@
             "label": "Perfil"
           }
         ],
-        "note": "Navegue como num celular ou pule para uma tela.",
+        "note": "Use como se fosse um celular ou pule direto para uma tela.",
         "poster": "borapt-onboarding"
       }
     }

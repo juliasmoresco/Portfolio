@@ -1,6 +1,6 @@
 {
   "skin": "book",
-  "title": "Levando a Previdência para o HUB",
+  "title": "Previdência no HUB",
   "tag": "Case · Fintech",
   "year": "2021–2022",
   "role": "Design de Produto, Pesquisa com Usuários",
@@ -13,9 +13,9 @@
   "pages": [
     {
       "kicker": "Visão geral",
-      "heading": "Os assessores tinham tudo num só lugar. Menos a previdência.",
+      "heading": "Os assessores tinham tudo num lugar só. Menos a previdência.",
       "lines": [
-        "Na XP Inc., uma das maiores corretoras de investimento do Brasil, os assessores trabalham o dia todo no HUB. A previdência era a exceção: ainda ficava no **Connect**, uma plataforma mais antiga.",
+        "Na XP Inc., uma das maiores corretoras do Brasil, os assessores passam o dia no HUB. A previdência era a exceção: ainda ficava no **Connect**, uma plataforma antiga.",
         "**Cliente:** XP Inc.",
         "**Meu papel:** Product Designer",
         "**Time:** com Jaqueline Manso (Product Designer)",
@@ -28,10 +28,10 @@
     },
     {
       "kicker": "Visão geral",
-      "heading": "O problema: um produto que ficou para trás",
+      "heading": "O problema: um produto que tinha ficado para trás",
       "lines": [
-        "O Connect tinha estrutura confusa e componentes antigos. Deixava os assessores lentos, gerava chamados e isolava a previdência do resto do HUB.",
-        "A missão: levar toda a previdência para o HUB, melhorando cada jornada. Saberíamos que deu certo se víssemos:",
+        "O Connect era confuso e tinha componentes ultrapassados. Atrasava os assessores, gerava chamados e deixava a previdência isolada do resto do HUB.",
+        "A missão: levar toda a previdência para o HUB e melhorar cada jornada no caminho. Ia dar certo se a gente visse:",
         "- menos chamados de suporte",
         "- assessores mais satisfeitos",
         "- mais patrimônio em previdência via HUB",
@@ -55,12 +55,12 @@
           },
           {
             "term": "PGBL & VGBL",
-            "body": "Os dois tipos de previdência privada no Brasil. Com tributações diferentes, cada um combina com um perfil de cliente."
+            "body": "Os dois tipos de previdência privada no Brasil. Cada um tem uma tributação e combina com um perfil de cliente."
           },
           {
             "term": "Tabela de tributação",
             "note": "Progressiva ou regressiva",
-            "body": "As duas formas de tributar um plano no resgate, cada uma com suas restrições."
+            "body": "As duas formas de tributação no resgate, cada uma com suas regras."
           },
           {
             "term": "Seguradora",
@@ -73,9 +73,9 @@
       "kicker": "Processo",
       "heading": "Começar por onde mais dói",
       "lines": [
-        "A previdência no Connect cobria muitas operações: portabilidade, aportes, resgates, troca de beneficiários e mais. Os stakeholders queriam todas no HUB até o 2º trimestre de 2022.",
-        "Começamos pela **portabilidade**, externa e interna. Era a que tinha mais reclamações, mais regras de negócio e mais esforço técnico.",
-        "Cada discovery começava do mesmo jeito: negócio, operações e tecnologia juntos, olhando volumes, chamados de suporte e as principais dores."
+        "A previdência no Connect tinha muitas operações: portabilidade, aportes, resgates, troca de beneficiários e outras. A meta era ter tudo no HUB até o meio de 2022.",
+        "Começamos pela **portabilidade**, externa e interna: era a que tinha mais reclamações, mais regras de negócio e mais esforço técnico.",
+        "Todo discovery começava do mesmo jeito: negócio, operações e tecnologia juntos, olhando volumes, chamados de suporte e as principais dores."
       ],
       "compare": {
         "kicker": "Antes e depois",
@@ -88,7 +88,7 @@
               "hub-connect-2",
               "hub-connect-4"
             ],
-            "note": "O Connect pedia primeiro a seguradora de destino e depois levava a um formulário longo."
+            "note": "O Connect pedia primeiro a seguradora de destino e depois jogava o assessor num formulário enorme."
           },
           {
             "label": "Depois · HUB",
@@ -96,7 +96,7 @@
               "hub-new",
               "hub-review"
             ],
-            "note": "O HUB começa pelos planos: escolha um, escolha o que fazer (portabilidade externa ou interna, ou um novo investimento) e siga passo a passo."
+            "note": "No HUB, tudo começa pelos planos: o assessor escolhe um, decide o que fazer (portabilidade externa, interna ou um novo investimento) e segue passo a passo."
           }
         ]
       }
@@ -105,9 +105,9 @@
       "kicker": "Processo",
       "heading": "Discovery: regras em cima de regras",
       "lines": [
-        "Portabilidade é complexa. Cada seguradora que trabalha com a XP tem suas regras, formas de pagamento e dados a coletar, e a portabilidade entre planos da XP funciona de outro jeito ainda.",
-        "Os planos PGBL e VGBL somam restrições tributárias, conforme a tabela de tributação do plano.",
-        "A pergunta em aberto era se os próprios assessores entendiam todas essas diferenças, e como o produto poderia ajudá-los."
+        "Portabilidade é complexa. Cada seguradora parceira da XP tem suas próprias regras, formas de pagamento e dados obrigatórios, e a portabilidade entre planos da própria XP funciona de outro jeito.",
+        "E os planos PGBL e VGBL ainda têm restrições conforme a tabela de tributação.",
+        "A dúvida era se os próprios assessores entendiam todas essas diferenças, e como o produto podia ajudar."
       ],
       "cards": {
         "kicker": "Cinco dores",
@@ -123,11 +123,11 @@
           },
           {
             "title": "Externa ou interna?",
-            "body": "Assessores e clientes não entendiam como cada tipo de portabilidade é solicitado."
+            "body": "Nem assessores nem clientes entendiam como pedir cada tipo de portabilidade."
           },
           {
             "title": "Campos demais.",
-            "body": "Os formulários pediam muitos dados cadastrais desnecessários."
+            "body": "Os formulários pediam um monte de dados que nem eram necessários."
           },
           {
             "title": "Termos que não ajudavam.",
@@ -141,9 +141,9 @@
       "kicker": "Processo",
       "heading": "Das dores às apostas",
       "lines": [
-        "Agrupamos as dores, estudamos as regras de negócio e os limites e desenhamos um blueprint da jornada, comparando o Connect com o HUB.",
-        "Cada oportunidade virou uma hipótese com um ganho claro e um risco claro. Priorizamos por volume de suporte, viabilidade técnica e alinhamento com os objetivos do negócio.",
-        "A mais ousada: deixar os assessores começarem por uma **lista de fundos** em vez de um cliente. Não existia nada parecido no Connect."
+        "Agrupamos as dores, estudamos as regras e os limites do negócio e montamos um blueprint da jornada, comparando o Connect com o HUB.",
+        "Cada oportunidade virou uma hipótese, com o ganho e o risco bem claros. Priorizamos pelo volume de chamados, pela viabilidade técnica e pelo alinhamento com o negócio.",
+        "A mais ousada: deixar o assessor começar por uma **lista de fundos**, e não pelo cliente. Não existia nada parecido no Connect."
       ],
       "cards": {
         "kicker": "Quatro oportunidades",
@@ -151,35 +151,35 @@
         "items": [
           {
             "title": "Começar pela lista de fundos",
-            "body": "Começar pelos planos disponíveis, não pelo cliente. O ganho: busca mais rápida e espaço para crescer. O risco: não existia nada parecido no Connect."
+            "body": "Começar pelos planos disponíveis, e não pelo cliente. O ganho: busca mais rápida e espaço para crescer. O risco: era tudo novo para quem vinha do Connect."
           },
           {
             "title": "Manter a busca por cliente",
-            "body": "Para planos existentes e tudo ligado a um cliente, manter o caminho pelo cliente que os assessores já conheciam."
+            "body": "Para planos que já existem e tudo que é do cliente, manter o caminho que os assessores já conheciam."
           },
           {
             "title": "Usar as palavras dos assessores",
-            "body": "Descobrir quais termos os assessores realmente usam para cada tipo de portabilidade e nomear as coisas assim."
+            "body": "Descobrir que nomes os assessores realmente usam para cada portabilidade e chamar as coisas assim."
           },
           {
             "title": "Ensinar dentro do fluxo",
-            "body": "Trazer regras das seguradoras, tabelas de tributação e detalhes dos planos para dentro da jornada, em vez de empilhar avisos."
+            "body": "Trazer as regras das seguradoras, a tributação e os detalhes dos planos para dentro da jornada, em vez de encher a tela de avisos."
           }
         ]
       }
     },
     {
       "kicker": "Pesquisa",
-      "heading": "Falando como o assessor",
+      "heading": "Falando a língua do assessor",
       "lines": [
-        "O Connect chamava a mesma coisa por nomes diferentes, e os assessores nem sempre sabiam qual era qual.",
-        "Então testamos as palavras também, como parte da pesquisa com assessores.",
-        "No HUB, cada opção também tem uma descrição de uma linha, para que o nome não precise explicar tudo sozinho."
+        "O Connect dava nomes diferentes para a mesma coisa, e os assessores nem sempre sabiam qual era qual.",
+        "Então testamos os nomes também, como parte da pesquisa.",
+        "No HUB, cada opção ganhou também uma descrição curta, para o nome não precisar explicar tudo sozinho."
       ],
       "poll": {
         "kicker": "Sua vez",
         "title": "Como você chamaria?",
-        "question": "Um assessor quer mover o dinheiro de um cliente de um plano de previdência da XP para outro. Que nome ele procuraria?",
+        "question": "Um assessor quer passar o dinheiro de um cliente de um plano de previdência da XP para outro. Que nome ele procuraria?",
         "options": [
           {
             "label": "Portabilidade Interna"
@@ -192,7 +192,7 @@
           }
         ],
         "answer": 2,
-        "reveal": "A maioria dos assessores conhecia a portabilidade interna como “Intracorretora”, o termo que usavam havia anos.",
+        "reveal": "A maioria conhecia a portabilidade interna como “Intracorretora”, o nome que eles usavam há anos.",
         "prompt": "Escolha uma para ver o que os assessores disseram.",
         "answerLabel": "Escolha dos assessores"
       },
@@ -202,7 +202,7 @@
       "kicker": "Pesquisa",
       "heading": "Testando com assessores",
       "lines": [
-        "Validamos o protótipo refinado com assessores de vários níveis, em duas etapas.",
+        "Validamos o protótipo com assessores de vários níveis, em duas etapas.",
         "**Teste de conceito:** 5 entrevistas semiestruturadas sobre o fluxo, os termos e a clareza dos primeiros passos.",
         "**Teste de usabilidade:** um Maze enviado a cerca de 430 assessores. 46 concluíram, com três tarefas: iniciar uma portabilidade, escolher o plano de origem e finalizar o fluxo.",
         "Medimos sucesso, abandono e satisfação em cada tarefa (ASQ)."
@@ -225,16 +225,16 @@
             "display": "90%"
           }
         ],
-        "note": "Mais 5 entrevistas em profundidade com assessores de diferentes níveis de experiência."
+        "note": "E mais 5 entrevistas em profundidade com assessores de vários níveis de experiência."
       }
     },
     {
       "kicker": "Pesquisa",
       "heading": "Hábito ou problema de usabilidade?",
       "lines": [
-        "A maior parte do fluxo passou, com pequenos ajustes. Uma parte dividiu opiniões: começar um novo plano pela **lista de fundos**.",
-        "Os assessores estavam acostumados a começar pelo plano de origem, como no Connect, e um deles disse no Maze que isso parecia mais lógico. Numa entrevista, outro viu valor na lista de fundos, mas estranhou no começo, por hábito.",
-        "Mesmo assim, o sucesso nas tarefas foi de 90%. Era um problema de usabilidade ou anos de Connect? Com 46 participantes, não dava para ter certeza."
+        "Quase todo o fluxo passou, só com pequenos ajustes. Uma parte dividiu opiniões: começar um novo plano pela **lista de fundos**.",
+        "Os assessores estavam acostumados a começar pelo plano de origem, como no Connect, e um deles comentou no Maze que isso parecia mais lógico. Numa entrevista, outro gostou da lista de fundos, mas estranhou no começo, por costume.",
+        "Mesmo assim, 90% concluíram as tarefas. Era problema de usabilidade ou só costume de anos de Connect? Com 46 pessoas, não dava para ter certeza."
       ],
       "compare": {
         "kicker": "Duas entradas",
@@ -246,14 +246,14 @@
             "images": [
               "hub-funds"
             ],
-            "note": "Novo: navegar pelos planos disponíveis, compará-los e iniciar um novo investimento ou uma portabilidade."
+            "note": "Novo: ver os planos disponíveis, comparar e começar um novo investimento ou uma portabilidade."
           },
           {
             "label": "Começar por um cliente",
             "images": [
               "hub-clients"
             ],
-            "note": "Conhecido: achar o cliente, ver os planos dele e agir sobre eles."
+            "note": "O de sempre: achar o cliente, ver os planos dele e seguir dali."
           }
         ]
       },
@@ -263,9 +263,9 @@
       "kicker": "Resultado",
       "heading": "Deixando o piloto decidir",
       "lines": [
-        "O roadmap precisava andar, então, em vez de segurar o lançamento, colocamos a resposta dentro dele.",
-        "Os quatro escritórios que mais fazem portabilidades usaram o novo fluxo de verdade, com encontros semanais para apresentar, treinar os assessores e coletar feedback. Os assessores foram divididos em grupos Beta e não Beta, e o feedback chegava pelo Medallia.",
-        "A resposta: a lista de fundos foi validada. Os assessores se acostumaram e concordaram que fazia sentido para o produto."
+        "O roadmap não podia parar. Então, em vez de segurar o lançamento, a gente usou o próprio lançamento para responder.",
+        "Os quatro escritórios que mais fazem portabilidade passaram a usar o fluxo novo de verdade, com encontros semanais para apresentar, treinar e ouvir os assessores. Eles foram divididos entre Beta e não Beta, e o feedback chegava pelo Medallia.",
+        "A resposta: a lista de fundos foi validada. Os assessores se acostumaram e concordaram que fazia sentido."
       ],
       "timeline": {
         "kicker": "Lançamento",
@@ -294,11 +294,11 @@
     },
     {
       "kicker": "Resultado",
-      "heading": "Uma mudança, um cômodo de cada vez",
+      "heading": "Uma mudança de casa, um cômodo por vez",
       "lines": [
-        "Começamos em outubro de 2021. Em abril de 2022, **92%** das funcionalidades de previdência já estavam no HUB, e o número de escritórios usando só crescia.",
-        "O Aporte Inicial reaproveitou a mesma navegação da portabilidade. Testado com 150 assessores, chegou a **80%** de sucesso nas tarefas.",
-        "O feedback elogiou a rapidez, a facilidade de uso e a clareza da navegação."
+        "Começamos em outubro de 2021. Em abril de 2022, **92%** das funcionalidades de previdência já estavam no HUB, e cada vez mais escritórios usavam.",
+        "O Aporte Inicial aproveitou a mesma navegação da portabilidade. No teste com 150 assessores, **80%** concluíram as tarefas.",
+        "Os elogios foram para a rapidez, a facilidade de uso e a navegação clara."
       ],
       "migration": {
         "kicker": "Connect → HUB",
@@ -385,7 +385,7 @@
         "title": "O resultado final",
         "device": "desktop",
         "intro": [
-          "A previdência agora fica onde os assessores já trabalham: uma lista de fundos para começar, posições dos clientes para agir e passos guiados em cada operação."
+          "Agora a previdência está onde os assessores já trabalham: uma lista de fundos para começar, as posições dos clientes à mão e um passo a passo em cada operação."
         ],
         "screens": [
           {

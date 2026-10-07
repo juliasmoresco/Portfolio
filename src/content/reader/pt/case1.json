@@ -1,6 +1,6 @@
 {
   "skin": "book",
-  "title": "Melhorando a experiência de fidelidade no restaurante",
+  "title": "Fidelidade no restaurante: do cupom ao resgate",
   "tag": "Case · Fast food",
   "year": "2024",
   "role": "Design de Produto, Pesquisa com Usuários",
@@ -8,12 +8,12 @@
   "pages": [
     {
       "kicker": "Visão geral",
-      "heading": "Os clientes querem resgatar. Só não sabem como.",
+      "heading": "As pessoas querem usar o cupom. Só não sabem como.",
       "lines": [
-        "Muitos clientes adicionam uma oferta de fidelidade e nunca a usam no restaurante. Eles não duvidam da oferta. Algo quebra nos últimos passos, e minha missão era descobrir o quê.",
+        "Muita gente adicionava uma oferta no app e nunca usava no restaurante. O problema não era a oferta: alguma coisa dava errado nos últimos passos, e minha missão era descobrir o quê.",
         "**Cliente:** Restaurant Brands International (RBI) – Burger King (CH, DE, UK, NZ)",
         "**Meu papel:** Product Designer Sênior",
-        "**Outras participantes:** Valentina Lopes (Product Manager)",
+        "**Com:** Valentina Lopes (Product Manager)",
         "**Plataforma:** app do BK + totem + drive-thru",
         "**Período:** 4º trimestre de 2024"
       ],
@@ -23,15 +23,15 @@
     },
     {
       "kicker": "Visão geral",
-      "heading": "O problema: ofertas adicionadas, ofertas não resgatadas",
+      "heading": "O problema: muita oferta adicionada, pouca resgatada",
       "lines": [
-        "O app de fidelidade do Burger King funciona na Suíça, Alemanha, Reino Unido e Nova Zelândia, com resgate no totem, no balcão ou no drive-thru. Depois do lançamento na loja, os mercados relataram atrito: muitos adicionavam uma oferta, bem menos concluíam o resgate.",
-        "Os dados mostravam onde as pessoas desistiam. Não diziam por quê.",
-        "Com a Valentina Lopes, nossa PM, meu objetivo era entender o que atrapalhava e desenhar um resgate mais consistente."
+        "O app de fidelidade do Burger King roda na Suíça, Alemanha, Reino Unido e Nova Zelândia, e o resgate pode ser no totem, no balcão ou no drive-thru. Depois que a fidelidade chegou às lojas, os países começaram a reclamar: muita gente adicionava a oferta, mas pouca gente resgatava.",
+        "Os dados mostravam onde as pessoas desistiam, mas não o porquê.",
+        "Junto com a Valentina Lopes, nossa PM, eu precisava entender o que travava e criar um resgate mais simples."
       ],
       "chart": {
         "kicker": "O problema",
-        "title": "Os clientes começavam pedindo pelo app e acabavam resgatando no restaurante",
+        "title": "As pessoas começavam pedindo pelo app e acabavam resgatando no restaurante",
         "color": "#d62300",
         "groups": [
           {
@@ -76,12 +76,12 @@
     },
     {
       "kicker": "Processo",
-      "heading": "A abordagem: ir aonde tudo acontece",
+      "heading": "O caminho: ir onde tudo acontece",
       "lines": [
-        "Começamos pelo computador, com avaliações do app, análise de funil, pesquisas anteriores e benchmarks de concorrentes. Depois fomos aos restaurantes.",
+        "Começamos com pesquisa de mesa: avaliações do app, análise de funil, pesquisas anteriores e benchmark de concorrentes. Depois, fomos para os restaurantes.",
         "- **Observação em campo:** quatro restaurantes (CH e DE), com pedidos no totem, no drive-thru e no caixa.",
         "- **Entrevistas:** 23 clientes e 3 atendentes de caixa.",
-        "- **Questionários:** após a visita, sobre expectativas e o hábito de escanear."
+        "- **Questionários:** depois da visita, sobre expectativas e o hábito de escanear o código."
       ],
       "polaroids": {
         "note": "Visitas de campo · Suíça e Alemanha",
@@ -117,27 +117,27 @@
       "kicker": "Processo",
       "heading": "No restaurante",
       "lines": [
-        "Os clientes tinham dificuldade para conectar o celular ao totem. Procuravam o código de fidelidade pelo app, e alguns nem entendiam por que precisavam de um código.",
-        "No balcão, os atendentes viviam intervindo para resolver na mão.",
-        "Tudo o que ouvimos e vimos se resumia a três problemas."
+        "As pessoas tinham dificuldade para conectar o celular ao totem. Ficavam caçando o código de fidelidade no app, e algumas nem entendiam por que precisavam de um código.",
+        "No balcão, os atendentes viviam tendo que resolver na mão.",
+        "Tudo o que vimos e ouvimos se resumia a três problemas."
       ],
       "cards": {
         "kicker": "Três problemas",
         "title": "O que atrapalhava",
         "items": [
           {
-            "title": "Os clientes não achavam o código.",
+            "title": "As pessoas não achavam o código.",
             "body": "Ele ficava numa aba ou atrás de um botão flutuante.",
             "quote": "Não acho meu código",
             "source": "Avaliações na loja de apps"
           },
           {
             "title": "A pré-seleção confundia.",
-            "body": "Muita gente não sabia que dava para pré-selecionar várias ofertas, e alguns achavam que adicionar um segundo cupom cancelava o primeiro, porque o código mudava."
+            "body": "Muita gente não sabia que dava para escolher várias ofertas antes, e alguns achavam que adicionar um segundo cupom cancelava o primeiro, porque o código mudava."
           },
           {
             "title": "Botões e textos não eram claros.",
-            "body": "“Add to Mobile Order” e “Redeem in Restaurant” eram parecidos demais, e as instruções pareciam escritas para a empresa, não para o cliente."
+            "body": "“Add to Mobile Order” e “Redeem in Restaurant” eram parecidos demais, e as instruções pareciam escritas para a empresa, não para quem estava na fila."
           }
         ]
       },
@@ -147,8 +147,8 @@
       "kicker": "Processo",
       "heading": "Três apostas",
       "lines": [
-        "Cada problema virou um teste, com a meta de aumentar os resgates em mais de 5%, com base nos dados de funil de DE, CH, UK e NZ.",
-        "Como dava para controlar qual variante cada restaurante recebia, tiramos a versão padrão e colocamos as variantes para competir entre si."
+        "Cada problema virou um teste, com a meta de aumentar os resgates em mais de 5%, a partir dos dados de funil da Alemanha, Suíça, Reino Unido e Nova Zelândia.",
+        "Como dava para escolher qual versão cada restaurante recebia, tiramos a versão padrão e colocamos as variantes para competir entre si."
       ],
       "compare": {
         "kicker": "Aposta 1",
@@ -159,7 +159,7 @@
               "case1-13",
               "case1-20"
             ],
-            "note": "Um botão de QR flutuando sobre o app, que abria “Your Code”: o código, com o pedido no restaurante logo abaixo."
+            "note": "Um botão de QR flutuando sobre o app, que abria “Your Code”: o código e, logo abaixo, o pedido no restaurante."
           },
           {
             "label": "B · Barra superior",
@@ -167,7 +167,7 @@
               "case1-14",
               "case1-21"
             ],
-            "note": "Um ícone de QR na barra de navegação superior, que abria uma folha com o código. Teve um desempenho melhor.",
+            "note": "Um ícone de QR na barra de cima, que abria o código numa tela por cima. Essa versão foi melhor.",
             "winner": true
           }
         ],
@@ -177,14 +177,14 @@
     },
     {
       "kicker": "Processo",
-      "heading": "Aposta 2: melhorar a pré-seleção ou tirá-la?",
+      "heading": "Aposta 2: melhorar a pré-seleção ou acabar com ela?",
       "lines": [
-        "O **Experimento 2** manteve a pré-seleção e adicionou um feedback claro ao escolher várias ofertas: estados de confirmação e um resumo mais simples. O **Experimento 2.2** a removeu, com uma oferta por leitura e sem carrinho pré-selecionado. Os dois também deixaram o código de fidelidade mais fácil de achar.",
-        "Os resultados não foram conclusivos: nenhuma versão venceu a outra com clareza. As duas melhoraram o que existia, mas a diferença entre elas não foi grande o bastante para apontar uma vencedora."
+        "O **Experimento 2** manteve a pré-seleção e deixou claro o que acontecia ao escolher várias ofertas: confirmações e um resumo mais simples. O **Experimento 2.2** acabou com ela: uma oferta por vez, sem carrinho. Os dois também deixaram o código mais fácil de achar.",
+        "O resultado não foi conclusivo. As duas versões melhoraram o que existia, mas a diferença entre elas foi pequena demais para apontar uma vencedora."
       ],
       "compare": {
         "kicker": "Aposta 2",
-        "title": "Melhorar a pré-seleção ou tirá-la?",
+        "title": "Melhorar a pré-seleção ou acabar com ela?",
         "variants": [
           {
             "label": "Experimento 2 · Melhorar",
@@ -192,7 +192,7 @@
               "case1-22",
               "case1-23"
             ],
-            "note": "A pré-seleção fica, com feedback claro: um contador no Scan e um resumo simples antes de escanear e resgatar."
+            "note": "A pré-seleção continua, mas fica clara: um contador no Scan e um resumo simples antes de escanear e resgatar."
           },
           {
             "label": "Experimento 2.2 · Remover",
@@ -200,7 +200,7 @@
               "case1-24",
               "case1-25"
             ],
-            "note": "Sem carrinho pré-selecionado: uma oferta por leitura, direto para o código."
+            "note": "Sem carrinho: uma oferta por vez, direto para o código."
           }
         ]
       },
@@ -213,14 +213,14 @@
       "compare": {
         "kicker": "Aposta 3",
         "title": "Botões mais claros",
-        "description": "Testamos cinco variações de texto para diferenciar “Add to Mobile Order” de “Use in Restaurant” e refinamos a hierarquia dos botões e os ícones nas páginas de ofertas e recompensas.",
+        "description": "Testamos cinco textos diferentes para separar bem “Add to Mobile Order” de “Use in Restaurant”, e ajustamos a hierarquia dos botões e os ícones nas páginas de ofertas e recompensas.",
         "variants": [
           {
             "label": "Controle",
             "images": [
               "case1-16"
             ],
-            "note": "“Mobile Order” e “Redeem In-Store”: duas ações parecidas demais."
+            "note": "“Mobile Order” e “Redeem In-Store”: duas ações quase iguais."
           },
           {
             "label": "Variante vencedora",
@@ -235,14 +235,14 @@
       "right": {
         "stats": {
           "kicker": "Aposta 3 · Resultados",
-          "title": "O que os botões mais claros mudaram",
+          "title": "O que mudou com botões mais claros",
           "items": [
             {
               "value": 2.5,
               "signed": true,
               "decimals": 1,
               "unit": "pts",
-              "label": "de aumento na conversão, de oferta adicionada a resgatada"
+              "label": "a mais na conversão, de oferta adicionada para resgatada"
             },
             {
               "value": -7.3,
@@ -252,7 +252,7 @@
             },
             {
               "display": "Menos",
-              "label": "intervenções da equipe, já que os clientes conseguiam concluir a jornada sozinhos"
+              "label": "intervenções da equipe, porque as pessoas conseguiam resgatar sozinhas"
             }
           ]
         }
@@ -266,8 +266,8 @@
         "kicker": "Resultado · A decisão",
         "title": "O resultado final",
         "intro": [
-          "A barra de navegação superior continuou com desempenho melhor que as outras versões, então o time lançou essa opção e refinou a interface em volta dela: uma página My Code mais clara e os novos botões da Aposta 3.",
-          "Ela foi lançada em todos os mercados e hoje faz parte dos Guest UI/UX Standards usados nas marcas da RBI."
+          "O código na barra de cima continuou ganhando das outras versões, então foi essa que o time lançou, com a interface ajustada em volta: uma página My Code mais clara e os novos botões da Aposta 3.",
+          "Ela foi para todos os países e hoje faz parte dos Guest UI/UX Standards, o padrão usado nas marcas da RBI."
         ],
         "screens": [
           {

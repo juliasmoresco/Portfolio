@@ -1,6 +1,6 @@
 {
   "skin": "phone",
-  "title": "Diga oi",
+  "title": "Vamos conversar?",
   "kind": "Contato",
   "links": [
     {
@@ -20,32 +20,32 @@
     {
       "digit": "1",
       "link": "LinkedIn",
-      "text": "O LinkedIn atendeu. Vamos nos conectar!"
+      "text": "Alô, LinkedIn! Bora se conectar?"
     },
     {
       "digit": "2",
       "link": "Email",
-      "text": "Direto na minha caixa de entrada. Leio todos."
+      "text": "Cai direto no meu email. Eu leio todos."
     },
     {
       "digit": "3",
       "link": "ADPList",
-      "text": "A linha da mentoria. Marque uma sessão e vamos falar de carreira."
+      "text": "Linha da mentoria. Marca um horário e a gente conversa sobre carreira."
     },
     {
       "digit": "0",
-      "text": "Telefonista falando. Bom, é o Zuko. Miau. Tente 1, 2 ou 3."
+      "text": "Alô? Quem atende é o Zuko. Miau. Tenta o 1, o 2 ou o 3."
     }
   ],
-  "wrongNumber": "Ninguém atende no {digit}. Tente 1, 2 ou 3.",
+  "wrongNumber": "O {digit} não atende. Tenta o 1, o 2 ou o 3.",
   "pages": [
     {
       "kicker": "Contato",
       "lines": [
-        "Vamos conversar sobre design de produto, crescimento de carreira ou um projeto que você tenha em mente.",
+        "Bora conversar sobre design de produto, carreira ou aquele projeto que você tem em mente?",
         "Email: juliasmoresco@gmail.com",
         "Moro em: Porto Alegre, Brasil",
-        "Mentoria: oriento profissionais de UX e design de produto em sessões semanais focadas em carreira. Para participar, marque um horário abaixo."
+        "Mentoria: faço sessões semanais com profissionais de UX e design de produto, com foco em carreira. Quer participar? Marca um horário aqui embaixo."
       ]
     }
   ]

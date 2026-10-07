@@ -18,13 +18,13 @@ const HOME = {
   },
   pt: {
     title: "Bem-vindo(a) ao meu escritório",
-    lede: "Clique por aí e veja o que encontra — ou use o menu para um caminho mais rápido.",
-    hintTouch: "Arraste, aproxime com dois dedos e toque para ver o que encontra — ou use o menu para um caminho mais rápido.",
+    lede: "Clique nos objetos e descubra o que cada um guarda. Com pressa? Use o menu.",
+    hintTouch: "Toque nos objetos e descubra o que cada um guarda. Arraste ou use dois dedos para dar zoom. Com pressa? Use o menu.",
     discovered: (n: number, total: number) => `${n} de ${total} descobertos`,
     found: (n: number, total: number) => `${n} de ${total} encontrados`,
     hints: "Dicas",
-    lamp: "Luminária de lua — mudar a luz",
-    daylight: { afternoon: "tarde", "golden hour": "fim de tarde", overcast: "nublado", "evening lamp": "noite, luminária acesa" } as Record<Daylight, string>,
+    lamp: "Luminária de lua — troca a luz",
+    daylight: { afternoon: "tarde", "golden hour": "fim de tarde", overcast: "dia nublado", "evening lamp": "noite" } as Record<Daylight, string>,
     things: "Coisas no escritório",
   },
 } satisfies Record<Lang, unknown>;

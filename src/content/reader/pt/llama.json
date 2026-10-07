@@ -2,41 +2,41 @@
   "skin": "llama",
   "title": "Cofrinho de lhama",
   "kind": "Objeto",
-  "hotspotLabel": "Alimente a lhama",
+  "hotspotLabel": "Dá uma moedinha pra lhama",
   "milestones": [
     {
       "at": 10,
-      "text": "Já dá uma passagem de ônibus. Ela está radiante."
+      "text": "Já dá uma passagem de ônibus. Ela tá feliz da vida."
     },
     {
       "at": 25,
-      "text": "Dá para um café em Roma."
+      "text": "Já dá um café em Roma."
     },
     {
       "at": 50,
-      "text": "Ela está juntando para uma viagem!"
+      "text": "Ela tá juntando pra viajar!"
     },
     {
       "at": 100,
-      "text": "Passagem de avião? Quase."
+      "text": "Passagem de avião? Quase lá."
     },
     {
       "at": 250,
-      "text": "Ela está planejando uma volta ao mundo."
+      "text": "Agora ela já sonha com uma volta ao mundo."
     },
     {
       "at": 500,
-      "text": "Sinceramente, ela já está mais rica que eu."
+      "text": "Sinceramente, ela já tem mais dinheiro que eu."
     },
     {
       "at": 1000,
-      "text": "Uma lhama de posses. Obrigada, mecenas."
+      "text": "Uma lhama de respeito. Obrigada pelo patrocínio!"
     }
   ],
   "pages": [
     {
       "lines": [
-        "Toque na lhama para colocar uma moeda. Nenhum dinheiro de verdade envolvido — ela só é uma boa ouvinte."
+        "Toque na lhama para dar uma moeda. Não é dinheiro de verdade, ela só gosta da companhia."
       ]
     }
   ]
