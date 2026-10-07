@@ -27,7 +27,7 @@
       "heading": "Como tudo começou",
       "lines": [
         "Sempre gostei de criar coisas no computador, mas o design virou caminho quando comecei a estudar Design Visual na UFRGS. Em paralelo, trabalhava como freelancer de branding.",
-        "Meu primeiro passo na tecnologia foi no núcleo de educação e tecnologia da UFRGS, num jogo de RPG que ensinava crianças como é viver sendo uma pessoa idosa. Depois entrei como estagiária na Kobe Apps, uma software house, e foi lá que me apaixonei por design de produto."
+        "Meu primeiro passo na tecnologia foi um estágio no NUTED, o núcleo de tecnologia digital aplicada à educação da UFRGS, criando um jogo de RPG que ensinava crianças como é viver sendo uma pessoa idosa. Depois entrei como estagiária na Kobe Apps, uma software house, e foi lá que me apaixonei por design de produto."
       ]
     },
     {
@@ -48,6 +48,12 @@
         "kicker": "O caminho até aqui",
         "title": "Onde trabalhei",
         "stops": [
+          {
+            "year": "2017",
+            "name": "NUTED · UFRGS",
+            "role": "Estagiária de game e visual design",
+            "note": "Tecnologia educacional"
+          },
           {
             "year": "2018",
             "name": "Kobe Apps",
