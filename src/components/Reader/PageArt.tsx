@@ -142,7 +142,7 @@ export function Compare({ compare }: { compare: PageCompare }) {
       ) : (
         <div key={at} className={styles.compareScreens} data-count={urls.length}>
           {urls.map((src, i) => (
-            <button key={src} type="button" className={styles.comparePhone} aria-label={`${v.label}, screen ${i + 1} (enlarge)`} onClick={() => enlarge({ images: [src], alt: v.label, fit: true })}>
+            <button key={src} type="button" className={styles.comparePhone} aria-label={`${v.label}, ${ui.screenN(i + 1)} (${ui.enlarge})`} onClick={() => enlarge({ images: [src], alt: v.label, fit: true })}>
               <img src={src} alt="" draggable={false} />
             </button>
           ))}
@@ -167,6 +167,7 @@ export function Showcase({ showcase, intro }: { showcase: PageShowcase; intro?: 
 }
 
 function ShowcaseFan({ showcase, intro }: { showcase: PageShowcase; intro?: ReactNode }) {
+  const ui = useUi();
   const enlarge = useContext(ZoomContext);
   const screens = showcase.screens.filter((x) => imageUrls[x.image]);
   const mid = (screens.length - 1) / 2;
@@ -182,7 +183,7 @@ function ShowcaseFan({ showcase, intro }: { showcase: PageShowcase; intro?: Reac
           const d = i - mid;
           return (
             <li key={x.image} className={styles.showcaseItem} style={{ "--d": d, "--i": i } as CSSProperties}>
-              <button type="button" className={styles.showcasePhone} aria-label={`${x.label} (enlarge)`} onClick={() => enlarge({ images: [imageUrls[x.image]], alt: x.label, fit: true })}>
+              <button type="button" className={styles.showcasePhone} aria-label={`${x.label} (${ui.enlarge})`} onClick={() => enlarge({ images: [imageUrls[x.image]], alt: x.label, fit: true })}>
                 <img src={imageUrls[x.image]} alt="" draggable={false} />
               </button>
               <span className={styles.showcaseLabel}>{x.label}</span>
@@ -739,7 +740,7 @@ export function Journey({ journey }: { journey: PageJourney }) {
             className={styles.journeyFace}
             data-on={p.si === at || undefined}
             style={{ left: `${p.x}%`, top: `${p.y}%`, "--i": i } as CSSProperties}
-            aria-label={`${stages[p.si].name}: mood ${p.m} of 5`}
+            aria-label={`${stages[p.si].name}: ${ui.mood(p.m)}`}
             onClick={() => setAt(p.si)}
           >
             {MOOD_FACE[Math.round(p.m)]}
@@ -755,7 +756,7 @@ export function Journey({ journey }: { journey: PageJourney }) {
       </div>
       <div key={`${person}-${at}`} className={styles.journeyDetail} role="tabpanel">
         <p>
-          <strong>What {who} does. </strong>
+          <strong>{ui.whatTheyDo(who)}</strong>
           {st.doing}
         </p>
         <p>

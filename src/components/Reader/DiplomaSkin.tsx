@@ -59,7 +59,7 @@ export function DiplomaSkin({ item }: { item: ReaderItem }) {
           <button
             type="button"
             className={styles.diplomaPaper}
-            aria-label={`${d.degree}, ${d.school} (enlarge)`}
+            aria-label={`${d.degree}, ${d.school} (${ui.enlarge})`}
             onClick={() => src && enlarge({ images: [src], alt: `${d.degree}, ${d.school}`, fit: true })}
           >
             {src && <img src={src} alt="" draggable={false} />}

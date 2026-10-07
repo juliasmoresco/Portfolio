@@ -82,7 +82,7 @@ export function NotesSkin({ item }: { item: ReaderItem }) {
         className={styles.noteDeck}
         role="group"
         aria-roledescription="deck of notes"
-        aria-label={`Note ${at + 1} of ${n}`}
+        aria-label={ui.noteOf(at + 1, n)}
         tabIndex={0}
         onClick={() => go(1)}
         onKeyDown={(e) => {

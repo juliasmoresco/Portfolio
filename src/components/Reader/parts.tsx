@@ -18,6 +18,7 @@ const TALL = 1.8;
  * swatch until artwork exists.
  */
 export function Plate({ images = [], alt = "" }: { images?: string[]; alt?: string }) {
+  const ui = useUi();
   const [tall, setTall] = useState(false);
   const enlarge = useContext(ZoomContext);
   if (images.length === 0) {
@@ -42,7 +43,7 @@ export function Plate({ images = [], alt = "" }: { images?: string[]; alt?: stri
           />
         ))}
       </div>
-      <button type="button" className={styles.zoomBtn} aria-label={images.length > 1 ? "Enlarge images" : "Enlarge image"} onClick={() => enlarge({ images, alt })}>
+      <button type="button" className={styles.zoomBtn} aria-label={ui.enlargeImages(images.length)} onClick={() => enlarge({ images, alt })}>
         <svg viewBox="0 0 16 16" width="100%" height="100%" aria-hidden="true">
           <path d="M9.5 2H14v4.5M6.5 14H2V9.5M14 2 9.2 6.8M2 14l4.8-4.8" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -87,6 +88,7 @@ function BarChart({ chart }: { chart: PageChart }) {
  * lifts it to the top; clicking (or Enter) opens it large in the Reader's lightbox.
  */
 function Polaroids({ set }: { set: PagePolaroids }) {
+  const ui = useUi();
   const enlarge = useContext(ZoomContext);
   const photos = set.photos.filter((p) => imageUrls[p.image]);
   return (
@@ -95,7 +97,7 @@ function Polaroids({ set }: { set: PagePolaroids }) {
       <ul className={styles.polaroidBoard} data-count={photos.length}>
         {photos.map((p, i) => (
           <li key={p.image} className={styles.polaroidSlot} style={{ "--i": i } as CSSProperties}>
-            <button type="button" className={styles.polaroid} aria-label={`${p.caption || "Photo"} (enlarge)`} onClick={() => enlarge({ images: [imageUrls[p.image]], alt: p.caption || "", fit: true })}>
+            <button type="button" className={styles.polaroid} aria-label={`${p.caption || ui.photo} (${ui.enlarge})`} onClick={() => enlarge({ images: [imageUrls[p.image]], alt: p.caption || "", fit: true })}>
               <img src={imageUrls[p.image]} alt="" loading="lazy" decoding="async" draggable={false} />
               {p.caption && <span className={styles.polaroidCaption}>{p.caption}</span>}
             </button>

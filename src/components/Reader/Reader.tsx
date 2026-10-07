@@ -351,7 +351,7 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
       </ZoomContext.Provider>
 
       {zoom && (
-        <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label={`${zoom.alt || item.title} (enlarged)`} onClick={closeZoom}>
+        <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label={`${zoom.alt || item.title} (${ui.enlarged})`} onClick={closeZoom}>
           <div className={`${styles.lightboxPics} ${zoom.fit ? styles.lightboxFit : zoom.images.length === 1 ? styles.lightboxSingle : ""}`}>
             {zoom.images.map((src) => (
               <img key={src} src={src} alt={zoom.alt} draggable={false} />
@@ -365,7 +365,7 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
 
       {showPager && (
         <p className={styles.srOnly} aria-live="polite">
-          {atEnd ? `Page ${index + 1} of ${count}: the end` : `Page ${index + 1} of ${count}${page.heading ? `: ${page.heading}` : ""}`}
+          {atEnd ? `${ui.pageOf(index + 1, count)}: ${ui.theEndShort}` : `${ui.pageOf(index + 1, count)}${page.heading ? `: ${page.heading}` : ""}`}
         </p>
       )}
     </div>

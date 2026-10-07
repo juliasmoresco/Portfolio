@@ -99,7 +99,7 @@ export function ChatSkin({ item }: { item: ReaderItem }) {
           <button
             type="button"
             className={styles.chatAvatar}
-            aria-label={`${photo.alt} (enlarge)`}
+            aria-label={`${photo.alt} (${ui.enlarge})`}
             title="Proof that I talk with buttons"
             onClick={() => enlarge({ images: [imageUrls[photo.image]], alt: photo.alt, fit: true })}
           >

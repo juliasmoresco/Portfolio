@@ -254,7 +254,7 @@
                 "feeling": "Empolgada porque o app pode ajudar ela a cuidar melhor do dinheiro."
               },
               {
-                "name": "Aprendizado",
+                "name": "Estudo",
                 "moods": [
                   2,
                   4
@@ -263,7 +263,7 @@
                 "feeling": "Alguns conceitos são difíceis, mas o app ajuda ela a seguir em frente."
               },
               {
-                "name": "Aplicação",
+                "name": "Prática",
                 "moods": [
                   5
                 ],
@@ -271,7 +271,7 @@
                 "feeling": "Ganha confiança, e isso faz ela continuar aprendendo."
               },
               {
-                "name": "Acompanhamento",
+                "name": "Rotina",
                 "moods": [
                   2,
                   4
@@ -294,7 +294,7 @@
                 "feeling": "Fica com um pé atrás com a novidade, mas a informação confiável e embasada deixa ele mais tranquilo."
               },
               {
-                "name": "Aprendizado",
+                "name": "Estudo",
                 "moods": [
                   5,
                   5
@@ -303,7 +303,7 @@
                 "feeling": "Se sente seguro nas decisões e gosta de como o app é fácil de usar."
               },
               {
-                "name": "Aplicação",
+                "name": "Prática",
                 "moods": [
                   2,
                   4
@@ -312,7 +312,7 @@
                 "feeling": "Os sobe e desce do mercado incomodam, mas as notícias ajudam ele a decidir e se adaptar."
               },
               {
-                "name": "Acompanhamento",
+                "name": "Rotina",
                 "moods": [
                   5
                 ],
