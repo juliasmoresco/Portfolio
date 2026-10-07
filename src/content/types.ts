@@ -84,6 +84,10 @@ export interface PageChart {
     subtitle?: string;
     bars: { label: string; value: number }[];
   }[];
+  /** The values are rounded or adjusted (confidential data): each shows with "~". */
+  approximate?: boolean;
+  /** Small print under the chart (a confidentiality note, a source). */
+  note?: string;
 }
 
 /** Photos pinned to a book's left page like polaroids, each one opening large when clicked. */
@@ -135,6 +139,8 @@ export interface PageStats {
     display?: string;
     label: string;
   }[];
+  /** Small print under the numbers (a confidentiality note, a source). */
+  note?: string;
 }
 
 /** Numbered cards on a book's left page that open one at a time (problems, findings…). */

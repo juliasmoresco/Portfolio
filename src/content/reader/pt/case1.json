@@ -40,15 +40,15 @@
             "bars": [
               {
                 "label": "Suíça",
-                "value": 73
+                "value": 70
               },
               {
                 "label": "Reino Unido",
-                "value": 28
+                "value": 30
               },
               {
                 "label": "Nova Zelândia",
-                "value": 33
+                "value": 35
               }
             ]
           },
@@ -58,19 +58,21 @@
             "bars": [
               {
                 "label": "Suíça",
-                "value": 49
+                "value": 50
               },
               {
                 "label": "Reino Unido",
-                "value": 19
+                "value": 20
               },
               {
                 "label": "Nova Zelândia",
-                "value": 17
+                "value": 15
               }
             ]
           }
-        ]
+        ],
+        "approximate": true,
+        "note": "Números ajustados por confidencialidade: mostram só o padrão."
       },
       "hideHeading": true
     },
@@ -238,23 +240,21 @@
           "title": "O que mudou com botões mais claros",
           "items": [
             {
-              "value": 2.5,
-              "signed": true,
-              "decimals": 1,
               "unit": "pts",
-              "label": "a mais na conversão, de oferta adicionada para resgatada"
+              "label": "a mais na conversão, de oferta adicionada para resgatada",
+              "display": "~+2"
             },
             {
-              "value": -7.3,
-              "decimals": 1,
               "unit": "pts",
-              "label": "erros de leitura"
+              "label": "erros de leitura",
+              "display": "~−7"
             },
             {
               "display": "Menos",
               "label": "intervenções da equipe, porque as pessoas conseguiam resgatar sozinhas"
             }
-          ]
+          ],
+          "note": "Números ajustados por confidencialidade: mostram só o padrão."
         }
       }
     },
