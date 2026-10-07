@@ -1,3 +1,4 @@
+import { getLang, type Lang } from "../i18n";
 import { HOTSPOT_IDS, isHotspotId, type HotspotId } from "../scene/hotspots";
 import { PANEL_KEYS, type ReaderItem, type ReaderPage } from "./types";
 import { assertReaderItem } from "./validate";
@@ -5,29 +6,42 @@ import { assertReaderItem } from "./validate";
 export type { ReaderItem, ReaderPage, ReaderSkin, ReaderOpening, ReaderLink, SpeedDial, PageChart, PagePolaroids, PageStats, PageCards, PageCompare, PageArt, PageShowcase, PageTimeline, PageHobbies, HobbyIcon, PageGlossary, PagePoll, PageFunnel, PageMigration, PageQuotes, PagePersonas, PageJourney, PagePalette, PageModel, PagePrototype, PanelKey, MenteeNote, ChatAnswer, ChatScript, DiplomaDegree, Course } from "./types";
 
 /**
- * Reader content, one JSON file per entry in ./reader (file name = hotspot id).
- * Every string in those files is placeholder copy to be replaced by the owner.
+ * Reader content, one JSON file per entry in ./reader (file name = hotspot id), in English. ./reader/pt holds the
+ * Portuguese version of whichever entries have one; an entry without it shows in English. The Notion sync only
+ * writes ./reader, so the translations are never overwritten.
  */
 const modules = import.meta.glob<unknown>("./reader/*.json", { eager: true, import: "default" });
+const ptModules = import.meta.glob<unknown>("./reader/pt/*.json", { eager: true, import: "default" });
 
-export const readerContent: Readonly<Record<string, ReaderItem>> = (() => {
+function load(mods: Record<string, unknown>): Record<string, ReaderItem> {
   const out: Record<string, ReaderItem> = {};
-  for (const [path, value] of Object.entries(modules)) {
+  for (const [path, value] of Object.entries(mods)) {
     const id = /\/([^/]+)\.json$/.exec(path)![1];
     assertReaderItem(id, value);
     out[id] = value;
   }
   return out;
-})();
-
-export function getReaderItem(id: string): ReaderItem | undefined {
-  return readerContent[id];
 }
 
-/** What the scene's hover chip and the keyboard list call each hotspot. */
-export const hotspotLabels: Readonly<Record<HotspotId, string>> = Object.fromEntries(
-  HOTSPOT_IDS.map((id) => [id, readerContent[id]?.hotspotLabel ?? readerContent[id]?.title ?? id]),
-) as Record<HotspotId, string>;
+export const readerContent: Readonly<Record<string, ReaderItem>> = load(modules);
+export const readerContentPt: Readonly<Record<string, ReaderItem>> = load(ptModules);
+
+export function getReaderItem(id: string, lang: Lang = getLang()): ReaderItem | undefined {
+  return (lang === "pt" ? readerContentPt[id] : undefined) ?? readerContent[id];
+}
+
+/** What the scene's hover chip and the keyboard list call each hotspot, in a language. */
+export function labelsFor(lang: Lang): Record<HotspotId, string> {
+  return Object.fromEntries(
+    HOTSPOT_IDS.map((id) => {
+      const item = getReaderItem(id, lang);
+      return [id, item?.hotspotLabel ?? item?.title ?? id];
+    }),
+  ) as Record<HotspotId, string>;
+}
+
+/** The English labels (the default). */
+export const hotspotLabels: Readonly<Record<HotspotId, string>> = labelsFor("en");
 
 /** The colour each entry gives its book (`spine` in its JSON), used to tint that hotspot's books in the scene. */
 export const hotspotSpines: Readonly<Record<string, string>> = Object.fromEntries(

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getReaderItem, hotspotArt, boardNotes, hotspotLabels, hotspotSpines } from "../../content";
+import { getReaderItem, hotspotArt, boardNotes, hotspotSpines } from "../../content";
+import { useHomeCopy, useSceneLabels } from "../copy";
 import { HotspotList } from "../../components/HotspotList/HotspotList";
 import { OfficeScene, type OfficeSceneHandle } from "../../components/OfficeScene/OfficeScene";
 import { QuickNav } from "../../components/QuickNav/QuickNav";
@@ -16,6 +17,8 @@ export function HomeMobile() {
   const { openId, found, daylight, closeReader } = useShelfHome();
   // The glow on every object is off until the visitor asks for it with the Hints button.
   const [hints, setHints] = useState(false);
+  const t = useHomeCopy();
+  const labels = useSceneLabels();
 
   // The page is a fixed, non-scrolling surface: no pull-to-refresh or rubber-banding over the scene.
   useEffect(() => {
@@ -43,7 +46,7 @@ export function HomeMobile() {
   return (
     <div className={styles.page}>
       <div className={styles.scene}>
-        <OfficeScene ref={scene} daylight={daylight} walltone="graphite" hints={hints} view="wide" quality="low" parallax="off" tap="direct" touchControls labels={hotspotLabels} spines={hotspotSpines} art={hotspotArt} notes={boardNotes} />
+        <OfficeScene ref={scene} daylight={daylight} walltone="graphite" hints={hints} view="wide" quality="low" parallax="off" tap="direct" touchControls labels={labels} spines={hotspotSpines} art={hotspotArt} notes={boardNotes} />
       </div>
 
       <div className={styles.scrimTop} />
@@ -51,24 +54,22 @@ export function HomeMobile() {
 
       <div className={styles.topBar}>
         <div className={styles.heading}>
-          <div className={styles.title}>Welcome to my office</div>
-          <div className={styles.count}>
-            {found.length} of {HOTSPOT_IDS.length} found
-          </div>
+          <div className={styles.title}>{t.title}</div>
+          <div className={styles.count}>{t.found(found.length, HOTSPOT_IDS.length)}</div>
         </div>
         <div className={styles.actions}>
           <button type="button" className={cx(styles.pill, hints && styles.pillOn)} aria-pressed={hints} onClick={toggleHints}>
-            Hints
+            {t.hints}
           </button>
           <QuickNav onResetView={fit} />
         </div>
       </div>
 
       <div className={styles.bottom}>
-        <p className={styles.hint}>Pinch, drag and tap around to see what you find — or use the menu for a quicker way through.</p>
+        <p className={styles.hint}>{t.hintTouch}</p>
       </div>
 
-      <HotspotList onFocusItem={(id) => scene.current?.highlight(id)} inert={!!openId} />
+      <HotspotList labels={labels} onFocusItem={(id) => scene.current?.highlight(id)} inert={!!openId} />
 
       {openId && getReaderItem(openId) && <Reader key={openId} id={openId} item={getReaderItem(openId)!} onClose={onClose} className={styles.reader} compact />}
     </div>

@@ -1,0 +1,52 @@
+{
+  "skin": "phone",
+  "title": "Vamos conversar?",
+  "kind": "Contato",
+  "links": [
+    {
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/julia-moresco/"
+    },
+    {
+      "label": "Email",
+      "href": "mailto:juliasmoresco@gmail.com"
+    },
+    {
+      "label": "ADPList",
+      "href": "https://adplist.org/mentors/julia-moresco"
+    }
+  ],
+  "speedDial": [
+    {
+      "digit": "1",
+      "link": "LinkedIn",
+      "text": "Alô, LinkedIn! Bora se conectar?"
+    },
+    {
+      "digit": "2",
+      "link": "Email",
+      "text": "Cai direto no meu email. Eu leio todos."
+    },
+    {
+      "digit": "3",
+      "link": "ADPList",
+      "text": "Linha da mentoria. Marca um horário e a gente conversa sobre carreira."
+    },
+    {
+      "digit": "0",
+      "text": "Alô? Quem atende é o Zuko. Miau. Tenta o 1, o 2 ou o 3."
+    }
+  ],
+  "wrongNumber": "O {digit} não atende. Tenta o 1, o 2 ou o 3.",
+  "pages": [
+    {
+      "kicker": "Contato",
+      "lines": [
+        "Bora conversar sobre design de produto, carreira ou aquele projeto que você tem em mente?",
+        "Email: juliasmoresco@gmail.com",
+        "Moro em: Porto Alegre, Brasil",
+        "Mentoria: faço sessões semanais com profissionais de UX e design de produto, com foco em carreira. Quer participar? Marca um horário aqui embaixo."
+      ]
+    }
+  ]
+}

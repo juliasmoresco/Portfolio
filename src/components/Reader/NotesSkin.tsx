@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { ReaderItem } from "../../content";
 import styles from "./Reader.module.css";
+import { useUi } from "./ui";
 
 const LEAVE_MS = 380;
 /** The smallest the quote is set to make a long review fit its note; below that, the quote scrolls instead. */
@@ -12,6 +13,7 @@ const MIN_QUOTE_PX = 13;
  * the way to all the reviews and to booking a session.
  */
 export function NotesSkin({ item }: { item: ReaderItem }) {
+  const ui = useUi();
   const notes = item.notes ?? [];
   const [at, setAt] = useState(0);
   const [leaving, setLeaving] = useState<{ index: number; dir: 1 | -1; key: number } | null>(null);
@@ -62,7 +64,7 @@ export function NotesSkin({ item }: { item: ReaderItem }) {
           <strong>{note.name}</strong>
           {note.role && <span> · {note.role}</span>}
           {(note.source || note.date) && <span className={styles.noteDate}>{[note.source, note.date].filter(Boolean).join(" · ")}</span>}
-          {note.translated && <span className={styles.noteTranslated}>Translated from Portuguese</span>}
+          {note.translated && <span className={styles.noteTranslated}>{ui.translated}</span>}
         </figcaption>
       </figure>
     );
@@ -80,7 +82,7 @@ export function NotesSkin({ item }: { item: ReaderItem }) {
         className={styles.noteDeck}
         role="group"
         aria-roledescription="deck of notes"
-        aria-label={`Note ${at + 1} of ${n}`}
+        aria-label={ui.noteOf(at + 1, n)}
         tabIndex={0}
         onClick={() => go(1)}
         onKeyDown={(e) => {
@@ -107,13 +109,13 @@ export function NotesSkin({ item }: { item: ReaderItem }) {
       </div>
 
       <div className={styles.notesNav}>
-        <button type="button" className={styles.notesArrow} aria-label="Previous note" onClick={() => go(-1)}>
+        <button type="button" className={styles.notesArrow} aria-label={ui.prevNote} onClick={() => go(-1)}>
           ‹
         </button>
         <span className={styles.notesCount}>
           {at + 1} / {n}
         </span>
-        <button type="button" className={styles.notesArrow} aria-label="Next note" onClick={() => go(1)}>
+        <button type="button" className={styles.notesArrow} aria-label={ui.nextNote} onClick={() => go(1)}>
           ›
         </button>
       </div>

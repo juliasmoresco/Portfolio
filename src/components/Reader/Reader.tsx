@@ -19,6 +19,7 @@ import { buildSpreads, roomLeft } from "./spreads";
 import { BookSkin, FolderSkin, FrameSkin } from "./skins";
 import { ZoomContext, type ZoomTarget } from "./zoom";
 import styles from "./Reader.module.css";
+import { useUi } from "./ui";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -69,6 +70,7 @@ interface Props {
  * prototype put it on the shell alone, which left those controls outside an aria-modal dialog.
  */
 export function Reader({ item, id, onClose, className, compact = false }: Props) {
+  const ui = useUi();
   const reduced = usePrefersReducedMotion();
   const skin = item.skin;
   const isBook = skin === "book";
@@ -300,7 +302,7 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
       <ZoomContext.Provider value={enlarge}>
       <div className={styles.stage} inert={!!zoom}>
         {chapters.length > 0 && (
-          <nav className={styles.chapters} aria-label="Chapters" inert={!navVisible}>
+          <nav className={styles.chapters} aria-label={ui.chapters} inert={!navVisible}>
             <div className={styles.chapterTabs}>
               {chapters.map((c, i) => (
                 <button key={c.page} type="button" className={styles.chapterTab} aria-current={i === chapter ? "true" : undefined} onClick={() => openChapter(c.page)}>
@@ -332,38 +334,38 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
         <div className={styles.nav} inert={!navVisible}>
           {showPager && (
             <>
-              <button ref={prevBtn} type="button" className={styles.navBtn} aria-label="Previous page" aria-disabled={index === 0} onClick={() => turn(-1)}>
+              <button ref={prevBtn} type="button" className={styles.navBtn} aria-label={ui.prevPage} aria-disabled={index === 0} onClick={() => turn(-1)}>
                 ‹
               </button>
               <span className={styles.pageLabel}>{pageLabel}</span>
-              <button ref={nextBtn} type="button" className={styles.navBtn} aria-label="Next page" aria-disabled={index === count - 1} onClick={() => turn(1)}>
+              <button ref={nextBtn} type="button" className={styles.navBtn} aria-label={ui.nextPage} aria-disabled={index === count - 1} onClick={() => turn(1)}>
                 ›
               </button>
             </>
           )}
           <button type="button" className={styles.closeBtn} onClick={requestClose}>
-            Close
+            {ui.close}
           </button>
         </div>
       </div>
       </ZoomContext.Provider>
 
       {zoom && (
-        <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label={`${zoom.alt || item.title} (enlarged)`} onClick={closeZoom}>
+        <div className={styles.lightbox} role="dialog" aria-modal="true" aria-label={`${zoom.alt || item.title} (${ui.enlarged})`} onClick={closeZoom}>
           <div className={`${styles.lightboxPics} ${zoom.fit ? styles.lightboxFit : zoom.images.length === 1 ? styles.lightboxSingle : ""}`}>
             {zoom.images.map((src) => (
               <img key={src} src={src} alt={zoom.alt} draggable={false} />
             ))}
           </div>
           <button ref={lightboxClose} type="button" className={styles.lightboxClose} onClick={closeZoom}>
-            Close
+            {ui.close}
           </button>
         </div>
       )}
 
       {showPager && (
         <p className={styles.srOnly} aria-live="polite">
-          {atEnd ? `Page ${index + 1} of ${count}: the end` : `Page ${index + 1} of ${count}${page.heading ? `: ${page.heading}` : ""}`}
+          {atEnd ? `${ui.pageOf(index + 1, count)}: ${ui.theEndShort}` : `${ui.pageOf(index + 1, count)}${page.heading ? `: ${page.heading}` : ""}`}
         </p>
       )}
     </div>

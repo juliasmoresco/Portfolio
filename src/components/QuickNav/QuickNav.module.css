@@ -163,3 +163,51 @@
   text-transform: uppercase;
   color: rgb(var(--light-rgb) / 0.6);
 }
+
+/* Language: EN | PT, at the foot of the menu. */
+.lang {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgb(var(--light-rgb) / 0.14);
+}
+
+.lang .groupLabel {
+  padding: 0 12px;
+}
+
+.langSwitch {
+  display: flex;
+  padding: 3px;
+  border: 1px solid rgb(var(--light-rgb) / 0.22);
+  border-radius: 999px;
+}
+
+.langOption {
+  min-width: 44px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: rgb(var(--light-rgb) / 0.75);
+  font: inherit;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.langOption[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.langOption:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

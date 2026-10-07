@@ -6,7 +6,7 @@
   "chat": {
     "greeting": [
       "Meow! I'm Zuko, and my mom, Júlia, taught me how to talk with buttons.",
-      "I know 6 words today: Play, Treat, Pets, Food, Sachê and Brush.",
+      "I know 6 words today: Play, Treat, Pets, Food, Pouch and Brush.",
       "Don't believe a cat can talk with buttons? Tap my photo.",
       "I know a lot about her and her work. Tap one of my buttons or type a question."
     ],
@@ -472,11 +472,12 @@
           "buttons",
           "meow",
           "pets",
-          "gato"
+          "gato",
+          "pouch"
         ],
         "reply": [
           "Me? I'm Zuko, Júlia's cat and her first intern.",
-          "She taught me to talk with buttons when I was a kitten. I know 6 words: Play, Treat, Pets, Food, Sachê and Brush. Tap my photo if you need proof.",
+          "She taught me to talk with buttons when I was a kitten. I know 6 words: Play, Treat, Pets, Food, Pouch and Brush. Tap my photo if you need proof.",
           "Now I also know everything about her work. Ask away."
         ],
         "next": [

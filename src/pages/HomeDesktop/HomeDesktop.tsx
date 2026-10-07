@@ -1,5 +1,6 @@
 import { useCallback, useRef } from "react";
-import { getReaderItem, hotspotArt, boardNotes, hotspotLabels, hotspotSpines } from "../../content";
+import { getReaderItem, hotspotArt, boardNotes, hotspotSpines } from "../../content";
+import { useHomeCopy, useSceneLabels } from "../copy";
 import { HotspotList } from "../../components/HotspotList/HotspotList";
 import { OfficeScene, type OfficeSceneHandle } from "../../components/OfficeScene/OfficeScene";
 import { QuickNav } from "../../components/QuickNav/QuickNav";
@@ -13,6 +14,8 @@ const cx = (...c: Array<string | false>) => c.filter(Boolean).join(" ");
 export function HomeDesktop() {
   const scene = useRef<OfficeSceneHandle>(null);
   const { chip, openId, found, daylight, toast, closeReader } = useShelfHome();
+  const t = useHomeCopy();
+  const labels = useSceneLabels();
   const readerItem = openId ? getReaderItem(openId) : undefined;
 
   // Drop the emissive tint on close: the pointer may still be over the object, and
@@ -26,7 +29,7 @@ export function HomeDesktop() {
     <div className={styles.page}>
       <div className={styles.stage}>
         <div className={styles.scene}>
-          <OfficeScene ref={scene} daylight={daylight} labels={hotspotLabels} spines={hotspotSpines} art={hotspotArt} notes={boardNotes} />
+          <OfficeScene ref={scene} daylight={daylight} labels={labels} spines={hotspotSpines} art={hotspotArt} notes={boardNotes} />
         </div>
 
         <div className={styles.scrim} />
@@ -34,16 +37,10 @@ export function HomeDesktop() {
         <QuickNav className={styles.quickNav} />
 
         <div className={styles.intro}>
-          <h1 className={styles.title}>
-            Welcome to
-            <br />
-            my office
-          </h1>
-          <p className={styles.lede}>Click around and see what you find — or use the menu for a quicker way through.</p>
+          <h1 className={styles.title}>{t.title}</h1>
+          <p className={styles.lede}>{t.lede}</p>
           <div className={styles.counter}>
-            <span>
-              {found.length} of {HOTSPOT_IDS.length} discovered
-            </span>
+            <span>{t.discovered(found.length, HOTSPOT_IDS.length)}</span>
           </div>
         </div>
 
@@ -56,10 +53,10 @@ export function HomeDesktop() {
         </div>
 
         <div className={cx(styles.toast, toast && styles.toastVisible)} role="status">
-          {daylight}
+          {t.daylight[daylight]}
         </div>
 
-        <HotspotList onFocusItem={(id) => scene.current?.highlight(id)} inert={!!openId} />
+        <HotspotList labels={labels} onFocusItem={(id) => scene.current?.highlight(id)} inert={!!openId} />
 
         {readerItem && <Reader key={openId} id={openId ?? undefined} item={readerItem} onClose={onClose} />}
       </div>

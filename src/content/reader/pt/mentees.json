@@ -1,0 +1,86 @@
+{
+  "skin": "notes",
+  "title": "Palavras gentis",
+  "kind": "Recomendações",
+  "hotspotLabel": "Palavras gentis",
+  "links": [
+    {
+      "label": "Ler todas as avaliações no ADPList",
+      "href": "https://adplist.org/mentors/julia-moresco"
+    },
+    {
+      "label": "Marcar uma sessão",
+      "href": "https://adplist.org/mentors/julia-moresco"
+    }
+  ],
+  "notes": [
+    {
+      "quote": "Já trabalhei com muitas pessoas talentosas, mas a Julia se destaca como a melhor product designer com quem já tive a chance de trabalhar. … A Julia não só elevou o nosso produto: ela elevou o nível de toda a área de tecnologia.",
+      "snippet": "Elevou o nível de toda a área de tecnologia",
+      "name": "Valentina Lopes Costa",
+      "role": "Product Manager na RBI",
+      "source": "LinkedIn",
+      "translated": true
+    },
+    {
+      "quote": "A Júlia é uma designer excepcionalmente talentosa, que entende de usuários, tecnologia e design. A energia e a disposição dela são contagiantes e nos ajudaram a lançar muitos produtos e funcionalidades. … Go Júlia!!",
+      "snippet": "Uma designer excepcionalmente talentosa",
+      "name": "Nicolau Monteiro",
+      "role": "Product Manager",
+      "source": "LinkedIn",
+      "translated": true
+    },
+    {
+      "quote": "A Julia é uma profissional incrível e atenciosa, tive a oportunidade de fazer algumas mentorias com ela, e pra mim, é a melhor mentora da plataforma.",
+      "snippet": "A melhor mentora da plataforma",
+      "name": "Diogo R.",
+      "role": "UX/UI Designer",
+      "date": "abr. 2024"
+    },
+    {
+      "quote": "A Júlia tem um coração enorme. Ela é muito gentil como pessoa, e dá para sentir isso nos conselhos profissionais também. Ela consegue ajudar, apontar o que você precisa melhorar e ensinar lições importantes. Tudo isso com muita empatia e gentileza.",
+      "snippet": "Com muita empatia e gentileza",
+      "name": "Luiza G.",
+      "role": "UI/UX Designer",
+      "date": "ago. 2022",
+      "translated": true
+    },
+    {
+      "quote": "A Julia parece genuinamente preocupada em encontrar a melhor forma de ajudar. No fim da nossa sessão, ela me passou um material personalizado cheio de indicações e dicas, o que superou minhas expectativas.",
+      "snippet": "Um material personalizado cheio de dicas",
+      "name": "Joana G.",
+      "role": "UX/UI Designer",
+      "date": "jul. 2024",
+      "translated": true
+    },
+    {
+      "quote": "Adoro o acompanhamento que a Júlia faz. Ela é muito inteligente, experiente e didática! Fico muito agradecida por ela me ajudar na evolução da minha carreira. Recomendo demais!",
+      "snippet": "Inteligente, experiente e didática",
+      "name": "Jéssica K.",
+      "role": "Junior UX Designer",
+      "date": "ago. 2024"
+    },
+    {
+      "quote": "Acabei de fazer minha primeira sessão com a Julia e já quero a próxima. A Julia foi empática, encorajadora e me deu passos práticos para seguir.",
+      "snippet": "Empática, encorajadora, com passos práticos",
+      "name": "Ariyike A.",
+      "role": "Product Designer",
+      "date": "nov. 2022",
+      "translated": true
+    },
+    {
+      "quote": "A mentoria com a Júlia foi ótima. Me senti super a vontade para tirar as minhas dúvidas e ela me ofereceu diversos materiais que vão me ajudar e muito a melhorar meu portfólio. Ela é super transparente, atenta a detalhes além de demonstrar uma dedicação incrível do início ao fim da sessão, me deixando as portas abertas para retornar futuramente.",
+      "snippet": "Muitos materiais para o portfólio",
+      "name": "Ryan C.",
+      "role": "UX/UI Designer",
+      "date": "out. 2023"
+    }
+  ],
+  "pages": [
+    {
+      "lines": [
+        "De pessoas com quem trabalhei e designers que orientei."
+      ]
+    }
+  ]
+}

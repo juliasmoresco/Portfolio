@@ -1,14 +1,13 @@
-import { hotspotLabels } from "../../content";
 import { emitSelect } from "../../scene/events";
-import { HOTSPOT_IDS, MOON_LAMP_ID, MOON_LAMP_LABEL, type SceneHotspotId } from "../../scene/hotspots";
+import { HOTSPOT_IDS, MOON_LAMP_ID, type SceneHotspotId } from "../../scene/hotspots";
+import { useHomeCopy } from "../../pages/copy";
 import styles from "./HotspotList.module.css";
 
-const ITEMS: Array<{ id: SceneHotspotId; label: string }> = [
-  ...HOTSPOT_IDS.map((id) => ({ id, label: hotspotLabels[id] })),
-  { id: MOON_LAMP_ID, label: MOON_LAMP_LABEL },
-];
+const IDS: SceneHotspotId[] = [...HOTSPOT_IDS, MOON_LAMP_ID];
 
 interface Props {
+  /** What to call each item, in the page's language. */
+  labels: Readonly<Record<string, string>>;
   /** Focus reached (or left, with `null`) an item: the page lights the matching object in 3D. */
   onFocusItem: (id: SceneHotspotId | null) => void;
   /** True while a Reader is open, so Tab can't wander behind the dialog. */
@@ -20,14 +19,15 @@ interface Props {
  * the keyboard and screen-reader route to the same 18 targets. It is invisible to
  * mouse users. Activating an item emits the same `shelf:select` a click would.
  */
-export function HotspotList({ onFocusItem, inert }: Props) {
+export function HotspotList({ labels, onFocusItem, inert }: Props) {
+  const t = useHomeCopy();
   return (
-    <nav className={styles.list} aria-label="Things in the office" inert={inert}>
+    <nav className={styles.list} aria-label={t.things} inert={inert}>
       <ul>
-        {ITEMS.map(({ id, label }) => (
+        {IDS.map((id) => (
           <li key={id}>
             <button type="button" onFocus={() => onFocusItem(id)} onBlur={() => onFocusItem(null)} onClick={() => emitSelect({ id })}>
-              {label}
+              {labels[id] ?? id}
             </button>
           </li>
         ))}

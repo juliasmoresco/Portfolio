@@ -1,0 +1,182 @@
+.scroll {
+  padding-top: var(--status-h);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 20px 24px 24px;
+}
+
+.h1 {
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 600;
+}
+
+.user {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  flex: none;
+  border-radius: 999px;
+  background: var(--g100);
+  color: var(--g800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.userText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.edit {
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1.5px solid var(--g700);
+  color: var(--g700);
+  font-size: 14px;
+  font-weight: 600;
+}
+.edit:hover {
+  background: var(--g50);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.row {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  font-size: 15px;
+  border-bottom: 1px solid var(--n200);
+  transition: background-color 0.15s;
+}
+.row:last-child {
+  border-bottom: 0;
+}
+.row:hover {
+  background: var(--n50);
+}
+.row:active {
+  background: var(--n100);
+}
+.row:focus-visible {
+  box-shadow: inset 0 0 0 3px var(--g200);
+}
+
+.rowLabel {
+  flex: 1;
+}
+
+/* Decorative chevron; the row label carries the meaning. */
+.chev {
+  color: var(--n500);
+}
+
+.test {
+  width: 100%;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.testIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--p100);
+  color: var(--p700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.testTitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.small {
+  font-size: 13px;
+  color: var(--n600);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.logout {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--r700);
+  padding: 0 16px;
+  border-radius: 999px;
+}
+.logout:hover {
+  background: var(--r50);
+}
+
+.restart {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--n600);
+  padding: 0 12px;
+  border-radius: 999px;
+}
+
+.sheetText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sheetActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

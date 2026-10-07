@@ -1,0 +1,336 @@
+{
+  "skin": "book",
+  "title": "Bem-vindo(a) ao meu escritório: a história deste portfólio",
+  "tag": "Case · Este portfólio",
+  "year": "2026",
+  "role": "Conceito, Design, Direção de Arte",
+  "spine": "#E8B931",
+  "accent": {
+    "fill": "#E8B931",
+    "on": "#2E211C",
+    "text": "#2E211C"
+  },
+  "pages": [
+    {
+      "kicker": "Visão geral",
+      "heading": "Um portfólio sem menu",
+      "lines": [
+        "Sempre que alguém vê meu escritório atrás de mim numa call, vem elogio. Ele é cheio de coisas que têm a ver comigo, então levei essas mesmas coisas para o portfólio: é só clicar num objeto para conhecer meu trabalho.",
+        "**Papel:** conceito, design e direção de arte",
+        "**Feito com:** Claude Design (protótipo e objetos 3D) e Claude Code (o site)",
+        "**Stack:** React, TypeScript, three.js",
+        "**Período:** set. – out. 2026"
+      ],
+      "image": "story-cover-pt",
+      "fullPage": true,
+      "pageColor": "#3b3128"
+    },
+    {
+      "kicker": "A ideia",
+      "heading": "Por que um escritório",
+      "lines": [
+        "A maioria dos portfólios é parecida: uma grade de projetos e uma página Sobre. Eu queria um que tivesse a minha cara.",
+        "Então a home é o meu escritório de verdade, com a mesma estante, a planta, o globo, o xadrez, o gato e o telefone rosa. Não tem menu de navegação: você explora, e cada coisa que encontra conta um pedaço da minha história.",
+        "Para quem está com pressa, tem um menu pequeno com tudo."
+      ],
+      "poll": {
+        "kicker": "Sua vez",
+        "title": "Um palpite rápido",
+        "question": "Quantas coisas dá para clicar neste escritório?",
+        "options": [
+          {
+            "label": "9"
+          },
+          {
+            "label": "13"
+          },
+          {
+            "label": "17"
+          }
+        ],
+        "answer": 2,
+        "reveal": "São 17 objetos para descobrir, mais a luminária de lua, que muda a luz. O primeiro protótipo já prometia “0 de 17 descobertos”, e com este livro na estante a conta finalmente fecha.",
+        "prompt": "Escolha uma para ver a resposta.",
+        "answerLabel": "Resposta"
+      },
+      "artRight": true
+    },
+    {
+      "kicker": "O escritório de verdade",
+      "heading": "O de verdade",
+      "lines": [
+        "Tudo o que está ali existe de verdade: a estante amarela, a planta, a luminária de lua, o xadrez, o canudo do meu diploma, o cofrinho de lhama e o pôster do Johnny Cash. E o Zuko, claro.",
+        "Essa era a ideia: o portfólio é o meu escritório, então os detalhes tinham que ser os meus, até a cor das prateleiras."
+      ],
+      "polaroids": {
+        "note": "Meu escritório, na vida real",
+        "photos": [
+          {
+            "image": "story-real-room",
+            "caption": "A parede inteira"
+          },
+          {
+            "image": "story-real-shelf",
+            "caption": "A estante"
+          },
+          {
+            "image": "story-real-wall",
+            "caption": "A parede e a prateleira"
+          },
+          {
+            "image": "story-real-llama",
+            "caption": "O cofrinho de lhama"
+          }
+        ]
+      }
+    },
+    {
+      "kicker": "Processo",
+      "heading": "De um rascunho a um site de verdade",
+      "lines": [
+        "Tudo começou no papel: um rascunho rápido da parede, da prateleira e da estante, com anotações do que cada coisa ia abrir.",
+        "Levei a ideia para o **Claude Design** para prototipar a sala e modelar os objetos em 3D. Depois, passei para o **Claude Code** para construir o site de verdade, com conteúdo, interações e versão para celular."
+      ],
+      "compare": {
+        "kicker": "Três etapas",
+        "title": "Rascunho, protótipo, site",
+        "device": "desktop",
+        "variants": [
+          {
+            "label": "Rascunho",
+            "images": [
+              "story-sketch"
+            ],
+            "note": "Lápis no papel: a frase de boas-vindas, a planta, o tabuleiro, o canudo de formatura e os livros como projetos."
+          },
+          {
+            "label": "Protótipo",
+            "images": [
+              "story-prototype"
+            ],
+            "note": "Claude Design: a sala em 3D e os livros, ainda com textos provisórios."
+          },
+          {
+            "label": "Hoje",
+            "images": [
+              "story-today"
+            ],
+            "note": "Claude Code: cases reais, meus objetos de verdade, o Zuko, o mural de avaliações e um cartão-postal de casa."
+          }
+        ]
+      }
+    },
+    {
+      "kicker": "Processo",
+      "heading": "Do meu escritório para o 3D",
+      "lines": [
+        "Depois do rascunho, criei a sala no **Claude Design**, onde também modelei os principais objetos em 3D, começando pela estante. Arraste para girar.",
+        "Depois fui para o **Claude Code** construir o site de verdade. Conduzi tudo de ponta a ponta: o conceito, o conteúdo, como cada objeto funciona e cada detalhe visual, revisando cada mudança no desktop e no celular."
+      ],
+      "model3d": {
+        "kicker": "Modelo 3D",
+        "title": "A estante",
+        "model": "bookshelf",
+        "note": "Arraste para girar"
+      }
+    },
+    {
+      "kicker": "Os objetos",
+      "heading": "Cada objeto tem uma função",
+      "lines": [
+        "Cada objeto abre algo que combina com ele. O globo gira até os países que já visitei, o telefone liga para os meus contatos e o canudo desenrola o meu diploma de verdade.",
+        "O mural guarda recados de colegas e mentorados, o cartão-postal vira para contar de onde eu sou, e o Zuko, meu gato, responde perguntas sobre o meu trabalho.",
+        "Experimente daqui:"
+      ],
+      "hobbies": {
+        "kicker": "Atalhos",
+        "title": "Abra um",
+        "items": [
+          {
+            "icon": "globe",
+            "label": "Globo",
+            "open": "travels",
+            "openLabel": "Girar"
+          },
+          {
+            "icon": "phone",
+            "label": "Telefone rosa",
+            "open": "phone",
+            "openLabel": "Me ligue"
+          },
+          {
+            "icon": "diploma",
+            "label": "Diploma",
+            "open": "studies",
+            "openLabel": "Desenrolar"
+          },
+          {
+            "icon": "notes",
+            "label": "Mural",
+            "open": "mentees",
+            "openLabel": "Ler bilhetes"
+          },
+          {
+            "icon": "cat",
+            "label": "Zuko",
+            "open": "cat",
+            "openLabel": "Perguntar"
+          },
+          {
+            "icon": "chess",
+            "label": "Xadrez",
+            "open": "chess",
+            "openLabel": "Jogar"
+          },
+          {
+            "icon": "coin",
+            "label": "Cofrinho de lhama",
+            "open": "llama",
+            "openLabel": "Pôr uma moeda"
+          },
+          {
+            "icon": "postcard",
+            "label": "Cartão-postal",
+            "open": "home",
+            "openLabel": "Virar"
+          },
+          {
+            "icon": "resume",
+            "label": "Currículo",
+            "open": "resume",
+            "openLabel": "Ler"
+          }
+        ]
+      },
+      "artRight": true
+    },
+    {
+      "kicker": "Celular",
+      "heading": "A mesma sala, na sua mão",
+      "lines": [
+        "No celular, o escritório inteiro continua cabendo na tela. Dá para arrastar e dar zoom para olhar em volta, e é só tocar num objeto para abrir.",
+        "Revisei como qualquer produto: os objetos pequenos ganharam uma área de toque invisível, todo botão tem pelo menos 44px, nenhum texto é menor que 12px e nada do que abre precisa de rolagem."
+      ],
+      "stats": {
+        "kicker": "Auditoria mobile",
+        "title": "Feito para os polegares",
+        "items": [
+          {
+            "display": "9 → 57",
+            "unit": "px",
+            "label": "o tamanho da lhama para o dedo, com a área de toque"
+          },
+          {
+            "value": 44,
+            "unit": "px",
+            "label": "o menor botão no celular"
+          },
+          {
+            "value": 12,
+            "unit": "px",
+            "label": "o menor texto no celular"
+          }
+        ]
+      }
+    },
+    {
+      "kicker": "Conteúdo",
+      "heading": "Contando cada case do seu jeito",
+      "lines": [
+        "Os textos ficam no Notion e vão direto para os livros. E cada case tem páginas feitas para ele, onde você interage: responde um quiz, vira um cartão, compara versões, vê um número subir.",
+        "Essas peças podem ser reaproveitadas, então cada case novo usa as que contam melhor a sua história."
+      ],
+      "glossary": {
+        "kicker": "A caixa de ferramentas",
+        "title": "Páginas para brincar",
+        "items": [
+          {
+            "term": "Comparar",
+            "note": "Alternar",
+            "body": "Alterne entre versões de um design: antes e depois, A e B, rascunho e site."
+          },
+          {
+            "term": "Quiz",
+            "note": "Enquete",
+            "body": "Você dá o seu palpite e depois vê o que os usuários disseram ou fizeram de verdade."
+          },
+          {
+            "term": "Contagem",
+            "note": "Números",
+            "body": "Números que vão subindo quando a página aparece."
+          },
+          {
+            "term": "Funil",
+            "note": "Pesquisa",
+            "body": "Quantas pessoas participaram em cada etapa."
+          },
+          {
+            "term": "Jornada",
+            "note": "Linha de humor",
+            "body": "Os altos e baixos de uma persona; toque numa etapa para ver."
+          },
+          {
+            "term": "Migração",
+            "note": "Mudança",
+            "body": "Funcionalidades passando de um sistema antigo para o novo, uma por uma."
+          }
+        ]
+      }
+    },
+    {
+      "kicker": "Resultado",
+      "heading": "O resultado final",
+      "lines": [],
+      "showcase": {
+        "kicker": "Resultado · O final",
+        "title": "Abra o escritório",
+        "device": "desktop",
+        "intro": [
+          "Dezessete objetos para descobrir, mais uma luminária de lua. Três cases, um currículo, um gato que conversa e nenhum menu obrigatório. Fecha este livro e dá uma olhada por aí."
+        ],
+        "screens": [
+          {
+            "image": "story-today",
+            "label": "O escritório"
+          },
+          {
+            "image": "story-travels",
+            "label": "Globo"
+          },
+          {
+            "image": "story-phone",
+            "label": "Telefone rosa"
+          },
+          {
+            "image": "story-studies",
+            "label": "Diploma"
+          },
+          {
+            "image": "story-mentees",
+            "label": "Mural"
+          },
+          {
+            "image": "story-cat",
+            "label": "Zuko"
+          },
+          {
+            "image": "story-home",
+            "label": "Cartão-postal"
+          },
+          {
+            "image": "story-chess",
+            "label": "Xadrez"
+          },
+          {
+            "image": "story-llama",
+            "label": "Cofrinho de lhama"
+          },
+          {
+            "image": "story-case1",
+            "label": "Um case"
+          }
+        ]
+      }
+    }
+  ]
+}

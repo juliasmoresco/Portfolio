@@ -1,0 +1,15 @@
+{
+  "skin": "frame",
+  "title": "Ilustração 06",
+  "hotspotLabel": "Zuko, meu primeiro estagiário",
+  "hideTitle": true,
+  "spine": "#B8746A",
+  "pages": [
+    {
+      "image": "ill06-01",
+      "lines": [
+        "Esse é o Zuko, meu primeiro estagiário. Ele fala demais enquanto a gente trabalha."
+      ]
+    }
+  ]
+}

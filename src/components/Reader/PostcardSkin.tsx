@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import type { ReaderItem } from "../../content";
 import { postcardFrontSvg } from "../../scene/postcardArt";
 import styles from "./Reader.module.css";
+import { useUi } from "./ui";
 
 /** A stamp: a perforated edge round a cuia of chimarrão, the south of Brazil's mate gourd. */
 function Stamp() {
@@ -76,6 +77,7 @@ function Route() {
  * of the way from where the owner was born to where they live now.
  */
 export function PostcardSkin({ item }: { item: ReaderItem }) {
+  const ui = useUi();
   const [back, setBack] = useState(false);
   const front = useMemo(() => postcardFrontSvg(), []);
   const lines = item.pages[0]?.lines ?? [];
@@ -100,8 +102,8 @@ export function PostcardSkin({ item }: { item: ReaderItem }) {
                 <Postmark />
               </span>
               <span className={styles.postcardAddress}>
-                <span>To: you,</span>
-                <span>reading this</span>
+                <span>{ui.toYou}</span>
+                <span>{ui.readingThis}</span>
               </span>
             </span>
             <span className={styles.postcardMap}>
@@ -111,7 +113,7 @@ export function PostcardSkin({ item }: { item: ReaderItem }) {
         </span>
       </button>
       <button type="button" className={styles.chessLink} onClick={() => setBack((b) => !b)}>
-        {back ? "See the front" : "Turn over"}
+        {back ? ui.seeFront : ui.turnOver}
       </button>
     </div>
   );

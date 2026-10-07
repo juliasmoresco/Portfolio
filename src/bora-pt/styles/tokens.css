@@ -1,0 +1,58 @@
+/* BoraInvest design tokens, from design-handoff/borainvest/README.md. Hex values are final. */
+:root {
+  /* Primary: action and progress. 600 is for bars and charts only, never under white text. */
+  --g50: #ecfdf3;
+  --g100: #d1fadf;
+  --g200: #a6f4c5;
+  --g300: #6ce9a6;
+  --g400: #32d583;
+  --g600: #039855;
+  --g700: #027a48;
+  --g800: #05603a;
+  --g900: #054f31;
+  --g-tint: #f6fef9;
+
+  /* Blue-gray: structure */
+  --n50: #f9fafb;
+  --n100: #f2f4f7;
+  --n200: #eaecf0;
+  --n300: #d0d5dd;
+  --n500: #667085;
+  --n600: #475467;
+  --n700: #344054;
+  --n800: #1d2939;
+  --n900: #101828;
+
+  /* Purple: complementary */
+  --p100: #f4ebff;
+  --p200: #e9d7fe;
+  --p600: #7f56d9;
+  --p700: #6941c6;
+  --p800: #53389e;
+
+  /* Yellow: in progress, tips */
+  --y50: #fffaeb;
+  --y100: #fef0c7;
+  --y400: #fdb022;
+  --y700: #b54708;
+  --y900: #7a2e0e;
+
+  /* Red: errors and market drops only */
+  --r50: #fef3f2;
+  --r400: #f97066;
+  --r600: #d92d20;
+  --r700: #b42318;
+
+  /* Quiz only */
+  --quiz-blue: #3538cd;
+  --quiz-orange: #b93815;
+
+  --white: #ffffff;
+  --float: 0 12px 24px -6px rgba(16, 24, 40, 0.14);
+  --float-strong: 0 12px 24px -6px rgba(16, 24, 40, 0.2);
+  --font: "Work Sans", system-ui, sans-serif;
+
+  /* Device chrome. The frame sets real values; full-bleed mode falls back to safe areas. */
+  --status-h: 50px;
+  --home-h: 34px;
+}

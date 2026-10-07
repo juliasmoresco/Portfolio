@@ -1,0 +1,23 @@
+{
+  "skin": "globe",
+  "title": "Por onde andei",
+  "hotspotLabel": "Por onde andei",
+  "tag": "Mapa de viagens",
+  "visited": [
+    "Switzerland",
+    "Brazil",
+    "Italy",
+    "France",
+    "Greece",
+    "Argentina",
+    "Uruguay",
+    "Germany",
+    "United States"
+  ],
+  "goal": 30,
+  "pages": [
+    {
+      "lines": []
+    }
+  ]
+}

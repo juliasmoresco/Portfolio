@@ -3,6 +3,7 @@ import type * as THREE from "three";
 import type { ReaderItem } from "../../content";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import styles from "./Reader.module.css";
+import { useUi } from "./ui";
 
 const PIN_COLOR = 0xe4572e;
 /** How far the globe may tip toward or away from the viewer, so the poles never flip over. */
@@ -30,6 +31,7 @@ const wrapAngle = (a: number) => a - 2 * Math.PI * Math.round(a / (2 * Math.PI))
  * so a static `import * as THREE` here would pull the whole 3D stack into the very first page load.
  */
 export function GlobeSkin({ item }: { item: ReaderItem }) {
+  const ui = useUi();
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
@@ -342,11 +344,11 @@ export function GlobeSkin({ item }: { item: ReaderItem }) {
         <h2 className={styles.globeHeading}>{item.title}</h2>
         {typeof goal === "number" ? (
           <>
-            <div className={styles.progressBar} role="progressbar" aria-label="Countries visited toward my goal" aria-valuemin={0} aria-valuemax={goal} aria-valuenow={count}>
+            <div className={styles.progressBar} role="progressbar" aria-label={ui.countriesGoalLabel} aria-valuemin={0} aria-valuemax={goal} aria-valuenow={count}>
               <span style={{ width: `${Math.min(100, (count / goal) * 100)}%` }} />
             </div>
             <p className={styles.globeStat}>
-              <strong>{count}</strong> of my {goal}-country goal
+              <strong>{count}</strong>{ui.countriesGoal(goal)}
             </p>
           </>
         ) : (
@@ -354,7 +356,7 @@ export function GlobeSkin({ item }: { item: ReaderItem }) {
             <strong>{count}</strong> countries explored
           </p>
         )}
-        <ul className={styles.globeChips} aria-label="Countries I've visited">
+        <ul className={styles.globeChips} aria-label={ui.countriesList}>
           {visited.map((c) => (
             <li key={c}>
               <button type="button" className={styles.globeChip} aria-pressed={selected === c} onClick={() => apiRef.current?.focus(c)}>

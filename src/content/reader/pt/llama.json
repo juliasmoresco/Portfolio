@@ -1,0 +1,43 @@
+{
+  "skin": "llama",
+  "title": "Cofrinho de lhama",
+  "kind": "Objeto",
+  "hotspotLabel": "Dá uma moedinha pra lhama",
+  "milestones": [
+    {
+      "at": 10,
+      "text": "Já dá uma passagem de ônibus. Ela tá feliz da vida."
+    },
+    {
+      "at": 25,
+      "text": "Já dá um café em Roma."
+    },
+    {
+      "at": 50,
+      "text": "Ela tá juntando pra viajar!"
+    },
+    {
+      "at": 100,
+      "text": "Passagem de avião? Quase lá."
+    },
+    {
+      "at": 250,
+      "text": "Agora ela já sonha com uma volta ao mundo."
+    },
+    {
+      "at": 500,
+      "text": "Sinceramente, ela já tem mais dinheiro que eu."
+    },
+    {
+      "at": 1000,
+      "text": "Uma lhama de respeito. Obrigada pelo patrocínio!"
+    }
+  ],
+  "pages": [
+    {
+      "lines": [
+        "Toque na lhama para dar uma moeda. Não é dinheiro de verdade, ela só gosta da companhia."
+      ]
+    }
+  ]
+}

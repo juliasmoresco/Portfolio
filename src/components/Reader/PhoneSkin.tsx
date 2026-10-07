@@ -3,6 +3,7 @@ import type * as THREE from "three";
 import type { ReaderItem, SpeedDial } from "../../content";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import styles from "./Reader.module.css";
+import { useUi } from "./ui";
 
 /** Timings, ms. A real dial returns at about ten pulses a second; this one is a touch quicker. */
 const AUTO_TURN_MS = 320;
@@ -68,6 +69,7 @@ const pulsesFor = (digit: string) => (digit === "0" ? 10 : Number(digit));
  * three.js and the phone builder load on demand, as in GlobeSkin and LlamaSkin.
  */
 export function PhoneSkin({ item }: { item: ReaderItem }) {
+  const ui = useUi();
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const reduced = usePrefersReducedMotion();
@@ -82,10 +84,8 @@ export function PhoneSkin({ item }: { item: ReaderItem }) {
   const intro = page?.lines[0];
   const numbered = speedDial.filter((d) => d.link).map((d) => d.digit);
   const [touch] = useState(() => typeof matchMedia === "function" && matchMedia("(pointer: coarse)").matches);
-  const keys = numbered.length > 1 ? `${numbered.slice(0, -1).join(", ")} or ${numbered[numbered.length - 1]}` : numbered[0] ?? "a number";
-  const hint = touch
-    ? "Tap a number and the phone dials it for you. Or spin the dial yourself."
-    : `Pick a number and the phone dials it for you (or press ${keys}). You can spin the dial yourself, too.`;
+  const keys = numbered.length > 1 ? `${numbered.slice(0, -1).join(", ")} ${ui.or} ${numbered[numbered.length - 1]}` : numbered[0] ?? ui.aNumber;
+  const hint = touch ? ui.phoneHint : ui.phoneHintDesk(keys);
 
   useEffect(() => {
     const wrap = wrapRef.current;
@@ -454,7 +454,7 @@ export function PhoneSkin({ item }: { item: ReaderItem }) {
         {answeredLink && (
           <div key={answeredLink.href} ref={connectRef} className={styles.phoneConnect}>
             <a className={styles.chessLink} href={answeredLink.href} {...(/^https?:/.test(answeredLink.href) ? { target: "_blank", rel: "noreferrer" } : {})}>
-              {answeredLink.href.startsWith("mailto:") ? "Write an email" : `Open ${answeredLink.label}`} →
+              {answeredLink.href.startsWith("mailto:") ? ui.writeEmail : ui.open(answeredLink.label)} →
             </a>
             {answeredLink.href.startsWith("mailto:") && (
               <button
@@ -468,7 +468,7 @@ export function PhoneSkin({ item }: { item: ReaderItem }) {
                   );
                 }}
               >
-                {copied ? "Copied!" : "Copy address"}
+                {copied ? ui.copied : ui.copyAddress}
               </button>
             )}
           </div>
