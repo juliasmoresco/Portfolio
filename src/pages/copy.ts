@@ -9,6 +9,8 @@ const HOME = {
     title: "Welcome to my office",
     lede: "Click around and see what you find — or use the menu for a quicker way through.",
     hintTouch: "Pinch, drag and tap around to see what you find — or use the menu for a quicker way through.",
+    /** Without WebGL the room is a picture: no pinching or dragging. */
+    hintStatic: "Tap the objects to see what you find — or use the menu for a quicker way through.",
     discovered: (n: number, total: number) => `${n} of ${total} discovered`,
     found: (n: number, total: number) => `${n} of ${total} found`,
     hints: "Hints",
@@ -20,6 +22,7 @@ const HOME = {
     title: "Bem-vindo(a) ao meu escritório",
     lede: "Clique nos objetos e descubra o que cada um guarda. Com pressa? Use o menu.",
     hintTouch: "Toque, arraste e dê zoom para explorar, ou use o menu se estiver com pressa.",
+    hintStatic: "Toque nos objetos para explorar, ou use o menu se estiver com pressa.",
     discovered: (n: number, total: number) => `${n} de ${total} descobertos`,
     found: (n: number, total: number) => `${n} de ${total} encontrados`,
     hints: "Dicas",

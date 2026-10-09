@@ -7,6 +7,10 @@ import wallShelfUrl from "../../assets/models/wall-shelf-plant.glb?url";
 import catUrl from "../../assets/models/cat-talking-button.glb?url";
 import posterLandscapeUrl from "../../assets/poster-landscape.webp";
 import posterPortraitUrl from "../../assets/poster-portrait.webp";
+import { emitSelect } from "../../scene/events";
+import { MOON_LAMP_ID } from "../../scene/hotspots";
+import posterHotspots from "../../scene/posterHotspots.json";
+import { HAS_WEBGL } from "../../webgl";
 import styles from "./OfficeScene.module.css";
 
 const ASSETS: OfficeSceneOptions["assets"] = {
@@ -17,6 +21,9 @@ const ASSETS: OfficeSceneOptions["assets"] = {
 
 /** Same threshold the scene uses to pick its portrait framing. */
 const PORTRAIT_BELOW_ASPECT = 1.15;
+/** The posters' own size, so their clickable objects line up however the poster is cropped. */
+const POSTER_ASPECT = { landscape: 1600 / 960, portrait: 390 / 844 };
+
 /** Keep in step with `.poster` and `.loader`'s transitions in the CSS. */
 const FADE_MS = 500;
 /** The loader's little shelf: one book stands up for each share of the models downloaded. */
@@ -60,7 +67,8 @@ export function OfficeScene({ className, ref, ...props }: OfficeSceneProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<OfficeSceneInstance | null>(null);
   const reducedMotion = usePrefersReducedMotion();
-  const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
+  // No WebGL (a browser that blocks it): skip the scene and go straight to the clickable poster.
+  const [status, setStatus] = useState<"loading" | "ready" | "error">(HAS_WEBGL ? "loading" : "error");
   const [loaderMounted, setLoaderMounted] = useState(true);
   const [progress, setProgress] = useState(0);
   // Which poster to fall back on (no WebGL) is decided once, from the container's shape, before first paint.
@@ -94,7 +102,7 @@ export function OfficeScene({ className, ref, ...props }: OfficeSceneProps) {
 
   useEffect(() => {
     const el = containerRef.current;
-    if (!el) return;
+    if (!el || !HAS_WEBGL) return;
     let cancelled = false;
     let instance: OfficeSceneInstance | null = null;
 
@@ -164,14 +172,23 @@ export function OfficeScene({ className, ref, ...props }: OfficeSceneProps) {
         </div>
       )}
       {status === "error" && portrait !== null && (
-        <img
-          className={styles.poster}
-          src={portrait ? posterPortraitUrl : posterLandscapeUrl}
-          alt=""
-          aria-hidden="true"
-          decoding="async"
-          draggable={false}
-        />
+        <div className={styles.posterFrame} data-hints={hints || undefined} style={{ "--ar": POSTER_ASPECT[portrait ? "portrait" : "landscape"] } as CSSProperties}>
+          <img className={styles.poster} src={portrait ? posterPortraitUrl : posterLandscapeUrl} alt="" aria-hidden="true" decoding="async" draggable={false} />
+          {/* The 3D scene isn't running, so each object on the poster is a button that opens the same Reader. */}
+          {Object.entries(posterHotspots[portrait ? "portrait" : "landscape"] as Record<string, { x: number; y: number; w: number; h: number }>)
+            .filter(([id]) => id !== MOON_LAMP_ID)
+            .map(([id, r]) => (
+              <button
+                key={id}
+                type="button"
+                className={styles.posterSpot}
+                style={{ left: `${r.x * 100}%`, top: `${r.y * 100}%`, width: `${r.w * 100}%`, height: `${r.h * 100}%` }}
+                onClick={() => emitSelect({ id: id as SceneHotspotId })}
+              >
+                <span className={styles.posterLabel}>{labels?.[id] ?? id}</span>
+              </button>
+            ))}
+        </div>
       )}
     </div>
   );

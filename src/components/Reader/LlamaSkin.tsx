@@ -4,6 +4,8 @@ import type { ReaderItem } from "../../content";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import styles from "./Reader.module.css";
 import { useUi } from "./ui";
+import llamaStill from "../../assets/stills/llama.webp";
+import { HAS_WEBGL } from "../../webgl";
 
 const STORAGE_KEY = "portfolio.llamaCoins";
 
@@ -123,7 +125,7 @@ export function LlamaSkin({ item }: { item: ReaderItem }) {
   useEffect(() => {
     const wrap = wrapRef.current;
     const canvas = canvasRef.current;
-    if (!wrap || !canvas) return;
+    if (!wrap || !canvas || !HAS_WEBGL) return;
     let cancelled = false;
     let cleanup: (() => void) | undefined;
 
@@ -399,17 +401,31 @@ export function LlamaSkin({ item }: { item: ReaderItem }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const floatSeq = useRef(0);
+  const dropStill = () => {
+    setCoins((c) => {
+      const hit = milestones.find((m) => m.at === c + 1);
+      if (hit) setMessage(hit.text);
+      return c + 1;
+    });
+    const box = wrapRef.current?.getBoundingClientRect();
+    const id = ++floatSeq.current;
+    if (box) setFloats((f) => [...f, { id, x: box.width / 2, y: box.height * 0.3 }]);
+    window.setTimeout(() => setFloats((f) => f.filter((x) => x.id !== id)), FLOAT_MS);
+  };
+
   const range = milestoneRange(milestones, coins);
   return (
     <div className={styles.llama}>
       <div ref={wrapRef} className={styles.llamaStage}>
-        <canvas
-          ref={canvasRef}
-          className={styles.llamaCanvas}
-          tabIndex={0}
-          role="button"
-          aria-label={ui.dropCoin}
-        />
+        {HAS_WEBGL ? (
+          <canvas ref={canvasRef} className={styles.llamaCanvas} tabIndex={0} role="button" aria-label={ui.dropCoin} />
+        ) : (
+          // No WebGL: the llama is a still, and a tap counts a coin straight away.
+          <button type="button" className={styles.stillButton} aria-label={ui.dropCoin} onClick={dropStill}>
+            <img className={styles.still} src={llamaStill} alt="" draggable={false} />
+          </button>
+        )}
         {floats.map((f) => (
           <span key={f.id} className={styles.llamaFloat} style={{ left: f.x, top: f.y }} aria-hidden="true">
             +1

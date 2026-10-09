@@ -7076,3 +7076,33 @@ button.chatAvatar:focus-visible {
 .root[data-compact="true"] .panelNote {
   font-size: 12px;
 }
+
+/* Without WebGL, a still of the 3D object fills its stage. */
+.still {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.stillButton {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: calc(0.4 * var(--k) * 1cqw);
+}
+
+.stillButton:active .still {
+  scale: 0.98;
+}
+
+.stillButton:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}

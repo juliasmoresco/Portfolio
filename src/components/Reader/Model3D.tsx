@@ -5,8 +5,12 @@ import type { PageModel } from "../../content";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import styles from "./Reader.module.css";
 import { useUi } from "./ui";
+import bookshelfStill from "../../assets/stills/bookshelf.webp";
+import { HAS_WEBGL } from "../../webgl";
 
 const MODELS: Record<PageModel["model"], string> = { bookshelf: bookshelfUrl, "wall-shelf": wallShelfUrl };
+/** Shown instead when the browser has no WebGL. */
+const STILLS: Partial<Record<PageModel["model"], string>> = { bookshelf: bookshelfStill };
 
 /**
  * One of the office's 3D models on its own, on a turntable: it turns slowly by itself and can be dragged round. three.js and
@@ -22,7 +26,7 @@ export function Model3D({ model }: { model: PageModel }) {
   useEffect(() => {
     const wrap = wrapRef.current;
     const canvas = canvasRef.current;
-    if (!wrap || !canvas) return;
+    if (!wrap || !canvas || !HAS_WEBGL) return;
     let cancelled = false;
     let cleanup: (() => void) | undefined;
 
@@ -135,10 +139,14 @@ export function Model3D({ model }: { model: PageModel }) {
     <div className={styles.model3d}>
       {model.kicker && <span className={styles.chartKicker}>{model.kicker}</span>}
       {model.title && <h2 className={styles.chartTitle}>{model.title}</h2>}
-      <div ref={wrapRef} className={styles.model3dStage} data-ready={ready || undefined}>
-        <canvas ref={canvasRef} aria-label={model.note ?? "A 3D model you can turn"} />
+      <div ref={wrapRef} className={styles.model3dStage} data-ready={ready || !HAS_WEBGL || undefined}>
+        {HAS_WEBGL || !STILLS[model.model] ? (
+          <canvas ref={canvasRef} aria-label={model.note ?? "A 3D model you can turn"} />
+        ) : (
+          <img className={styles.still} src={STILLS[model.model]} alt={model.title ?? ""} draggable={false} />
+        )}
       </div>
-      <p className={styles.model3dHint}>{model.note ?? ui.dragToTurn}</p>
+      {HAS_WEBGL && <p className={styles.model3dHint}>{model.note ?? ui.dragToTurn}</p>}
     </div>
   );
 }

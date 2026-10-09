@@ -8,6 +8,7 @@ import { Reader } from "../../components/Reader/Reader";
 import { useShelfHome } from "../../hooks/useShelfHome";
 import { HOTSPOT_IDS } from "../../scene/hotspots";
 import styles from "./HomeMobile.module.css";
+import { HAS_WEBGL } from "../../webgl";
 
 const cx = (...c: Array<string | false>) => c.filter(Boolean).join(" ");
 
@@ -66,7 +67,7 @@ export function HomeMobile() {
       </div>
 
       <div className={styles.bottom}>
-        <p className={styles.hint}>{t.hintTouch}</p>
+        <p className={styles.hint}>{HAS_WEBGL ? t.hintTouch : t.hintStatic}</p>
       </div>
 
       <HotspotList labels={labels} onFocusItem={(id) => scene.current?.highlight(id)} inert={!!openId} />

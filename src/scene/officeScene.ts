@@ -1041,6 +1041,8 @@ export class OfficeScene {
     };
     loop();
     emitReady();
+    // Dev only: lets scripts/poster-hotspots.mjs read where each object sits on screen, to make the posters clickable.
+    if (import.meta.env.DEV) (window as unknown as { __hotspotRects?: () => unknown }).__hotspotRects = () => this.hotspotRects();
   }
 
   /** Apply changed options. Mirrors the attributes the prototype observed. */
@@ -1147,6 +1149,26 @@ export class OfficeScene {
     world.y += Math.sin(Math.PI * e) * 0.18;
     f.mesh.position.copy(f.mesh.parent!.worldToLocal(world));
     f.mesh.quaternion.slerpQuaternions(f.q0, f.q1, e);
+  }
+
+  /** Each hotspot's box on screen, in 0–1 of the canvas (for the static posters used when WebGL is unavailable). */
+  hotspotRects(): Record<string, { x: number; y: number; w: number; h: number }> {
+    const out: Record<string, { x: number; y: number; w: number; h: number }> = {};
+    this.camera.updateMatrixWorld();
+    for (const [id, g] of Object.entries(this.groups)) {
+      const box = new THREE.Box3();
+      g.meshes.forEach((m) => box.expandByObject(m));
+      if (box.isEmpty()) continue;
+      let x0 = 1, y0 = 1, x1 = 0, y1 = 0;
+      for (const cx of [box.min.x, box.max.x]) for (const cy of [box.min.y, box.max.y]) for (const cz of [box.min.z, box.max.z]) {
+        const v = new THREE.Vector3(cx, cy, cz).project(this.camera);
+        const sx = (v.x + 1) / 2, sy = (1 - v.y) / 2;
+        x0 = Math.min(x0, sx); x1 = Math.max(x1, sx); y0 = Math.min(y0, sy); y1 = Math.max(y1, sy);
+      }
+      const r = (n: number) => Math.round(Math.min(Math.max(n, 0), 1) * 1000) / 1000;
+      out[id] = { x: r(x0), y: r(y0), w: r(x1 - x0), h: r(y1 - y0) };
+    }
+    return out;
   }
 
   dispose(): void {
