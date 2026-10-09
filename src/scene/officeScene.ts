@@ -17,7 +17,7 @@
  */
 import * as THREE from "three";
 import { GLTFLoader, type GLTF } from "three/addons/loaders/GLTFLoader.js";
-import { MeshoptDecoder } from "three/addons/libs/meshopt_decoder.module.js";
+import { HAS_WASM } from "../webgl";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { emitHover, emitReady, emitSelect } from "./events";
 import { makeGlobe } from "./globe";
@@ -377,7 +377,9 @@ export class OfficeScene {
 
     // Kick every download off up front. Optional props degrade to null.
     // The models are meshopt-compressed (gltf-transform meshopt): a fraction of the download, the same geometry.
-    const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+    const loader = new GLTFLoader();
+    // The decoder compiles WebAssembly as soon as it loads, so it is only fetched where that is allowed.
+    if (HAS_WASM) loader.setMeshoptDecoder((await import("three/addons/libs/meshopt_decoder.module.js")).MeshoptDecoder);
     const bytes = new Map<string, [loaded: number, total: number]>();
     const track = (url: string) => (e: ProgressEvent) => {
       bytes.set(url, [e.loaded, e.lengthComputable ? e.total : e.loaded]);
