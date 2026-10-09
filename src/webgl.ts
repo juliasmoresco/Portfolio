@@ -11,3 +11,18 @@ export const HAS_WEBGL: boolean = (() => {
     return false;
   }
 })();
+
+/**
+ * Whether this browser will actually run WebAssembly. Some keep the `WebAssembly` object but refuse to compile
+ * anything ("Wasm code generation disallowed by embedder" in Island), so this compiles the smallest valid module.
+ * Zuko's compressed model needs it; without it the scene loads a copy that needs no decoder.
+ */
+export const HAS_WASM: boolean = (() => {
+  try {
+    if (typeof WebAssembly !== "object") return false;
+    const empty = new WebAssembly.Module(Uint8Array.of(0x00, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00));
+    return new WebAssembly.Instance(empty) instanceof WebAssembly.Instance;
+  } catch {
+    return false;
+  }
+})();

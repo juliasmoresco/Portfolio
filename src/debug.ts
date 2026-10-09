@@ -1,3 +1,5 @@
+import { HAS_WASM } from "./webgl";
+
 /**
  * `?debug` in the address bar: a small panel listing what this browser supports and every error the page raises.
  * For finding out why the site misbehaves in a browser we can't open ourselves (locked-down company browsers).
@@ -30,7 +32,7 @@ export function mountDebugPanel(): void {
   add(`screen   ${innerWidth}×${innerHeight} @${devicePixelRatio}x · touch ${navigator.maxTouchPoints}`);
   add(`webgl2   ${gl("webgl2")}`);
   add(`webgl1   ${gl("webgl")}`);
-  add(`wasm     ${typeof WebAssembly === "object" ? "yes" : "no"}`);
+  add(`wasm     present ${typeof WebAssembly === "object" ? "yes" : "no"} · runs ${HAS_WASM ? "yes" : "no"}`);
   add(`workers  ${typeof Worker === "function" ? "yes" : "no"} · audio ${typeof AudioContext === "function" ? "yes" : "no"} · storage ${(() => { try { localStorage.setItem("__t", "1"); localStorage.removeItem("__t"); return "yes"; } catch { return "no"; } })()}`);
   add(`motion   reduced ${matchMedia("(prefers-reduced-motion: reduce)").matches ? "yes" : "no"} · pointer ${matchMedia("(pointer: coarse)").matches ? "coarse" : "fine"}`);
 

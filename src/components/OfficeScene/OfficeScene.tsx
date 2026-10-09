@@ -11,7 +11,7 @@ import posterPortraitUrl from "../../assets/poster-portrait.webp";
 import { emitSelect } from "../../scene/events";
 import { MOON_LAMP_ID } from "../../scene/hotspots";
 import posterHotspots from "../../scene/posterHotspots.json";
-import { HAS_WEBGL } from "../../webgl";
+import { HAS_WASM, HAS_WEBGL } from "../../webgl";
 import styles from "./OfficeScene.module.css";
 
 const ASSETS: OfficeSceneOptions["assets"] = {
@@ -19,7 +19,7 @@ const ASSETS: OfficeSceneOptions["assets"] = {
   shelf: wallShelfUrl,
   // Zuko is meshopt-compressed, which needs WebAssembly to decode. Browsers that switch it off (company browsers
   // running JavaScript without its optimiser) get a quantized copy that needs no decoder: larger, the same cat.
-  cat: typeof WebAssembly === "object" ? catUrl : catPlainUrl,
+  cat: HAS_WASM ? catUrl : catPlainUrl,
 };
 
 /** Same threshold the scene uses to pick its portrait framing. */

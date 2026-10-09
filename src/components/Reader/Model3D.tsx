@@ -30,7 +30,7 @@ export function Model3D({ model }: { model: PageModel }) {
     let cancelled = false;
     let cleanup: (() => void) | undefined;
 
-    Promise.all([import("three"), import("three/addons/loaders/GLTFLoader.js"), import("three/addons/libs/meshopt_decoder.module.js")]).then(([THREE, { GLTFLoader }, { MeshoptDecoder }]) => {
+    Promise.all([import("three"), import("three/addons/loaders/GLTFLoader.js")]).then(([THREE, { GLTFLoader }]) => {
       if (cancelled) return;
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(28, 1, 0.1, 50);
@@ -64,7 +64,7 @@ export function Model3D({ model }: { model: PageModel }) {
         placeRef?.();
       };
 
-      new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).load(MODELS[model.model], (gltf) => {
+      new GLTFLoader().load(MODELS[model.model], (gltf) => {
         if (cancelled) return;
         const obj = gltf.scene;
         const box = new THREE.Box3().setFromObject(obj);
