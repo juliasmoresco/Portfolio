@@ -3,6 +3,8 @@
   display: block;
   width: 100%;
   height: 100%;
+  /* the poster fallback is sized against the room's box */
+  container-type: size;
   /* Own stacking context, so the poster's z-index can't climb above the page's overlays (scrims, title, controls). */
   isolation: isolate;
 }
@@ -114,6 +116,85 @@
   .loaderBook,
   .loaderBar > span {
     transition: none;
+    animation: none;
+  }
+}
+
+/* No WebGL: the poster, cropped like the scene would be, with a button over each object. */
+.posterFrame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: max(100cqw, calc(100cqh * var(--ar)));
+  aspect-ratio: var(--ar);
+  translate: -50% -50%;
+}
+
+.posterFrame .poster {
+  object-fit: fill;
+}
+
+.posterSpot {
+  position: absolute;
+  z-index: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.posterSpot:hover,
+.posterSpot:focus-visible {
+  background: rgb(255 230 170 / 0.16);
+  box-shadow: 0 0 0 2px rgb(255 230 170 / 0.55);
+}
+
+.posterSpot:focus-visible {
+  outline: none;
+}
+
+/* The object's name over it on hover or focus, like the chip in the 3D room. */
+.posterLabel {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  translate: -50% 0;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #f0c46a;
+  color: #2e211c;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.posterSpot:hover .posterLabel,
+.posterSpot:focus-visible .posterLabel {
+  opacity: 1;
+}
+
+/* The Hints button: every clickable object glows, as it does in the 3D room. */
+.posterFrame[data-hints] .posterSpot {
+  box-shadow: 0 0 0 2px rgb(255 230 170 / 0.6), 0 0 18px rgb(255 214 120 / 0.45);
+  animation: posterHint 1.6s ease-in-out infinite;
+}
+
+@keyframes posterHint {
+  50% {
+    box-shadow: 0 0 0 2px rgb(255 230 170 / 0.25), 0 0 8px rgb(255 214 120 / 0.2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .posterFrame[data-hints] .posterSpot {
     animation: none;
   }
 }

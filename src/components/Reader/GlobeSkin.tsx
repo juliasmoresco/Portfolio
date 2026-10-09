@@ -4,6 +4,8 @@ import type { ReaderItem } from "../../content";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import styles from "./Reader.module.css";
 import { useUi } from "./ui";
+import globeStill from "../../assets/stills/globe.webp";
+import { HAS_WEBGL } from "../../webgl";
 
 const PIN_COLOR = 0xe4572e;
 /** How far the globe may tip toward or away from the viewer, so the poles never flip over. */
@@ -47,7 +49,7 @@ export function GlobeSkin({ item }: { item: ReaderItem }) {
   useEffect(() => {
     const wrap = wrapRef.current;
     const canvas = canvasRef.current;
-    if (!wrap || !canvas) return;
+    if (!wrap || !canvas || !HAS_WEBGL) return;
     let cancelled = false;
     let cleanup: (() => void) | undefined;
 
@@ -333,7 +335,11 @@ export function GlobeSkin({ item }: { item: ReaderItem }) {
   return (
     <div className={styles.globe}>
       <div ref={wrapRef} className={styles.globeStage}>
-        <canvas ref={canvasRef} className={styles.globeCanvas} role="img" aria-label={`A globe with a pin in each of the ${count} countries I've visited`} />
+        {HAS_WEBGL ? (
+          <canvas ref={canvasRef} className={styles.globeCanvas} role="img" aria-label={`A globe with a pin in each of the ${count} countries I've visited`} />
+        ) : (
+          <img className={styles.still} src={globeStill} alt={`A globe with a pin in each of the ${count} countries I've visited`} draggable={false} />
+        )}
         {label && (
           <span ref={labelRef} className={styles.globeLabel} aria-hidden="true">
             {label}

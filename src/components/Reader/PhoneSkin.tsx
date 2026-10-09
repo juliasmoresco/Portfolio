@@ -4,6 +4,8 @@ import type { ReaderItem, SpeedDial } from "../../content";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 import styles from "./Reader.module.css";
 import { useUi } from "./ui";
+import phoneStill from "../../assets/stills/phone.webp";
+import { HAS_WEBGL } from "../../webgl";
 
 /** Timings, ms. A real dial returns at about ten pulses a second; this one is a touch quicker. */
 const AUTO_TURN_MS = 320;
@@ -91,6 +93,19 @@ export function PhoneSkin({ item }: { item: ReaderItem }) {
     const wrap = wrapRef.current;
     const canvas = canvasRef.current;
     if (!wrap || !canvas) return;
+    if (!HAS_WEBGL) {
+      // No WebGL: no dial to turn, so a call rings and is answered straight from the speed-dial buttons.
+      let timer = 0;
+      dialRef.current = (digit: string) => {
+        const entry = speedDial.find((d) => d.digit === digit);
+        setStatus({ kind: "ringing", digit });
+        window.clearTimeout(timer);
+        timer = window.setTimeout(() => {
+          setStatus({ kind: "answered", digit, text: entry?.text ?? (item.wrongNumber ?? "Nobody home at {digit}.").replace("{digit}", digit), link: entry?.link });
+        }, reduced ? 0 : 900);
+      };
+      return () => window.clearTimeout(timer);
+    }
     let cancelled = false;
     let cleanup: (() => void) | undefined;
 
@@ -402,7 +417,7 @@ export function PhoneSkin({ item }: { item: ReaderItem }) {
     if (answeredLink) connectRef.current?.scrollIntoView({ block: "nearest", behavior: reduced ? "auto" : "smooth" });
   }, [answeredLink, reduced]);
   const line =
-    status.kind === "dialling" ? `Dialling ${status.digit}…` : status.kind === "ringing" ? `Calling ${status.digit}… ring, ring` : status.kind === "answered" ? status.text : hint;
+    status.kind === "dialling" ? ui.dialling(status.digit) : status.kind === "ringing" ? ui.ringing(status.digit) : status.kind === "answered" ? status.text : hint;
 
   return (
     <div className={styles.phone}>
@@ -417,7 +432,9 @@ export function PhoneSkin({ item }: { item: ReaderItem }) {
             .filter((d) => d.link)
             .map((d) => `${d.digit} for ${d.link}`)
             .join(", ")}.`}
+          hidden={!HAS_WEBGL}
         />
+        {!HAS_WEBGL && <img className={styles.still} src={phoneStill} alt="" draggable={false} />}
       </div>
       <div className={styles.phoneText}>
         <h2 className={styles.phoneHeading}>{item.title}</h2>
