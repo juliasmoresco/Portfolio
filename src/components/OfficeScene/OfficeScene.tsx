@@ -5,6 +5,7 @@ import type { SceneHotspotId } from "../../scene/hotspots";
 import bookshelfUrl from "../../assets/models/bookshelf.glb?url";
 import wallShelfUrl from "../../assets/models/wall-shelf-plant.glb?url";
 import catUrl from "../../assets/models/cat-talking-button.glb?url";
+import catPlainUrl from "../../assets/models/cat-talking-button-plain.glb?url";
 import posterLandscapeUrl from "../../assets/poster-landscape.webp";
 import posterPortraitUrl from "../../assets/poster-portrait.webp";
 import { emitSelect } from "../../scene/events";
@@ -16,7 +17,9 @@ import styles from "./OfficeScene.module.css";
 const ASSETS: OfficeSceneOptions["assets"] = {
   src: bookshelfUrl,
   shelf: wallShelfUrl,
-  cat: catUrl,
+  // Zuko is meshopt-compressed, which needs WebAssembly to decode. Browsers that switch it off (company browsers
+  // running JavaScript without its optimiser) get a quantized copy that needs no decoder: larger, the same cat.
+  cat: typeof WebAssembly === "object" ? catUrl : catPlainUrl,
 };
 
 /** Same threshold the scene uses to pick its portrait framing. */
