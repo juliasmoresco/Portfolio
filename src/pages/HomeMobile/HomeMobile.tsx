@@ -58,7 +58,7 @@ export function HomeMobile() {
           <h1 className={styles.title}>{t.title}</h1>
           <div className={styles.count}>{t.found(found.length, HOTSPOT_IDS.length)}</div>
         </div>
-        <div className={styles.actions}>
+        <div className={cx(styles.actions, !!openId && styles.actionsHidden)}>
           <button type="button" className={cx(styles.pill, hints && styles.pillOn)} aria-pressed={hints} onClick={toggleHints}>
             {t.hints}
           </button>

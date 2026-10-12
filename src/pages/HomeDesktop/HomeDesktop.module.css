@@ -43,6 +43,14 @@
   /* The sidesheet is `position: fixed` (viewport-relative), so it needs telling how tall the room
      actually is here: the .stage box above, which fills the window. */
   --quicknav-panel-height: 100dvh;
+  transition: opacity 0.25s ease;
+}
+
+/* While a Reader is open its × takes this corner; the Menu steps aside. */
+.quickNavHidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s;
 }
 
 .intro {

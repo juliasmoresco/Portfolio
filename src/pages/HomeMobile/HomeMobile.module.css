@@ -73,6 +73,14 @@
   align-items: center;
   gap: 8px;
   pointer-events: auto;
+  transition: opacity 0.25s ease;
+}
+
+/* While a Reader is open its × takes this corner; Hints and Menu step aside. */
+.actionsHidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s;
 }
 
 .pill {
