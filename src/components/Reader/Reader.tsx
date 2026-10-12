@@ -33,6 +33,8 @@ const END_BLOCK_HEIGHT = 190;
 
 /** The chapter bar (Overview · Process · Outcome, with a progress line) above a book. Switched off for now; the code stays. */
 const SHOW_CHAPTER_BAR = false;
+/** Desktop: the band above the sheet that holds the × (Reader.module.css, .stage's padding-top). */
+const CLOSE_BAND_PX = 72;
 
 /** Runs of pages sharing a kicker ("Overview", "Process", …), as chapters. Fewer than two means no chapter bar. */
 function chaptersOf(pages: ReaderItem["pages"]): { label: string; page: number }[] {
@@ -102,13 +104,14 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
 
   const root = useRef<HTMLDivElement>(null);
   // The desktop book is sized for a 16:9.6 room. In a window that is wider than that (a short laptop screen), shrink it
-  // by how much the height falls short, so the book and its controls still fit without scrolling.
+  // by how much the height falls short, so the book and its controls still fit without scrolling. The band at the
+  // top that holds the × (.stage's padding-top) doesn't count as room.
   useLayoutEffect(() => {
     const el = root.current;
     if (compact || !el) return;
     const fit = () => {
       const { width, height } = el.getBoundingClientRect();
-      el.style.setProperty("--fit", String(width > 0 ? Math.min(1, (height * 16) / 9.6 / width) : 1));
+      el.style.setProperty("--fit", String(width > 0 ? Math.min(1, ((height - CLOSE_BAND_PX) * 16) / 9.6 / width) : 1));
     };
     fit();
     const ro = new ResizeObserver(fit);
