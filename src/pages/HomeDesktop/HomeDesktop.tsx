@@ -34,7 +34,7 @@ export function HomeDesktop() {
 
         <div className={styles.scrim} />
 
-        <QuickNav className={styles.quickNav} />
+        <QuickNav className={cx(styles.quickNav, !!openId && styles.quickNavHidden)} />
 
         <div className={styles.intro}>
           <h1 className={styles.title}>{t.title}</h1>

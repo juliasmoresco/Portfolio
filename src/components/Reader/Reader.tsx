@@ -278,6 +278,15 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
   const compactViews: CompactViewProps | undefined = compact
     ? { views, view, onViewChange: setView, scrollerRef: scroller, end: hasEnd ? <EndBlock {...endProps} /> : undefined, onOverflow }
     : undefined;
+  // Close is an × in the top-right corner (where the home's Menu sits), away from the page arrows.
+  // First in the DOM, so Tab order matches.
+  const closeButton = (
+    <button type="button" className={styles.closeX} onClick={requestClose} aria-label={ui.close}>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+  );
 
   return (
     <div
@@ -332,6 +341,7 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
 
         {/* Hidden until the cover is open (books), so Tab can't reach invisible controls. */}
         <div className={styles.nav} inert={!navVisible}>
+          {closeButton}
           {showPager && (
             <>
               <button ref={prevBtn} type="button" className={styles.navBtn} aria-label={ui.prevPage} aria-disabled={index === 0} onClick={() => turn(-1)}>
@@ -343,9 +353,6 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
               </button>
             </>
           )}
-          <button type="button" className={styles.closeBtn} onClick={requestClose}>
-            {ui.close}
-          </button>
         </div>
       </div>
       </ZoomContext.Provider>
