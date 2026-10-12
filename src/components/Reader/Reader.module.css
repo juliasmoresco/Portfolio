@@ -4240,10 +4240,12 @@
   border-radius: 8px;
 }
 
+/* The phone takes whatever height the text leaves, so the sheet has no empty band at the bottom;
+   it gives some back when the "Open LinkedIn" / "Write an email" row appears after a call. */
 .root[data-compact="true"] .phoneStage {
-  flex: none;
-  height: min(250px, 30dvh);
-  min-height: 0;
+  flex: 1 1 auto;
+  height: auto;
+  min-height: min(220px, 26dvh);
 }
 
 .root[data-compact="true"] .phoneText {
