@@ -47,6 +47,8 @@
 .stage {
   position: absolute;
   inset: 0;
+  /* A band for the × above the sheet (Reader.tsx's fit leaves this height out: CLOSE_BAND_PX). */
+  padding-top: 72px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3849,18 +3851,18 @@
 }
 
 /* Close: an × that lives in .nav (so it fades in and goes inert with the pager) but sits just above
-   the sheet's top-right corner, via anchor positioning. Without it, the stage's top-right corner. */
+   the sheet's top-right corner, via anchor positioning, in the stage's top band. Drawn like the page
+   arrows (.navBtn). Without anchor positioning, it sits in the stage's top-right corner. */
 .closeX {
   position: absolute;
-  top: 4%;
+  top: 2%;
   right: 4%;
-  width: 44px;
-  height: 44px;
+  width: calc(2.6 * var(--k) * 1cqw);
+  height: calc(2.6 * var(--k) * 1cqw);
   padding: 0;
-  border: 1px solid rgba(245, 235, 220, 0.5);
+  border: calc(0.12 * var(--k) * 1cqw) solid rgba(245, 235, 220, 0.5);
   border-radius: 50%;
-  /* Near-opaque, so it reads on the dark room and, when it falls back inside the sheet, on paper. */
-  background: rgba(20, 16, 13, 0.82);
+  background: transparent;
   color: var(--paper);
   cursor: pointer;
   display: flex;
@@ -3869,7 +3871,7 @@
   transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
-/* A larger invisible hit area than the 40px circle, without crowding the sheet. */
+/* A larger invisible hit area than the circle, without crowding the sheet. */
 .closeX::after {
   content: "";
   position: absolute;
@@ -3877,8 +3879,8 @@
 }
 
 .closeX svg {
-  width: 18px;
-  height: 18px;
+  width: 42%;
+  height: 42%;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.6;
@@ -3886,9 +3888,9 @@
 }
 
 .closeX:hover {
-  background: var(--paper);
+  background: var(--accent);
   color: var(--ink);
-  border-color: var(--paper);
+  border-color: var(--accent);
 }
 
 .closeX:focus-visible {
@@ -4134,7 +4136,8 @@
 
 .root[data-compact="true"] .stage {
   gap: 14px;
-  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  /* The extra 40px at the top is the ×'s band; the sheet heights below (100dvh - 156px) leave room for it. */
+  padding: calc(env(safe-area-inset-top) + 40px) 0 env(safe-area-inset-bottom);
 }
 
 /* One page per view: a portrait sheet that fills the width, leaving room for the controls. */
@@ -4619,35 +4622,23 @@
 .root[data-compact="true"] .closeX {
   top: calc(env(safe-area-inset-top) + 6px);
   right: max(18px, calc((100% - 480px) / 2));
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  border-width: 1px;
 }
 
-/* Just above the sheet's corner when that leaves a margin to the screen's top edge (the margin-top
-   counts when the browser checks for overflow); otherwise, as on a tall résumé or a short phone,
-   tucked inside the sheet's top-right corner, which is page margin on every skin. */
 @supports (anchor-name: --a) {
-  @position-try --reader-close-inside {
-    top: calc(anchor(top) + 10px);
-    bottom: auto;
-    right: calc(anchor(right) + 10px);
-    margin: 0;
-  }
-
   .closeX {
     position-anchor: --reader-sheet;
     top: auto;
     bottom: calc(anchor(top) + 0.8 * var(--k) * 1cqw);
     right: anchor(right);
-    margin-top: 16px;
-    position-try-fallbacks: --reader-close-inside;
   }
 
   .root[data-compact="true"] .closeX {
     top: auto;
     bottom: calc(anchor(top) + 6px);
     right: anchor(right);
-    margin-top: calc(env(safe-area-inset-top) + 12px);
   }
 }
 
