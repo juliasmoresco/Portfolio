@@ -3859,7 +3859,8 @@
   padding: 0;
   border: 1px solid rgba(245, 235, 220, 0.5);
   border-radius: 50%;
-  background: rgba(20, 16, 13, 0.35);
+  /* Near-opaque, so it reads on the dark room and, when it falls back inside the sheet, on paper. */
+  background: rgba(20, 16, 13, 0.82);
   color: var(--paper);
   cursor: pointer;
   display: flex;
@@ -4620,18 +4621,31 @@
   height: 40px;
 }
 
+/* Just above the sheet's corner when that leaves a margin to the screen's top edge (the margin-top
+   counts when the browser checks for overflow); otherwise, as on a tall résumé or a short phone,
+   tucked inside the sheet's top-right corner, which is page margin on every skin. */
 @supports (anchor-name: --a) {
+  @position-try --reader-close-inside {
+    top: calc(anchor(top) + 10px);
+    bottom: auto;
+    right: calc(anchor(right) + 10px);
+    margin: 0;
+  }
+
   .closeX {
     position-anchor: --reader-sheet;
     top: auto;
     bottom: calc(anchor(top) + 0.8 * var(--k) * 1cqw);
     right: anchor(right);
+    margin-top: 16px;
+    position-try-fallbacks: --reader-close-inside;
   }
 
   .root[data-compact="true"] .closeX {
     top: auto;
     bottom: calc(anchor(top) + 6px);
     right: anchor(right);
+    margin-top: calc(env(safe-area-inset-top) + 12px);
   }
 }
 
