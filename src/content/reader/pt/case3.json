@@ -33,8 +33,8 @@
         "Cada vez mais jovens estão chegando à bolsa, mas a educação financeira no Brasil ainda é baixa, e a maioria das pessoas nem investe.",
         "E as opções para aprender não ajudam: a maioria dos apps sobre bolsa tem nota abaixo de 3,9, e as ferramentas das corretoras são pagas. Os desafios:",
         "- pouca confiança: investir parece complicado",
-        "- muito jargão e conteúdo técnico",
-        "- teoria que nunca vira prática"
+        "- excesso de jargão e de conteúdo técnico",
+        "- teoria que não se transforma em prática"
       ],
       "stats": {
         "kicker": "O ponto de partida",
@@ -67,7 +67,7 @@
       "heading": "Um processo completo, do começo ao fim",
       "lines": [
         "O projeto foi da pesquisa até um protótipo de alta fidelidade testado com usuários, usando Design Thinking e Lean Inception para definir o MVP.",
-        "Eu queria entender não só o que as pessoas precisavam aprender, mas como elas lidam com informação sobre dinheiro, e o que as faz travar."
+        "Eu queria entender não só o que as pessoas precisavam aprender, mas como elas lidam com informação sobre dinheiro, e o que as impede de avançar."
       ],
       "timeline": {
         "kicker": "Duplo diamante",
@@ -129,7 +129,7 @@
       "heading": "O que a pesquisa disse",
       "lines": [
         "Juntando os dados, o benchmark e as conversas com especialistas, cheguei a quatro descobertas.",
-        "A principal: antes de falar de bolsa, o app precisava falar de educação financeira, porque a maioria das pessoas não consegue nem guardar dinheiro."
+        "A principal: antes de falar de bolsa, o app precisava falar de educação financeira, porque a maioria das pessoas não consegue sequer guardar dinheiro."
       ],
       "cards": {
         "kicker": "Quatro descobertas",
@@ -137,7 +137,7 @@
         "items": [
           {
             "title": "A maioria nem investe.",
-            "body": "69% não guardam nem investem dinheiro, principalmente porque não sobra; depois vêm falta de interesse (8%) e insegurança (7%)."
+            "body": "69% não guardam nem investem dinheiro, principalmente porque falta dinheiro; depois vêm falta de interesse (8%) e insegurança (7%)."
           },
           {
             "title": "O jargão afasta.",
@@ -160,7 +160,7 @@
       "heading": "Duas pessoas no centro do projeto",
       "lines": [
         "Da pesquisa nasceram duas personas: uma movida pela curiosidade e pela vontade de aprender, a outra por objetivos práticos e muita cautela.",
-        "Os mapas de empatia me ajudaram a entender o que motiva e o que trava cada um, para o app funcionar para os dois."
+        "Os mapas de empatia me ajudaram a entender o que motiva e o que impede cada um de avançar, para o app funcionar para os dois."
       ],
       "personas": {
         "kicker": "Personas",
@@ -180,7 +180,7 @@
               "Curiosa",
               "Flexível"
             ],
-            "about": "Jovem e ambiciosa, sempre querendo crescer. Tem pouco tempo, mas topa reservar um pouco para aprender sobre dinheiro.",
+            "about": "Jovem e ambiciosa, sempre querendo crescer. Tem pouco tempo, mas está disposta a reservar um tempo para aprender sobre dinheiro.",
             "context": [
               "Faz tudo pelo celular",
               "Pouco tempo para estudar: trabalha em tempo integral",
@@ -214,9 +214,9 @@
             "about": "Prefere o que já foi testado, valoriza segurança e quer provas antes de decidir qualquer coisa.",
             "context": [
               "Evita apps de dinheiro no celular",
-              "Até tem tempo para estudar, mas não estuda",
+              "Tem tempo para estudar, mas não estuda",
               "Deixa o dinheiro na poupança",
-              "Tem um pé atrás com a bolsa"
+              "Desconfia da bolsa"
             ],
             "needs": [
               "Informação confiável",
@@ -277,7 +277,7 @@
                   4
                 ],
                 "doing": "Acompanha as notícias do mercado, ajusta o perfil e faz o teste de perfil de investidor.",
-                "feeling": "Os sobe e desce do mercado assustam, mas as notícias ajudam ela a se adaptar."
+                "feeling": "As oscilações do mercado assustam, mas as notícias ajudam ela a se adaptar."
               }
             ]
           },
@@ -291,7 +291,7 @@
                   4
                 ],
                 "doing": "Encontra o app atraído pela promessa de informação confiável e de jeitos seguros de proteger o dinheiro, e se cadastra.",
-                "feeling": "Fica com um pé atrás com a novidade, mas a informação confiável e embasada deixa ele mais tranquilo."
+                "feeling": "Fica desconfiado com a novidade, mas a informação confiável e embasada deixa ele mais tranquilo."
               },
               {
                 "name": "Estudo",
@@ -309,7 +309,7 @@
                   4
                 ],
                 "doing": "Usa o simulador para pesar cenários e riscos e acompanha as notícias do mercado.",
-                "feeling": "Os sobe e desce do mercado incomodam, mas as notícias ajudam ele a decidir e se adaptar."
+                "feeling": "As oscilações do mercado incomodam, mas as notícias ajudam ele a decidir e se adaptar."
               },
               {
                 "name": "Rotina",
@@ -317,7 +317,7 @@
                   5
                 ],
                 "doing": "Coloca em prática o que aprendeu e usa o perfil para receber dicas que combinam com o tipo de investidor que ele é.",
-                "feeling": "Confiante de que está decidindo com segurança, sem correr riscos à toa."
+                "feeling": "Confiante de que está decidindo com segurança, sem correr riscos desnecessários."
               }
             ]
           }
@@ -399,8 +399,8 @@
       "kicker": "Identidade visual",
       "heading": "Leve de propósito",
       "lines": [
-        "A marca precisava tirar o peso de investir. “Bora” é um convite para começar, do jeito que a gente fala no dia a dia.",
-        "Tons neutros e verdes suaves passam crescimento e confiança, a Work Sans deixa tudo claro e amigável, e os textos usam frases curtas e verbos que dão aquele empurrãozinho.",
+        "A marca precisava deixar o investimento mais leve. “Bora” é um convite para começar, no tom de uma conversa do dia a dia.",
+        "Tons neutros e verdes suaves passam crescimento e confiança, a Work Sans deixa tudo claro e amigável, e os textos usam frases curtas e verbos que incentivam o primeiro passo.",
         "Tudo isso está num guia de estilo no Figma, pensado para manter a consistência e a acessibilidade."
       ],
       "palette": {
@@ -451,7 +451,7 @@
       "kicker": "Resultado",
       "heading": "Testando com 10 pessoas",
       "lines": [
-        "Testei o protótipo no Maze com 10 pessoas de 18 a 35 anos que sabiam pouco sobre investimentos, com quatro tarefas: entrar, terminar o quiz de uma aula, simular um investimento e encontrar o IBOVESPA.",
+        "Testei o protótipo no Maze com 10 pessoas de 18 a 35 anos que sabiam pouco sobre investimentos, com quatro tarefas: entrar, terminar o quiz de uma aula, simular um investimento e verificar o índice da IBOVESPA.",
         "Avaliei cada tarefa com a Single Usability Metric (SUM), que junta conclusão, tempo, erros e satisfação. Todas passaram de 96%, e o Maze deu nota 88 para a usabilidade.",
         "O teste rendeu duas mudanças: um onboarding que avança com um toque, como os Stories, e os índices do mercado direto na Home."
       ],
@@ -476,7 +476,7 @@
                 "value": 96.5
               },
               {
-                "label": "Achar o IBOVESPA",
+                "label": "Verificar a IBOVESPA",
                 "value": 99
               }
             ]
@@ -498,13 +498,14 @@
                 "value": 88.9
               },
               {
-                "label": "Achar o IBOVESPA",
+                "label": "Verificar a IBOVESPA",
                 "value": 100
               }
             ]
           }
         ],
-        "color": "#12B76A"
+        "color": "#12B76A",
+        "note": "Tarefa “Verificar a IBOVESPA”: “Agora, imagine que você está buscando informações sobre a IBOVESPA. Como você faria para verificar o índice desse indicador de desempenho?”"
       }
     },
     {

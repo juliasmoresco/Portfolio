@@ -31,7 +31,7 @@
       "heading": "O problema: um produto que tinha ficado para trás",
       "lines": [
         "O Connect era confuso e tinha componentes ultrapassados. Atrasava os assessores, gerava chamados e deixava a previdência isolada do resto do HUB.",
-        "A missão: levar toda a previdência para o HUB e melhorar cada jornada no caminho. Ia dar certo se a gente visse:",
+        "A missão: levar toda a previdência para o HUB e melhorar cada jornada no caminho. Saberíamos que deu certo se víssemos:",
         "- menos chamados de suporte",
         "- assessores mais satisfeitos",
         "- mais patrimônio em previdência via HUB",
@@ -88,7 +88,7 @@
               "hub-connect-2",
               "hub-connect-4"
             ],
-            "note": "O Connect pedia primeiro a seguradora de destino e depois jogava o assessor num formulário enorme."
+            "note": "O Connect pedia primeiro a seguradora de destino e depois levava o assessor a um formulário extenso."
           },
           {
             "label": "Depois · HUB",
@@ -127,7 +127,7 @@
           },
           {
             "title": "Campos demais.",
-            "body": "Os formulários pediam um monte de dados que nem eram necessários."
+            "body": "Os formulários pediam muitos dados desnecessários."
           },
           {
             "title": "Termos que não ajudavam.",
@@ -233,8 +233,8 @@
       "heading": "Hábito ou problema de usabilidade?",
       "lines": [
         "Quase todo o fluxo passou, só com pequenos ajustes. Uma parte dividiu opiniões: começar um novo plano pela **lista de fundos**.",
-        "Os assessores estavam acostumados a começar pelo plano de origem, como no Connect, e um deles comentou no Maze que isso parecia mais lógico. Numa entrevista, outro gostou da lista de fundos, mas estranhou no começo, por costume.",
-        "Mesmo assim, 90% concluíram as tarefas. Era problema de usabilidade ou só costume de anos de Connect? Com 46 pessoas, não dava para ter certeza."
+        "Os assessores estavam acostumados a começar pelo plano de origem, como no Connect, e um deles comentou no Maze que isso parecia mais lógico. Numa entrevista, outro gostou da lista de fundos, mas estranhou no início, por hábito.",
+        "Mesmo assim, 90% concluíram as tarefas. Era problema de usabilidade ou só hábito de anos de uso do Connect? Com 46 pessoas, não dava para ter certeza."
       ],
       "compare": {
         "kicker": "Duas entradas",
@@ -263,7 +263,7 @@
       "kicker": "Resultado",
       "heading": "Deixando o piloto decidir",
       "lines": [
-        "O roadmap não podia parar. Então, em vez de segurar o lançamento, a gente usou o próprio lançamento para responder.",
+        "O roadmap não podia parar. Então, em vez de adiar o lançamento, usamos o próprio lançamento para responder.",
         "Os quatro escritórios que mais fazem portabilidade passaram a usar o fluxo novo de verdade, com encontros semanais para apresentar, treinar e ouvir os assessores. Eles foram divididos entre Beta e não Beta, e o feedback chegava pelo Medallia.",
         "A resposta: a lista de fundos foi validada. Os assessores se acostumaram e concordaram que fazia sentido."
       ],
@@ -385,7 +385,7 @@
         "title": "O resultado final",
         "device": "desktop",
         "intro": [
-          "Agora a previdência está onde os assessores já trabalham: uma lista de fundos para começar, as posições dos clientes à mão e um passo a passo em cada operação."
+          "Agora a previdência está onde os assessores já trabalham: uma lista de fundos para começar, as posições dos clientes acessíveis e um passo a passo em cada operação."
         ],
         "screens": [
           {

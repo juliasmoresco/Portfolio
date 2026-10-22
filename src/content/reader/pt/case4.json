@@ -15,7 +15,7 @@
       "kicker": "Visão geral",
       "heading": "Um portfólio sem menu",
       "lines": [
-        "Sempre que alguém vê meu escritório atrás de mim numa call, vem elogio. Ele é cheio de coisas que têm a ver comigo, então levei essas mesmas coisas para o portfólio: é só clicar num objeto para conhecer meu trabalho.",
+        "Sempre que alguém vê meu escritório ao fundo de uma videochamada, recebo elogios. Ele é cheio de objetos que me representam, então levei esses mesmos objetos para o portfólio: basta clicar em um deles para conhecer meu trabalho.",
         "**Papel:** conceito, design e direção de arte",
         "**Feito com:** Claude Design (protótipo e objetos 3D) e Claude Code (o site)",
         "**Stack:** React, TypeScript, three.js",
@@ -29,14 +29,14 @@
       "kicker": "A ideia",
       "heading": "Por que um escritório",
       "lines": [
-        "A maioria dos portfólios é parecida: uma grade de projetos e uma página Sobre. Eu queria um que tivesse a minha cara.",
-        "Então a home é o meu escritório de verdade, com a mesma estante, a planta, o globo, o xadrez, o gato e o telefone rosa. Não tem menu de navegação: você explora, e cada coisa que encontra conta um pedaço da minha história.",
-        "Para quem está com pressa, tem um menu pequeno com tudo."
+        "A maioria dos portfólios é parecida: uma grade de projetos e uma página Sobre. Eu queria um que refletisse quem eu sou.",
+        "Então a home é o meu escritório de verdade, com a mesma estante, a planta, o globo, o xadrez, o gato e o telefone rosa. Não há menu de navegação: você explora, e cada coisa que encontra conta um pedaço da minha história.",
+        "Para quem tem pouco tempo, há um menu compacto com todo o conteúdo."
       ],
       "poll": {
         "kicker": "Sua vez",
         "title": "Um palpite rápido",
-        "question": "Quantas coisas dá para clicar neste escritório?",
+        "question": "Quantos objetos podem ser clicados neste escritório?",
         "options": [
           {
             "label": "9"
@@ -49,7 +49,7 @@
           }
         ],
         "answer": 2,
-        "reveal": "São 17 objetos para descobrir, mais a luminária de lua, que muda a luz. O primeiro protótipo já prometia “0 de 17 descobertos”, e com este livro na estante a conta finalmente fecha.",
+        "reveal": "São 17 objetos para descobrir, mais a luminária de lua, que muda a luz. O primeiro protótipo já prometia “0 de 17 descobertos”, e, com este livro na estante, a conta finalmente fecha.",
         "prompt": "Escolha uma para ver a resposta.",
         "answerLabel": "Resposta"
       },
@@ -208,7 +208,7 @@
       "kicker": "Celular",
       "heading": "A mesma sala, na sua mão",
       "lines": [
-        "No celular, o escritório inteiro continua cabendo na tela. Dá para arrastar e dar zoom para olhar em volta, e é só tocar num objeto para abrir.",
+        "No celular, o escritório inteiro continua cabendo na tela. É possível arrastar e ampliar a imagem para olhar ao redor, e basta tocar em um objeto para abri-lo.",
         "Revisei como qualquer produto: os objetos pequenos ganharam uma área de toque invisível, todo botão tem pelo menos 44px, nenhum texto é menor que 12px e nada do que abre precisa de rolagem."
       ],
       "stats": {
@@ -237,7 +237,7 @@
       "kicker": "Conteúdo",
       "heading": "Contando cada case do seu jeito",
       "lines": [
-        "Os textos ficam no Notion e vão direto para os livros. E cada case tem páginas feitas para ele, onde você interage: responde um quiz, vira um cartão, compara versões, vê um número subir.",
+        "Os textos ficam no Notion e são publicados diretamente nos livros. E cada case tem páginas feitas para ele, onde você interage: responde um quiz, vira um cartão, compara versões, vê um número subir.",
         "Essas peças podem ser reaproveitadas, então cada case novo usa as que contam melhor a sua história."
       ],
       "glossary": {
@@ -286,7 +286,7 @@
         "title": "Abra o escritório",
         "device": "desktop",
         "intro": [
-          "Dezessete objetos para descobrir, mais uma luminária de lua. Três cases, um currículo, um gato que conversa e nenhum menu obrigatório. Fecha este livro e dá uma olhada por aí."
+          "Dezessete objetos para descobrir, mais uma luminária de lua. Três cases, um currículo, um gato que responde perguntas e nenhum menu obrigatório. Feche este livro e explore o restante do escritório."
         ],
         "screens": [
           {

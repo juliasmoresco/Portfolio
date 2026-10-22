@@ -10,7 +10,7 @@
       "kicker": "Visão geral",
       "heading": "As pessoas querem usar o cupom. Só não sabem como.",
       "lines": [
-        "Muita gente adicionava uma oferta no app e nunca usava no restaurante. O problema não era a oferta: alguma coisa dava errado nos últimos passos, e minha missão era descobrir o quê.",
+        "Muitos clientes adicionavam uma oferta no app e nunca a utilizavam no restaurante. O problema não era a oferta: algo falhava nos últimos passos, e minha missão era descobrir o quê.",
         "**Cliente:** Restaurant Brands International (RBI) – Burger King (CH, DE, UK, NZ)",
         "**Meu papel:** Product Designer Sênior",
         "**Com:** Valentina Lopes (Product Manager)",
@@ -25,9 +25,9 @@
       "kicker": "Visão geral",
       "heading": "O problema: muita oferta adicionada, pouca resgatada",
       "lines": [
-        "O app de fidelidade do Burger King roda na Suíça, Alemanha, Reino Unido e Nova Zelândia, e o resgate pode ser no totem, no balcão ou no drive-thru. Depois que a fidelidade chegou às lojas, os países começaram a reclamar: muita gente adicionava a oferta, mas pouca gente resgatava.",
+        "O app de fidelidade do Burger King roda na Suíça, Alemanha, Reino Unido e Nova Zelândia, e o resgate pode ser no totem, no balcão ou no drive-thru. Depois que a fidelidade chegou às lojas, os países começaram a relatar o problema: muitos clientes adicionavam a oferta, mas poucos a resgatavam.",
         "Os dados mostravam onde as pessoas desistiam, mas não o porquê.",
-        "Junto com a Valentina Lopes, nossa PM, eu precisava entender o que travava e criar um resgate mais simples."
+        "Junto com a Valentina Lopes, nossa PM, eu precisava entender o que impedia o resgate e criar um resgate mais simples."
       ],
       "chart": {
         "kicker": "O problema",
@@ -119,8 +119,8 @@
       "kicker": "Processo",
       "heading": "No restaurante",
       "lines": [
-        "As pessoas tinham dificuldade para conectar o celular ao totem. Ficavam caçando o código de fidelidade no app, e algumas nem entendiam por que precisavam de um código.",
-        "No balcão, os atendentes viviam tendo que resolver na mão.",
+        "As pessoas tinham dificuldade para conectar o celular ao totem. Não encontravam o código de fidelidade no app, e algumas nem entendiam por que precisavam de um código.",
+        "No balcão, os atendentes precisavam resolver tudo manualmente, com frequência.",
         "Tudo o que vimos e ouvimos se resumia a três problemas."
       ],
       "cards": {
@@ -135,7 +135,7 @@
           },
           {
             "title": "A pré-seleção confundia.",
-            "body": "Muita gente não sabia que dava para escolher várias ofertas antes, e alguns achavam que adicionar um segundo cupom cancelava o primeiro, porque o código mudava."
+            "body": "Muitos clientes não sabiam que era possível escolher várias ofertas antes, e alguns achavam que adicionar um segundo cupom cancelava o primeiro, porque o código mudava."
           },
           {
             "title": "Botões e textos não eram claros.",
@@ -150,7 +150,7 @@
       "heading": "Três apostas",
       "lines": [
         "Cada problema virou um teste, com a meta de aumentar os resgates em mais de 5%, a partir dos dados de funil da Alemanha, Suíça, Reino Unido e Nova Zelândia.",
-        "Como dava para escolher qual versão cada restaurante recebia, tiramos a versão padrão e colocamos as variantes para competir entre si."
+        "Como dava para escolher qual versão cada restaurante recebia, retiramos a versão padrão e comparamos as variantes entre si."
       ],
       "compare": {
         "kicker": "Aposta 1",
@@ -179,14 +179,14 @@
     },
     {
       "kicker": "Processo",
-      "heading": "Aposta 2: melhorar a pré-seleção ou acabar com ela?",
+      "heading": "Aposta 2: melhorar a pré-seleção ou eliminá-la?",
       "lines": [
-        "O **Experimento 2** manteve a pré-seleção e deixou claro o que acontecia ao escolher várias ofertas: confirmações e um resumo mais simples. O **Experimento 2.2** acabou com ela: uma oferta por vez, sem carrinho. Os dois também deixaram o código mais fácil de achar.",
+        "O **Experimento 2** manteve a pré-seleção e deixou claro o que acontecia ao escolher várias ofertas: confirmações e um resumo mais simples. O **Experimento 2.2** eliminou a pré-seleção: uma oferta por vez, sem carrinho. Os dois também deixaram o código mais fácil de achar.",
         "O resultado não foi conclusivo. As duas versões melhoraram o que existia, mas a diferença entre elas foi pequena demais para apontar uma vencedora."
       ],
       "compare": {
         "kicker": "Aposta 2",
-        "title": "Melhorar a pré-seleção ou acabar com ela?",
+        "title": "Melhorar a pré-seleção ou eliminá-la?",
         "variants": [
           {
             "label": "Experimento 2 · Melhorar",
@@ -266,7 +266,7 @@
         "kicker": "Resultado · A decisão",
         "title": "O resultado final",
         "intro": [
-          "O código na barra de cima continuou ganhando das outras versões, então foi essa que o time lançou, com a interface ajustada em volta: uma página My Code mais clara e os novos botões da Aposta 3.",
+          "O código na barra de cima continuou superando as outras versões, então foi essa que o time lançou, com a interface ajustada em volta: uma página My Code mais clara e os novos botões da Aposta 3.",
           "Ela foi para todos os países e hoje faz parte dos Guest UI/UX Standards, o padrão usado nas marcas da RBI."
         ],
         "screens": [
