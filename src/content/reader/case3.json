@@ -451,7 +451,7 @@
       "kicker": "Outcome",
       "heading": "Testing with 10 people",
       "lines": [
-        "I tested the prototype in Maze with 10 people aged 18 to 35 with little investing knowledge, across four tasks: sign in, finish a lesson's quiz, simulate an investment, and find the IBOVESPA index.",
+        "I tested the prototype in Maze with 10 people aged 18 to 35 with little investing knowledge, across four tasks: sign in, finish a lesson's quiz, simulate an investment, and check the IBOVESPA index.",
         "I scored each task with the Single Usability Metric (SUM), which combines completion, time, errors and satisfaction. Every task scored above 96%, and Maze rated the test's usability 88.",
         "Two changes came out of it: onboarding that advances with a tap, like Stories, and market indices right on the Home."
       ],
@@ -476,7 +476,7 @@
                 "value": 96.5
               },
               {
-                "label": "Find IBOVESPA",
+                "label": "Check IBOVESPA",
                 "value": 99
               }
             ]
@@ -498,13 +498,14 @@
                 "value": 88.9
               },
               {
-                "label": "Find IBOVESPA",
+                "label": "Check IBOVESPA",
                 "value": 100
               }
             ]
           }
         ],
-        "color": "#12B76A"
+        "color": "#12B76A",
+        "note": "“Check IBOVESPA” task: “Now, imagine you're looking for information about the IBOVESPA. How would you check the index of this performance indicator?”"
       }
     },
     {
