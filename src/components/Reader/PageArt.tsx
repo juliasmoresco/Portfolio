@@ -341,7 +341,11 @@ function FitBrowser({ src, label, className, align = "center", onOpen }: { src: 
     const fit = () => {
       const bar = barRef.current?.offsetHeight ?? 0;
       const W = box.clientWidth;
-      const H = box.clientHeight;
+      // In a page that scrolls (--fit-flow), the box has no height of its own: the window takes the full width
+      // and its picture's height, up to --fit-max.
+      const cs = getComputedStyle(box);
+      const flow = cs.getPropertyValue("--fit-flow").trim() === "1";
+      const H = flow ? parseFloat(cs.getPropertyValue("--fit-max")) || Infinity : box.clientHeight;
       let w = W;
       let h = W / ratio + bar;
       if (h > H) {

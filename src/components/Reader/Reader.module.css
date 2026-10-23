@@ -7297,9 +7297,25 @@ button.chatAvatar:focus-visible {
   height: 360px;
 }
 
+/* Read down a page, a version's browser windows stack, each the full width, instead of overlapping small. */
 .root[data-full-page="true"] .compareDesktop {
   flex: none;
-  height: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+.root[data-full-page="true"] .compareDesktop .compareWindow {
+  /* FitBrowser: full width, the screenshot's own height, at most --fit-max */
+  --fit-flow: 1;
+  --fit-max: 460;
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  z-index: auto;
 }
 
 /* The glossary's cards share out the sheet's height; read down a page, each row gets room for a card's back. */
