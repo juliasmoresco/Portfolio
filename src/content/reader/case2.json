@@ -38,7 +38,6 @@
         "- more advisors using HUB, more often"
       ],
       "glossary": {
-        "kicker": "Pension 101",
         "title": "A few words first",
         "items": [
           {
@@ -82,7 +81,6 @@
         "Each discovery started the same way: business, operations and tech together, looking at volumes, support tickets and the main pain points."
       ],
       "compare": {
-        "kicker": "Before and after",
         "title": "Where a portability starts",
         "device": "desktop",
         "variants": [
@@ -114,7 +112,6 @@
         "The open question was whether advisors themselves understood all these differences, and how the product could help them."
       ],
       "cards": {
-        "kicker": "Five pain points",
         "title": "What got in the way",
         "items": [
           {
@@ -150,7 +147,6 @@
         "The boldest one: letting advisors start from a **list of funds** instead of a client. Nothing like it existed in Connect."
       ],
       "cards": {
-        "kicker": "Four opportunities",
         "title": "What we bet on",
         "items": [
           {
@@ -181,7 +177,6 @@
         "In HUB, each option also carries a one-line description, so the name never has to do all the work."
       ],
       "poll": {
-        "kicker": "Your turn",
         "title": "What would you call it?",
         "question": "An advisor wants to move a client's money from one XP pension plan to another. Which name would they look for?",
         "options": [
@@ -215,7 +210,6 @@
         "We measured task success, drop-off and satisfaction after each task (ASQ)."
       ],
       "funnel": {
-        "kicker": "Usability test",
         "title": "Who took part",
         "steps": [
           {
@@ -244,7 +238,6 @@
         "Task success was still 90%. So was it a usability problem, or years of Connect? With 46 testers, we couldn't be sure."
       ],
       "compare": {
-        "kicker": "Two ways in",
         "title": "Fund first or client first?",
         "device": "desktop",
         "variants": [
@@ -275,7 +268,6 @@
         "The answer: the fund list was validated. Advisors got used to it and agreed it made sense for the product."
       ],
       "timeline": {
-        "kicker": "Rollout",
         "title": "From a pilot to every office",
         "stops": [
           {
@@ -308,7 +300,6 @@
         "Feedback praised the speed, the ease of use and how clear the navigation was."
       ],
       "migration": {
-        "kicker": "Connect → HUB",
         "title": "What moved",
         "from": "Connect",
         "to": "HUB",
@@ -336,7 +327,6 @@
       "heading": "Results",
       "lines": [],
       "stats": {
-        "kicker": "Results",
         "title": "What it added up to",
         "items": [
           {
@@ -357,7 +347,6 @@
       },
       "right": {
         "quotes": {
-          "kicker": "In their words",
           "title": "What advisors said",
           "note": "Advisor feedback, translated from Portuguese",
           "items": [
@@ -388,7 +377,6 @@
       "heading": "The final result",
       "lines": [],
       "showcase": {
-        "kicker": "Outcome · The result",
         "title": "The final result",
         "device": "desktop",
         "intro": [

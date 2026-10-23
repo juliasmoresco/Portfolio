@@ -1,6 +1,6 @@
 import { useLayoutEffect, type CSSProperties, type ReactNode, type RefObject } from "react";
 import { hasPanel, pageHasArt, textOnly, type ReaderItem, type ReaderPage } from "../../content";
-import { ArticlePage, ImagePage } from "./parts";
+import { ArticlePage, chapterKicker, ImagePage } from "./parts";
 import styles from "./Reader.module.css";
 
 /**
@@ -171,7 +171,7 @@ export function CompactViews({ item, flat, views, view, onViewChange, scrollerRe
             <ArticlePage
               className={flat ? styles.flat : styles.bookRight}
               pages={v.pages.map((i) => (v.part === "text" ? textOnly(item.pages[i]) : item.pages[i]))}
-              kicker={first.kicker}
+              kicker={flat ? first.kicker : chapterKicker(item.pages, first)}
               heading={flat ? item.title : first.heading || item.title}
               footer={flat ? <div className={styles.openingLabel}>{item.openingLabel}</div> : last ? end : undefined}
             />

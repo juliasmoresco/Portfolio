@@ -37,7 +37,6 @@
         "- theory that never turns into practice"
       ],
       "stats": {
-        "kicker": "The starting point",
         "title": "Brazil and its money",
         "items": [
           {
@@ -70,7 +69,6 @@
         "I wanted to understand not just what people needed to learn, but how they take in financial information, and what stops them."
       ],
       "timeline": {
-        "kicker": "Double diamond",
         "title": "Four phases",
         "stops": [
           {
@@ -106,7 +104,6 @@
         "And I consulted two market experts, an investment advisor and an economist, about what each investor profile needs."
       ],
       "stats": {
-        "kicker": "Research",
         "title": "Where the insights came from",
         "items": [
           {
@@ -132,7 +129,6 @@
         "The biggest one: before talking about the stock market, the app had to teach financial education, because most people struggle to save in the first place."
       ],
       "cards": {
-        "kicker": "Four findings",
         "title": "What holds people back",
         "items": [
           {
@@ -163,7 +159,6 @@
         "Empathy maps helped me see their emotional triggers and what might stop them, so the app could answer both."
       ],
       "personas": {
-        "kicker": "Personas",
         "title": "Meet Clara and Lucas",
         "items": [
           {
@@ -239,7 +234,6 @@
         "The dips showed where support had to step in, so the app is built on progressive disclosure: one small step at a time, with help at the hard parts."
       ],
       "journey": {
-        "kicker": "Journey map",
         "title": "Two journeys",
         "people": [
           {
@@ -335,7 +329,6 @@
         "- **Explore:** market news and indicators, for context"
       ],
       "compare": {
-        "kicker": "Information architecture",
         "title": "Three pillars",
         "variants": [
           {
@@ -374,7 +367,6 @@
         "Try one of the app's real questions:"
       ],
       "poll": {
-        "kicker": "From the app",
         "title": "Quiz time",
         "question": "What is the 50-30-20 method?",
         "options": [
@@ -404,7 +396,6 @@
         "Everything lives in a Figma style guide, built for consistency and accessibility."
       ],
       "palette": {
-        "kicker": "Style guide",
         "title": "BoraInvest's look",
         "logo": "bora-logo",
         "font": {
@@ -456,7 +447,6 @@
         "Two changes came out of it: onboarding that advances with a tap, like Stories, and market indices right on the Home."
       ],
       "chart": {
-        "kicker": "Usability test",
         "title": "How each task did",
         "groups": [
           {
@@ -513,7 +503,6 @@
       "heading": "The final result",
       "lines": [],
       "prototype": {
-        "kicker": "Outcome · The result",
         "title": "Try the prototype",
         "path": "bora/",
         "intro": [

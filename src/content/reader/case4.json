@@ -34,7 +34,6 @@
         "For anyone in a hurry, a small menu lists everything too."
       ],
       "poll": {
-        "kicker": "Your turn",
         "title": "A quick guess",
         "question": "How many things can you click in this office?",
         "options": [
@@ -92,7 +91,6 @@
         "I took it to **Claude Design** to prototype the room and model the 3D objects, then moved to **Claude Code** to build the site for real, with real content, real interactions and a phone version."
       ],
       "compare": {
-        "kicker": "Three stages",
         "title": "Sketch, prototype, site",
         "device": "desktop",
         "variants": [
@@ -128,7 +126,6 @@
         "Then I moved to **Claude Code** to build the real site. I directed the work end to end: the concept, the content, how each object behaves and every visual detail, reviewing each change on desktop and on a phone."
       ],
       "model3d": {
-        "kicker": "3D model",
         "title": "The bookcase",
         "model": "bookshelf",
         "note": "Drag to turn it"
@@ -143,7 +140,6 @@
         "Try them from here:"
       ],
       "hobbies": {
-        "kicker": "Shortcuts",
         "title": "Open one",
         "items": [
           {
@@ -212,7 +208,6 @@
         "I audited it like any product: small objects got an invisible touch area, every button became at least 44px, no text is smaller than 12px, and nothing that opens needs scrolling."
       ],
       "stats": {
-        "kicker": "Mobile audit",
         "title": "Made for thumbs",
         "items": [
           {
@@ -241,7 +236,6 @@
         "Those pieces are reusable, so every new case can pick the ones that tell its story best."
       ],
       "glossary": {
-        "kicker": "The toolkit",
         "title": "Pages you can play with",
         "items": [
           {
@@ -282,7 +276,6 @@
       "heading": "The final result",
       "lines": [],
       "showcase": {
-        "kicker": "Outcome · The result",
         "title": "Open the office",
         "device": "desktop",
         "intro": [
