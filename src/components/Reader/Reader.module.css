@@ -7398,3 +7398,43 @@ button.chatAvatar:focus-visible {
 .root[data-compact="true"] .photoCaption .line {
   font-size: 15px;
 }
+
+/* Full-page reading on a tablet held upright: the screen is wide, so the reading runs down a centred column of
+   comfortable line length (about 70 characters) in slightly larger type, text and visuals on the same edges. */
+@media (min-width: 640px) {
+  .root[data-full-page="true"] .view {
+    align-self: center;
+    /* 640px of content inside the pages' 20px side padding */
+    width: min(100%, 680px);
+  }
+
+  .root[data-full-page="true"] .view[data-part="cover"]:has(.pageFull) {
+    width: 100%;
+    height: min(70svh, 820px);
+  }
+
+  .root[data-full-page="true"] .view[data-part="text"] .pageRight {
+    padding-top: 48px;
+  }
+
+  .root[data-full-page="true"] .line {
+    font-size: 17px;
+  }
+
+  .root[data-full-page="true"] .heading {
+    font-size: 28px;
+  }
+
+  .root[data-full-page="true"] .compareScreens {
+    height: 480px;
+  }
+
+  .scrollHero {
+    padding-inline: max(24px, calc((100% - 640px) / 2));
+  }
+
+  .root[data-full-page="true"] .resumeSheet {
+    width: min(100%, 720px);
+    margin-inline: auto;
+  }
+}
