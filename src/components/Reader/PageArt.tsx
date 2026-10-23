@@ -148,7 +148,6 @@ export function Compare({ compare }: { compare: PageCompare }) {
       </div>
       {compare.device === "desktop" ? (
         <>
-          {/* Read down a page (phone, tablet), the windows stack instead and the switch is hidden (Reader.module.css). */}
           <div key={at} className={styles.compareDesktop} data-count={windows.length}>
             {windows.map((src, i) => (
               <FitBrowser

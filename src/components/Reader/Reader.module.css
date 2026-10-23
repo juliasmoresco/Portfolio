@@ -793,6 +793,17 @@
   font-size: 13px;
 }
 
+.root[data-compact="true"] .compareShots {
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.root[data-compact="true"] .compareShot {
+  min-height: 36px;
+  padding: 0 14px;
+  font-size: 12px;
+}
+
 .root[data-compact="true"] .compareWinnerBelow {
   margin-top: 12px;
 }
@@ -7317,16 +7328,9 @@ button.chatAvatar:focus-visible {
   height: 360px;
 }
 
-/* Read down a page, a version's browser windows stack, each the full width, instead of overlapping small. */
-.root[data-full-page="true"] .compareShots {
-  display: none;
-}
-
+/* Read down a page, the shown window takes the full width and its screenshot's own height (the switch picks it). */
 .root[data-full-page="true"] .compareDesktop {
   flex: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
   min-height: 0;
 }
 
@@ -7334,7 +7338,6 @@ button.chatAvatar:focus-visible {
   /* FitBrowser: full width, the screenshot's own height, at most --fit-max */
   --fit-flow: 1;
   --fit-max: 460;
-  display: flex;
   position: relative;
   inset: auto;
   width: 100%;
