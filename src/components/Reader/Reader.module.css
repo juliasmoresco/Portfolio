@@ -3395,6 +3395,11 @@
   padding-bottom: 16px;
 }
 
+/* A second role at the same company: a little room above it, so the two don't run together. */
+.root[data-compact="true"] .resumeRoleBlock.resumeRoleNext {
+  margin-top: 14px;
+}
+
 /* A testimonial's paragraphs are separate blocks (so it can turn the page) but read as one quote. */
 .root .resumeBlock.resumeJoined {
   padding-bottom: 0;
@@ -7172,7 +7177,7 @@ button.chatAvatar:focus-visible {
 }
 
 /* ==========================================================================
-   Full-page reading on a phone (prototype: Reader.tsx, FULL_PAGE_BOOKS). The book fills the screen as one page
+   Full-page reading on a phone (books: Reader.tsx, fullPage). The book fills the screen as one page
    that scrolls down: the cover is its header, the views run one under another, and the × stays in the corner.
    ========================================================================== */
 
@@ -7271,4 +7276,37 @@ button.chatAvatar:focus-visible {
 .root[data-full-page="true"] .compareDesktop {
   flex: none;
   height: 260px;
+}
+
+/* The glossary's cards share out the sheet's height; read down a page, each row gets room for a card's back. */
+.root[data-full-page="true"] .glossaryGrid {
+  flex: none;
+  grid-auto-rows: 148px;
+}
+
+/* The 3D model fills the space it's given; read down a page, that's a square-ish stage. */
+.root[data-full-page="true"] .model3dStage {
+  flex: none;
+  height: min(90vw, 420px);
+}
+
+/* The résumé on a phone: one long sheet, full screen, that scrolls (ResumeSkin doesn't paginate it). */
+.root[data-full-page="true"][data-skin="resume"] .shell {
+  height: 100%;
+}
+
+.root[data-full-page="true"] .resume {
+  border-radius: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.root[data-full-page="true"] .resumeSheet {
+  height: auto;
+  min-height: 100%;
+  padding: calc(env(safe-area-inset-top) + 72px) var(--pad-x) calc(env(safe-area-inset-bottom) + 32px);
+}
+
+.root[data-full-page="true"] .resumePager {
+  display: none;
 }

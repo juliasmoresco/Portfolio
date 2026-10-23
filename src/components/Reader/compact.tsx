@@ -25,7 +25,7 @@ const SHOWCASE_PER_VIEW = 3;
 const MIN_FIT = 0.82;
 
 /** `breaks`: pages that must start a view of their own, because the view they would join is too tall for the screen. */
-export function buildViews(pages: ReaderPage[], breaks: readonly number[] = []): CompactView[] {
+export function buildViews(pages: ReaderPage[], breaks: readonly number[] = [], stacked = false): CompactView[] {
   const views: CompactView[] = [];
   pages.forEach((page, i) => {
     // A showcase is three screens to a view, so a phone never has to scroll it; the first view also has its text.
@@ -36,8 +36,10 @@ export function buildViews(pages: ReaderPage[], breaks: readonly number[] = []):
       return;
     }
     if (page.showcase) {
-      for (let at = 0; at < page.showcase.screens.length; at += SHOWCASE_PER_VIEW) {
-        views.push({ pages: [i], part: "cover", range: [at, at + SHOWCASE_PER_VIEW] });
+      // Read down one page (stacked), a showcase is a single block that wraps its screens.
+      const per = stacked ? page.showcase.screens.length : SHOWCASE_PER_VIEW;
+      for (let at = 0; at < page.showcase.screens.length; at += per) {
+        views.push({ pages: [i], part: "cover", range: [at, at + per] });
       }
       if (page.lines.length) views.push({ pages: [i], part: "text" });
       return;
@@ -72,7 +74,7 @@ export interface CompactViewProps {
   /** A view of several pages is too tall for the screen: start a new view at this page. */
   onOverflow: (page: number) => void;
   /**
-   * Full-page reading (prototype): the views run down one scrolling page instead of being swiped one at a time, so
+   * Full-page reading (books on a phone): the views run down one scrolling page instead of being swiped one at a time, so
    * nothing is cut to fit or drawn smaller, and the book's cover becomes the page's header.
    */
   stacked?: boolean;
@@ -128,6 +130,11 @@ export function CompactViews({ item, flat, views, view, onViewChange, scrollerRe
         .map((x) => x.v)
     : views;
   const hero = stacked && !item.pages[0]?.fullPage;
+  // Under a header that already names the book ("About me"), a chapter of the same name doesn't need saying again.
+  const kickerFor = (page: ReaderPage) => {
+    const k = chapterKicker(item.pages, page);
+    return hero && k === item.title ? undefined : k;
+  };
 
   const onScroll = () => {
     const el = scrollerRef.current;
@@ -170,8 +177,10 @@ export function CompactViews({ item, flat, views, view, onViewChange, scrollerRe
           <div key={key} className={styles.view} data-part={v.part ?? "text"} aria-hidden={!stacked && view !== idx}>
             <ArticlePage
               className={flat ? styles.flat : styles.bookRight}
-              pages={v.pages.map((i) => (v.part === "text" ? textOnly(item.pages[i]) : item.pages[i]))}
-              kicker={flat ? first.kicker : chapterKicker(item.pages, first)}
+              // A page can hide its heading when the chart beside it carries the headline; read down a page, the
+              // chart comes after the text, so the text keeps it.
+              pages={v.pages.map((i) => (v.part === "text" ? textOnly(item.pages[i]) : item.pages[i])).map((p) => (stacked ? { ...p, hideHeading: false } : p))}
+              kicker={flat ? first.kicker : kickerFor(first)}
               heading={flat ? item.title : first.heading || item.title}
               footer={flat ? <div className={styles.openingLabel}>{item.openingLabel}</div> : last ? end : undefined}
             />

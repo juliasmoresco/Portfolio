@@ -112,7 +112,7 @@ export function ChatSkin({ item }: { item: ReaderItem }) {
         )}
         <span className={styles.chatWho}>
           <span className={styles.chatName}>{item.title}</span>
-          <span className={styles.chatStatus}>{typing ? "typing…" : item.kind}</span>
+          <span className={styles.chatStatus}>{typing ? ui.typing : item.kind}</span>
         </span>
       </header>
 
