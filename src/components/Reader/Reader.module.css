@@ -7153,3 +7153,105 @@ button.chatAvatar:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: -2px;
 }
+
+/* ==========================================================================
+   Full-page reading on a phone (prototype: Reader.tsx, FULL_PAGE_BOOKS). The book fills the screen as one page
+   that scrolls down: the cover is its header, the views run one under another, and the × stays in the corner.
+   ========================================================================== */
+
+.root[data-full-page="true"] .scrim {
+  background: var(--paper);
+  backdrop-filter: none;
+}
+
+.root[data-full-page="true"] .stage {
+  padding: 0;
+  gap: 0;
+}
+
+.root[data-full-page="true"] .shell {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  filter: none;
+}
+
+.root[data-full-page="true"] .spread {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.root[data-full-page="true"] .cover {
+  display: none;
+}
+
+.root[data-full-page="true"] .scroller {
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-type: none;
+  overscroll-behavior: contain;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 32px);
+  background: var(--paper);
+}
+
+.root[data-full-page="true"] .view {
+  flex: none;
+  height: auto;
+}
+
+/* A full-page picture needs a height to fill; everything else takes the height of its content. */
+.root[data-full-page="true"] .view[data-part="cover"]:has(.pageFull) {
+  height: min(78svh, 640px);
+}
+
+.root[data-full-page="true"] .pageLeft,
+.root[data-full-page="true"] .pageRight {
+  overflow: visible;
+  background: var(--paper);
+}
+
+.root[data-full-page="true"] .view[data-part="text"] .pageRight {
+  padding: 28px 20px 12px;
+}
+
+.scrollHero {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  min-height: min(52svh, 420px);
+  padding: calc(env(safe-area-inset-top) + 76px) 24px 28px;
+  background: linear-gradient(115deg, var(--spine, #c96b5e) 0%, rgba(46, 33, 28, 0.9) 130%);
+  color: var(--paper);
+}
+
+.root[data-full-page="true"] .nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 0;
+}
+
+.root[data-full-page="true"] .closeX {
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + 12px);
+  right: 16px;
+  bottom: auto;
+  position-anchor: none;
+  z-index: 3;
+  border: none;
+  background: rgba(46, 33, 28, 0.6);
+  backdrop-filter: blur(6px);
+  color: var(--paper);
+}
+
+/* Phone screens and browser windows are drawn to the height they're given, so give them one. */
+.root[data-full-page="true"] .compareScreens {
+  flex: none;
+  height: 360px;
+}
+
+.root[data-full-page="true"] .compareDesktop {
+  flex: none;
+  height: 260px;
+}

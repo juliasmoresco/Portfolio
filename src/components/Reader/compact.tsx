@@ -1,4 +1,4 @@
-import { useLayoutEffect, type ReactNode, type RefObject } from "react";
+import { useLayoutEffect, type CSSProperties, type ReactNode, type RefObject } from "react";
 import { hasPanel, pageHasArt, textOnly, type ReaderItem, type ReaderPage } from "../../content";
 import { ArticlePage, ImagePage } from "./parts";
 import styles from "./Reader.module.css";
@@ -71,18 +71,23 @@ export interface CompactViewProps {
   end?: ReactNode;
   /** A view of several pages is too tall for the screen: start a new view at this page. */
   onOverflow: (page: number) => void;
+  /**
+   * Full-page reading (prototype): the views run down one scrolling page instead of being swiped one at a time, so
+   * nothing is cut to fit or drawn smaller, and the book's cover becomes the page's header.
+   */
+  stacked?: boolean;
 }
 
 /**
  * The phone presentation of a spread: one view at a time, swiped horizontally. Native scroll-snap does the
  * paging, so a real swipe gets touch inertia and long text still scrolls vertically inside its own view.
  */
-export function CompactViews({ item, flat, views, view, onViewChange, scrollerRef, end, onOverflow }: CompactViewProps & { item: ReaderItem; flat: boolean }) {
+export function CompactViews({ item, flat, views, view, onViewChange, scrollerRef, end, onOverflow, stacked = false }: CompactViewProps & { item: ReaderItem; flat: boolean }) {
   // A book never scrolls on a phone: when pages that share a view run past the bottom, the first one that does
   // moves to a view of its own. The views rebuild, and this runs again until everything fits.
   useLayoutEffect(() => {
     const el = scrollerRef.current;
-    if (!el) return;
+    if (!el || stacked) return;
     const check = () =>
       Array.from(el.children).forEach((child, idx) => {
         const v = views[idx];
@@ -112,21 +117,40 @@ export function CompactViews({ item, flat, views, view, onViewChange, scrollerRe
     };
     run();
     void document.fonts?.ready.then(run);
-  }, [views, scrollerRef, onOverflow]);
+  }, [views, scrollerRef, onOverflow, stacked]);
 
+  // Read top to bottom, a section's text comes before its picture or chart (swiped, a picture can lead). A full-page
+  // picture still comes first; a book that opens on one already has its cover, so it gets no header of its own.
+  const ordered = stacked
+    ? views
+        .map((v, i) => ({ v, i, rank: v.part === "cover" && item.pages[v.pages[0]].fullPage ? -1 : v.part && v.part !== "text" ? 1 : 0 }))
+        .sort((a, b) => a.v.pages[0] - b.v.pages[0] || a.rank - b.rank || a.i - b.i)
+        .map((x) => x.v)
+    : views;
+  const hero = stacked && !item.pages[0]?.fullPage;
 
   const onScroll = () => {
     const el = scrollerRef.current;
-    if (!el || !el.clientWidth) return;
+    if (!el || !el.clientWidth || stacked) return;
     const i = Math.round(el.scrollLeft / el.clientWidth);
     if (i !== view) onViewChange(i);
   };
 
   return (
     <div ref={scrollerRef} className={styles.scroller} onScroll={onScroll}>
-      {views.map((v, idx) => {
+      {hero && (
+        <header className={styles.scrollHero} style={item.spine ? ({ "--spine": item.spine } as CSSProperties) : undefined}>
+          <span className={styles.coverTag}>{item.tag}</span>
+          <h2 className={styles.coverTitle}>{item.title}</h2>
+          <div className={styles.coverMeta}>
+            <span>{item.role}</span>
+            <span>{item.year}</span>
+          </div>
+        </header>
+      )}
+      {ordered.map((v, idx) => {
         const first = item.pages[v.pages[0]];
-        const last = idx === views.length - 1;
+        const last = idx === ordered.length - 1;
         const key = `${v.pages.join("-")}${v.part ?? ""}${v.range?.[0] ?? ""}`;
         if (v.part === "cover" || v.part === "right") {
           let shown = v.part === "right" ? { lines: [], ...first.right } : first;
@@ -137,13 +161,13 @@ export function CompactViews({ item, flat, views, view, onViewChange, scrollerRe
             shown = { ...first, showcase: { ...sc, screens: sc.screens.slice(from, to), kicker: from ? undefined : sc.kicker, intro: from ? undefined : sc.intro } };
           }
           return (
-            <div key={key} className={styles.view} aria-hidden={view !== idx}>
+            <div key={key} className={styles.view} data-part={v.part ?? "text"} aria-hidden={!stacked && view !== idx}>
               <ImagePage page={shown} alt={first.heading || item.title} className={flat ? styles.flat : styles.bookLeft} />
             </div>
           );
         }
         return (
-          <div key={key} className={styles.view} aria-hidden={view !== idx}>
+          <div key={key} className={styles.view} data-part={v.part ?? "text"} aria-hidden={!stacked && view !== idx}>
             <ArticlePage
               className={flat ? styles.flat : styles.bookRight}
               pages={v.pages.map((i) => (v.part === "text" ? textOnly(item.pages[i]) : item.pages[i]))}

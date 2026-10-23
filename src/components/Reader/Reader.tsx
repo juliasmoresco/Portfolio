@@ -35,6 +35,8 @@ const END_BLOCK_HEIGHT = 190;
 const SHOW_CHAPTER_BAR = false;
 /** Desktop: the band above the sheet that holds the × (Reader.module.css, .stage's padding-top). */
 const CLOSE_BAND_PX = 72;
+/** Phone: books read as one full, scrolling page instead of a swiped sheet. A prototype on one case, to compare. */
+const FULL_PAGE_BOOKS = new Set(["case3"]);
 
 /** Runs of pages sharing a kicker ("Overview", "Process", …), as chapters. Fewer than two means no chapter bar. */
 function chaptersOf(pages: ReaderItem["pages"]): { label: string; page: number }[] {
@@ -162,6 +164,7 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
   // Books and folders page (a turning leaf on desktop; on a phone each page is two views, image then text).
   // Frames, the globe, the llama bank, the chessboard and the phone are a single view.
   const paged = skin === "book" || skin === "folder";
+  const fullPage = compact && isBook && id !== undefined && FULL_PAGE_BOOKS.has(id);
   // Pages a phone has had to move to a view of their own to fit; measured again whenever the window changes size.
   const [breaks, setBreaks] = useState<number[]>([]);
   const views = useMemo(() => buildViews(pages, breaks), [pages, breaks]);
@@ -256,14 +259,14 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
         else requestClose();
       } else if (e.key === "Tab") {
         trapTab(e);
-      } else if (!zoomRef.current && paged && count > 1 && (!isBook || coverOpen)) {
+      } else if (!zoomRef.current && paged && !fullPage && count > 1 && (!isBook || coverOpen)) {
         if (e.key === "ArrowRight") turn(1);
         else if (e.key === "ArrowLeft") turn(-1);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [paged, count, isBook, coverOpen, requestClose, closeZoom, turn]);
+  }, [paged, fullPage, count, isBook, coverOpen, requestClose, closeZoom, turn]);
 
   // Move focus into the enlarged view when it opens.
   useEffect(() => {
@@ -276,10 +279,10 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
   const chapter = atEnd ? chapters.length - 1 : chapters.reduce((cur, c, i) => (c.page <= pageIndex ? i : cur), -1);
   const open = shown && !closing;
   const navVisible = open && (!isBook || coverOpen);
-  const showPager = paged && count > 1;
+  const showPager = paged && !fullPage && count > 1;
   const pageLabel = `${String(index + 1).padStart(2, "0")} / ${String(count).padStart(2, "0")}`;
   const compactViews: CompactViewProps | undefined = compact
-    ? { views, view, onViewChange: setView, scrollerRef: scroller, end: hasEnd ? <EndBlock {...endProps} /> : undefined, onOverflow }
+    ? { views, view, onViewChange: setView, scrollerRef: scroller, end: hasEnd ? <EndBlock {...endProps} /> : undefined, onOverflow, stacked: fullPage }
     : undefined;
   // Close is an × in the top-right corner (where the home's Menu sits), away from the page arrows.
   // First in the DOM, so Tab order matches.
@@ -307,6 +310,7 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
       data-turning={turning ?? "none"}
       data-reduced={reduced}
       data-compact={compact}
+      data-full-page={fullPage}
       data-chapters={chapters.length > 0}
     >
       <div className={styles.scrim} onClick={requestClose} />
