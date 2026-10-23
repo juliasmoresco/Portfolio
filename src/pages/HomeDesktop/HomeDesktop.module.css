@@ -36,18 +36,22 @@
     linear-gradient(0deg, rgb(var(--scrim-rgb) / 0.82) 0%, rgb(var(--scrim-rgb) / 0.4) 26%, rgb(var(--scrim-rgb) / 0) 46%);
 }
 
-.quickNav {
+/* Hints and Menu, top right. */
+.actions {
   position: absolute;
   top: 4%;
   right: 4%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   /* The sidesheet is `position: fixed` (viewport-relative), so it needs telling how tall the room
      actually is here: the .stage box above, which fills the window. */
   --quicknav-panel-height: 100dvh;
   transition: opacity 0.25s ease;
 }
 
-/* While a Reader is open its × takes this corner; the Menu steps aside. */
-.quickNavHidden {
+/* While a Reader is open its × takes this corner; Hints and Menu step aside. */
+.actionsHidden {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s ease, visibility 0s linear 0.2s;
@@ -136,4 +140,41 @@
 
 .toastVisible {
   opacity: 1;
+}
+
+/* Hints: the same pill as the Menu's toggle (QuickNav.module.css), lit while it is on. */
+.pill {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgb(var(--light-rgb) / 0.28);
+  border-radius: 999px;
+  background: rgb(var(--scrim-rgb) / 0.55);
+  backdrop-filter: blur(6px);
+  color: var(--light);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.pill:hover {
+  border-color: rgb(var(--light-rgb) / 0.5);
+}
+
+.pill:active {
+  transform: scale(0.96);
+}
+
+.pill:focus-visible {
+  outline: 2px solid var(--accent-hover);
+  outline-offset: 2px;
+}
+
+.pillOn,
+.pillOn:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--ink);
+  font-weight: 700;
 }

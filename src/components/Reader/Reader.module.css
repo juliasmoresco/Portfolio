@@ -7329,3 +7329,171 @@ button.chatAvatar:focus-visible {
 .root[data-full-page="true"] .resumePager {
   display: none;
 }
+
+/* ---- Photo frame (Zuko, Moka): the frame from the shelf, opened. Colours match the scene's frameMat / mountMat. ---- */
+
+.root[data-look="photo"] .shell {
+  /* The frame is about 1.3× as tall as it is wide; on a short window it narrows so it and the caption still fit. */
+  width: min(calc(24 * var(--k) * 1cqw), calc((100dvh - 220px) / 1.3));
+  height: auto;
+}
+
+.photoFrame {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photoMoulding {
+  width: 100%;
+  /* Padding in % is of the width, so the frame keeps its proportions at any size. */
+  padding: 5.5%;
+  border-radius: 3px;
+  background: linear-gradient(145deg, #3d3833 0%, #2f2b27 45%, #24211e 100%);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.06),
+    inset 2px 2px 3px rgb(255 255 255 / 0.08),
+    inset -2px -2px 4px rgb(0 0 0 / 0.45);
+}
+
+.photoMount {
+  padding: 11% 11% 13%;
+  background: #f4efe4;
+  /* the mount's bevelled window, cut into the board */
+  box-shadow: inset 0 2px 6px rgb(0 0 0 / 0.28);
+}
+
+.photoPicture {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.12), 0 1px 3px rgb(0 0 0 / 0.25);
+}
+
+.photoCaption {
+  margin-top: calc(1.6 * var(--k) * 1cqw);
+  max-width: 32ch;
+  text-align: center;
+}
+
+.photoCaption .line {
+  font-family: var(--font-ui);
+  font-size: calc(1 * var(--k) * 1cqw);
+  line-height: 1.5;
+  color: var(--light);
+}
+
+.root[data-compact="true"][data-look="photo"] .shell {
+  width: min(72vw, 300px);
+  height: auto;
+  max-height: none;
+}
+
+.root[data-compact="true"] .photoCaption {
+  margin-top: 18px;
+}
+
+.root[data-compact="true"] .photoCaption .line {
+  font-size: 15px;
+}
+
+/* Full-page reading on a tablet held upright: the screen is wide, so the reading runs down a centred column of
+   comfortable line length (about 70 characters) in slightly larger type, text and visuals on the same edges. */
+@media (min-width: 640px) {
+  .root[data-full-page="true"] .view {
+    align-self: center;
+    /* 640px of content inside the pages' 20px side padding */
+    width: min(100%, 680px);
+  }
+
+  .root[data-full-page="true"] .view[data-part="cover"]:has(.pageFull) {
+    width: 100%;
+    height: min(70svh, 820px);
+  }
+
+  .root[data-full-page="true"] .view[data-part="text"] .pageRight {
+    padding-top: 48px;
+  }
+
+  .root[data-full-page="true"] .line {
+    font-size: 17px;
+  }
+
+  .root[data-full-page="true"] .heading {
+    font-size: 28px;
+  }
+
+  .root[data-full-page="true"] .compareScreens {
+    height: 480px;
+  }
+
+  .scrollHero {
+    padding-inline: max(24px, calc((100% - 640px) / 2));
+  }
+
+  .root[data-full-page="true"] .resumeSheet {
+    width: min(100%, 720px);
+    margin-inline: auto;
+  }
+}
+
+/* ---- Poster (Johnny Cash): the print as it hangs, taped to the wall. Caption styles are the photo frame's. ---- */
+
+.root[data-look="poster"] .shell {
+  /* The print is 2:3; on a short window it narrows so it and the caption still fit. */
+  width: min(calc(24 * var(--k) * 1cqw), calc((100dvh - 230px) / 1.5));
+  height: auto;
+}
+
+.posterPrint {
+  margin: 0;
+  /* room above the tape, so the × (pinned to this box's top corner) doesn't sit on it */
+  padding-top: 7%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.posterPaper {
+  position: relative;
+  width: 100%;
+  rotate: -0.6deg;
+}
+
+.posterPicture {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 24px rgb(0 0 0 / 0.35);
+}
+
+/* Masking tape over the two top corners (the polaroids' tape colour). */
+.posterPaper::before,
+.posterPaper::after {
+  content: "";
+  position: absolute;
+  top: -2.2%;
+  width: 26%;
+  height: 5.5%;
+  background: rgba(244, 236, 214, 0.78);
+  box-shadow: 0 1px 2px rgba(46, 33, 28, 0.18);
+}
+
+.posterPaper::before {
+  left: -7%;
+  rotate: -38deg;
+}
+
+.posterPaper::after {
+  right: -7%;
+  rotate: 38deg;
+}
+
+.root[data-compact="true"][data-look="poster"] .shell {
+  width: min(70vw, 300px);
+  height: auto;
+  max-height: none;
+}

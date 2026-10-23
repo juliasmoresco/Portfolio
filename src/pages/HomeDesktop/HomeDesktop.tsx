@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getReaderItem, hotspotArt, boardNotes, hotspotSpines } from "../../content";
 import { useHomeCopy, useSceneLabels } from "../copy";
 import { HotspotList } from "../../components/HotspotList/HotspotList";
@@ -17,6 +17,8 @@ export function HomeDesktop() {
   const t = useHomeCopy();
   const labels = useSceneLabels();
   const readerItem = openId ? getReaderItem(openId) : undefined;
+  // The glow on every object is off until the visitor asks for it with the Hints button (as on mobile).
+  const [hints, setHints] = useState(false);
 
   // Drop the emissive tint on close (the × or the browser's Back): the pointer may still be over the object, and
   // without this the chip would not come back until the pointer moved to another one.
@@ -28,12 +30,17 @@ export function HomeDesktop() {
     <div className={styles.page}>
       <div className={styles.stage}>
         <div className={styles.scene}>
-          <OfficeScene ref={scene} daylight={daylight} labels={labels} spines={hotspotSpines} art={hotspotArt} notes={boardNotes} />
+          <OfficeScene ref={scene} daylight={daylight} hints={hints} labels={labels} spines={hotspotSpines} art={hotspotArt} notes={boardNotes} />
         </div>
 
         <div className={styles.scrim} />
 
-        <QuickNav className={cx(styles.quickNav, !!openId && styles.quickNavHidden)} />
+        <div className={cx(styles.actions, !!openId && styles.actionsHidden)}>
+          <button type="button" className={cx(styles.pill, hints && styles.pillOn)} aria-pressed={hints} onClick={() => setHints((h) => !h)}>
+            {t.hints}
+          </button>
+          <QuickNav />
+        </div>
 
         <div className={styles.intro}>
           <h1 className={styles.title}>{t.title}</h1>
