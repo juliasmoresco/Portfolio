@@ -80,6 +80,7 @@
         "We started with **portability**, external and internal. It had the most complaints, the most business rules and the most technical effort.",
         "Each discovery started the same way: business, operations and tech together, looking at volumes, support tickets and the main pain points."
       ],
+      "artRight": true,
       "compare": {
         "title": "Where a portability starts",
         "device": "desktop",

@@ -328,6 +328,7 @@
         "- **Praticar:** quizzes, exercícios e um simulador de investimentos",
         "- **Explorar:** notícias e indicadores do mercado, para entender o contexto"
       ],
+      "artRight": true,
       "compare": {
         "title": "Três pilares",
         "variants": [

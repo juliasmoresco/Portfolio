@@ -90,6 +90,7 @@
         "Tudo começou no papel: um rascunho rápido da parede, da prateleira e da estante, com anotações do que cada coisa ia abrir.",
         "Levei a ideia para o **Claude Design** para prototipar a sala e modelar os objetos em 3D. Depois, passei para o **Claude Code** para construir o site de verdade, com conteúdo, interações e versão para celular."
       ],
+      "artRight": true,
       "compare": {
         "title": "Rascunho, protótipo, site",
         "device": "desktop",
