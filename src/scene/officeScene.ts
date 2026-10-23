@@ -83,8 +83,8 @@ export interface OfficeSceneOptions {
   assets: OfficeSceneAssets;
   daylight: Daylight;
   walltone: WallTone;
-  /** Pulse every hotspot (the mobile "Hints" toggle). */
-  hints: boolean;
+  /** Pulse every hotspot (the "Hints" toggle); "soft" is a faint version (the desktop's brief glow on arrival). */
+  hints: boolean | "soft";
   view: SceneView;
   /** "off" kills the pointer drift (touch layouts). */
   parallax: "on" | "off";
@@ -1015,7 +1015,7 @@ export class OfficeScene {
       this.zukoLife?.update(now, this.opts.reducedMotion);
       if (this.hintsOn) {
         const p = 0.5 + 0.5 * Math.sin(performance.now() / 620);
-        const hx = Math.round(0x1a + p * 0x3a);
+        const hx = Math.round((0x1a + p * 0x3a) * (this.opts.hints === "soft" ? 0.4 : 1));
         this.hintMeshes.forEach((m) => {
           const mat = m.material as Standard;
           if (mat.emissive && m.userData.hotspot !== this.hovered) mat.emissive.setRGB((hx / 255) * 1.0, (hx / 255) * 0.62, (hx / 255) * 0.12);
@@ -1480,7 +1480,7 @@ export class OfficeScene {
     this.wallMat.color.setHex(WALL_TONES[tone] ?? WALL_TONES.graphite);
   }
 
-  private setHints(on: boolean): void {
+  private setHints(on: boolean | "soft"): void {
     this.hintsOn = !!on;
     this.hintMeshes = [];
     Object.entries(this.groups).forEach(([id, g]) =>

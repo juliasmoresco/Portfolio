@@ -11,9 +11,9 @@ import styles from "./HomeDesktop.module.css";
 
 const cx = (...c: Array<string | false>) => c.filter(Boolean).join(" ");
 
-/** On arrival every object glows for a moment, so a visitor who never moves the mouse still sees what opens. */
+/** On arrival every object glows faintly for a moment, so a visitor who never moves the mouse still sees what opens. */
 const INTRO_GLOW_DELAY_MS = 900;
-const INTRO_GLOW_MS = 2600;
+const INTRO_GLOW_MS = 1800;
 
 export function HomeDesktop() {
   const scene = useRef<OfficeSceneHandle>(null);
@@ -43,7 +43,7 @@ export function HomeDesktop() {
     <div className={styles.page}>
       <div className={styles.stage}>
         <div className={styles.scene}>
-          <OfficeScene ref={scene} daylight={daylight} hints={hints || introGlow} labels={labels} spines={hotspotSpines} art={hotspotArt} notes={boardNotes} />
+          <OfficeScene ref={scene} daylight={daylight} hints={hints || (introGlow && "soft")} labels={labels} spines={hotspotSpines} art={hotspotArt} notes={boardNotes} />
         </div>
 
         <div className={styles.scrim} />
