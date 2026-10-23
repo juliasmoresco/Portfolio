@@ -3779,7 +3779,8 @@
   /* Also used on <button>s, which bring the browser's bevelled border. */
   border: none;
   border-radius: 999px;
-  background: var(--accent);
+  /* The main action on a dark panel (tokens.css, Buttons); on paper it turns to ink (.protoPoster). */
+  background: var(--light);
   color: var(--ink);
   font-family: var(--font-ui);
   font-size: calc(0.8 * var(--k) * 1cqw);
@@ -3791,7 +3792,7 @@
 }
 
 .chessLink:hover {
-  background: var(--accent-hover);
+  background: var(--button-light-hover);
 }
 
 .chessLink:focus-visible {
@@ -4050,7 +4051,7 @@
 }
 
 .endNext:hover {
-  background: #45332b;
+  background: var(--button-ink-hover);
 }
 
 .endNextLabel {
@@ -5255,7 +5256,7 @@ button.chatAvatar:focus-visible {
   padding: 0 1.3em;
   border: none;
   border-radius: 999px;
-  background: var(--accent);
+  background: var(--light);
   color: var(--ink);
   font-family: var(--font-ui);
   font-size: 0.85em;
@@ -5266,7 +5267,7 @@ button.chatAvatar:focus-visible {
 }
 
 .chatSend:hover:not(:disabled) {
-  background: var(--accent-hover);
+  background: var(--button-light-hover);
 }
 
 .chatSend:disabled {
@@ -7017,16 +7018,19 @@ button.chatAvatar:focus-visible {
   margin-top: 0;
 }
 
-/* Inside a case, the button takes the case's colour rather than the office's yellow. */
+/* On a book's paper, the main action is ink. */
 .protoPoster .chessLink {
-  background: var(--accent-fill);
-  color: var(--accent-on);
+  background: var(--ink);
+  color: var(--paper);
   cursor: pointer;
 }
 
 .protoPoster .chessLink:hover {
-  background: var(--accent-fill);
-  filter: brightness(0.92);
+  background: var(--button-ink-hover);
+}
+
+.protoPoster .chessLink:focus-visible {
+  outline-color: var(--ink);
 }
 
 .protoFull {
