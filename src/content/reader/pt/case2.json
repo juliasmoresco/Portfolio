@@ -76,6 +76,7 @@
         "Começamos pela **portabilidade**, externa e interna: era a que tinha mais reclamações, mais regras de negócio e mais esforço técnico.",
         "Todo discovery começava do mesmo jeito: negócio, operações e tecnologia juntos, olhando volumes, chamados de suporte e as principais dores."
       ],
+      "artRight": true,
       "compare": {
         "title": "Onde uma portabilidade começa",
         "device": "desktop",

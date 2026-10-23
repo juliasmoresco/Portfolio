@@ -120,8 +120,11 @@ export function Compare({ compare }: { compare: PageCompare }) {
   const ui = useUi();
   const enlarge = useContext(ZoomContext);
   const [at, setAt] = useState(0);
+  // Desktop screens show one window at a time, big enough to read; `shot` is which.
+  const [shot, setShot] = useState(0);
   const v = compare.variants[at];
   const urls = v.images.map((n) => imageUrls[n]).filter(Boolean);
+  const windows = urls.slice(0, 2);
   return (
     <div className={styles.compare}>
       {compare.kicker && <span className={styles.chartKicker}>{compare.kicker}</span>}
@@ -129,17 +132,43 @@ export function Compare({ compare }: { compare: PageCompare }) {
       {compare.description && <p className={styles.compareDescription}>{compare.description}</p>}
       <div className={styles.compareToggle} role="group" aria-label={ui.chooseVersion}>
         {compare.variants.map((x, i) => (
-          <button key={x.label} type="button" className={styles.compareOption} aria-pressed={i === at} onClick={() => setAt(i)}>
+          <button
+            key={x.label}
+            type="button"
+            className={styles.compareOption}
+            aria-pressed={i === at}
+            onClick={() => {
+              setAt(i);
+              setShot(0);
+            }}
+          >
             {x.label}
           </button>
         ))}
       </div>
       {compare.device === "desktop" ? (
-        <div key={at} className={styles.compareDesktop} data-count={Math.min(urls.length, 2)}>
-          {urls.slice(0, 2).map((src, i) => (
-            <FitBrowser key={src} src={src} label={`${v.label}, screen ${i + 1}`} className={styles.compareWindow} align={urls.length > 1 ? (i === 0 ? "start" : "end") : "center"} onOpen={() => enlarge({ images: [src], alt: v.label, fit: true })} />
-          ))}
-        </div>
+        <>
+          <div key={at} className={styles.compareDesktop} data-count={windows.length}>
+            {windows.map((src, i) => (
+              <FitBrowser
+                key={src}
+                src={src}
+                label={`${v.label}, ${ui.screenN(i + 1)}`}
+                className={`${styles.compareWindow} ${i === shot ? styles.compareWindowOn : ""}`}
+                onOpen={() => enlarge({ images: windows, alt: v.label, fit: true })}
+              />
+            ))}
+          </div>
+          {windows.length > 1 && (
+            <div className={styles.compareShots} role="group" aria-label={ui.screens}>
+              {windows.map((src, i) => (
+                <button key={src} type="button" className={styles.compareShot} aria-pressed={i === shot} onClick={() => setShot(i)}>
+                  {ui.screenN(i + 1)}
+                </button>
+              ))}
+            </div>
+          )}
+        </>
       ) : (
         <div key={at} className={styles.compareScreens} data-count={urls.length}>
           {urls.map((src, i) => (
@@ -341,7 +370,11 @@ function FitBrowser({ src, label, className, align = "center", onOpen }: { src: 
     const fit = () => {
       const bar = barRef.current?.offsetHeight ?? 0;
       const W = box.clientWidth;
-      const H = box.clientHeight;
+      // In a page that scrolls (--fit-flow), the box has no height of its own: the window takes the full width
+      // and its picture's height, up to --fit-max.
+      const cs = getComputedStyle(box);
+      const flow = cs.getPropertyValue("--fit-flow").trim() === "1";
+      const H = flow ? parseFloat(cs.getPropertyValue("--fit-max")) || Infinity : box.clientHeight;
       let w = W;
       let h = W / ratio + bar;
       if (h > H) {

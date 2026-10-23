@@ -90,6 +90,7 @@
         "It started on paper: a quick sketch of the wall, the shelf and the bookcase, with notes on what each thing would open.",
         "I took it to **Claude Design** to prototype the room and model the 3D objects, then moved to **Claude Code** to build the site for real, with real content, real interactions and a phone version."
       ],
+      "artRight": true,
       "compare": {
         "title": "Sketch, prototype, site",
         "device": "desktop",
