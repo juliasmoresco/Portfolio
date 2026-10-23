@@ -3,6 +3,7 @@
   "title": "Illustration 01",
   "hotspotLabel": "Johnny Cash poster",
   "hideTitle": true,
+  "look": "poster",
   "spine": "#B8746A",
   "pages": [
     {

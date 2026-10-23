@@ -3,7 +3,7 @@
   "title": "Illustration 05",
   "hotspotLabel": "Moka, my intern",
   "hideTitle": true,
-  "photoFrame": true,
+  "look": "photo",
   "spine": "#B8746A",
   "pages": [
     {

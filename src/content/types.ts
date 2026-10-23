@@ -323,10 +323,10 @@ export interface ReaderItem {
   /** `frame` only: leave the title off the opened frame (the picture and its caption speak for themselves). */
   hideTitle?: boolean;
   /**
-   * `frame` only: open as the framed photo it is on the shelf (dark frame, cream mount) with its caption under
-   * it, rather than as a plate on a card.
+   * `frame` only: open as the object it is in the room rather than a plate on a card, caption under it: "photo",
+   * the framed photo on the shelf (dark frame, cream mount); "poster", the print taped to the wall.
    */
-  photoFrame?: boolean;
+  look?: "photo" | "poster";
   /** `globe` only: country names, matched against scene/countries.ts to place a marker on the globe. */
   visited?: string[];
   /** `globe` only: the number of countries the owner is aiming to reach. */

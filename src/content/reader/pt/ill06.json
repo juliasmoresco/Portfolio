@@ -3,7 +3,7 @@
   "title": "Ilustração 06",
   "hotspotLabel": "Zuko, meu primeiro estagiário",
   "hideTitle": true,
-  "photoFrame": true,
+  "look": "photo",
   "spine": "#B8746A",
   "pages": [
     {

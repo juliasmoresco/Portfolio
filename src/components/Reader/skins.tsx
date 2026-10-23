@@ -129,7 +129,8 @@ export function FolderSkin({ item, page, spreadPages = [page], compact }: SkinPr
 
 /** A single framed plate: wall art and the phone (which adds contact links). */
 export function FrameSkin({ item, page }: SkinProps) {
-  if (item.photoFrame) return <PhotoFrame item={item} page={page} />;
+  if (item.look === "photo") return <PhotoFrame item={item} page={page} />;
+  if (item.look === "poster") return <Poster item={item} page={page} />;
   return (
     <div className={`${styles.frame} ${pageHasArt(page) ? "" : styles.frameTextOnly}`}>
       {pageHasArt(page) && <Plate images={pageImages(page)} alt={page.caption || item.title} />}
@@ -158,6 +159,19 @@ function PhotoFrame({ item, page }: { item: ReaderItem; page: ReaderPage }) {
       <div className={styles.photoMoulding}>
         <div className={styles.photoMount}>{src && <img className={styles.photoPicture} src={src} alt={item.hotspotLabel ?? item.title} draggable={false} />}</div>
       </div>
+      <figcaption>
+        <Lines lines={page.lines} className={styles.photoCaption} />
+      </figcaption>
+    </figure>
+  );
+}
+
+/** A print taped straight to the wall, as it hangs in the room: two strips of tape across its top corners. */
+function Poster({ item, page }: { item: ReaderItem; page: ReaderPage }) {
+  const [src] = pageImages(page);
+  return (
+    <figure className={styles.posterPrint}>
+      <div className={styles.posterPaper}>{src && <img className={styles.posterPicture} src={src} alt={item.hotspotLabel ?? item.title} draggable={false} />}</div>
       <figcaption>
         <Lines lines={page.lines} className={styles.photoCaption} />
       </figcaption>

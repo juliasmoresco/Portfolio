@@ -17,7 +17,7 @@ export function assertReaderItem(id: string, v: unknown): asserts v is ReaderIte
     if (o[k] !== undefined && typeof o[k] !== "string") bad(`${k} must be a string`);
   }
   if (o.hideTitle !== undefined && (typeof o.hideTitle !== "boolean" || o.skin !== "frame")) bad("hideTitle is true or false, and only for the frame skin");
-  if (o.photoFrame !== undefined && (typeof o.photoFrame !== "boolean" || o.skin !== "frame")) bad("photoFrame is true or false, and only for the frame skin");
+  if (o.look !== undefined && ((o.look !== "photo" && o.look !== "poster") || o.skin !== "frame")) bad('look is "photo" or "poster", and only for the frame skin');
   if (o.accent !== undefined) {
     const a = o.accent as Record<string, unknown> | null;
     if (!a || !["fill", "on", "text"].every((k) => typeof a[k] === "string" && HEX.test(a[k] as string))) bad("accent is { fill, on, text }, each a #RRGGBB colour");

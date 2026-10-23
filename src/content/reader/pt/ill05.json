@@ -3,7 +3,7 @@
   "title": "Ilustração 05",
   "hotspotLabel": "Moka, minha estagiária",
   "hideTitle": true,
-  "photoFrame": true,
+  "look": "photo",
   "spine": "#B8746A",
   "pages": [
     {
