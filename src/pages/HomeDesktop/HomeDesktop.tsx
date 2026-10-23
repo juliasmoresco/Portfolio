@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getReaderItem, hotspotArt, boardNotes, hotspotSpines } from "../../content";
 import { useHomeCopy, useSceneLabels } from "../copy";
 import { HotspotList } from "../../components/HotspotList/HotspotList";
@@ -11,12 +11,27 @@ import styles from "./HomeDesktop.module.css";
 
 const cx = (...c: Array<string | false>) => c.filter(Boolean).join(" ");
 
+/** On arrival every object glows for a moment, so a visitor who never moves the mouse still sees what opens. */
+const INTRO_GLOW_DELAY_MS = 900;
+const INTRO_GLOW_MS = 2600;
+
 export function HomeDesktop() {
   const scene = useRef<OfficeSceneHandle>(null);
   const { chip, openId, found, daylight, toast, closeReader } = useShelfHome();
   const t = useHomeCopy();
   const labels = useSceneLabels();
   const readerItem = openId ? getReaderItem(openId) : undefined;
+  // The Hints button keeps the glow on (as on mobile); the arrival glow is the same effect, once.
+  const [hints, setHints] = useState(false);
+  const [introGlow, setIntroGlow] = useState(false);
+  useEffect(() => {
+    const on = window.setTimeout(() => setIntroGlow(true), INTRO_GLOW_DELAY_MS);
+    const off = window.setTimeout(() => setIntroGlow(false), INTRO_GLOW_DELAY_MS + INTRO_GLOW_MS);
+    return () => {
+      window.clearTimeout(on);
+      window.clearTimeout(off);
+    };
+  }, []);
 
   // Drop the emissive tint on close (the × or the browser's Back): the pointer may still be over the object, and
   // without this the chip would not come back until the pointer moved to another one.
@@ -28,12 +43,17 @@ export function HomeDesktop() {
     <div className={styles.page}>
       <div className={styles.stage}>
         <div className={styles.scene}>
-          <OfficeScene ref={scene} daylight={daylight} labels={labels} spines={hotspotSpines} art={hotspotArt} notes={boardNotes} />
+          <OfficeScene ref={scene} daylight={daylight} hints={hints || introGlow} labels={labels} spines={hotspotSpines} art={hotspotArt} notes={boardNotes} />
         </div>
 
         <div className={styles.scrim} />
 
-        <QuickNav className={cx(styles.quickNav, !!openId && styles.quickNavHidden)} />
+        <div className={cx(styles.actions, !!openId && styles.actionsHidden)}>
+          <button type="button" className={cx(styles.pill, hints && styles.pillOn)} aria-pressed={hints} onClick={() => setHints((h) => !h)}>
+            {t.hints}
+          </button>
+          <QuickNav />
+        </div>
 
         <div className={styles.intro}>
           <h1 className={styles.title}>{t.title}</h1>
