@@ -101,7 +101,7 @@ function pack(blocks: Block[], height: (page: number, key: string) => number, he
  * The résumé as a résumé: sheets of paper, never scrolled. The name and contacts head the first sheet; profile and
  * work history run down the main column and education, skills and languages down the side, testimonials last. How
  * much goes on each sheet is measured from the sheet itself, so it fits whatever the screen; ‹ › (or the arrow keys)
- * turn the sheets. On a phone it is one column.
+ * turn the sheets. On a phone it is one column on a single long sheet that scrolls, like the books.
  */
 export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compact?: boolean }) {
   const ui = useUi();
@@ -209,6 +209,10 @@ export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compac
 
   // Measure every block at the columns' real widths, then deal them onto sheets.
   const paginate = useCallback(() => {
+    if (compact) {
+      setSheets([{ main, side }]);
+      return;
+    }
     const sheet = sheetRef.current;
     const m = measureRef.current;
     const head = headRef.current;
@@ -230,7 +234,7 @@ export function ResumeSkin({ item, compact = false }: { item: ReaderItem; compac
     const mainPages = pack(main, (page, k) => (page < sidePages.length ? narrow.get(k) : wide.get(k)) ?? 0, headH, cap);
     const n = Math.max(mainPages.length, sidePages.length);
     setSheets(Array.from({ length: n }, (_, i) => ({ main: mainPages[i] ?? [], side: sidePages[i] ?? [] })));
-  }, [main, side]);
+  }, [main, side, compact]);
 
   useLayoutEffect(() => {
     paginate();

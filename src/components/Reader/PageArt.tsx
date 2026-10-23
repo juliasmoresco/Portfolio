@@ -113,7 +113,8 @@ export function Cards({ cards }: { cards: PageCards }) {
 
 /**
  * Versions of a design side by side in time rather than space: a toggle switches the phone screens below it, and the
- * version that won is marked. Clicking a screen opens it large.
+ * version that won is marked under its screens (in the toggle, the badge crowded the label). Clicking a screen opens
+ * it large.
  */
 export function Compare({ compare }: { compare: PageCompare }) {
   const ui = useUi();
@@ -130,7 +131,6 @@ export function Compare({ compare }: { compare: PageCompare }) {
         {compare.variants.map((x, i) => (
           <button key={x.label} type="button" className={styles.compareOption} aria-pressed={i === at} onClick={() => setAt(i)}>
             {x.label}
-            {x.winner && <span className={styles.compareWinner}>{ui.winner}</span>}
           </button>
         ))}
       </div>
@@ -148,6 +148,11 @@ export function Compare({ compare }: { compare: PageCompare }) {
             </button>
           ))}
         </div>
+      )}
+      {v.winner && (
+        <span key={`w${at}`} className={`${styles.compareWinner} ${styles.compareWinnerBelow}`}>
+          {ui.winner}
+        </span>
       )}
       {v.note && (
         <p key={`n${at}`} className={styles.compareNote}>
@@ -405,6 +410,7 @@ function ShowcaseTour({ showcase, intro }: { showcase: PageShowcase; intro?: Rea
 
 /** Terms on cards, each turning over on a tap to say what it means. */
 export function Glossary({ glossary }: { glossary: PageGlossary }) {
+  const ui = useUi();
   const [open, setOpen] = useState<ReadonlySet<number>>(new Set());
   const flip = (i: number) =>
     setOpen((o) => {
@@ -420,7 +426,7 @@ export function Glossary({ glossary }: { glossary: PageGlossary }) {
       <ul className={styles.glossaryGrid} data-count={glossary.items.length}>
         {glossary.items.map((t, i) => (
           <li key={t.term} className={styles.glossarySlot}>
-            <button type="button" className={styles.glossaryCard} aria-pressed={open.has(i)} aria-label={open.has(i) ? `${t.term}: ${t.body}` : `${t.term} (show what it means)`} onClick={() => flip(i)}>
+            <button type="button" className={styles.glossaryCard} aria-pressed={open.has(i)} aria-label={open.has(i) ? `${t.term}: ${t.body}` : `${t.term} (${ui.showMeaning})`} onClick={() => flip(i)}>
               <span className={styles.glossaryFront} aria-hidden={open.has(i)}>
                 <span className={styles.glossaryTerm}>{t.term}</span>
                 {t.note && <span className={styles.glossaryNote}>{t.note}</span>}
@@ -522,6 +528,7 @@ const MOVE_MS = 260;
  * seen, while the number counts up; it can be played again.
  */
 export function Migration({ migration }: { migration: PageMigration }) {
+  const ui = useUi();
   const [ref, seen] = useSeen<HTMLDivElement>();
   const reduced = usePrefersReducedMotion();
   const n = migration.items.length;
@@ -578,7 +585,7 @@ export function Migration({ migration }: { migration: PageMigration }) {
       </div>
       {moved >= n && !reduced && (
         <button type="button" className={styles.migrationReplay} onClick={() => setRound((r) => r + 1)}>
-          ↻ Play again
+          ↻ {ui.playAgain}
         </button>
       )}
     </div>

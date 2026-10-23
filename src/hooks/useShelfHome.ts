@@ -27,6 +27,9 @@ export function useShelfHome() {
   const [daylight, setDaylight] = useState<Daylight>("afternoon");
   const [toast, setToast] = useState(false);
   const returnFocus = useRef<HTMLElement | null>(null);
+  // Whether the open Reader has its own history entry, so the browser's Back (or the phone's back gesture) closes it
+  // instead of leaving the site.
+  const pushed = useRef(false);
   const toastTimer = useRef<number | undefined>(undefined);
 
   // Dev only: `/?reader=<id>` opens a Reader on load, for reviewing one without hunting for its hotspot.
@@ -35,6 +38,19 @@ export function useShelfHome() {
     if (!import.meta.env.DEV) return;
     const id = new URLSearchParams(window.location.search).get("reader");
     if (id && getReaderItem(id)) setOpenId(id);
+  }, []);
+
+  // A reload keeps the last history state; a Reader isn't open after one, so drop it, or Back would reopen it.
+  useEffect(() => {
+    if (window.history.state?.reader) window.history.replaceState(null, "");
+    const onPop = (e: PopStateEvent) => {
+      const id = e.state?.reader;
+      const open = typeof id === "string" && !!getReaderItem(id);
+      pushed.current = open;
+      setOpenId(open ? id : null);
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
   }, []);
 
   useEffect(() => {
@@ -54,6 +70,10 @@ export function useShelfHome() {
       const active = document.activeElement as HTMLElement | null;
       if (!active?.closest('[role="dialog"]')) returnFocus.current = active;
       setOpenId(id);
+      // Going from one Reader to the next replaces its entry, so Back always returns to the office.
+      if (pushed.current) window.history.replaceState({ reader: id }, "");
+      else window.history.pushState({ reader: id }, "");
+      pushed.current = true;
       setChip((c) => ({ ...c, visible: false }));
       setFound((f) => (f.includes(id) ? f : [...f, id]));
     });
@@ -64,7 +84,11 @@ export function useShelfHome() {
     };
   }, []);
 
-  const closeReader = useCallback(() => setOpenId(null), []);
+  // Closing from inside the Reader (×, Escape) steps back over its history entry; the popstate handler then closes it.
+  const closeReader = useCallback(() => {
+    if (pushed.current) window.history.back();
+    else setOpenId(null);
+  }, []);
 
   // Hand focus back to whatever opened the Reader, but only once the overlay is gone and the page
   // behind it is interactive again (the keyboard list is inert while a Reader is open, and focus()

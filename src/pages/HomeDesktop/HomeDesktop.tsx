@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { getReaderItem, hotspotArt, boardNotes, hotspotSpines } from "../../content";
 import { useHomeCopy, useSceneLabels } from "../copy";
 import { HotspotList } from "../../components/HotspotList/HotspotList";
@@ -18,12 +18,11 @@ export function HomeDesktop() {
   const labels = useSceneLabels();
   const readerItem = openId ? getReaderItem(openId) : undefined;
 
-  // Drop the emissive tint on close: the pointer may still be over the object, and
+  // Drop the emissive tint on close (the × or the browser's Back): the pointer may still be over the object, and
   // without this the chip would not come back until the pointer moved to another one.
-  const onClose = useCallback(() => {
-    scene.current?.clearHighlight();
-    closeReader();
-  }, [closeReader]);
+  useEffect(() => {
+    if (!openId) scene.current?.clearHighlight();
+  }, [openId]);
 
   return (
     <div className={styles.page}>
@@ -58,7 +57,7 @@ export function HomeDesktop() {
 
         <HotspotList labels={labels} onFocusItem={(id) => scene.current?.highlight(id)} inert={!!openId} />
 
-        {readerItem && <Reader key={openId} id={openId ?? undefined} item={readerItem} onClose={onClose} />}
+        {readerItem && <Reader key={openId} id={openId ?? undefined} item={readerItem} onClose={closeReader} />}
       </div>
     </div>
   );

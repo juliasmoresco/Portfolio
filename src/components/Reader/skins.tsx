@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { pageHasArt, pageImages, type ReaderItem, type ReaderPage } from "../../content";
 import { CompactViews, type CompactViewProps } from "./compact";
-import { EndBlock, EndPage, Gutter, ImagePage, Lines, Plate, PrototypePage, ShowcaseWithIntro, TextPage, TextSpread, type EndProps } from "./parts";
+import { chapterKicker, EndBlock, EndPage, Gutter, ImagePage, Lines, Plate, PrototypePage, ShowcaseWithIntro, TextPage, TextSpread, type EndProps } from "./parts";
 import styles from "./Reader.module.css";
 
 interface SkinProps {
@@ -49,7 +49,7 @@ export function BookSkin({ item, page, spreadPages = [page], compact, end }: Ski
               </>
             ) : pageHasArt(page) && page.artRight ? (
               <>
-                <TextPage className={styles.bookLeft} left kicker={page.kicker} heading={page.heading || item.title} hideHeading={page.hideHeading} lines={page.lines} />
+                <TextPage className={styles.bookLeft} left kicker={chapterKicker(item.pages, page)} heading={page.heading || item.title} hideHeading={page.hideHeading} lines={page.lines} />
                 <Gutter />
                 <ImagePage page={page} alt={page.heading || item.title} className={styles.bookRight} right />
               </>
@@ -57,11 +57,12 @@ export function BookSkin({ item, page, spreadPages = [page], compact, end }: Ski
               <>
                 <ImagePage page={page} alt={page.heading || item.title} className={styles.bookLeft} />
                 <Gutter />
-                <TextPage className={styles.bookRight} kicker={page.kicker} heading={page.heading || item.title} hideHeading={page.hideHeading} lines={page.lines} />
+                <TextPage className={styles.bookRight} kicker={chapterKicker(item.pages, page)} heading={page.heading || item.title} hideHeading={page.hideHeading} lines={page.lines} />
               </>
             ) : (
               <TextSpread
                 pages={spreadPages}
+                prevKicker={item.pages[item.pages.indexOf(spreadPages[0]) - 1]?.kicker}
                 fallbackHeading={item.title}
                 leftClass={styles.bookLeft}
                 rightClass={styles.bookRight}

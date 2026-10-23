@@ -30,7 +30,6 @@
         "Junto com a Valentina Lopes, nossa PM, eu precisava entender o que impedia o resgate e criar um resgate mais simples."
       ],
       "chart": {
-        "kicker": "O problema",
         "title": "As pessoas começavam pedindo pelo app e acabavam resgatando no restaurante",
         "color": "#d62300",
         "groups": [
@@ -124,7 +123,6 @@
         "Tudo o que vimos e ouvimos se resumia a três problemas."
       ],
       "cards": {
-        "kicker": "Três problemas",
         "title": "O que atrapalhava",
         "items": [
           {
@@ -153,7 +151,6 @@
         "Como dava para escolher qual versão cada restaurante recebia, retiramos a versão padrão e comparamos as variantes entre si."
       ],
       "compare": {
-        "kicker": "Aposta 1",
         "variants": [
           {
             "label": "A · Botão flutuante",
@@ -185,7 +182,6 @@
         "O resultado não foi conclusivo. As duas versões melhoraram o que existia, mas a diferença entre elas foi pequena demais para apontar uma vencedora."
       ],
       "compare": {
-        "kicker": "Aposta 2",
         "title": "Melhorar a pré-seleção ou eliminá-la?",
         "variants": [
           {
@@ -213,7 +209,6 @@
       "heading": "Aposta 3: botões mais claros",
       "lines": [],
       "compare": {
-        "kicker": "Aposta 3",
         "title": "Botões mais claros",
         "description": "Testamos cinco textos diferentes para separar bem “Add to Mobile Order” de “Use in Restaurant”, e ajustamos a hierarquia dos botões e os ícones nas páginas de ofertas e recompensas.",
         "variants": [
@@ -236,7 +231,6 @@
       },
       "right": {
         "stats": {
-          "kicker": "Aposta 3 · Resultados",
           "title": "O que mudou com botões mais claros",
           "items": [
             {
@@ -263,7 +257,6 @@
       "heading": "O resultado final",
       "lines": [],
       "showcase": {
-        "kicker": "Resultado · A decisão",
         "title": "O resultado final",
         "intro": [
           "O código na barra de cima continuou superando as outras versões, então foi essa que o time lançou, com a interface ajustada em volta: uma página My Code mais clara e os novos botões da Aposta 3.",

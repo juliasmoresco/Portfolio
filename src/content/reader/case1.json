@@ -30,7 +30,6 @@
         "My goal, with Valentina Lopes, our PM, was to understand what gets in the way and design a more consistent redemption experience."
       ],
       "chart": {
-        "kicker": "The problem",
         "title": "Guests set out to order on mobile, then ended up redeeming in the restaurant",
         "color": "#d62300",
         "groups": [
@@ -124,7 +123,6 @@
         "Everything we heard and saw came down to three problems."
       ],
       "cards": {
-        "kicker": "Three problems",
         "title": "What got in the way",
         "items": [
           {
@@ -153,7 +151,6 @@
         "We could control which variant each restaurant got, so we removed the default and ran the variants against each other."
       ],
       "compare": {
-        "kicker": "Bet 1",
         "variants": [
           {
             "label": "A · Floating button",
@@ -185,7 +182,6 @@
         "The results were not conclusive: neither version clearly beat the other. Both improved on what we had, but the gap between them wasn’t big enough to call a winner."
       ],
       "compare": {
-        "kicker": "Bet 2",
         "title": "Improve pre-selection or remove it?",
         "variants": [
           {
@@ -213,7 +209,6 @@
       "heading": "Bet 3: Clearer buttons",
       "lines": [],
       "compare": {
-        "kicker": "Bet 3",
         "title": "Clearer buttons",
         "description": "We tested five label variations to tell “Add to Mobile Order” apart from “Use in Restaurant”, and refined the button hierarchy and icons on the offers and rewards pages.",
         "variants": [
@@ -236,7 +231,6 @@
       },
       "right": {
         "stats": {
-          "kicker": "Bet 3 · Results",
           "title": "What clearer buttons changed",
           "items": [
             {
@@ -263,7 +257,6 @@
       "heading": "The final result",
       "lines": [],
       "showcase": {
-        "kicker": "Outcome · The decision",
         "title": "The final result",
         "intro": [
           "The top navigation bar kept performing better than the other versions, so the team shipped it and refined the UI around it: a clearer My Code page, and the new buttons from Bet 3.",

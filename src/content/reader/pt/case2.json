@@ -38,7 +38,6 @@
         "- mais assessores usando o HUB, e mais vezes"
       ],
       "glossary": {
-        "kicker": "Previdência 101",
         "title": "Antes, algumas palavras",
         "items": [
           {
@@ -78,7 +77,6 @@
         "Todo discovery começava do mesmo jeito: negócio, operações e tecnologia juntos, olhando volumes, chamados de suporte e as principais dores."
       ],
       "compare": {
-        "kicker": "Antes e depois",
         "title": "Onde uma portabilidade começa",
         "device": "desktop",
         "variants": [
@@ -110,7 +108,6 @@
         "A dúvida era se os próprios assessores entendiam todas essas diferenças, e como o produto podia ajudar."
       ],
       "cards": {
-        "kicker": "Cinco dores",
         "title": "O que atrapalhava",
         "items": [
           {
@@ -146,7 +143,6 @@
         "A mais ousada: deixar o assessor começar por uma **lista de fundos**, e não pelo cliente. Não existia nada parecido no Connect."
       ],
       "cards": {
-        "kicker": "Quatro oportunidades",
         "title": "No que apostamos",
         "items": [
           {
@@ -177,7 +173,6 @@
         "No HUB, cada opção ganhou também uma descrição curta, para o nome não precisar explicar tudo sozinho."
       ],
       "poll": {
-        "kicker": "Sua vez",
         "title": "Como você chamaria?",
         "question": "Um assessor quer passar o dinheiro de um cliente de um plano de previdência da XP para outro. Que nome ele procuraria?",
         "options": [
@@ -208,7 +203,6 @@
         "Medimos sucesso, abandono e satisfação em cada tarefa (ASQ)."
       ],
       "funnel": {
-        "kicker": "Teste de usabilidade",
         "title": "Quem participou",
         "steps": [
           {
@@ -237,7 +231,6 @@
         "Mesmo assim, 90% concluíram as tarefas. Era problema de usabilidade ou só hábito de anos de uso do Connect? Com 46 pessoas, não dava para ter certeza."
       ],
       "compare": {
-        "kicker": "Duas entradas",
         "title": "Primeiro o fundo ou o cliente?",
         "device": "desktop",
         "variants": [
@@ -268,7 +261,6 @@
         "A resposta: a lista de fundos foi validada. Os assessores se acostumaram e concordaram que fazia sentido."
       ],
       "timeline": {
-        "kicker": "Lançamento",
         "title": "De um piloto a todos os escritórios",
         "stops": [
           {
@@ -301,13 +293,12 @@
         "Os elogios foram para a rapidez, a facilidade de uso e a navegação clara."
       ],
       "migration": {
-        "kicker": "Connect → HUB",
         "title": "O que mudou de lugar",
         "from": "Connect",
         "to": "HUB",
         "items": [
           "Portabilidade externa",
-          "Internal portability",
+          "Portabilidade interna",
           "Aporte inicial",
           "Aporte esporádico",
           "Aporte mensal",
@@ -329,7 +320,6 @@
       "heading": "Resultados",
       "lines": [],
       "stats": {
-        "kicker": "Resultados",
         "title": "No que tudo isso deu",
         "items": [
           {
@@ -350,7 +340,6 @@
       },
       "right": {
         "quotes": {
-          "kicker": "Nas palavras deles",
           "title": "O que os assessores disseram",
           "note": "Feedback dos assessores, nas palavras deles",
           "items": [
@@ -381,7 +370,6 @@
       "heading": "O resultado final",
       "lines": [],
       "showcase": {
-        "kicker": "Resultado · O final",
         "title": "O resultado final",
         "device": "desktop",
         "intro": [

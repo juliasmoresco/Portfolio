@@ -257,11 +257,20 @@ export function ImagePage({ page, alt, className, right }: { page: ReaderPage; a
   );
 }
 
+/**
+ * A section's kicker names its chapter ("Process", "Research"…), so it shows only where the chapter starts; repeated
+ * over every section it just weighs on the heading.
+ */
+export function chapterKicker(pages: ReaderPage[], page: ReaderPage): string | undefined {
+  const i = pages.indexOf(page);
+  return i <= 0 || pages[i - 1].kicker !== page.kicker ? page.kicker : undefined;
+}
+
 /** Phone view: several pages run together, each page's picture above its text; a new heading only where it changes. */
 export function ArticlePage({ pages, kicker, heading, footer, className }: { pages: ReaderPage[]; kicker?: string; heading: string; footer?: ReactNode; className: string }) {
   return (
     <div className={`${styles.pageRight} ${className}`}>
-      <span className={styles.kicker}>{kicker}</span>
+      {kicker && <span className={styles.kicker}>{kicker}</span>}
       {pages[0]?.hideHeading ? <div className={styles.headingGap} /> : <h2 className={styles.heading}>{heading}</h2>}
       {pages.map((page, i) => (
         <div key={i} className={styles.articleBlock}>
@@ -287,6 +296,7 @@ export function TextSpread({
   rightClass,
   footer,
   after,
+  prevKicker,
 }: {
   pages: ReaderPage[];
   fallbackHeading: string;
@@ -295,6 +305,8 @@ export function TextSpread({
   footer?: ReactNode;
   /** Set after the text, in the same flow (the closing block). */
   after?: ReactNode;
+  /** The kicker of the page before this spread: the first page only shows its own if a new chapter starts there. */
+  prevKicker?: string;
 }) {
   const headingOf = (p: ReaderPage) => p.heading || fallbackHeading;
   return (
@@ -305,7 +317,7 @@ export function TextSpread({
       <div className={styles.flow}>
         {pages.map((page, i) => {
           const fresh = i === 0 || headingOf(page) !== headingOf(pages[i - 1]);
-          const newKicker = i === 0 || page.kicker !== pages[i - 1].kicker;
+          const newKicker = page.kicker !== (i === 0 ? prevKicker : pages[i - 1].kicker);
           return (
             <Fragment key={i}>
               {fresh && (
@@ -422,7 +434,7 @@ export function Lines({ lines, className }: { lines: string[]; className: string
 export function TextPage({ kicker, heading, hideHeading, lines, footer, className, left }: { kicker?: string; heading: string; hideHeading?: boolean; lines: string[]; footer?: ReactNode; className: string; left?: boolean }) {
   return (
     <div className={`${left ? styles.pageLeft : styles.pageRight} ${className}`}>
-      <span className={styles.kicker}>{kicker}</span>
+      {kicker && <span className={styles.kicker}>{kicker}</span>}
       {hideHeading ? <div className={styles.headingGap} /> : <h2 className={styles.heading}>{heading}</h2>}
       <Lines lines={lines} className={styles.lines} />
       {footer}

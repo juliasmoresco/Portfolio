@@ -672,6 +672,17 @@
   text-transform: uppercase;
 }
 
+/* Under the winning version's screens, on its own line above the note. */
+.compareWinnerBelow {
+  align-self: center;
+  margin-top: calc(1 * var(--k) * 1cqw);
+  animation: compareIn 0.35s ease both;
+}
+
+.compareWinnerBelow + .compareNote {
+  margin-top: calc(0.5 * var(--k) * 1cqw);
+}
+
 .compareScreens {
   flex: 1;
   min-height: 0;
@@ -779,6 +790,14 @@
 .root[data-compact="true"] .compareNote {
   margin-top: 12px;
   font-size: 13px;
+}
+
+.root[data-compact="true"] .compareWinnerBelow {
+  margin-top: 12px;
+}
+
+.root[data-compact="true"] .compareWinnerBelow + .compareNote {
+  margin-top: 6px;
 }
 
 /* ---- Result numbers that count up ---- */
@@ -3395,6 +3414,11 @@
   padding-bottom: 16px;
 }
 
+/* A second role at the same company: a little room above it, so the two don't run together. */
+.root[data-compact="true"] .resumeRoleBlock.resumeRoleNext {
+  margin-top: 14px;
+}
+
 /* A testimonial's paragraphs are separate blocks (so it can turn the page) but read as one quote. */
 .root .resumeBlock.resumeJoined {
   padding-bottom: 0;
@@ -3472,7 +3496,6 @@
 
 .postcardWrap > .chessLink {
   margin-top: calc(0.8 * var(--k) * 1cqw);
-  border: none;
   cursor: pointer;
 }
 
@@ -3777,8 +3800,11 @@
 .chessLink {
   margin-top: calc(1 * var(--k) * 1cqw);
   padding: calc(0.55 * var(--k) * 1cqw) calc(1.3 * var(--k) * 1cqw);
+  /* Also used on <button>s, which bring the browser's bevelled border. */
+  border: none;
   border-radius: 999px;
-  background: var(--accent);
+  /* The main action on a dark panel (tokens.css, Buttons); on paper it turns to ink (.protoPoster). */
+  background: var(--light);
   color: var(--ink);
   font-family: var(--font-ui);
   font-size: calc(0.8 * var(--k) * 1cqw);
@@ -3790,7 +3816,7 @@
 }
 
 .chessLink:hover {
-  background: var(--accent-hover);
+  background: var(--button-light-hover);
 }
 
 .chessLink:focus-visible {
@@ -4049,7 +4075,7 @@
 }
 
 .endNext:hover {
-  background: #45332b;
+  background: var(--button-ink-hover);
 }
 
 .endNextLabel {
@@ -5254,7 +5280,7 @@ button.chatAvatar:focus-visible {
   padding: 0 1.3em;
   border: none;
   border-radius: 999px;
-  background: var(--accent);
+  background: var(--light);
   color: var(--ink);
   font-family: var(--font-ui);
   font-size: 0.85em;
@@ -5265,7 +5291,7 @@ button.chatAvatar:focus-visible {
 }
 
 .chatSend:hover:not(:disabled) {
-  background: var(--accent-hover);
+  background: var(--button-light-hover);
 }
 
 .chatSend:disabled {
@@ -7016,6 +7042,21 @@ button.chatAvatar:focus-visible {
   margin-top: 0;
 }
 
+/* On a book's paper, the main action is ink. */
+.protoPoster .chessLink {
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.protoPoster .chessLink:hover {
+  background: var(--button-ink-hover);
+}
+
+.protoPoster .chessLink:focus-visible {
+  outline-color: var(--ink);
+}
+
 .protoFull {
   position: fixed;
   inset: 0;
@@ -7152,4 +7193,139 @@ button.chatAvatar:focus-visible {
 .stillButton:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: -2px;
+}
+
+/* ==========================================================================
+   Full-page reading on a phone (books: Reader.tsx, fullPage). The book fills the screen as one page
+   that scrolls down: the cover is its header, the views run one under another, and the × stays in the corner.
+   ========================================================================== */
+
+.root[data-full-page="true"] .scrim {
+  background: var(--paper);
+  backdrop-filter: none;
+}
+
+.root[data-full-page="true"] .stage {
+  padding: 0;
+  gap: 0;
+}
+
+.root[data-full-page="true"] .shell {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  filter: none;
+}
+
+.root[data-full-page="true"] .spread {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.root[data-full-page="true"] .cover {
+  display: none;
+}
+
+.root[data-full-page="true"] .scroller {
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-type: none;
+  overscroll-behavior: contain;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 32px);
+  background: var(--paper);
+}
+
+.root[data-full-page="true"] .view {
+  flex: none;
+  height: auto;
+}
+
+/* A full-page picture needs a height to fill; everything else takes the height of its content. */
+.root[data-full-page="true"] .view[data-part="cover"]:has(.pageFull) {
+  height: min(78svh, 640px);
+}
+
+.root[data-full-page="true"] .pageLeft,
+.root[data-full-page="true"] .pageRight {
+  overflow: visible;
+  background: var(--paper);
+}
+
+.root[data-full-page="true"] .view[data-part="text"] .pageRight {
+  padding: 28px 20px 12px;
+}
+
+.scrollHero {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  min-height: min(52svh, 420px);
+  padding: calc(env(safe-area-inset-top) + 76px) 24px 28px;
+  background: linear-gradient(115deg, var(--spine, #c96b5e) 0%, rgba(46, 33, 28, 0.9) 130%);
+  color: var(--paper);
+}
+
+.root[data-full-page="true"] .nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 0;
+}
+
+.root[data-full-page="true"] .closeX {
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + 12px);
+  right: 16px;
+  bottom: auto;
+  position-anchor: none;
+  z-index: 3;
+  border: none;
+  background: rgba(46, 33, 28, 0.6);
+  backdrop-filter: blur(6px);
+  color: var(--paper);
+}
+
+/* Phone screens and browser windows are drawn to the height they're given, so give them one. */
+.root[data-full-page="true"] .compareScreens {
+  flex: none;
+  height: 360px;
+}
+
+.root[data-full-page="true"] .compareDesktop {
+  flex: none;
+  height: 260px;
+}
+
+/* The glossary's cards share out the sheet's height; read down a page, each row gets room for a card's back. */
+.root[data-full-page="true"] .glossaryGrid {
+  flex: none;
+  grid-auto-rows: 148px;
+}
+
+/* The 3D model fills the space it's given; read down a page, that's a square-ish stage. */
+.root[data-full-page="true"] .model3dStage {
+  flex: none;
+  height: min(90vw, 420px);
+}
+
+/* The résumé on a phone: one long sheet, full screen, that scrolls (ResumeSkin doesn't paginate it). */
+.root[data-full-page="true"][data-skin="resume"] .shell {
+  height: 100%;
+}
+
+.root[data-full-page="true"] .resume {
+  border-radius: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.root[data-full-page="true"] .resumeSheet {
+  height: auto;
+  min-height: 100%;
+  padding: calc(env(safe-area-inset-top) + 72px) var(--pad-x) calc(env(safe-area-inset-bottom) + 32px);
+}
+
+.root[data-full-page="true"] .resumePager {
+  display: none;
 }

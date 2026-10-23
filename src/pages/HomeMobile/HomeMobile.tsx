@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getReaderItem, hotspotArt, boardNotes, hotspotSpines } from "../../content";
 import { useHomeCopy, useSceneLabels } from "../copy";
 import { HotspotList } from "../../components/HotspotList/HotspotList";
@@ -39,10 +39,10 @@ export function HomeMobile() {
 
   const fit = () => scene.current?.resetView();
 
-  const onClose = useCallback(() => {
-    scene.current?.clearHighlight();
-    closeReader();
-  }, [closeReader]);
+  // Drop the highlight on every close, the × or the browser's Back.
+  useEffect(() => {
+    if (!openId) scene.current?.clearHighlight();
+  }, [openId]);
 
   return (
     <div className={styles.page}>
@@ -72,7 +72,7 @@ export function HomeMobile() {
 
       <HotspotList labels={labels} onFocusItem={(id) => scene.current?.highlight(id)} inert={!!openId} />
 
-      {openId && getReaderItem(openId) && <Reader key={openId} id={openId} item={getReaderItem(openId)!} onClose={onClose} className={styles.reader} compact />}
+      {openId && getReaderItem(openId) && <Reader key={openId} id={openId} item={getReaderItem(openId)!} onClose={closeReader} className={styles.reader} compact />}
     </div>
   );
 }

@@ -34,7 +34,6 @@
         "Para quem tem pouco tempo, há um menu compacto com todo o conteúdo."
       ],
       "poll": {
-        "kicker": "Sua vez",
         "title": "Um palpite rápido",
         "question": "Quantos objetos podem ser clicados neste escritório?",
         "options": [
@@ -92,7 +91,6 @@
         "Levei a ideia para o **Claude Design** para prototipar a sala e modelar os objetos em 3D. Depois, passei para o **Claude Code** para construir o site de verdade, com conteúdo, interações e versão para celular."
       ],
       "compare": {
-        "kicker": "Três etapas",
         "title": "Rascunho, protótipo, site",
         "device": "desktop",
         "variants": [
@@ -128,7 +126,6 @@
         "Depois fui para o **Claude Code** construir o site de verdade. Conduzi tudo de ponta a ponta: o conceito, o conteúdo, como cada objeto funciona e cada detalhe visual, revisando cada mudança no desktop e no celular."
       ],
       "model3d": {
-        "kicker": "Modelo 3D",
         "title": "A estante",
         "model": "bookshelf",
         "note": "Arraste para girar"
@@ -143,7 +140,6 @@
         "Experimente daqui:"
       ],
       "hobbies": {
-        "kicker": "Atalhos",
         "title": "Abra um",
         "items": [
           {
@@ -212,7 +208,6 @@
         "Revisei como qualquer produto: os objetos pequenos ganharam uma área de toque invisível, todo botão tem pelo menos 44px, nenhum texto é menor que 12px e nada do que abre precisa de rolagem."
       ],
       "stats": {
-        "kicker": "Auditoria mobile",
         "title": "Feito para os polegares",
         "items": [
           {
@@ -241,7 +236,6 @@
         "Essas peças podem ser reaproveitadas, então cada case novo usa as que contam melhor a sua história."
       ],
       "glossary": {
-        "kicker": "A caixa de ferramentas",
         "title": "Páginas para brincar",
         "items": [
           {
@@ -282,7 +276,6 @@
       "heading": "O resultado final",
       "lines": [],
       "showcase": {
-        "kicker": "Resultado · O final",
         "title": "Abra o escritório",
         "device": "desktop",
         "intro": [

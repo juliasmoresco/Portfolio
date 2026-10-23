@@ -37,7 +37,6 @@
         "- teoria que não se transforma em prática"
       ],
       "stats": {
-        "kicker": "O ponto de partida",
         "title": "O Brasil e o seu dinheiro",
         "items": [
           {
@@ -70,7 +69,6 @@
         "Eu queria entender não só o que as pessoas precisavam aprender, mas como elas lidam com informação sobre dinheiro, e o que as impede de avançar."
       ],
       "timeline": {
-        "kicker": "Duplo diamante",
         "title": "Quatro fases",
         "stops": [
           {
@@ -106,7 +104,6 @@
         "E conversei com dois especialistas do mercado, um assessor de investimentos e uma economista, sobre o que cada perfil de investidor precisa."
       ],
       "stats": {
-        "kicker": "Pesquisa",
         "title": "De onde vieram os insights",
         "items": [
           {
@@ -132,7 +129,6 @@
         "A principal: antes de falar de bolsa, o app precisava falar de educação financeira, porque a maioria das pessoas não consegue sequer guardar dinheiro."
       ],
       "cards": {
-        "kicker": "Quatro descobertas",
         "title": "O que impede as pessoas de investir",
         "items": [
           {
@@ -163,7 +159,6 @@
         "Os mapas de empatia me ajudaram a entender o que motiva e o que impede cada um de avançar, para o app funcionar para os dois."
       ],
       "personas": {
-        "kicker": "Personas",
         "title": "Conheça a Clara e o Lucas",
         "items": [
           {
@@ -239,7 +234,6 @@
         "Os pontos baixos mostraram onde o app precisava dar apoio. Por isso ele apresenta tudo aos poucos: um passo pequeno de cada vez, com ajuda nas partes difíceis."
       ],
       "journey": {
-        "kicker": "Mapa de jornada",
         "title": "Duas jornadas",
         "people": [
           {
@@ -335,7 +329,6 @@
         "- **Explorar:** notícias e indicadores do mercado, para entender o contexto"
       ],
       "compare": {
-        "kicker": "Arquitetura da informação",
         "title": "Três pilares",
         "variants": [
           {
@@ -374,7 +367,6 @@
         "Tenta responder uma pergunta de verdade do app:"
       ],
       "poll": {
-        "kicker": "Do app",
         "title": "Hora do quiz",
         "question": "O que é o método 50-30-20?",
         "options": [
@@ -404,7 +396,6 @@
         "Tudo isso está num guia de estilo no Figma, pensado para manter a consistência e a acessibilidade."
       ],
       "palette": {
-        "kicker": "Guia de estilo",
         "title": "A cara do BoraInvest",
         "logo": "bora-logo",
         "font": {
@@ -456,7 +447,6 @@
         "O teste rendeu duas mudanças: um onboarding que avança com um toque, como os Stories, e os índices do mercado direto na Home."
       ],
       "chart": {
-        "kicker": "Teste de usabilidade",
         "title": "Como foi cada tarefa",
         "groups": [
           {
@@ -513,7 +503,6 @@
       "heading": "O resultado final",
       "lines": [],
       "prototype": {
-        "kicker": "Resultado · O final",
         "title": "Experimente o protótipo",
         "path": "bora/",
         "intro": [
