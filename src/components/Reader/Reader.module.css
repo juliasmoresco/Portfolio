@@ -3472,7 +3472,6 @@
 
 .postcardWrap > .chessLink {
   margin-top: calc(0.8 * var(--k) * 1cqw);
-  border: none;
   cursor: pointer;
 }
 
@@ -3777,6 +3776,8 @@
 .chessLink {
   margin-top: calc(1 * var(--k) * 1cqw);
   padding: calc(0.55 * var(--k) * 1cqw) calc(1.3 * var(--k) * 1cqw);
+  /* Also used on <button>s, which bring the browser's bevelled border. */
+  border: none;
   border-radius: 999px;
   background: var(--accent);
   color: var(--ink);
@@ -7014,6 +7015,18 @@ button.chatAvatar:focus-visible {
 
 .root[data-compact="true"] .protoPoster .chessLink {
   margin-top: 0;
+}
+
+/* Inside a case, the button takes the case's colour rather than the office's yellow. */
+.protoPoster .chessLink {
+  background: var(--accent-fill);
+  color: var(--accent-on);
+  cursor: pointer;
+}
+
+.protoPoster .chessLink:hover {
+  background: var(--accent-fill);
+  filter: brightness(0.92);
 }
 
 .protoFull {
