@@ -47,8 +47,8 @@
 .stage {
   position: absolute;
   inset: 0;
-  /* Room above the sheet (Reader.tsx's fit leaves this height out: CLOSE_BAND_PX). */
-  padding-top: 24px;
+  /* A band for the × above the sheet (Reader.tsx's fit leaves this height out: CLOSE_BAND_PX). */
+  padding-top: 72px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,7 +65,7 @@
   position: relative;
   pointer-events: auto;
   outline: none;
-  /* Close is pinned to this box: the phone's × to its top-right corner, the desktop's Close under its right edge. */
+  /* Close (.closeX) is pinned to this box's top-right corner. */
   anchor-name: --reader-sheet;
   width: calc(62 * var(--k) * 1cqw);
   height: calc(38 * var(--k) * 1cqw);
@@ -3827,11 +3827,8 @@
 /* ---- Controls under the shell ---- */
 
 .nav {
-  anchor-name: --reader-nav;
   display: flex;
   align-items: center;
-  /* the row's height even when it holds only Close (which is positioned out of the flow below) */
-  min-height: calc(2.6 * var(--k) * 1cqw);
   gap: calc(1 * var(--k) * 1cqw);
   pointer-events: auto;
   opacity: 0;
@@ -3925,57 +3922,6 @@
 .closeX:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-}
-
-/* Close on desktop and tablet: words and an ×, on the pager's row but at the sheet's right edge (anchor positioning),
-   far from the arrows. Without anchor positioning it simply follows the pager. */
-.closeText {
-  display: inline-flex;
-  align-items: center;
-  gap: calc(0.5 * var(--k) * 1cqw);
-  height: calc(2.6 * var(--k) * 1cqw);
-  margin-left: calc(3 * var(--k) * 1cqw);
-  padding: 0 calc(0.9 * var(--k) * 1cqw) 0 calc(1.1 * var(--k) * 1cqw);
-  border: calc(0.12 * var(--k) * 1cqw) solid rgba(245, 235, 220, 0.5);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--paper);
-  font-family: var(--font-ui);
-  font-size: calc(0.78 * var(--k) * 1cqw);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
-}
-
-.closeText svg {
-  width: calc(0.95 * var(--k) * 1cqw);
-  height: calc(0.95 * var(--k) * 1cqw);
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-}
-
-.closeText:hover {
-  background: var(--accent);
-  color: var(--ink);
-  border-color: var(--accent);
-}
-
-.closeText:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-@supports (anchor-name: --a) {
-  .closeText {
-    position: absolute;
-    margin: 0;
-    position-anchor: --reader-sheet;
-    top: anchor(--reader-nav top);
-    right: anchor(right);
-  }
 }
 
 /* ---- Chapters and reading progress, above the book ---- */

@@ -33,8 +33,8 @@ const END_BLOCK_HEIGHT = 190;
 
 /** The chapter bar (Overview · Process · Outcome, with a progress line) above a book. Switched off for now; the code stays. */
 const SHOW_CHAPTER_BAR = false;
-/** Desktop: breathing room above the sheet (Reader.module.css, .stage's padding-top); Close sits below it now. */
-const CLOSE_BAND_PX = 24;
+/** Desktop: the band above the sheet that holds the × (Reader.module.css, .stage's padding-top). */
+const CLOSE_BAND_PX = 72;
 
 /** Runs of pages sharing a kicker ("Overview", "Process", …), as chapters. Fewer than two means no chapter bar. */
 function chaptersOf(pages: ReaderItem["pages"]): { label: string; page: number }[] {
@@ -283,21 +283,13 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
   const compactViews: CompactViewProps | undefined = compact
     ? { views, view, onViewChange: setView, scrollerRef: scroller, end: hasEnd ? <EndBlock {...endProps} /> : undefined, onOverflow, stacked: fullPage }
     : undefined;
-  // Phone: an × in the top-right corner. Desktop and tablet: a "Close ×" button under the object, at its right edge,
-  // on the pager's row (well clear of the arrows), so the sheet gets the room a band above it used to take.
-  const cross = (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M6 6l12 12M18 6L6 18" />
-    </svg>
-  );
-  const closeButton = compact ? (
+  // Close is an × in the top-right corner (where the home's Menu sits), away from the page arrows.
+  // First in the DOM, so Tab order matches.
+  const closeButton = (
     <button type="button" className={styles.closeX} onClick={requestClose} aria-label={ui.close}>
-      {cross}
-    </button>
-  ) : (
-    <button type="button" className={styles.closeText} onClick={requestClose}>
-      {ui.close}
-      {cross}
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
     </button>
   );
 
@@ -356,8 +348,7 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
 
         {/* Hidden until the cover is open (books), so Tab can't reach invisible controls. */}
         <div className={styles.nav} inert={!navVisible}>
-          {/* Tab order follows what's seen: the phone's × comes first (top corner), the desktop's Close last. */}
-          {compact && closeButton}
+          {closeButton}
           {showPager && (
             <>
               <button ref={prevBtn} type="button" className={styles.navBtn} aria-label={ui.prevPage} aria-disabled={index === 0} onClick={() => turn(-1)}>
@@ -369,7 +360,6 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
               </button>
             </>
           )}
-          {!compact && closeButton}
         </div>
       </div>
       </ZoomContext.Provider>
