@@ -1,26 +1,22 @@
-# Office objects as they are in the room, desktop Hints, tablet reading column
+# Case visuals: readable compare screens, text before visuals, phone fixes
 
 ## What changed
 
-**Zuko, Moka and the Johnny Cash poster open as the objects they are**
-- The frame skin gets a `look` option (`"photo"` | `"poster"`), checked in `validate.ts`.
-- `photo` (Zuko, Moka): the framed photo from the shelf, with a dark moulding and cream mount in the scene's `frameMat` / `mountMat` colours, and the caption under it in the UI font.
-- `poster` (Johnny Cash): the print as it hangs on the wall, slightly tilted and shadowed, masking tape over its top corners, caption under it.
-- Both size down on short windows so the caption still fits.
+**Compare pages with desktop screens**
+- A version's two browser windows no longer overlap small (the one behind mostly hidden). One window shows at a time, filling the space, and a "Screen 1 · Screen 2" switch under it picks which; enlarging shows both. Same on desktop, tablet and phone (on a phone the window is full width at its screenshot's own height, up to 460px).
 
-**Desktop: Hints button**
-- A Hints pill beside the Menu (as on mobile) keeps the glow on every object that opens; both step aside while a Reader is open.
-- An automatic glow on arrival was tried and dropped (too much, even at 40%); it's in the history, reverted.
+**Text before visuals**
+- The compare pages that put the visual first (case 2 "Where a portability starts", case 3 "Three pillars", case 4 "Sketch, prototype, site") now set the text on the left and the visual on the right (`artRight`, EN + PT), so the section is read before its evidence.
 
-**Tablet held upright: a reading column**
-- Full-page reading at 640px+ runs down a centred 640px column in 17px type, instead of lines across the whole width (~110 characters at 820px). Text and visuals share the column's edges; the opening picture stays full width; the résumé is centred too.
-- Phones are unchanged; a tablet held sideways still opens the book.
+**Quieter visual titles**
+- A visual's title is a step under the section heading everywhere: desktop 1.55 vs 2.4; phone 19px (was 26px, above the heading's 22px); tablet 22px under 28px.
 
-**Close button**
-- Moving Close under the object as "Close ×" was tried and reverted: the × above the sheet's corner stays.
+**Phone fixes (case 2)**
+- Funnel ("Who took part"): each step's label shared a rule with the note under the funnel and took its top margin and padding, so the bars floated far above their numbers. Fixed.
+- Final-result showcase: the screen names were boxes stretched across the row, text stuck at the top; they're now pills as wide as their label, text centred.
 
 ## How it was checked
 - `tsc --noEmit` and `vitest run` (35 tests) pass.
-- Checked in the browser at 1440×900, 820×1180 and 375×812.
+- Checked in the browser at 1440×900 and 375×812, switching versions and screens.
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
