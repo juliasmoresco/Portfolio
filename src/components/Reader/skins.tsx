@@ -129,6 +129,7 @@ export function FolderSkin({ item, page, spreadPages = [page], compact }: SkinPr
 
 /** A single framed plate: wall art and the phone (which adds contact links). */
 export function FrameSkin({ item, page }: SkinProps) {
+  if (item.photoFrame) return <PhotoFrame item={item} page={page} />;
   return (
     <div className={`${styles.frame} ${pageHasArt(page) ? "" : styles.frameTextOnly}`}>
       {pageHasArt(page) && <Plate images={pageImages(page)} alt={page.caption || item.title} />}
@@ -146,5 +147,20 @@ export function FrameSkin({ item, page }: SkinProps) {
         )}
       </div>
     </div>
+  );
+}
+
+/** A photo in the frame it stands in on the shelf: dark moulding, cream mount, the caption under it. */
+function PhotoFrame({ item, page }: { item: ReaderItem; page: ReaderPage }) {
+  const [src] = pageImages(page);
+  return (
+    <figure className={styles.photoFrame}>
+      <div className={styles.photoMoulding}>
+        <div className={styles.photoMount}>{src && <img className={styles.photoPicture} src={src} alt={item.hotspotLabel ?? item.title} draggable={false} />}</div>
+      </div>
+      <figcaption>
+        <Lines lines={page.lines} className={styles.photoCaption} />
+      </figcaption>
+    </figure>
   );
 }

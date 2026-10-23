@@ -302,6 +302,7 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
       aria-label={item.title}
       tabIndex={-1}
       data-skin={skin}
+      data-photo-frame={item.photoFrame || undefined}
       data-opening={item.opening ?? "none"}
       data-open={open}
       data-cover-open={coverOpen}
