@@ -6155,15 +6155,17 @@ button.chatAvatar:focus-visible {
   gap: 6px;
 }
 
+/* On a phone the screens' names are chips: as wide as their label, text centred. */
 .root[data-compact="true"] .tourList li {
-  flex: 1 1 auto;
+  flex: none;
 }
 
 .root[data-compact="true"] .tourItem {
-  min-height: 44px;
-  padding: 6px 10px;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
   border: 1px solid rgb(var(--ink-rgb) / 0.2);
-  border-radius: 8px;
+  border-radius: 999px;
   font-size: 13px;
 }
 
@@ -6257,7 +6259,10 @@ button.chatAvatar:focus-visible {
   height: 10px;
 }
 
-.root[data-compact="true"] .funnelLabel,
+.root[data-compact="true"] .funnelLabel {
+  font-size: 14px;
+}
+
 .root[data-compact="true"] .funnelNote {
   margin-top: 22px;
   padding-top: 14px;
