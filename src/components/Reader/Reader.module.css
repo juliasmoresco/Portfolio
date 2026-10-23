@@ -672,6 +672,17 @@
   text-transform: uppercase;
 }
 
+/* Under the winning version's screens, on its own line above the note. */
+.compareWinnerBelow {
+  align-self: center;
+  margin-top: calc(1 * var(--k) * 1cqw);
+  animation: compareIn 0.35s ease both;
+}
+
+.compareWinnerBelow + .compareNote {
+  margin-top: calc(0.5 * var(--k) * 1cqw);
+}
+
 .compareScreens {
   flex: 1;
   min-height: 0;
@@ -779,6 +790,14 @@
 .root[data-compact="true"] .compareNote {
   margin-top: 12px;
   font-size: 13px;
+}
+
+.root[data-compact="true"] .compareWinnerBelow {
+  margin-top: 12px;
+}
+
+.root[data-compact="true"] .compareWinnerBelow + .compareNote {
+  margin-top: 6px;
 }
 
 /* ---- Result numbers that count up ---- */
