@@ -8,6 +8,7 @@ import { buildViews, type CompactViewProps } from "./compact";
 import { ChessSkin } from "./ChessSkin";
 import { GlobeSkin } from "./GlobeSkin";
 import { LlamaSkin } from "./LlamaSkin";
+import { TrophySkin } from "./TrophySkin";
 import { ChatSkin } from "./ChatSkin";
 import { NotesSkin } from "./NotesSkin";
 import { PostcardSkin } from "./PostcardSkin";
@@ -160,7 +161,7 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
   }, []);
 
   // Books and folders page (a turning leaf on desktop; on a phone each page is two views, image then text).
-  // Frames, the globe, the llama bank, the chessboard and the phone are a single view.
+  // Frames, the globe, the llama bank, the trophy, the chessboard and the phone are a single view.
   const paged = skin === "book" || skin === "folder";
   // Phone: a book (and the résumé) reads as one full page that scrolls down, rather than sheets turned one by one.
   const fullPage = compact && (isBook || skin === "resume");
@@ -337,6 +338,7 @@ export function Reader({ item, id, onClose, className, compact = false }: Props)
           {skin === "frame" && <FrameSkin item={item} page={page} />}
           {skin === "globe" && <GlobeSkin item={item} />}
           {skin === "llama" && <LlamaSkin item={item} />}
+          {skin === "trophy" && <TrophySkin item={item} />}
           {skin === "chess" && <ChessSkin item={item} />}
           {skin === "phone" && <PhoneSkin item={item} />}
           {skin === "notes" && <NotesSkin item={item} />}

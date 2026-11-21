@@ -1,6 +1,6 @@
 import { HOBBY_ICONS, PANEL_KEYS, type ReaderItem } from "./types";
 
-const SKINS = ["book", "folder", "frame", "globe", "llama", "chess", "phone", "notes", "postcard", "resume", "diploma", "chat"];
+const SKINS = ["book", "folder", "frame", "globe", "llama", "chess", "phone", "notes", "postcard", "resume", "diploma", "chat", "trophy"];
 const OPENINGS = ["hinge", "tube", "binder", "lid"];
 const HEX = /^#[0-9a-fA-F]{6}$/;
 
@@ -28,7 +28,7 @@ export function assertReaderItem(id: string, v: unknown): asserts v is ReaderIte
   }
   if (o.skin !== "folder" && o.opening !== undefined) bad("opening only applies to the folder skin");
   if (o.links !== undefined) {
-    if (!["frame", "chess", "phone", "notes", "resume"].includes(o.skin as string)) bad("links only apply to the frame, phone, chess, notes and resume skins");
+    if (!["frame", "chess", "phone", "notes", "resume", "trophy"].includes(o.skin as string)) bad("links only apply to the frame, phone, chess, notes, resume and trophy skins");
     if (!Array.isArray(o.links) || o.links.some((l) => !l || typeof l.label !== "string" || typeof l.href !== "string")) {
       bad("links must be a list of { label, href }");
     }

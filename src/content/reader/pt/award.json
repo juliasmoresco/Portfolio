@@ -1,0 +1,17 @@
+{
+  "skin": "trophy",
+  "title": "Honorable Mention no Awwwards",
+  "kind": "Um prêmio",
+  "hotspotLabel": "Troféu do Awwwards",
+  "links": [
+    { "label": "Ver no Awwwards", "href": "https://www.awwwards.com/sites/julia-moresco-portfolio" }
+  ],
+  "pages": [
+    {
+      "lines": [
+        "Este escritório recebeu uma Honorable Mention no Awwwards, a premiação de web design e desenvolvimento votada por um júri internacional de designers e desenvolvedores.",
+        "Obrigada a todo mundo que passou por aqui e votou!"
+      ]
+    }
+  ]
+}

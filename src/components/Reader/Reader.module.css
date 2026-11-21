@@ -86,7 +86,8 @@
   height: calc(46 * var(--k) * 1cqw);
 }
 
-.root[data-skin="llama"] .shell {
+.root[data-skin="llama"] .shell,
+.root[data-skin="trophy"] .shell {
   width: calc(42 * var(--k) * 1cqw);
   height: calc(46 * var(--k) * 1cqw);
 }
@@ -141,7 +142,8 @@
 .root[data-skin="globe"] .shell {
   transform: scale(0.22) rotateY(-40deg);
 }
-.root[data-skin="llama"] .shell {
+.root[data-skin="llama"] .shell,
+.root[data-skin="trophy"] .shell {
   transform: scale(0.22) rotateY(-40deg);
 }
 .root[data-skin="chess"] .shell {
@@ -4264,7 +4266,8 @@
   font-size: 12px;
 }
 
-.root[data-compact="true"][data-skin="llama"] .shell {
+.root[data-compact="true"][data-skin="llama"] .shell,
+.root[data-compact="true"][data-skin="trophy"] .shell {
   height: min(calc(100dvh - 156px - env(safe-area-inset-top) - env(safe-area-inset-bottom)), 560px);
 }
 

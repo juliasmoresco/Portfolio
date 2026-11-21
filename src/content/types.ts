@@ -1,4 +1,4 @@
-export type ReaderSkin = "book" | "folder" | "frame" | "globe" | "llama" | "chess" | "phone" | "notes" | "postcard" | "resume" | "diploma" | "chat";
+export type ReaderSkin = "book" | "folder" | "frame" | "globe" | "llama" | "chess" | "phone" | "notes" | "postcard" | "resume" | "diploma" | "chat" | "trophy";
 export type ReaderOpening = "hinge" | "tube" | "binder" | "lid";
 
 export interface ReaderPage {
@@ -310,7 +310,7 @@ export interface ReaderItem {
   /** Required for `folder`. */
   opening?: ReaderOpening;
   openingLabel?: string;
-  /** `frame`, `phone` and `resume` (contact links), `chess` (the profile link) and `notes` (all reviews, booking). */
+  /** `frame`, `phone` and `resume` (contact links), `chess` (the profile link), `notes` (all reviews, booking) and `trophy` (the award page). */
   links?: ReaderLink[];
   /** `chess` only: the chess.com username whose public ratings the board shows live. */
   chessUsername?: string;

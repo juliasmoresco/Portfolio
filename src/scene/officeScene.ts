@@ -28,6 +28,7 @@ import { replaceDiplomaTube } from "./diploma";
 import { makeCorkBoard, type BoardNote } from "./corkboard";
 import { makePostcard } from "./postcard";
 import { makeRotaryPhone } from "./phone";
+import { makeTrophy } from "./trophy";
 import { PlantSway } from "./plantSway";
 import { refineZuko, ZukoLife } from "./zuko";
 import { isHotspotId, MOON_LAMP_ID, MOON_LAMP_LABEL, type Daylight, type SceneHotspotId, type WallTone } from "./hotspots";
@@ -840,6 +841,35 @@ export class OfficeScene {
       }
     }
 
+    // the Awwwards trophy (built in code, see ./trophy) — standing on top of column B, the low column between the
+    // moon lamp and the chess box
+    let trophyObj: THREE.Object3D | null = null;
+    {
+      const obj = makeTrophy();
+      try {
+        enableShadows(obj);
+        scene.add(obj);
+
+        const { sl, sr, boards } = compartment("b");
+        const top = boards[boards.length - 1];
+        const tslot = sl && sr ? sr.min.x - sl.min.x : 0.5;
+        const tb0 = meshBox(obj);
+        const tsx = tb0.max.x - tb0.min.x || 1e-4;
+        const tsy = tb0.max.y - tb0.min.y || 1e-4;
+        obj.scale.setScalar(Math.min(0.32 / tsy, (tslot * 0.64) / tsx));
+
+        const ttx = sl && sr ? (sl.min.x + sr.max.x) / 2 : 2.27;
+        const ttz = (top.min.z + top.max.z) / 2;
+        settleOn(obj, ttx, top.max.y, ttz);
+        obj.rotation.y = -0.2;
+        obj.updateWorldMatrix(true, true);
+        trophyObj = obj;
+      } catch (e) {
+        console.warn("[office-scene] could not place the trophy", e);
+        scene.remove(obj);
+      }
+    }
+
     // fill remaining empty compartments with decorative books, remembering which compartment each belongs to
     const fillerByCompartment: Record<string, THREE.Mesh[]> = {};
     const standingFiller: THREE.Mesh[] = [];
@@ -955,6 +985,7 @@ export class OfficeScene {
     if (phoneMeshes.length) this.groups.phone = { label: "Say hello", meshes: phoneMeshes };
     if (moonMeshes.length) this.groups[MOON_LAMP_ID] = { label: MOON_LAMP_LABEL, meshes: moonMeshes };
     if (llama) this.groups.llama = { label: "Llama bank", meshes: collectMeshes(llama) };
+    if (trophyObj) this.groups.award = { label: "Awwwards Honorable Mention", meshes: collectMeshes(trophyObj) };
     if (catMeshes.length) this.groups.cat = { label: "Zuko", meshes: catMeshes };
     for (const [id, { compartment, label }] of Object.entries(FILLER_HOTSPOTS)) {
       const meshes = fillerByCompartment[compartment];

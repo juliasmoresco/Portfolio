@@ -1,5 +1,5 @@
 /**
- * The hotspots that open a Reader. The README lists 17; Résumé and Zuko (the owner's cat) were added afterwards, and
+ * The hotspots that open a Reader. The README lists 17; Résumé, Zuko (the owner's cat) and the Awwwards trophy were added afterwards, and
  * three of the wall's illustrations later gave way to the cork board of mentees' notes. Order is also the keyboard
  * list's order.
  */
@@ -15,6 +15,7 @@ export const HOTSPOT_IDS = [
   "phone",
   "resume",
   "llama",
+  "award",
   "cat",
   "ill01",
   "mentees",
