@@ -19,7 +19,8 @@
         "**Role:** Concept, design and art direction",
         "**Built with:** Claude Design (prototype and 3D objects) and Claude Code (the site)",
         "**Stack:** React, TypeScript, three.js",
-        "**Timeline:** Sep – Oct 2026"
+        "**Timeline:** Sep – Oct 2026",
+        "**Recognition:** Honorable Mention on Awwwards (Nov 2026)"
       ],
       "image": "story-cover",
       "fullPage": true,
@@ -44,11 +45,11 @@
             "label": "13"
           },
           {
-            "label": "17"
+            "label": "18"
           }
         ],
         "answer": 2,
-        "reveal": "17 objects to discover, plus the moon lamp, which changes the light. The first prototype already promised “0 of 17 discovered”, and with this book on the shelf, the office finally lives up to it.",
+        "reveal": "18 objects to discover, plus the moon lamp, which changes the light. The first prototype promised “0 of 17 discovered”; this book on the shelf made it 17, and the Awwwards trophy made it 18.",
         "prompt": "Pick one to see the answer.",
         "answerLabel": "Answer"
       },
@@ -230,6 +231,42 @@
       }
     },
     {
+      "kicker": "Mobile",
+      "heading": "Moving the shelf for a phone",
+      "lines": [
+        "The room was the biggest challenge on a phone. On a narrow screen, the desktop layout made everything tiny and left half the screen empty.",
+        "The answer was to stack it: on a phone, the wall shelf and the posters move up above the bookcase, and Zuko comes to the front. Same objects, drawn much larger."
+      ],
+      "artRight": true,
+      "compare": {
+        "title": "Rearranging the room",
+        "device": "phone",
+        "variants": [
+          {
+            "label": "Desktop layout",
+            "images": [
+              "story-mobile-before"
+            ],
+            "note": "The desktop layout on a phone: everything tiny, the bottom half empty."
+          },
+          {
+            "label": "Rearranged",
+            "images": [
+              "story-mobile-after"
+            ],
+            "note": "The shelf above the bookcase and Zuko in front: the room fills the screen."
+          },
+          {
+            "label": "Hints on",
+            "images": [
+              "story-mobile-hints"
+            ],
+            "note": "Hints light up everything you can tap."
+          }
+        ]
+      }
+    },
+    {
       "kicker": "Content",
       "heading": "Telling each case its own way",
       "lines": [
@@ -274,13 +311,26 @@
     },
     {
       "kicker": "Outcome",
+      "heading": "An Honorable Mention on Awwwards",
+      "lines": [
+        "In November 2026 this office earned an **Honorable Mention** on Awwwards, the web design awards voted on by an international jury of designers and developers.",
+        "So it got a place on the shelf: the gold “W.” on top of the bookcase, between the moon lamp and the chess box. Drag it around."
+      ],
+      "model3d": {
+        "title": "The award",
+        "model": "trophy",
+        "note": "Drag to turn it"
+      }
+    },
+    {
+      "kicker": "Outcome",
       "heading": "The final result",
       "lines": [],
       "showcase": {
         "title": "Open the office",
         "device": "desktop",
         "intro": [
-          "Seventeen objects to discover, plus a moon lamp. Three case studies, a résumé, a cat who chats, and no menu you have to use. Close this book and look around."
+          "Eighteen objects to discover, plus a moon lamp. Close this book and look around."
         ],
         "screens": [
           {

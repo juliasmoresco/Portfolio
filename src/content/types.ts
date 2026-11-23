@@ -435,7 +435,8 @@ export interface PagePalette {
 export interface PageModel {
   kicker?: string;
   title?: string;
-  model: "bookshelf" | "wall-shelf";
+  /** One of the office's GLB models, or the Awwwards trophy (built in code, scene/trophy.ts). */
+  model: "bookshelf" | "wall-shelf" | "trophy";
   note?: string;
 }
 
