@@ -8,7 +8,8 @@ import { useUi } from "./ui";
 import bookshelfStill from "../../assets/stills/bookshelf.webp";
 import { HAS_WEBGL } from "../../webgl";
 
-const MODELS: Record<PageModel["model"], string> = { bookshelf: bookshelfUrl, "wall-shelf": wallShelfUrl };
+/** The GLB files; the trophy has none, it is built in code (scene/trophy.ts). */
+const MODELS: Partial<Record<PageModel["model"], string>> = { bookshelf: bookshelfUrl, "wall-shelf": wallShelfUrl };
 /** Shown instead when the browser has no WebGL. */
 const STILLS: Partial<Record<PageModel["model"], string>> = { bookshelf: bookshelfStill };
 
@@ -64,9 +65,12 @@ export function Model3D({ model }: { model: PageModel }) {
         placeRef?.();
       };
 
-      new GLTFLoader().load(MODELS[model.model], (gltf) => {
+      const url = MODELS[model.model];
+      const loaded: Promise<import("three").Object3D> = url
+        ? new Promise((resolve) => new GLTFLoader().load(url, (gltf) => resolve(gltf.scene)))
+        : import("../../scene/trophy").then(({ makeTrophy }) => makeTrophy());
+      loaded.then((obj) => {
         if (cancelled) return;
-        const obj = gltf.scene;
         const box = new THREE.Box3().setFromObject(obj);
         const size = new THREE.Vector3();
         const center = new THREE.Vector3();

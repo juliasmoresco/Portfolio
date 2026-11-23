@@ -284,7 +284,7 @@ export function assertReaderItem(id: string, v: unknown): asserts v is ReaderIte
     }
     if (pg!.model3d !== undefined) {
       const md = pg!.model3d as { model?: unknown };
-      if (!md || !["bookshelf", "wall-shelf"].includes(md.model as string)) bad(`pages[${i}].model3d.model is "bookshelf" or "wall-shelf"`);
+      if (!md || !["bookshelf", "wall-shelf", "trophy"].includes(md.model as string)) bad(`pages[${i}].model3d.model is "bookshelf", "wall-shelf" or "trophy"`);
     }
     for (const k of ["compare", "showcase"] as const) {
       const dv = (pg![k] as { device?: unknown } | undefined)?.device;
