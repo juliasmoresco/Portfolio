@@ -18,6 +18,12 @@
   outline: none;
 }
 
+/* Books open about 12% larger than the other objects: their spread is shorter than the llama's or the globe's stage,
+   so the larger size still fits above the page controls at every height (Reader.tsx's --fit). */
+.root[data-skin="book"] {
+  --k: calc(1.32 * var(--fit, 1));
+}
+
 .srOnly {
   position: absolute;
   width: 1px;
@@ -1865,8 +1871,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: calc(0.6 * var(--k) * 1cqw);
-  padding: calc(1.4 * var(--k) * 1cqw) calc(1.2 * var(--k) * 1cqw) calc(1.6 * var(--k) * 1cqw);
+  gap: calc(1 * var(--k) * 1cqw);
+  padding: calc(1.4 * var(--k) * 1cqw) calc(1.6 * var(--k) * 1cqw) calc(2 * var(--k) * 1cqw);
   background: rgb(var(--scrim-rgb) / 0.78);
   backdrop-filter: blur(18px) saturate(1.15);
   border-radius: calc(0.6 * var(--k) * 1cqw);
@@ -1974,15 +1980,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: calc(0.3 * var(--k) * 1cqw);
+  /* The dark panels' rhythm (globe, llama, trophy, chess): 0.5 between lines of text, the title 0.3 further from
+     what follows, a button 1 further. */
+  gap: calc(0.5 * var(--k) * 1cqw);
   text-align: center;
 }
 
 .globeHeading {
-  margin: 0;
+  margin: 0 0 calc(0.3 * var(--k) * 1cqw);
   font-family: var(--font-display);
   font-weight: 400;
   font-size: calc(1.9 * var(--k) * 1cqw);
+  line-height: 1.15;
   color: var(--light);
 }
 
@@ -2006,8 +2015,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: calc(0.6 * var(--k) * 1cqw);
-  padding: calc(1.4 * var(--k) * 1cqw) calc(1.2 * var(--k) * 1cqw) calc(1.6 * var(--k) * 1cqw);
+  gap: calc(1 * var(--k) * 1cqw);
+  padding: calc(1.4 * var(--k) * 1cqw) calc(1.6 * var(--k) * 1cqw) calc(2 * var(--k) * 1cqw);
   background: rgb(var(--scrim-rgb) / 0.78);
   backdrop-filter: blur(18px) saturate(1.15);
   border-radius: calc(0.6 * var(--k) * 1cqw);
@@ -2092,23 +2101,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: calc(0.3 * var(--k) * 1cqw);
+  /* The dark panels' rhythm (globe, llama, trophy, chess): 0.5 between lines of text, the title 0.3 further from
+     what follows, a button 1 further. */
+  gap: calc(0.5 * var(--k) * 1cqw);
   text-align: center;
 }
 
 .llamaHeading {
-  margin: 0;
+  margin: 0 0 calc(0.3 * var(--k) * 1cqw);
   font-family: var(--font-display);
   font-weight: 400;
   font-size: calc(1.9 * var(--k) * 1cqw);
+  line-height: 1.15;
   color: var(--light);
 }
 
 .llamaHint {
   margin: 0;
-  max-width: calc(30 * var(--k) * 1cqw);
-  font-size: calc(0.8 * var(--k) * 1cqw);
-  color: rgb(var(--light-rgb) / 0.75);
+  max-width: calc(28 * var(--k) * 1cqw);
+  font-size: calc(0.9 * var(--k) * 1cqw);
+  line-height: 1.5;
+  color: rgb(var(--light-rgb) / 0.8);
 }
 
 .llamaCount {
@@ -3752,10 +3765,11 @@
 }
 
 .chessHeading {
-  margin: 0 0 calc(0.3 * var(--k) * 1cqw);
+  margin: 0 0 calc(0.6 * var(--k) * 1cqw);
   font-family: var(--font-display);
   font-weight: 400;
   font-size: calc(1.9 * var(--k) * 1cqw);
+  line-height: 1.15;
 }
 
 .chessLine {
@@ -4220,6 +4234,7 @@
 }
 
 .root[data-compact="true"] .chessHeading {
+  margin-bottom: 6px;
   font-size: 22px;
 }
 
@@ -4561,12 +4576,19 @@
 }
 
 .root[data-compact="true"] .globe {
-  gap: 10px;
+  gap: 16px;
   padding: 14px 12px 18px;
   border-radius: 8px;
 }
 
-.root[data-compact="true"] .globeHeading {
+.root[data-compact="true"] .globeText,
+.root[data-compact="true"] .llamaText {
+  gap: 8px;
+}
+
+.root[data-compact="true"] .globeHeading,
+.root[data-compact="true"] .llamaHeading {
+  margin-bottom: 4px;
   font-size: 20px;
 }
 
@@ -4608,8 +4630,8 @@
 }
 
 .root[data-compact="true"] .llama {
-  gap: 10px;
-  padding: 14px 12px 18px;
+  gap: 16px;
+  padding: 14px 16px 22px;
   border-radius: 8px;
 }
 
@@ -4626,13 +4648,9 @@
   font-size: 15px;
 }
 
-.root[data-compact="true"] .llamaHeading {
-  font-size: 20px;
-}
-
 .root[data-compact="true"] .llamaHint {
-  max-width: 280px;
-  font-size: 12px;
+  max-width: 300px;
+  font-size: 14px;
 }
 
 .root[data-compact="true"] .llamaCount {
