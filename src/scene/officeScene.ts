@@ -49,8 +49,25 @@ const DESK_SIDE_MARGIN = 0.5;
 
 /** Hotspots that are books on the shelf: hovering one slides a book out toward the viewer, like pulling it off. */
 const BOOK_IDS: readonly string[] = ["about", "case1", "case2", "case3", "case4", "case5", "resume"];
-/** Of those, the ones that take their entry's `spine` colour. */
-const TINTED_IDS: readonly string[] = ["about", "case1", "case2", "case3", "case4", "case5"];
+/** Of those, the ones that take a colour: their entry's `spine`, or SHELF_SPINES where the shelf needs another. */
+const TINTED_IDS: readonly string[] = ["about", "case1", "case2", "case3", "case4", "case5", "resume"];
+/**
+ * Colours on the shelf that differ from the entry's `spine` (which the Reader and the phone's cards keep). Case 2's
+ * and Case 4's yellows vanish against the yellow lacquer (and a darker ochre or mustard turns to khaki in the warm
+ * light, like the neutrals), so their books take a burnt orange and a deep teal; the Résumé has no spine of its own,
+ * and takes a plum so it reads as something to open rather than decoration.
+ */
+const SHELF_SPINES: Readonly<Record<string, string>> = { case2: "#B8571C", case4: "#2E6B70", resume: "#6B4664" };
+/** How far a hotspot's books take its colour (the tallest, its "hero", goes further), so each shelf reads as one block. */
+const SPINE_MIX = 0.8;
+const HERO_SPINE_MIX = 0.92;
+/**
+ * The books that open nothing, in warm, quiet neutrals (sand, kraft, cream, stone, taupe, a soft olive and clay, and
+ * one dark brown for depth), so the coloured shelves are the ones that stand out, and colour means "open me".
+ */
+const DECOR_BOOK_COLORS = [0xc2a882, 0xa88b66, 0xd9c9a8, 0x8f8478, 0x76655a, 0x86815f, 0xa57966, 0x9d9482, 0x5a4a3e, 0xb89d7a];
+/** The moon lamp's glow, which its emissive goes back to when a hover or the hints let go of it. */
+const LAMP_GLOW = 0xffe6b8;
 /** How far a hovered book slides out (scene units; the bookcase is 3 tall). */
 const PULL_DISTANCE = 0.09;
 /** Clicking a book flies it off the shelf to the camera (ms), and the Reader is asked to open partway through. */
@@ -883,7 +900,7 @@ export class OfficeScene {
       });
       phoneMeshes.forEach((n) => occupied.push(meshBox(n)));
 
-      const palette = [0x8c5b48, 0x46655d, 0xb08a4e, 0x5c5670, 0x9c4c42, 0x3f4f5e, 0xd6c6a4, 0x6e7a4a, 0x7a4a58, 0x2f3b42];
+      const palette = DECOR_BOOK_COLORS;
       const rnd = (() => {
         let seed = 20260921;
         return () => (seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648;
@@ -997,6 +1014,17 @@ export class OfficeScene {
         m.material = (m.material as THREE.Material).clone();
       }),
     );
+    // The model's own books that belong to no hotspot take the decorative neutrals too (they come in the GLB's
+    // greens, reds and navies otherwise).
+    {
+      const inHotspot = new Set<THREE.Object3D>(Object.values(this.groups).flatMap((g) => g.meshes));
+      let k = 0;
+      model.traverse((n) => {
+        if (!(n as THREE.Mesh).isMesh || !/^book_\d+$/.test(n.name) || inHotspot.has(n)) return;
+        const m = n as THREE.Mesh;
+        m.material = new THREE.MeshStandardMaterial({ color: DECOR_BOOK_COLORS[(k++ * 7) % DECOR_BOOK_COLORS.length], roughness: 0.82, metalness: 0.02 });
+      });
+    }
     this.applySpines();
     this.setupPull();
     // After the spine tint, so each book's bands are cut from its final colour.
@@ -1007,7 +1035,7 @@ export class OfficeScene {
     [...modelBooks, ...standingFiller].forEach(dressBook);
     if (moonGlobe) {
       this.lampMat = moonGlobe.material as Standard;
-      this.lampMat.emissive = new THREE.Color(0xffe6b8);
+      this.lampMat.emissive = new THREE.Color(LAMP_GLOW);
       this.lampMat.emissiveIntensity = 0.3;
     }
 
@@ -1523,7 +1551,7 @@ export class OfficeScene {
     if (!on) {
       this.hintMeshes.forEach((m) => {
         const mat = m.material as Standard;
-        if (mat.emissive && m.userData.hotspot !== this.hovered) mat.emissive.setHex(0x000000);
+        if (mat.emissive && m.userData.hotspot !== this.hovered) mat.emissive.setHex(mat === this.lampMat ? LAMP_GLOW : 0x000000);
       });
     }
   }
@@ -1607,13 +1635,13 @@ export class OfficeScene {
   /** Each case's shelf takes its entry's colour: the tallest book fully, the rest most of the way. */
   private applySpines(): void {
     for (const id of TINTED_IDS) {
-      const hex = this.opts.spines[id];
+      const hex = SHELF_SPINES[id] ?? this.opts.spines[id];
       const group = this.groups[id];
       if (!hex || !group) continue;
       const target = new THREE.Color(hex);
       const hero = this.heroOf(id);
       group.meshes.forEach((m) => {
-        (m.material as Standard).color.lerp(target, m === hero ? 0.92 : 0.55);
+        (m.material as Standard).color.lerp(target, m === hero ? HERO_SPINE_MIX : SPINE_MIX);
       });
     }
   }
@@ -1632,10 +1660,11 @@ export class OfficeScene {
     }
   }
 
+  /** `0x000000` lets go of a highlight: the moon lamp goes back to its glow rather than going dark. */
   private setEmissive(id: string, hex: number): void {
     this.groups[id].meshes.forEach((m) => {
       const mat = m.material as Standard;
-      if (mat.emissive) mat.emissive.setHex(hex);
+      if (mat.emissive) mat.emissive.setHex(hex === 0x000000 && mat === this.lampMat ? LAMP_GLOW : hex);
     });
   }
 
