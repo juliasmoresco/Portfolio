@@ -19,7 +19,8 @@
         "**Papel:** conceito, design e direção de arte",
         "**Feito com:** Claude Design (protótipo e objetos 3D) e Claude Code (o site)",
         "**Stack:** React, TypeScript, three.js",
-        "**Período:** set. – out. 2026"
+        "**Período:** set. – out. 2026",
+        "**Reconhecimento:** Menção Honrosa no Awwwards (nov. 2026)"
       ],
       "image": "story-cover-pt",
       "fullPage": true,
@@ -44,11 +45,11 @@
             "label": "13"
           },
           {
-            "label": "17"
+            "label": "18"
           }
         ],
         "answer": 2,
-        "reveal": "São 17 objetos para descobrir, mais a luminária de lua, que muda a luz. O primeiro protótipo já prometia “0 de 17 descobertos”, e, com este livro na estante, a conta finalmente fecha.",
+        "reveal": "São 18 objetos para descobrir, mais a luminária de lua, que muda a luz. O primeiro protótipo prometia “0 de 17 descobertos”; este livro na estante fechou a conta em 17, e o troféu do Awwwards levou a 18.",
         "prompt": "Escolha uma para ver a resposta.",
         "answerLabel": "Resposta"
       },
@@ -230,6 +231,42 @@
       }
     },
     {
+      "kicker": "Celular",
+      "heading": "Mudando a prateleira de lugar",
+      "lines": [
+        "A sala foi o maior desafio da versão para celular. Numa tela estreita, o layout do desktop deixava tudo minúsculo e metade da tela vazia.",
+        "A solução foi empilhar: no celular, a prateleira e os pôsteres sobem para cima da estante, e o Zuko vem para a frente. Os objetos são os mesmos, mas tudo aparece bem maior."
+      ],
+      "artRight": true,
+      "compare": {
+        "title": "Reorganizando a sala",
+        "device": "phone",
+        "variants": [
+          {
+            "label": "Layout do desktop",
+            "images": [
+              "story-mobile-before"
+            ],
+            "note": "O layout do desktop no celular: tudo minúsculo e a metade de baixo vazia."
+          },
+          {
+            "label": "Reorganizada",
+            "images": [
+              "story-mobile-after"
+            ],
+            "note": "A prateleira acima da estante e o Zuko na frente: a sala ocupa a tela."
+          },
+          {
+            "label": "Dicas ligadas",
+            "images": [
+              "story-mobile-hints"
+            ],
+            "note": "As dicas acendem tudo o que dá para tocar."
+          }
+        ]
+      }
+    },
+    {
       "kicker": "Conteúdo",
       "heading": "Contando cada case do seu jeito",
       "lines": [
@@ -274,13 +311,26 @@
     },
     {
       "kicker": "Resultado",
+      "heading": "Menção Honrosa no Awwwards",
+      "lines": [
+        "Em novembro de 2026, este escritório recebeu uma **Menção Honrosa** no Awwwards, a premiação de web design votada por um júri internacional de designers e desenvolvedores.",
+        "Por isso ele ganhou um lugar na estante: o “W.” dourado no alto, entre a luminária de lua e o xadrez. Arraste para girar."
+      ],
+      "model3d": {
+        "title": "O prêmio",
+        "model": "trophy",
+        "note": "Arraste para girar"
+      }
+    },
+    {
+      "kicker": "Resultado",
       "heading": "O resultado final",
       "lines": [],
       "showcase": {
         "title": "Abra o escritório",
         "device": "desktop",
         "intro": [
-          "Dezessete objetos para descobrir, mais uma luminária de lua. Três cases, um currículo, um gato que responde perguntas e nenhum menu obrigatório. Feche este livro e explore o restante do escritório."
+          "Dezoito objetos para descobrir, mais uma luminária de lua. Feche este livro e explore o escritório."
         ],
         "screens": [
           {
